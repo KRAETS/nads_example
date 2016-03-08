@@ -1,5 +1,7 @@
 import copy
+import editdistance
 from notidummy import notify_both
+from dummy_data_retrieval import *
 
 pair = ("", -1)
 
@@ -9,6 +11,7 @@ def remove_bruteforcer(item):
         return True
     else:
         return False
+
 
 
 def detection_function(sn, sn_1, h):
@@ -84,16 +87,46 @@ class Classifier:
             return pair
         return None
 
+    def analyze_past_history(self, epoch):
+        epochclone = copy.deepcopy(epoch)
+        # Get past successful logins
+        past_success_logins = search("ip", "query")
+        # Filter out failures according to past logins
+        legit_users_filtering_function = def dummy(test_login):
+            for login in past_success_logins:
+                if test_login.get_client() is login[0] and test_login.get_user() is login[1]:
+                    return True
+            return False
+
+        for event in epochclone:
+            # Filter out the legit users
+            event.logins = filter(legit_users_filtering_function,event.get_logins())
+
+        legit_users_filtering_function = def dummy2(test_login):
+            for login in past_success_logins:
+                if test_login.get_client() is login[0] and editdistance.eval(login[1],test_login.get_user()) is 1:
+                    return True
+            return False
+
+
+        pass
+
+    def analyze_mistypes(self, epoch):
+        pass
 
     def process(self, epoch):
         result = self.check_singleton(epoch)
         if result is not None:
             # process singleton
             notify_both("hola"+str(result))
-            pass
 
         else:
-            #Analyze distributed attack
+            newepoch = self.analyze_past_history(epoch)
+            print newepoch
+            newepoch = self.analyze_mistypes(epoch)
+            print newepoch
+
+            # Analyze distributed attack
             pass
 
 

@@ -1,0 +1,6 @@
+{
+  "status": true,
+  "client":"someip",
+  "host":"somehost",
+  "user":"theuser"
+}

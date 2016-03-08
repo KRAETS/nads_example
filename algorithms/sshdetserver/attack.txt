@@ -1,0 +1,127 @@
+#testing
+
+#TUNING_MU = 5
+#TUNING_K = 2
+#TUNING_H = 4
+#TUNING_AVERAGE_OOC_ARL = 3
+#TUNING_OOC_MEDIUM_THRESHOLD = 3
+#TUNING_EVENT_THRESHOLD = 10
+
+#Average of 5 failed logins 
+#a buffer of 2 failed logins
+#An ooc threshold of 4
+
+#Grey event
+F
+F
+F
+F
+S
+S
+F
+F
+S
+F
+#F/S
+#7/3
+#Good Event
+F
+S
+S
+F
+S
+S
+F
+F
+S
+S
+#F/S
+#4/6
+#Good Event
+S
+S
+S
+S
+F
+S
+F
+S
+S
+S
+#F/S
+#2/8
+
+#Bad Event
+F
+F
+F
+F
+F
+F
+S
+F
+F
+F
+#F/S
+#9/1
+
+#Bad Event
+F
+F
+F
+F
+F
+S
+S
+F
+F
+F
+#F/S
+#8/2
+
+#Bad Event
+F
+F
+F
+F
+F
+S
+S
+F
+F
+F
+#F/S
+#7/3
+
+#Bad Event
+F
+F
+F
+F
+F
+S
+S
+F
+F
+F
+#F/S
+#8/2
+#Good Event
+F
+S
+S
+F
+S
+S
+F
+F
+S
+S
+#F/S
+#4/6
+
+
+
+
+
+

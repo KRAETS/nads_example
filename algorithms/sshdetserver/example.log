@@ -1,0 +1,1010 @@
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:22] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:23] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:50:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:51:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:53:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:54:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:09] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:10] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:11] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:12] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser, Login:somehost someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 21:55:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:49] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:38:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:13] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:14] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:17] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:18] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:19] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:20] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:21] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:42] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:43] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:44] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:45] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:46] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:47] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Mar/2016 22:41:48] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:36:36] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+ERROR:sshdetserver:Exception on /addlogin [POST]
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/pedro/PycharmProjects/sshdetserver/sshdetserver.py", line 138, in add_login
+    GLOBAL_CLASSIFIER.process(epoch)
+  File "/Users/pedro/PycharmProjects/sshdetserver/classifier.py", line 89, in process
+    result = self.check_singleton(epoch)
+  File "/Users/pedro/PycharmProjects/sshdetserver/classifier.py", line 40, in check_singleton
+    hostmap[login.get_client()] += 1
+KeyError: u'someip'
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:37:05] "POST /addlogin HTTP/1.1" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:28] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:30] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:32] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:33] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:38:35] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:34] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:35] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:36] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:37] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:38] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:39] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:40] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:39:41] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:15] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:16] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:26] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:50] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:51] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:52] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:53] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:54] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:55] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:56] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:57] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -
+DEBUG:root:Event:[Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser, Login:False someip somehost theuser, Login:False someip somehost theuser, Login:True someip somehost theuser, Login:True someip somehost theuser] 0 0 10 True
+INFO:werkzeug:127.0.0.1 - - [08/Mar/2016 01:41:58] "POST /addlogin HTTP/1.1" 200 -

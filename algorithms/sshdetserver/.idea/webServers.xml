@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="10a7cf74-d66a-46ca-8e8b-45f92ff5523a" name="VM2" url="http://192.168.0.108">
+        <fileTransfer host="192.168.0.108" port="21" password="dfdedfc3dfdedfc5df9bdf98dfeadfea" username="pedro">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="2613435a-1f1f-46cb-ae26-ed2c4a54b3bd" name="VM1" url="http://192.168.0.107">
+        <fileTransfer host="192.168.0.107" port="21" password="dfdedfc3dfdedfc5df9bdf98dfeadfea" username="pedro">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="ef7b7b54-9b34-4200-b1c3-781e01b57cb4" name="SERVERNODE" url="http://192.168.0.114">
+        <fileTransfer host="192.168.0.114" port="21" password="dfdedfc3dfdedfc5df9bdf98dfeadfea" username="pedro">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

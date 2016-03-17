@@ -1,0 +1,43 @@
+{
+	"main":{
+		"workingdirectory":"something"
+	},
+	"algorithms":
+	{
+		"algorithmList":[
+			{
+				"name":"somealgorithm",
+				"parameters":[{"specificalgorithmparameter":"value","exampleip":"value", 
+			"model":"values","trap_oid": "value"}],
+				"folder":"containingFolder"
+			}
+		]
+	},
+	"visual":{
+		"templatefolder":"/path/to/templatedumpingfolder",
+		"kibanaport":"",
+		"kibanaaddress":""
+	},
+	"dataretrieval":{
+		"logstashport":"",
+		"logstashaddress":"",
+		"elasticsearchport":"",
+		"elasticsearchaddress":""
+	},
+	"notification":{
+		"users":
+		[
+			{
+				"name":"someone",
+				"phonenumber":"7871234567",
+				"phoneprovider":"att|tmobile|sprint|claro",
+				"email":"a@b.com",
+				"notifiablealgorithms":["algo"]
+			}
+		],
+		"encryptedsmtpaccountpath":"/path/to/encrypted/smtp/account"
+	},
+	"utilities":{
+		"formattingparameterspath":"/path/to/formattingparametersfile"
+	}
+}

@@ -1,16 +1,14 @@
 import copy
 import editdistance
+from igraph import *
+
 from notidummy import notify_both
 from dummy_data_retrieval import *
 
 pair = ("", -1)
 
 
-def remove_bruteforcer(item):
-    if item.get_client() is pair[0]:
-        return True
-    else:
-        return False
+
 
 
 
@@ -20,11 +18,10 @@ def detection_function(sn, sn_1, h):
 
 
 class Classifier:
-    def __init__(self, mu, k, h):
+    def __init__(self, mu, h, k):
         self.mu = mu
         self.k = k
         self.h = h
-        pass
 
     def check_singleton(self, epoch):
         global pair
@@ -46,6 +43,12 @@ class Classifier:
             if hostmap[key] > pair[1]:
                 pair = (key, hostmap[key])
 
+        def remove_bruteforcer(item):
+            if item.get_client() is pair[0]:
+                return False
+            else:
+                return True
+
         # Remove the host from all the events
         for event in copy_of_ooc_events:
             event.logins = filter(remove_bruteforcer, event.get_logins())
@@ -54,7 +57,8 @@ class Classifier:
 
         GLOBAL_SN_1 = 0
         GLOBAL_SN = 0
-
+        zn = 0
+        gfi = 0
         # now simulate the cusum
         for event in copy_of_ooc_events:
             # Calculate gfi
@@ -80,6 +84,7 @@ class Classifier:
         singleton = False
         for event in copy_of_ooc_events:
             if not event.get_control():
+                singleton = True
                 break
 
         singleton = not singleton
@@ -92,27 +97,110 @@ class Classifier:
         # Get past successful logins
         past_success_logins = search("ip", "query")
         # Filter out failures according to past logins
-        legit_users_filtering_function = def dummy(test_login):
+        def successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                if test_login.get_client() is login[0] and test_login.get_user() is login[1]:
-                    return True
-            return False
+                if str(test_login.get_client()) == str(login[0]) and test_login.get_user() == login[1]:
+                    print "Previous success detected", test_login.get_client(), test_login.get_user()
+                    return False
+            return True
 
-        for event in epochclone:
+        for event in epochclone.get_history_events():
             # Filter out the legit users
-            event.logins = filter(legit_users_filtering_function,event.get_logins())
+            event.logins = filter(successful_previous_login_filter,event.get_logins())
 
-        legit_users_filtering_function = def dummy2(test_login):
+        def mistyped_successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                if test_login.get_client() is login[0] and editdistance.eval(login[1],test_login.get_user()) is 1:
-                    return True
-            return False
+                print "Edit distance",  editdistance.eval(login[1],test_login.get_user())
+                print "Opposite", editdistance.eval(test_login.get_user(),login[1])
+                print test_login.get_user(),login[1]
+                print test_login.get_client() == login[0]
+                print editdistance.eval(login[1],test_login.get_user()) == 1
+                print editdistance.eval(login[1],test_login.get_user()) is 1
+                print "For"
+                if test_login.get_client() == login[0] and editdistance.eval(login[1],test_login.get_user()) == 1:
+                    print "Mistype detected", test_login.get_client()
+                    return False
+            return True
+
+        for event in epochclone.get_history_events():
+            # Filter out the legit users
+            event.logins = filter(mistyped_successful_previous_login_filter,event.get_logins())
+
+        return epochclone
+
+    def analyze_coordination_glue(self,epoch):
+        graph = Graph()
+        #Nodeset 1
+        nodeset1 = set()
+        for event in epoch.get_history_events():
+            for login in event.get_logins():
+                #add the remote host nodeset
+                if not login.get_status():
+                    # graph.add_vertex(login.get_client())
+                    nodeset1.add(login.get_client())
+
+        nodeset2 = set()
+        #Nodeset 2
+        for event in epoch.get_history_events():
+            for login in event.get_logins():
+                #add the host nodeset
+                if not login.get_status():
+                    # graph.add_vertex(login.get_host())
+                    nodeset2.add(login.get_host())
+
+        #Join Remotehost->localhost
+        for vertex in nodeset1.union(nodeset2):
+            graph.add_vertex(vertex)
+
+        print "Vertices", graph.vs["name"]
+        for event in epoch.get_history_events():
+            for login in event.get_logins():
+                if not login.get_status():
+                    remotehost = login.get_client()
+                    localhost = login.get_host()
+                    edge = (remotehost, localhost)
+                    source = 1
+                    destination = 1
+                    for vertex in graph.vs["name"]:
+                        if vertex == remotehost:
+                            break
+                        source += 1
+                    for vertex in graph.vs["name"]:
+                        if vertex == localhost:
+                            break
+                        destination += 1
+                    graph.add_edge(source-1,destination-1)
 
 
-        pass
+                    # graph.add_edge(remotehost, localhost)
+                    # graph.add_edges(edge)
 
-    def analyze_mistypes(self, epoch):
-        pass
+        clusters = graph.clusters()
+
+        visual_style = {}
+        visual_style["vertex_size"] = 20
+        # visual_style["vertex_color"] = [color_dict[gender] for gender in g.vs["gender"]]
+        visual_style["vertex_label"] = graph.vs["name"]
+        # visual_style["edge_width"] = [1 + 2 * int(is_formal) for is_formal in g.es["is_formal"]]
+        visual_style["layout"] = layout
+        visual_style["bbox"] = (300, 300)
+        visual_style["margin"] = 20
+        # plot(clusters, **visual_style)
+
+        #Get the top target(centers of clusters)
+        top = ("", 0)
+        for cluster in clusters:
+            print cluster
+            for vertex in cluster:
+                degree = graph.degree(vertex)
+                if degree > top[1]:
+                    top = (graph.vs["name"][vertex], degree)
+
+        print top
+
+        print clusters
+
+        return top
 
     def process(self, epoch):
         result = self.check_singleton(epoch)
@@ -121,18 +209,11 @@ class Classifier:
             notify_both("hola"+str(result))
 
         else:
+            print "Filtering out legitimate activity"
             newepoch = self.analyze_past_history(epoch)
-            print newepoch
-            newepoch = self.analyze_mistypes(epoch)
-            print newepoch
-
-            # Analyze distributed attack
-            pass
-
-
-
-
-
-
-
+            print "Done", newepoch
+            print "Analyzing coordination glue"
+            hitpair = self.analyze_coordination_glue(newepoch)
+            notify_both("Target under attack:"+str(hitpair))
+            print hitpair
 

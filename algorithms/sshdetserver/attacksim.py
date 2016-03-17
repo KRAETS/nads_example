@@ -3,11 +3,15 @@ import time
 
 filename = "attack.txt"
 GLOBAL_IP = "localhost"
+distributed = True
+number_of_attack_users = 3
+legit_user_fail = 7 #Every 15 attempts a legit user fails by wrong password
 if __name__ == '__main__':
     "Print starting attack"
     attack_file = open(filename, 'r')
     failcount = 0
     successcount = 0
+    currcount = 0
 
     for line in attack_file.readlines():
         if "#" in line:
@@ -16,12 +20,37 @@ if __name__ == '__main__':
             if "F" in line or "f" in line:
                 # produce failed attempt
                 failcount += 1
-                json = "{ \
-                  \"status\": false,\
-                  \"client\":\"someip\",\
-                  \"host\":\"somehost\",\
-                  \"user\":\"theuser\"\
-                }"
+                #Sign of a failed attempt
+                json = None
+                if currcount % legit_user_fail is 0:
+                    if currcount % 2 is 0:
+                        #Mistaken password attempt
+                        json = "{ \
+                          \"status\": false,\
+                          \"client\":\"mrlegit\",\
+                          \"host\":\"somehost\",\
+                          \"user\":\"thetrueuser\"\
+                        }"
+                    else:
+                        #Mistaken user account fail
+                        json = "{ \
+                          \"status\": false,\
+                          \"client\":\"mrlegit\",\
+                          \"host\":\"somehost\",\
+                          \"user\":\"thetrueuser1\"\
+                        }"
+                else:
+                    json = "{ \
+                      \"status\": false,\
+                      \"client\":\""+str(currcount % number_of_attack_users)+"\",\
+                      \"host\":\"somehost\",\
+                      \"user\":\"theuser\"\
+                    }"
+                #Simulate a distributed attack with 0-2 users
+                if distributed:
+                    currcount += 1
+
+
                 req = urllib2.Request('http://'+GLOBAL_IP+':5000/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json)
@@ -31,9 +60,9 @@ if __name__ == '__main__':
                 successcount += 1
                 json = "{ \
                   \"status\": true,\
-                  \"client\":\"someip\",\
+                  \"client\":\"sometrueip\",\
                   \"host\":\"somehost\",\
-                  \"user\":\"theuser\"\
+                  \"user\":\"thetrueuser\"\
                 }"
                 req = urllib2.Request('http://'+GLOBAL_IP+':5000/addlogin')
                 req.add_header('Content-Type', 'application/json')

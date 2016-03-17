@@ -10,11 +10,11 @@ from event import Event
 app = Flask(__name__)
 
 # Tuning parameters
-TUNING_MU = 4
-TUNING_K = 2
-TUNING_H = 3
+TUNING_MU = 3
+TUNING_K = 1
+TUNING_H = 2
 TUNING_AVERAGE_OOC_ARL = 3
-TUNING_OOC_MEDIUM_THRESHOLD = 3
+TUNING_OOC_MEDIUM_THRESHOLD = 4
 TUNING_EVENT_THRESHOLD = 10
 
 # Global variables

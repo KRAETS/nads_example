@@ -11,19 +11,6 @@
 #a buffer of 2 failed logins
 #An ooc threshold of 4
 
-#Grey event
-F
-F
-F
-F
-S
-S
-F
-F
-S
-F
-#F/S
-#7/3
 #Good Event
 F
 S
@@ -38,6 +25,45 @@ S
 #F/S
 #4/6
 #Good Event
+F
+S
+S
+F
+S
+S
+F
+F
+S
+S
+#F/S
+#4/6
+#Good Event
+F
+S
+S
+F
+S
+S
+F
+F
+S
+S
+#F/S
+#4/6
+#Good Event
+F
+S
+S
+S
+S
+S
+F
+F
+S
+S
+#F/S
+#3/7
+#Good Event
 S
 S
 S
@@ -50,7 +76,7 @@ S
 S
 #F/S
 #2/8
-
+##############################
 #Bad Event
 F
 F
@@ -92,7 +118,19 @@ F
 F
 #F/S
 #7/3
-
+#Bad Event
+F
+F
+F
+F
+F
+S
+S
+F
+F
+F
+#F/S
+#7/3
 #Bad Event
 F
 F
@@ -114,12 +152,11 @@ F
 S
 S
 F
-F
+S
 S
 S
 #F/S
-#4/6
-
+#3/7
 
 
 

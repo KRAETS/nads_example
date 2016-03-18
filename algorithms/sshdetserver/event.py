@@ -29,6 +29,7 @@ class Event:
         return len(self.logins) >= self.threshHold
 
     def calculate_gfi(self):
+        self.gfi = 0
         for login in self.logins:
             if login.get_status() is False:
                 self.gfi += 1

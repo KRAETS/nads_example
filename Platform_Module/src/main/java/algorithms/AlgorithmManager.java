@@ -1,7 +1,6 @@
 package algorithms;
 
 import interfaces.Manager;
-import parsing.Options;
 
 /**
  * Created by pedro on 3/17/16.

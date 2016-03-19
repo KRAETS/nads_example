@@ -20,7 +20,13 @@ public class Options {
 
     public boolean removeOption(String key)
     {
-        this.optionMap.remove(key);
+        try {
+            this.optionMap.remove(key);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }
 

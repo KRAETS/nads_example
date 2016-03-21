@@ -118,10 +118,15 @@ public class PlatformManager implements Manager {
     }
 
     private void initUtilitiesManager(UtilitiesOptions utilitiesOptions) {
+        this.utilMan = new UtilitiesManager();
+        this.utilMan.configure(utilitiesOptions);
+        this.utilMan.start();
     }
 
     private void initNotificationManager(NotificationOptions notificationOptions) {
-
+        this.notMan = new NotificationManager();
+        this.notMan.configure(notificationOptions);
+        this.notMan.start();
     }
 
     public boolean stop() {

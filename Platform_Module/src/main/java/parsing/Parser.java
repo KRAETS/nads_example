@@ -1,6 +1,7 @@
 package parsing;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
@@ -30,114 +31,152 @@ public class Parser {
     private NotificationOptions notificationsOptions = new NotificationOptions();
     private UtilitiesOptions utilitiesOptions = new UtilitiesOptions();
 
-    public void extractOptions()
+    public boolean extractOptions()
     {
-        List<String> lines;
+        //Set character encoding for when the config file is read
         Charset cs = Charset.forName("UTF-8");
+        //try catch for IO errors resulting from reading the file
         try
         {
-
-            lines = Files.readAllLines(Paths.get(configFile), cs);
+            //Read config file as a single long string
             String dude = this.readFile(configFile,cs);
-            //dude = gson.toJson(dude).toString();
-            Map<String, Object> newMap = gson.fromJson(dude,typeOfSOHashMap);
-            Map<String, Object> newMap2 = gson.fromJson(newMap.get("main").toString(),typeOfSOHashMap);
-            String hello = gson.toJson(newMap.get("visual")).toString();
-            //String hello = newMap.get("visual").toString();
-            Map<String, Object> algorithmsMap = gson.fromJson(hello,typeOfSOHashMap);
-            //System.out.println(algorithmsMap.get("users").toString());
-            this.utilitiesOptionsParsers(newMap);
-            this.mainOptionsParsers(newMap);
-            this.notificationOptionsParsers(newMap);
-            this.visualOptionsParsers(newMap);
-            this.dataRetrievalOptionsParsers(newMap);
-            this.algorithmsOptionsParsers(newMap);
-        }catch(IOException e){}
+            //Try catch for parsing errors in the json format
+            try
+            {
+                //Creates Map of whole config file
+                Map<String, Object> newMap = gson.fromJson(dude,typeOfSOHashMap);
+                //Calls function to parse te options for each module
+                this.utilitiesOptionsParsers(newMap);
+                this.mainOptionsParsers(newMap);
+                this.notificationOptionsParsers(newMap);
+                this.visualOptionsParsers(newMap);
+                this.dataRetrievalOptionsParsers(newMap);
+                this.algorithmsOptionsParsers(newMap);
+            }catch (JsonParseException a)
+            {
+                //Send notification to user of bad config file format
+                return false;
+            }
+        }catch(IOException e)
+        {
+            //Send notification to user that config file could not be found
+            return false;
+        }
 
+        return true;
 
     }
 
     private void mainOptionsParsers(Map<String, Object> options)
     {
-        Map<String, String> mainMap = gson.fromJson(gson.toJson(options.get("main")).toString(),typeOfSSHashMap);
-        for (Map.Entry<String, String> entry : mainMap.entrySet())
+        try
         {
-            mainOptions.addOption(entry.getKey(),new Option(entry.getKey(),entry.getValue(), Option.OptionType.INDIVIDUAL));
-            //System.out.println(entry.getKey() + "/" + entry.getValue());
+            //Extracts platform options from main map
+            Map<String, String> mainMap = gson.fromJson(gson.toJson(options.get("main")).toString(), typeOfSSHashMap);
+            
+            for (Map.Entry<String, String> entry : mainMap.entrySet()) {
+                mainOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue(), Option.OptionType.INDIVIDUAL));
+                //System.out.println(entry.getKey() + "/" + entry.getValue());
+            }
+
+        }catch (JsonParseException a)
+        {
+            //Send notification to user of bad config file format in the platform options
         }
     }
 
     private void algorithmsOptionsParsers(Map<String, Object> options)
     {
-        List<HashMap<String, HashMap<String,String>>> algorithmsMap = gson.fromJson(gson.toJson(options.get("algorithms")).toString(),typeOfHMList);
-        //List<HashMap<String,String>> algorithmsMap = gson.fromJson(options.get("algorithms").toString(),typeOfHMList);
-        for (HashMap<String, HashMap<String,String>> hmap: algorithmsMap)
+        try
         {
-            for (Map.Entry<String, HashMap<String,String>> entry : hmap.entrySet())
-            {
-                Option tempOpt = new Option(entry.getKey(), Option.OptionType.OPTIONMAP);
-                tempOpt.setOptionMap(entry.getValue());
-                algorithmsOptions.addOption(entry.getKey(),tempOpt);
-                //System.out.println(entry.getKey() + "/" + entry.getValue());
-            }
+            //Extracts algorithms options from main map
+            List<HashMap<String, HashMap<String, String>>> algorithmsMap = gson.fromJson(gson.toJson(options.get("algorithms")).toString(), typeOfHMList);
+            //List<HashMap<String,String>> algorithmsMap = gson.fromJson(options.get("algorithms").toString(),typeOfHMList);
+            for (HashMap<String, HashMap<String, String>> hmap : algorithmsMap) {
+                for (Map.Entry<String, HashMap<String, String>> entry : hmap.entrySet()) {
+                    Option tempOpt = new Option(entry.getKey(), Option.OptionType.OPTIONMAP);
+                    tempOpt.setOptionMap(entry.getValue());
+                    algorithmsOptions.addOption(entry.getKey(), tempOpt);
+                    //System.out.println(entry.getKey() + "/" + entry.getValue());
+                }
 
+            }
+        }catch(JsonParseException a)
+        {
+            //Send notification to user of bad config file format in the algorithms options
         }
     }
 
     private void utilitiesOptionsParsers(Map<String, Object> options)
     {
-        Map<String, String> utilitiesMap = gson.fromJson(gson.toJson(options.get("utilities")).toString(),typeOfSSHashMap);
-        for (Map.Entry<String, String> entry : utilitiesMap.entrySet())
+        try {
+            //Extracts utitlies options from main map
+            Map<String, String> utilitiesMap = gson.fromJson(gson.toJson(options.get("utilities")).toString(), typeOfSSHashMap);
+            for (Map.Entry<String, String> entry : utilitiesMap.entrySet()) {
+                utilitiesOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue(), Option.OptionType.INDIVIDUAL));
+                //System.out.println(entry.getKey() + "/" + entry.getValue());
+            }
+        }catch (JsonParseException a)
         {
-            utilitiesOptions.addOption(entry.getKey(),new Option(entry.getKey(),entry.getValue(), Option.OptionType.INDIVIDUAL));
-            //System.out.println(entry.getKey() + "/" + entry.getValue());
+            //Send notification to user of bad config file format in the utilities options
         }
     }
 
     private void dataRetrievalOptionsParsers(Map<String, Object> options)
     {
-        Map<String, String> dataRetrievalMap = gson.fromJson(gson.toJson(options.get("dataretrieval")).toString(),typeOfSSHashMap);
-        for (Map.Entry<String, String> entry : dataRetrievalMap.entrySet())
+        try {
+            //Extracts data retrieval options from main map
+            Map<String, String> dataRetrievalMap = gson.fromJson(gson.toJson(options.get("dataretrieval")).toString(), typeOfSSHashMap);
+            for (Map.Entry<String, String> entry : dataRetrievalMap.entrySet()) {
+                dataRetrievalOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue(), Option.OptionType.INDIVIDUAL));
+                //System.out.println(entry.getKey() + "/" + entry.getValue());
+            }
+        }catch (JsonParseException a)
         {
-            dataRetrievalOptions.addOption(entry.getKey(),new Option(entry.getKey(),entry.getValue(), Option.OptionType.INDIVIDUAL));
-            //System.out.println(entry.getKey() + "/" + entry.getValue());
+            //Send notification to user of bad config file format in the data retrieval options
         }
     }
 
     private void notificationOptionsParsers(Map<String, Object> options)
     {
-        Map<String, Object> notificationMap = gson.fromJson(gson.toJson(options.get("notification")).toString(),typeOfSOHashMap);
-        for (Map.Entry<String, Object> entry : notificationMap.entrySet())
-        {
-            if (entry.getKey().equals("users"))
-            {
-                List<HashMap<String,String>> usersMap = gson.fromJson(gson.toJson(entry.getValue()).toString(),typeOfHMSSList);
-                Option tempOpt1 = new Option(entry.getKey(),new ArrayList<Option>(), Option.OptionType.OPTIONLIST);
-                for (HashMap<String, String > hmap: usersMap)
-                {
-                    Option tempOpt = new Option(entry.getKey(), Option.OptionType.OPTIONMAP);
-                    tempOpt.setOptionMap(hmap);
-                    tempOpt1.addToOptionList(tempOpt);
+        try {
+            //Extracts notifications options from main map
+            Map<String, Object> notificationMap = gson.fromJson(gson.toJson(options.get("notification")).toString(), typeOfSOHashMap);
+            for (Map.Entry<String, Object> entry : notificationMap.entrySet()) {
+                if (entry.getKey().equals("users")) {
+                    List<HashMap<String, String>> usersMap = gson.fromJson(gson.toJson(entry.getValue()).toString(), typeOfHMSSList);
+                    Option tempOpt1 = new Option(entry.getKey(), new ArrayList<Option>(), Option.OptionType.OPTIONLIST);
+                    for (HashMap<String, String> hmap : usersMap) {
+                        Option tempOpt = new Option(entry.getKey(), Option.OptionType.OPTIONMAP);
+                        tempOpt.setOptionMap(hmap);
+                        tempOpt1.addToOptionList(tempOpt);
+                        //System.out.println(entry.getKey() + "/" + entry.getValue());
+                    }
+                    notificationsOptions.addOption(entry.getKey(), tempOpt1);
+                } else {
+                    notificationsOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue().toString(), Option.OptionType.INDIVIDUAL));
                     //System.out.println(entry.getKey() + "/" + entry.getValue());
                 }
-                notificationsOptions.addOption(entry.getKey(),tempOpt1);
-            }
-            else
-            {
-                notificationsOptions.addOption(entry.getKey(),new Option(entry.getKey(),entry.getValue().toString(), Option.OptionType.INDIVIDUAL));
-                //System.out.println(entry.getKey() + "/" + entry.getValue());
-            }
 
+            }
+        }catch (JsonParseException a)
+        {
+            //Send notification to user of bad config file format in the notification options
         }
     }
 
     private void visualOptionsParsers(Map<String, Object> options)
     {
-        Map<String, String> visualMap = gson.fromJson(gson.toJson(options.get("visual")).toString(),typeOfSSHashMap);
-        for (Map.Entry<String, String> entry : visualMap.entrySet())
+        try {
+            //Extracts visual options from main map
+            Map<String, String> visualMap = gson.fromJson(gson.toJson(options.get("visual")).toString(), typeOfSSHashMap);
+            for (Map.Entry<String, String> entry : visualMap.entrySet()) {
+                visualOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue(), Option.OptionType.INDIVIDUAL));
+                //System.out.println(entry.getKey() + "/" + entry.getValue());
+            }
+        }catch (JsonParseException)
         {
-            visualOptions.addOption(entry.getKey(),new Option(entry.getKey(),entry.getValue(), Option.OptionType.INDIVIDUAL));
-            //System.out.println(entry.getKey() + "/" + entry.getValue());
+            //Send notification to user of bad config file format in the platform options
         }
     }
 

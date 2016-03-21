@@ -28,5 +28,7 @@ public class Options {
         }
         return true;
     }
+    public Options (){}
 }
+
 

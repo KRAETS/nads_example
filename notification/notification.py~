@@ -32,7 +32,7 @@ if len(args) > 1:   #------- text set-up
                 numbers = num+'@'+'vtexto.com'
             elif subinfo[1].lower() == 't-mobile':
                 numbers = '+1'+num+'@'+'tmomail.net'
-            elif subinfo[1].lower() == 'open mobile':
+            elif subinfo[1].lower() == 'openMobile':
                 numbers = num+'@'+'email.openmobilepr.com'
             else: #subinfo[1].lower() == 'verizon':
                 numbers = num+'@'+'vtext.com'

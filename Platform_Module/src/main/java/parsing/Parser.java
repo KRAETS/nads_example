@@ -2,8 +2,6 @@ package parsing;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -30,7 +28,7 @@ public class Parser {
     private NotificationOptions notificationsOptions = new NotificationOptions();
     private UtilitiesOptions utilitiesOptions = new UtilitiesOptions();
 
-    public void extractOptions()
+    public boolean extractOptions()
     {
         List<String> lines;
         Charset cs = Charset.forName("UTF-8");
@@ -52,7 +50,10 @@ public class Parser {
             this.visualOptionsParsers(newMap);
             this.dataRetrievalOptionsParsers(newMap);
             this.algorithmsOptionsParsers(newMap);
-        }catch(IOException e){}
+        }catch(IOException e){
+            return false;
+        }
+        return true;
 
 
     }

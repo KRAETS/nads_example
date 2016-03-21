@@ -2,24 +2,22 @@ package algorithms;
 
 import interfaces.Manager;
 import parsing.AlgorithmsOptions;
-import parsing.Options;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Created by pedro on 3/17/16.
  */
-public class AlgorithmManager implements Manager {
+public class AlgorithmManager extends Manager {
     private List<Algorithm> algorithmsList;
     private AlgorithmsOptions algOpts;
 
-    public AlgorithmManager(){
-        this.algorithmsList = new LinkedList<Algorithm>();
 
-    }
     public boolean start(String algorithmName){
         for(Algorithm alg:algorithmsList){
+            this.getLogger().log(Level.INFO,"Starting:"+alg.getName());
             if(alg.getName().equals(algorithmName)){
                 alg.run();
                 return true;
@@ -28,20 +26,40 @@ public class AlgorithmManager implements Manager {
         return false;
     }
 
+
+    /**
+     * Default start method, simply start all algorithms.
+     * @return status of startup
+     */
     public boolean start() {
-        return false;
+        try{
+            this.startAll();
+        }
+        catch (Exception e){
+            this.getLogger().log(Level.SEVERE,"Could not start all the algorithms:"+e.toString());
+            return false;
+        }
+        return true;
     }
 
     public boolean stop() {
-        return false;
+        try{
+            this.stopAll();
+        }
+        catch (Exception e){
+            this.getLogger().log(Level.SEVERE,"Could not stop all the algorithms:"+e.toString());
+            return false;
+        }
+        return true;
     }
 
-    public boolean configure(Options opts) {
+    public boolean configure() {
         return false;
     }
 
     public boolean start(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
+            this.getLogger().log(Level.SEVERE, "Out of range");
             return false;
         }
         algorithmsList.get(algorithmNumber).run();
@@ -75,8 +93,9 @@ public class AlgorithmManager implements Manager {
         }
     }
     public AlgorithmManager(AlgorithmsOptions algOpts){
+        this.algorithmsList = new LinkedList<Algorithm>();
         this.algOpts = algOpts;
-        this.configure(algOpts);
+        this.configure();
     }
 
 }

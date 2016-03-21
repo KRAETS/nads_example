@@ -1,27 +1,50 @@
 package interfaces;
 
-import parsing.Options;
+import java.util.logging.Logger;
 
 /**
  * Created by pedro on 3/17/16.
  */
-public interface Manager {
+public abstract class Manager {
+    private Logger logMan;
+
     /**
      * Method that starts a manager
      * @return Status of startup operation
      */
-    boolean start();
+
+    public abstract boolean start();
 
     /**
      * Method that sends a stop signal to a manager
      * @return Status for stop operation
      */
-    boolean stop();
+    public abstract boolean stop();
 
     /**
      * Method that initializes a manager given a set of options
-     * @param opts Options for the manager.  Will be one of the Options classes
      * @return Status for configuration
      */
-    boolean configure(Options opts);
+    public abstract boolean configure();
+
+    /**
+     * Method that sets a logger for the class.  Checks if the logger is null
+     */
+    public boolean setLogger(Logger logger){
+        try{
+            if(logger==null)
+                throw new NullPointerException("Null logger");
+            this.logMan = logger;
+            return true;
+        }
+        catch(Exception e){
+            System.err.println(e.toString());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Logger getLogger(){
+        return this.logMan;
+    }
 }

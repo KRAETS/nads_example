@@ -1,18 +1,22 @@
 package parsing;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+
 
 /**
  * Created by dude on 3/17/16.
  */
 public class Option {
-    public enum OptionType {STRINGLIST, INDIVIDUAL, OPTIONLIST}
+    public enum OptionType {STRINGLIST, INDIVIDUAL, OPTIONLIST, OPTIONMAP}
     private List<String> optionStringList = new ArrayList<String>();
     private String optionStringIndividual = "";
     private List<Option> optionList = new ArrayList<Option>();
     private String optionName = "";
     private OptionType optionType;
+    private Map<String, String> optionMap = new HashMap<String, String>();
 
     public void setOptionStringList(List<String> optionStringList)
     {
@@ -32,6 +36,11 @@ public class Option {
     public void setOptionName(String optionName)
     {
         this.optionName = optionName;
+    }
+
+    public void setOptionMap (Map<String,String> map)
+    {
+        this.optionMap = map;
     }
 
     public void setOptionType (OptionType type)
@@ -63,7 +72,12 @@ public class Option {
         return this.optionName;
     }
 
-    public String getOptionType()
+    public Map<String,String > getOptionMap()
+    {
+        return this.optionMap;
+    }
+
+    public OptionType getOptionType()
     {
         return this.optionType;
     }
@@ -79,19 +93,17 @@ public class Option {
         this.optionType = type;
         this.optionStringIndividual = s;
     }
-    public Option(String name,List<String> ls,OptionType type)
+    public Option(String name,OptionType type)
     {
+
         this.optionName = name;
         this.optionType = type;
-        this.optionStringList =ls;
+
     }
-    public Option(String name,List<Option> lo, OptionType type)
+    public Option(String name, List<Option> lo, OptionType type)
     {
         this.optionName = name;
         this.optionType = type;
         this.optionList = lo;
     }
-}
-
-
 }

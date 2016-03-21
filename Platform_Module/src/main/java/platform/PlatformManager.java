@@ -100,12 +100,21 @@ public class PlatformManager implements Manager {
     }
 
     private void initAlgorithmsManager(AlgorithmsOptions algorithmsOptions) {
+        this.algMan = new AlgorithmManager();
+        this.algMan.configure(algorithmsOptions);
+        this.algMan.start();
     }
 
     private void initVisualizationManager(VisualizationOptions visualizationOptions) {
+        this.visMan = new VisualizationManager();
+        this.visMan.configure(visualizationOptions);
+        this.visMan.start();
     }
 
     private void initDataRetrievalManager(DataRetrievalOptions dataRetrievalOptions) {
+        this.dataRetMan = new DataRetrievalManager();
+        this.dataRetMan.configure(dataRetrievalOptions);
+        this.dataRetMan.start();
     }
 
     private void initUtilitiesManager(UtilitiesOptions utilitiesOptions) {

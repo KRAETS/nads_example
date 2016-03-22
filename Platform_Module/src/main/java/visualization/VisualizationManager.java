@@ -24,4 +24,8 @@ public class VisualizationManager extends Manager {
     public boolean configure() {
         return false;
     }
+
+    private boolean isKibanaAvailability(){
+
+    }
 }

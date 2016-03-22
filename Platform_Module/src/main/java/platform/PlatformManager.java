@@ -89,6 +89,7 @@ public class PlatformManager extends Manager {
             this.getLogger().log(Level.SEVERE,e.getStackTrace().toString());
             System.exit(5);
         }
+
         return true;
     }
 

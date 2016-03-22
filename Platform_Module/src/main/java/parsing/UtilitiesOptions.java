@@ -13,7 +13,14 @@ public class UtilitiesOptions extends Options{
     public boolean setPath(){
         return true;
     }
-    public String getFormattingFile() {
-        return null;
+
+    public String getOriginalPatternFileLocation() {
+        String opfl = this.getOpt("originalpatternfilelocation").getOptionStringIndividual();
+        return opfl;
+    }
+
+    public String getNewPatternFileLocation() {
+        String npfl = this.getOpt("newpatternfilelocation").getOptionStringIndividual();
+        return npfl;
     }
 }

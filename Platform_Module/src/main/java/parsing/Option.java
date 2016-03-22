@@ -18,90 +18,72 @@ public class Option {
     private OptionType optionType;
     private Map<String, String> optionMap = new HashMap<String, String>();
 
-    public void setOptionStringList(List<String> optionStringList)
-    {
+
+    public void setOptionStringList(List<String> optionStringList){
         this.optionStringList = optionStringList;
     }
 
-    public void setOptionStringIndividual(String optionStringIndividual)
-    {
+    public void setOptionStringIndividual(String optionStringIndividual){
         this.optionStringIndividual = optionStringIndividual;
     }
 
-    public void setOptionList(List<Option> optionList)
-    {
+    public void setOptionList(List<Option> optionList){
         this.optionList = optionList;
     }
 
-    public void setOptionName(String optionName)
-    {
+    public void setOptionName(String optionName){
         this.optionName = optionName;
     }
 
-    public void setOptionMap (Map<String,String> map)
-    {
+    public void setOptionMap (Map<String,String> map){
         this.optionMap = map;
     }
 
-    public void setOptionType (OptionType type)
-    {
+    public void setOptionType (OptionType type){
         this.optionType = type;
     }
 
-    public boolean addToOptionList (Option o)
-    {
+    public boolean addToOptionList (Option o){
         return this.optionList.add(o);
     }
-    public boolean addToOptionStringList (String s)
-    {
+    public boolean addToOptionStringList (String s){
         return this.optionStringList.add(s);
     }
 
-    public List<String> getOptionStringList()
-    {
+    public List<String> getOptionStringList(){
         return this.optionStringList;
     }
 
-    public String getOptionStringIndividual()
-    {
+    public String getOptionStringIndividual(){
         return this.optionStringIndividual;
     }
 
-    public String getOptionName()
-    {
+    public String getOptionName(){
         return this.optionName;
     }
 
-    public Map<String,String > getOptionMap()
-    {
+    public Map<String,String > getOptionMap(){
         return this.optionMap;
     }
 
-    public OptionType getOptionType()
-    {
+    public OptionType getOptionType(){
         return this.optionType;
     }
 
-    public List<Option> getOptionList()
-    {
+    public List<Option> getOptionList(){
         return this.optionList;
     }
 
-    public Option(String name,String s,OptionType type)
-    {
+    public Option(String name,String s,OptionType type){
         this.optionName = name;
         this.optionType = type;
         this.optionStringIndividual = s;
     }
-    public Option(String name,OptionType type)
-    {
-
+    public Option(String name,OptionType type){
         this.optionName = name;
         this.optionType = type;
-
     }
-    public Option(String name, List<Option> lo, OptionType type)
-    {
+    public Option(String name, List<Option> lo, OptionType type){
         this.optionName = name;
         this.optionType = type;
         this.optionList = lo;

@@ -18,18 +18,18 @@ public class DataRetrievalOptions extends Options {
     }
     
     public String getLogstashPort(){
-        return parameters(logstashport);
+        return parameters("logstashport");
     }
     
     public String getLogstashAddress(){
-        return parameters(logstashaddress);
+        return parameters("logstashaddress");
     }
     
     public String getElasticSearchPort(){
-        return parameters(elasticsearchport);
+        return parameters("elasticsearchport");
     }
    
     public String getElasticSearchAddress(){
-        return parameters(elasticsearchaddress);
+        return parameters("elasticsearchaddress");
     }
 }

@@ -3,8 +3,6 @@ package parsing;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -215,7 +213,7 @@ public class Parser {
 
     public Parser(String configFile)
     {
-        //this.configFile = configFile;
+        this.configFile = configFile;
     }
 }
 

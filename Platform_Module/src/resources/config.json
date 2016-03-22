@@ -1,7 +1,8 @@
 {
 	"main":
 	{
-		"workingdirectory":"something"
+		"workingdirectory":"something",
+		"logtofile":"nads.log"
 	},
 	"algorithms":
 	[

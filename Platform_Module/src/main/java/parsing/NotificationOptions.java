@@ -1,5 +1,7 @@
 package parsing;
 
+import java.util.List;
+
 /**
  * Created by pedro on 3/18/16.
  */
@@ -7,7 +9,7 @@ public class NotificationOptions extends Options {
     public NotificationOptions(){}
     
     public List<String> getUsers(){
-        return "";
+        return null;
     }
     
     public String getUserPhone(String user){
@@ -22,7 +24,7 @@ public class NotificationOptions extends Options {
         return "";
     }
     
-    public List<int> getUserAlgorithmsNotification(String user){
+    public List<Integer> getUserAlgorithmsNotification(String user){
         return null;
     }
 }

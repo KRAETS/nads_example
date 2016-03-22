@@ -1,30 +1,29 @@
 {
-	"main":{
+	"main":
+	{
 		"workingdirectory":"something"
 	},
 	"algorithms":
+	[
+		{
+			"somealgorithm":{"specificalgorithmparameter":"value","exampleip":"value","model":"values","trap_oid": "value","folder":"containingFolder"}
+		}
+	],
+	"visual":
 	{
-		"algorithmList":[
-			{
-				"name":"somealgorithm",
-				"parameters":[{"specificalgorithmparameter":"value","exampleip":"value", 
-			"model":"values","trap_oid": "value"}],
-				"folder":"containingFolder"
-			}
-		]
+		"templatefolder":"pathtotemplatedumpingfolder",
+		"kibanaport":"ff",
+		"kibanaaddress":"f43"
 	},
-	"visual":{
-		"templatefolder":"/path/to/templatedumpingfolder",
-		"kibanaport":"",
-		"kibanaaddress":""
-	},
-	"dataretrieval":{
+	"dataretrieval":
+	{
 		"logstashport":"",
 		"logstashaddress":"",
 		"elasticsearchport":"",
 		"elasticsearchaddress":""
 	},
-	"notification":{
+	"notification":
+	{
 		"users":
 		[
 			{
@@ -32,12 +31,13 @@
 				"phonenumber":"7871234567",
 				"phoneprovider":"att|tmobile|sprint|claro",
 				"email":"a@b.com",
-				"notifiablealgorithms":["algo"]
+				"notifiablealgorithms":"[\"algo\"]"
 			}
 		],
-		"encryptedsmtpaccountpath":"/path/to/encrypted/smtp/account"
+		"encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount"
 	},
-	"utilities":{
-		"formattingparameterspath":"/path/to/formattingparametersfile"
+	"utilities":
+	{
+		"formattingparameterspath":"pathtoformattingparametersfile"
 	}
 }

@@ -1,32 +1,26 @@
 package parsing;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by pedro on 3/18/16.
  */
 public class AlgorithmsOptions extends Options {
     public AlgorithmsOptions(){}
 
-    public List<String> getAlgorithms(){
+    public List<String> getAlgorithmsname(){
+
+        return new ArrayList<String>(this.optionMap.keySet());
     
     }
     
-    public String getAlgorithmParamether(String alg){
+    public Map<String, String> getAlgorithmParamether(String alg){
+
+        return this.getOpt(alg).getOptionMap();
     
     }
-    
-    public String getIP(String alg){
-    
-    }
-    
-    public String getModel(String alg){
-    
-    }
-    
-    public String getTrapID(String alg){
-    
-    }
-    
-    public String getFolder(String alg){
-    
-    }
+
 }

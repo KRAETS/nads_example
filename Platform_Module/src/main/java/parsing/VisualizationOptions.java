@@ -7,26 +7,35 @@ public class VisualizationOptions extends Options {
     public VisualizationOptions(){}
     
     public String getTemplateFolder(){
-    
+        return "hu";
     }
     
-    public bool setTemplateFolder(){
+    public boolean setTemplateFolder(){
+
+        return true;
     
     }
     
     public String getPort(){
-    
+        return "hu";
+
+
     }
     
-    public bool setPort(String port){
+    public boolean setPort(String port){
+        return true;
     
     }
     
     public String getAddress(){
-    
+        return "hu";
+
+
     }
     
-    public bool setAddress(){
+    public boolean setAddress(){
+
+        return true;
     
     }
 }

@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by pedro on 3/18/16.
  */
 public class DataRetrievalOptions extends Options {
-    private Map<String, String> parameters = this.getOpt("").getOptionMap();
+    //private Map<String, String> parameters = this.getOpt("").getOptionMap();
 
     public DataRetrievalOptions(){}
     
@@ -18,7 +18,7 @@ public class DataRetrievalOptions extends Options {
     }
     
     public String getLogstashPort(){
-        return parameters("logstashport");
+        return this.getOpt("logstashport").getOptionStringIndividual();
     }
     
     public String getLogstashAddress(){

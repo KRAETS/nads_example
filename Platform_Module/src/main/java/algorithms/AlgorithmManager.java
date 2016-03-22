@@ -54,6 +54,7 @@ public class AlgorithmManager extends Manager {
     }
 
     public boolean configure() {
+        AlgorithmsOptions
         return false;
     }
 

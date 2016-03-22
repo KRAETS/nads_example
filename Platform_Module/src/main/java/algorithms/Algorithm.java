@@ -1,8 +1,6 @@
 package algorithms;
 
 import parsing.AlgorithmsOptions;
-import parsing.Options;
-import sun.awt.TimedWindowEvent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,8 +35,8 @@ public class Algorithm implements Runnable {
             try
             {
                 //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
-                param = this.algOpts.getAlgorithmParamether(this.getName()).toString();
-                ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmParamether(this.getName()).get("folder"), "dude", "wut");
+                param = this.algOpts.getAlgorithmParameters(this.getName()).toString();
+                ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmParameters(this.getName()).get("folder"), "dude", "wut");
                 algorithmProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;

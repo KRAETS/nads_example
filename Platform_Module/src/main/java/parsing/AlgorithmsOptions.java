@@ -9,12 +9,12 @@ import java.util.Map;
  */
 public class AlgorithmsOptions extends Options {
     public AlgorithmsOptions(){}
- 
-    public List<String> getAlgorithmsname(){
+
+    public List<String> getAlgorithmNames(){
         return new ArrayList<String>(this.optionMap.keySet());
     }
     
-    public Map<String, String> getAlgorithmParamether(String alg){
+    public Map<String, String> getAlgorithmParameters(String alg){
         return this.getOpt(alg).getOptionMap();
     }
 }

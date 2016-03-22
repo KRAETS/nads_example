@@ -1,8 +1,5 @@
 package maintester;
 
-import algorithms.AlgorithmManager;
-import parsing.AlgorithmsOptions;
-import parsing.Parser;
 import platform.PlatformManager;
 
 /**
@@ -22,7 +19,7 @@ public class MainForTest {
         hi.extractOptions();
         AlgorithmsOptions dude = hi.getAlgorithmsOptions();
         AlgorithmManager mng = new AlgorithmManager(dude)
-        System.out.println(dude.getAlgorithmParamether("somealgorithm"));
-        System.out.println(dude.getAlgorithmsname());*/
+        System.out.println(dude.getAlgorithmParameters("somealgorithm"));
+        System.out.println(dude.getAlgorithmNames());*/
     }
 }

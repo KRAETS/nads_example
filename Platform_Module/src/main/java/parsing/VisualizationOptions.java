@@ -11,36 +11,15 @@ import java.util.Map;
 public class VisualizationOptions extends Options {
     public VisualizationOptions(){}
     
-    public String getTemplateFolder(){
-        return "hu";
+    public String getKibanaTemplateFolder(){
+        return this.getOpt("visual").getOptionMap()("templatefolder");
     }
     
-    public boolean setTemplateFolder(){
-
-        return true;
-    
+    public String getKibanaPort(){
+        return this.getOpt("visual").getOptionMap()("kibanaport");
     }
     
-    public String getPort(){
-        return "hu";
-
-
-    }
-    
-    public boolean setPort(String port){
-        return true;
-    
-    }
-    
-    public String getAddress(){
-        return "hu";
-
-
-    }
-    
-    public boolean setAddress(){
-
-        return true;
-    
+    public String getKibanaAddress(){
+        return this.getOpt("visual").getOptionMap()("kibanaaddress");
     }
 }

@@ -18,4 +18,24 @@ public class NotificationOptions extends Options {
     public Map<String, String> getUserInformation(String user){
         return this.getOpt(user).getOptionMap();
     }
+    
+    public String getUserName(String user){
+        return this.getOpt(user).getOptionMap()("name");
+    }
+    
+    public String getUserPhoneNumber(String user){
+        return this.getOpt(user).getOptionMap()("phonenumber");
+    }
+    
+    public String getUserPhoneProvider(String user){
+        return this.getOpt(user).getOptionMap()("phoneprovider");
+    }
+    
+    public String getUserEmail(String user){
+        return this.getOpt(user).getOptionMap()("email");
+    }
+    
+    public List<String> getUserAlgorithm(String user){
+        return this.getOpt(user).getOptionList()("notifiablealgorithms");
+    }
 }

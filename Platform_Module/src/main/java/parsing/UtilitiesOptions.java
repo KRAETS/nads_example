@@ -11,8 +11,8 @@ import java.util.Map;
 public class UtilitiesOptions extends Options{
     public UtilitiesOptions(){}
     
-    public String getPath(){
-        return "";
+    public String getFormattingPath(){
+        return this.getOpt("utilities").getOptionMap()("formattingparameterspath");
     }
     
     public String getFormattingFile() {

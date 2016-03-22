@@ -1,5 +1,8 @@
 package maintester;
 
+import algorithms.AlgorithmManager;
+import parsing.AlgorithmsOptions;
+import parsing.Parser;
 import platform.PlatformManager;
 
 /**
@@ -9,11 +12,17 @@ public class MainForTest {
 
     public static void main( String[] args )
     {
-        PlatformManager pm = new PlatformManager("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/config.json",null);
+        PlatformManager pm = new PlatformManager("/home/dude/Downloads/config.json",null);
         pm.configure();
         pm.start();
 //        AlgorithmsOptions dude = new AlgorithmsOptions();
 //        Algorithm hi = new Algorithm(dude);
 //        hi.start();
+        /*Parser hi = new Parser("/home/dude/Downloads/config.json");
+        hi.extractOptions();
+        AlgorithmsOptions dude = hi.getAlgorithmsOptions();
+        AlgorithmManager mng = new AlgorithmManager(dude)
+        System.out.println(dude.getAlgorithmParamether("somealgorithm"));
+        System.out.println(dude.getAlgorithmsname());*/
     }
 }

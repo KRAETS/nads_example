@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class Options {
 
-    private Map<String, Option> optionMap = new HashMap<String, Option>();
+    protected Map<String, Option> optionMap = new HashMap<String, Option>();
 
     public Option getOpt(String key) {
         return this.optionMap.get(key);

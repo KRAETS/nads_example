@@ -18,9 +18,9 @@ public class AlgorithmManager extends Manager {
 
     public boolean start(String algorithmName){
         for(Algorithm alg:algorithmsList){
-            this.getLogger().log(Level.INFO,"Starting:"+alg.getName());
             if(alg.getName().equals(algorithmName)){
                 alg.run();
+                this.getLogger().log(Level.INFO,"Starting:"+alg.getName());
                 return true;
             }
         }
@@ -55,8 +55,20 @@ public class AlgorithmManager extends Manager {
     }
 
     public boolean configure() {
+
         //TODO Read options and start
-        return false;
+        try {
+            for (String s : this.algOpts.getAlgorithmsname()) {
+                Algorithm a = new Algorithm(algOpts, this.getLogger());
+                a.setName(s);
+                algorithmsList.add(a);
+            }
+        }catch (Exception e)
+        {
+            this.getLogger().log(Level.SEVERE, "Could not set up algorithms in manager: "+e.toString());
+            return false;
+        }
+        return true;
     }
 
     public boolean start(int algorithmNumber){
@@ -64,7 +76,7 @@ public class AlgorithmManager extends Manager {
             this.getLogger().log(Level.SEVERE, "Out of range");
             return false;
         }
-        algorithmsList.get(algorithmNumber).run();
+        algorithmsList.get(algorithmNumber).start();
         return true;
     }
     public boolean stop(String algorithmName){
@@ -86,7 +98,7 @@ public class AlgorithmManager extends Manager {
     }
     public void startAll(){
         for(Algorithm alg:algorithmsList){
-            alg.run();
+            alg.start();
         }
     }
     public void stopAll(){

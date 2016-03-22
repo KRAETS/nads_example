@@ -1,32 +1,25 @@
 package parsing;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by pedro on 3/18/16.
  */
 public class VisualizationOptions extends Options {
     public VisualizationOptions(){}
     
-    public String getTemplateFolder(){
-    
+    /*public String getKibanaTemplateFolder(){
+        return this.getOpt("visual").getOptionMap()("templatefolder");
     }
     
-    public bool setTemplateFolder(){
-    
+    public String getKibanaPort(){
+        return this.getOpt("visual").getOptionMap()("kibanaport");
     }
     
-    public String getPort(){
-    
-    }
-    
-    public bool setPort(String port){
-    
-    }
-    
-    public String getAddress(){
-    
-    }
-    
-    public bool setAddress(){
-    
-    }
+    public String getKibanaAddress(){
+        return this.getOpt("visual").getOptionMap()("kibanaaddress");
+    }*/
 }

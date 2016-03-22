@@ -39,7 +39,7 @@ public class Algorithm implements Runnable {
                 //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
                 param = this.algOpts.getAlgorithmParamether(this.getName()).toString();
                 ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmParamether(this.getName()).get("folder"), "dude", "wut");
-                Process algorithmProcess = pb.start();
+                algorithmProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;
                 while (exception)
@@ -92,7 +92,8 @@ public class Algorithm implements Runnable {
         }
         this.managerThread.start();
     }
-    public void stop(){
+    public void stop()
+    {
         this.managerThread.interrupt();
     }
     public void interrupt(){

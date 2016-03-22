@@ -11,7 +11,7 @@ import java.util.Map;
 public class VisualizationOptions extends Options {
     public VisualizationOptions(){}
     
-    public String getKibanaTemplateFolder(){
+    /*public String getKibanaTemplateFolder(){
         return this.getOpt("visual").getOptionMap()("templatefolder");
     }
     
@@ -21,5 +21,5 @@ public class VisualizationOptions extends Options {
     
     public String getKibanaAddress(){
         return this.getOpt("visual").getOptionMap()("kibanaaddress");
-    }
+    }*/
 }

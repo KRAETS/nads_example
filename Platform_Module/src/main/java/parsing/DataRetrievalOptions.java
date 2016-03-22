@@ -11,7 +11,7 @@ import java.util.Map;
 public class DataRetrievalOptions extends Options {
     //private Map<String, String> parameters = this.getOpt("").getOptionMap();
 
-    public DataRetrievalOptions(){}
+    /*public DataRetrievalOptions(){}
     
     public Map<String, String> getDataRetrievalParameters(){
         return parameters;
@@ -31,5 +31,5 @@ public class DataRetrievalOptions extends Options {
    
     public String getElasticSearchAddress(){
         return parameters("elasticsearchaddress");
-    }
+    }*/
 }

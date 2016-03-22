@@ -3,13 +3,16 @@ package visualization;
 import interfaces.Manager;
 import parsing.VisualizationOptions;
 
+import java.util.logging.Logger;
+
 /**
  * Created by pedro on 3/17/16.
  */
 public class VisualizationManager extends Manager {
     private VisualizationOptions visOpts;
-    public VisualizationManager(VisualizationOptions visualizationOptions) {
+    public VisualizationManager(VisualizationOptions visualizationOptions, Logger logger) {
         this.visOpts = visualizationOptions;
+        this.setLogger(logger);
         this.configure();
     }
     @Override
@@ -25,7 +28,7 @@ public class VisualizationManager extends Manager {
         return false;
     }
 
-    private boolean isKibanaAvailability(){
-
+    private boolean isKibanaAvailable(){
+        return true;
     }
 }

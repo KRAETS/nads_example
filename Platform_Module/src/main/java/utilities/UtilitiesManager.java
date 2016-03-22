@@ -4,14 +4,16 @@ import interfaces.Manager;
 import parsing.UtilitiesOptions;
 
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by pedro on 3/18/16.
  */
 public class UtilitiesManager extends Manager {
     private UtilitiesOptions utilOpts;
-    public UtilitiesManager(UtilitiesOptions utilitiesOptions) {
+    public UtilitiesManager(UtilitiesOptions utilitiesOptions, Logger logger) {
         this.utilOpts = utilitiesOptions;
+        this.setLogger(logger);
         this.configure();
     }
 
@@ -37,7 +39,7 @@ public class UtilitiesManager extends Manager {
             this.getLogger().log(Level.SEVERE, "No formatting file");
             return false;
         }
-        return true
+        return true;
     }
 
     public void addConfiguration(String configurationFile){

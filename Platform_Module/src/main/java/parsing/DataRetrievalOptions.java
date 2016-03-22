@@ -1,24 +1,35 @@
 package parsing;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by pedro on 3/18/16.
  */
 public class DataRetrievalOptions extends Options {
-    public DataRetrievalOptions(){}
+    private Map<String, String> parameters = this.getOpt("").getOptionMap();
 
+    public DataRetrievalOptions(){}
+    
+    public Map<String, String> getDataRetrievalParameters(){
+        return parameters;
+    }
+    
     public String getLogstashPort(){
-        return "";
+        return parameters(logstashport);
     }
     
     public String getLogstashAddress(){
-        return "";
+        return parameters(logstashaddress);
     }
     
     public String getElasticSearchPort(){
-        return "";
+        return parameters(elasticsearchport);
     }
    
     public String getElasticSearchAddress(){
-        return "";
+        return parameters(elasticsearchaddress);
     }
 }

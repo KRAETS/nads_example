@@ -73,7 +73,7 @@ public class Parser {
         {
             //Extracts platform options from main map
             Map<String, String> mainMap = gson.fromJson(gson.toJson(options.get("main")).toString(), typeOfSSHashMap);
-            
+
             for (Map.Entry<String, String> entry : mainMap.entrySet()) {
                 mainOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue(), Option.OptionType.INDIVIDUAL));
                 //System.out.println(entry.getKey() + "/" + entry.getValue());
@@ -174,7 +174,7 @@ public class Parser {
                 visualOptions.addOption(entry.getKey(), new Option(entry.getKey(), entry.getValue(), Option.OptionType.INDIVIDUAL));
                 //System.out.println(entry.getKey() + "/" + entry.getValue());
             }
-        }catch (JsonParseException)
+        }catch (JsonParseException a)
         {
             //Send notification to user of bad config file format in the platform options
         }

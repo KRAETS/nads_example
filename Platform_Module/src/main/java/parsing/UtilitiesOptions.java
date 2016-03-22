@@ -7,11 +7,11 @@ public class UtilitiesOptions extends Options{
     public UtilitiesOptions(){}
     
     public String getPath(){
-    
+        return null;
     }
     
-    public bool setPath(){
-    
+    public boolean setPath(){
+        return true;
     }
     public String getFormattingFile() {
         return null;

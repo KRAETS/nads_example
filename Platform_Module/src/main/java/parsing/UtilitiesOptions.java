@@ -13,4 +13,7 @@ public class UtilitiesOptions extends Options{
     public bool setPath(){
     
     }
+    public String getFormattingFile() {
+        return null;
+    }
 }

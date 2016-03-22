@@ -4,8 +4,6 @@ import re, signal
 import time, json, sys
 import os.path
 
-
-
 # ------------------------------------------------------------------ variables
 ips = sys.argv[1]
 ipaddresses = json.loads(ips)
@@ -22,6 +20,7 @@ unavail_time = dict((x, 0) for x in ipaddresses)
 testdict = dict()
 testcyc = 0
 
+#------------------------------------------------------- siganal termination
 def signal_term_handler(signal, frame):
     print "killed"
     with open(logdir, "w") as logfile:
@@ -30,6 +29,7 @@ def signal_term_handler(signal, frame):
 
 signal.signal(signal.SIGTERM, signal_term_handler)
 signal.signal(signal.SIGINT, signal_term_handler)
+
 #----------------------------------------------------------------- file check
 if os.path.exists(logdir):
     print "file found"

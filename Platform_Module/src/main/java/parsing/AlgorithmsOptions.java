@@ -1,7 +1,6 @@
 package parsing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +9,7 @@ import java.util.Map;
  */
 public class AlgorithmsOptions extends Options {
     public AlgorithmsOptions(){}
-
+ 
     public List<String> getAlgorithmsname(){
         return new ArrayList<String>(this.optionMap.keySet());
     }

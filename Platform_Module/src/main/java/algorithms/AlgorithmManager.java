@@ -59,7 +59,7 @@ public class AlgorithmManager extends Manager {
         //TODO Read options and start
         try {
             for (String s : this.algOpts.getAlgorithmsname()) {
-                Algorithm a = new Algorithm(algOpts);
+                Algorithm a = new Algorithm(algOpts, this.getLogger());
                 a.setName(s);
                 algorithmsList.add(a);
             }

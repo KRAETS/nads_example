@@ -12,7 +12,7 @@ alg1=[]
 alg2=[]
 alg3=[]
 size = 1024 
-
+celphoneComp = {'att':'txt.att.net','att-cingular':'mmode.com','sprint':'messaging.sprintpcs.com','claro':'vtexto.com','tmobile':'tmomail.net','openMobile':'email.openmobilepr.com','verizon':'vtext.com'}
 email = 'rookyann@gmail.com'
 password = 'TwItY2008'
 #------------------------------------------------------------ Set-up
@@ -22,20 +22,8 @@ if len(args) > 1:   #------- text set-up
         subinfo = info.split('//')
         num = subinfo[0].replace('-','') 
         if num.isdigit():
-            if subinfo[1].lower() == 'att':
-                numbers = num+'@'+'txt.att.net'
-            elif subinfo[1].lower() == 'att-cingular':
-                numbers = num+'@'+'mmode.com'
-            elif subinfo[1].lower() == 'sprint':
-                numbers = num+'@'+'messaging.sprintpcs.com'
-            elif subinfo[1].lower() == 'claro':
-                numbers = num+'@'+'vtexto.com'
-            elif subinfo[1].lower() == 't-mobile':
-                numbers = '+1'+num+'@'+'tmomail.net'
-            elif subinfo[1].lower() == 'openMobile':
-                numbers = num+'@'+'email.openmobilepr.com'
-            else: #subinfo[1].lower() == 'verizon':
-                numbers = num+'@'+'vtext.com'
+            if subinfo[1].lower() in celphoneComp:
+                numbers = num+'@'+celphoneComp[subinfo[1].lower()]
 
             if subinfo[2] == "1":
                 alg1.append(numbers)
@@ -104,24 +92,24 @@ signal.signal(signal.SIGTERM, signal_term_handler)
 signal.signal(signal.SIGINT, signal_term_handler)
 
 #--------------------------------------------------------- server
-#s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#host = str(socket.gethostname())
-#port = 2000
-
-#s.bind((host,port))
-            
-#while True:
-#    s.settimeout(5)
-#    try:
-#        c, addr = s.accept()
-#        data = c.recv(size)
-#        sendMessage(c, data)
-#        c.close()
-#    except socket.error as serr:
-#        print 'socket error'
-#        raise serr
-#    else:
-#        s.listen(3)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = ''   #reachable by any address the machine happens to have
+port = 2000
+s.bind((host,port))
+     
+s.listen(3)       
+while True:
+    s.settimeout(5)
+    try:
+        c, addr = s.accept()
+        data = c.recv(size)
+        sendMessage(c, data)
+        c.close()
+    except socket.error as serr:
+        print 'socket error'
+        raise serr
+    else:
+        s.listen(3)
         
         
         

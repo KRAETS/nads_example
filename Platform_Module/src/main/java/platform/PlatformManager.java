@@ -86,6 +86,7 @@ public class PlatformManager extends Manager {
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Failed to initialize modules:"+e.toString());
+            this.getLogger().log(Level.SEVERE,e.getStackTrace().toString());
             System.exit(5);
         }
         return true;
@@ -99,32 +100,27 @@ public class PlatformManager extends Manager {
     }
 
     private void initAlgorithmsManager(AlgorithmsOptions algorithmsOptions) {
-        this.algMan = new AlgorithmManager(algorithmsOptions);
-        this.algMan.setLogger(this.getLogger());
+        this.algMan = new AlgorithmManager(algorithmsOptions,this.getLogger());
         this.algMan.start();
     }
 
     private void initVisualizationManager(VisualizationOptions visualizationOptions) {
-        this.visMan = new VisualizationManager(visualizationOptions);
-        this.visMan.setLogger(this.getLogger());
+        this.visMan = new VisualizationManager(visualizationOptions,this.getLogger());
         this.visMan.start();
     }
 
     private void initDataRetrievalManager(DataRetrievalOptions dataRetrievalOptions) {
-        this.dataRetMan = new DataRetrievalManager(dataRetrievalOptions);
-        this.dataRetMan.setLogger(this.getLogger());
+        this.dataRetMan = new DataRetrievalManager(dataRetrievalOptions,this.getLogger());
         this.dataRetMan.start();
     }
 
     private void initUtilitiesManager(UtilitiesOptions utilitiesOptions) {
-        this.utilMan = new UtilitiesManager(utilitiesOptions);
-        this.utilMan.setLogger(this.getLogger());
+        this.utilMan = new UtilitiesManager(utilitiesOptions,this.getLogger());
         this.utilMan.start();
     }
 
     private void initNotificationManager(NotificationOptions notificationOptions) {
-        this.notMan = new NotificationManager(notificationOptions);
-        this.notMan.setLogger(this.getLogger());
+        this.notMan = new NotificationManager(notificationOptions,this.getLogger());
         this.notMan.start();
     }
 
@@ -144,7 +140,7 @@ public class PlatformManager extends Manager {
     }
 
     public boolean configure() {
-        return false;
+        return true;
     }
 
 }

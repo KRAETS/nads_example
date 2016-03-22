@@ -32,30 +32,40 @@ def main():
             usage()
             sys.exit()
         elif o in ("-s", "--server"):
-            if verbose:
-                print "Server node"
-            p = Process(target=sshdetserver.main, args=())
-            p.start()
-            GLOBAL_PROCESS_LIST.append(p)
+            start_server(verbose)
         elif o in ("-c", "--client"):
             # Notify that client mode is enabled
-            if verbose:
-                print "Client node"
-            server_address = a
-            if verbose:
-                print "Server address", server_address
-                print "Starting up client script..."
+            start_client(server_address, verbose)
 
-            # Start up the client script separately
-            p = Process(target=sshdetnode.main, args=(server_address,))
-            p.start()
-            GLOBAL_PROCESS_LIST.append(p)
 
         else:
             assert False, "unhandled option"
 
     for process in GLOBAL_PROCESS_LIST:
         process.join()
+
+def start_client(server_address, verbose):
+    global GLOBAL_PROCESS_LIST
+    if verbose:
+        print "Client node"
+    server_address = a
+    if verbose:
+        print "Server address", server_address
+        print "Starting up client script..."
+
+    # Start up the client script separately
+    p = Process(target=sshdetnode.main, args=(server_address,))
+    p.start()
+    GLOBAL_PROCESS_LIST.append(p)
+    return
+
+def start_server(verbose):
+    global GLOBAL_PROCESS_LIST
+    if verbose:
+        print "Server node"
+    p = Process(target=sshdetserver.main, args=())
+    p.start()
+    GLOBAL_PROCESS_LIST.append(p)
 
 if __name__ == '__main__':
     main()

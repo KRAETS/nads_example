@@ -6832,3 +6832,17 @@ INFO:werkzeug:127.0.0.1 - - [10/Mar/2016 18:45:30] "POST /addlogin HTTP/1.1" 200
 INFO:werkzeug:127.0.0.1 - - [10/Mar/2016 18:45:30] "POST /addlogin HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [10/Mar/2016 18:45:30] "POST /addlogin HTTP/1.1" 200 -
 DEBUG:root:Event:[Login:False 2 somehost theuser, Login:False 0 somehost theuser, Login:False mrlegit somehost thetrueuser, Login:False 2 somehost theuser, Login:False 0 somehost theuser, Login:True sometrueip somehost thetrueuser, Login:True sometrueip somehost thetrueuser, Login:False 1 somehost theuser, Login:False 2 somehost theuser, Login:False 0 somehost theuser] 0 0 10 True
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Mar/2016 15:41:52] "GET /addlogin HTTP/1.1" 405 -
+INFO:werkzeug:127.0.0.1 - - [21/Mar/2016 15:41:52] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/Mar/2016 15:41:52] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/Mar/2016 15:42:59] "POST /addlogin HTTP/1.1" 400 -
+INFO:werkzeug:127.0.0.1 - - [21/Mar/2016 15:43:58] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Mar/2016 15:44:31] "POST /addlogin HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)

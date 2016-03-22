@@ -7,6 +7,13 @@ public class PlatformOptions extends Options {
     public PlatformOptions(){}
     
     public String getLogLocation() {
-        return null;
+        try{
+            String location = this.getOpt("logtofile").getOptionStringIndividual();
+            return location;
+        }
+        catch (Exception e){
+            System.err.println("Could not find the logtofile option inside the main options");
+            return null;
+        }
     }
 }

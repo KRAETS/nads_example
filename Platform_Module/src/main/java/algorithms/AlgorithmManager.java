@@ -6,6 +6,7 @@ import parsing.AlgorithmsOptions;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by pedro on 3/17/16.
@@ -54,7 +55,8 @@ public class AlgorithmManager extends Manager {
     }
 
     public boolean configure() {
-        AlgorithmsOptions
+
+        //TODO Read options and start
         return false;
     }
 
@@ -93,9 +95,10 @@ public class AlgorithmManager extends Manager {
             alg.stop();
         }
     }
-    public AlgorithmManager(AlgorithmsOptions algOpts){
+    public AlgorithmManager(AlgorithmsOptions algOpts, Logger logger){
         this.algorithmsList = new LinkedList<Algorithm>();
         this.algOpts = algOpts;
+        this.setLogger(logger);
         this.configure();
     }
 

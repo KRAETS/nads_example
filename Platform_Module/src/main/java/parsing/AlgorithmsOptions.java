@@ -12,15 +12,10 @@ public class AlgorithmsOptions extends Options {
     public AlgorithmsOptions(){}
 
     public List<String> getAlgorithmsname(){
-
         return new ArrayList<String>(this.optionMap.keySet());
-    
     }
     
     public Map<String, String> getAlgorithmParamether(String alg){
-
         return this.getOpt(alg).getOptionMap();
-    
     }
-
 }

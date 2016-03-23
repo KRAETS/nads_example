@@ -1,13 +1,12 @@
 import copy
+
 import editdistance
 from igraph import *
 
-from notidummy import notify_both
 from dummy_data_retrieval import *
+from notidummy import notify_both
 
 pair = ("", -1)
-
-
 
 
 
@@ -18,10 +17,12 @@ def detection_function(sn, sn_1, h):
 
 
 class Classifier:
+
     def __init__(self, mu, h, k):
         self.mu = mu
         self.k = k
         self.h = h
+        self.current_epoch = None
 
     def check_singleton(self, epoch):
         global pair
@@ -203,6 +204,7 @@ class Classifier:
         return top
 
     def process(self, epoch):
+        self.current_epoch = epoch
         result = self.check_singleton(epoch)
         if result is not None:
             # process singleton

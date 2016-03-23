@@ -20,4 +20,16 @@ public class PlatformOptions extends Options {
             return null;
         }
     }
+
+    public String getWorkingDirectory()
+    {
+        try
+        {
+            return this.getOpt("workingdirectory").getOptionStringIndividual();
+        }catch (Exception e)
+        {
+            System.err.println("Could not find the logtofile option inside the main options");
+            return null;
+        }
+    }
 }

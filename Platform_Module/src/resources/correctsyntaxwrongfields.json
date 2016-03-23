@@ -1,0 +1,42 @@
+{
+  "main":
+  {
+    "workingdirectory":"something",
+    "logtofile":"nads.log"
+  },
+  "algorithms":
+  [
+      {"ips":"[\"136.145.59.152\"]","exampleip":"value","model":"values","trap_oid": "value","folder":"containingFolder"}
+  ],
+  "visual":
+  {
+    "templatefolder":"pathtotemplatedumpingfolder",
+    "kibanaport":"ff",
+    "kibanaaddress":"f43"
+  },
+  "dataretrieval":
+  {
+    "logstashport":"",
+    "logstashaddress":"",
+    "elasticsearchport":"",
+    "elasticsearchaddress":""
+  },
+  "notification":
+  {
+    "users":
+    [
+      {
+        "name":"someone",
+        "phonenumber":"7871234567",
+        "phoneprovider":"att|tmobile|sprint|claro",
+        "email":"a@b.com",
+        "notifiablealgorithms":"[\"algo\"]"
+      }
+    ],
+    "encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount"
+  },
+  "utilities":
+  {
+    "formattingparameterspath":"pathtoformattingparametersfile"
+  }
+}

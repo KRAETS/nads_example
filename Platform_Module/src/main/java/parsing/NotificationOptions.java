@@ -11,7 +11,7 @@ import java.util.Map;
 public class NotificationOptions extends Options{
     public NotificationOptions(){}
     
-    public List<String> getUsers(){
+   public List<String> getUsers(){
         return new ArrayList<String>(this.optionMap.keySet());
     }
     
@@ -54,7 +54,7 @@ public class NotificationOptions extends Options{
         }
         return null;
     }
-    
+
     public String getUserAlgorithm(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if(t.getOptionName().equals(user))

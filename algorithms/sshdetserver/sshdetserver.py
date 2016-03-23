@@ -1,11 +1,13 @@
-from flask import Flask
-from flask import request
 import logging
 import threading
+
+from flask import Flask
+from flask import request
+
 from classifier import Classifier
 from epoch import Epoch
-from login import Login
 from event import Event
+from login import Login
 
 app = Flask(__name__)
 
@@ -75,6 +77,16 @@ def reset_current_event():
     GLOBAL_CURRENT_EVENT = Event(TUNING_EVENT_THRESHOLD)
     return
 
+@app.route('/getcurrentepoch', methods=['GET'])
+def get_epoch():
+    global GLOBAL_CLASSIFIER
+
+    return str(GLOBAL_CLASSIFIER.current_epoch)
+
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 
 @app.route('/addlogin', methods=['POST'])
 def add_login():
@@ -175,6 +187,12 @@ def main():
     GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K)
     app.run()
 
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
 
 '''Main function'''
 if __name__ == '__main__':

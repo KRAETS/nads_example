@@ -32,6 +32,7 @@ public class DataRetrievalOptions extends Options {
     }
    
     public String getElasticSearchAddress(){
+
         return this.getOpt("elasticsearchaddress").getOptionStringIndividual();
     }
 }

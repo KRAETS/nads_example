@@ -1,13 +1,14 @@
-import urllib2
 import time
+import urllib2
 
 filename = "attack.txt"
 GLOBAL_IP = "localhost"
 distributed = True
 number_of_attack_users = 3
 legit_user_fail = 7 #Every 15 attempts a legit user fails by wrong password
-if __name__ == '__main__':
-    "Print starting attack"
+
+def main():
+    print "Starting attack"
     attack_file = open(filename, 'r')
     failcount = 0
     successcount = 0
@@ -75,3 +76,5 @@ if __name__ == '__main__':
             time.sleep(1)
 
     print "Success:", successcount, "Fail:", failcount
+if __name__ == '__main__':
+    main()

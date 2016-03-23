@@ -17,6 +17,7 @@ public class VisualizationOptions extends Options {
 
     public String getKibanaTemplateFolder(){
         return this.getOpt("templatefolder").getOptionStringIndividual();
+
     }
     
     public String getKibanaPort(){

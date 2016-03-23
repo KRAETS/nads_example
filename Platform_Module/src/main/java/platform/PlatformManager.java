@@ -83,12 +83,14 @@ public class PlatformManager extends Manager {
             initDataRetrievalManager(parser.getDataRetrievalOptions());
             initVisualizationManager(parser.getVisualizationOptions());
             initAlgorithmsManager(parser.getAlgorithmsOptions());
+            this.getLogger().log(Level.INFO,"Worked");
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Failed to initialize modules:"+e.toString());
             this.getLogger().log(Level.SEVERE,e.getStackTrace().toString());
             System.exit(5);
         }
+
         return true;
     }
 

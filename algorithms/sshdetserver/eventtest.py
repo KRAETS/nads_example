@@ -1,6 +1,8 @@
 import unittest
-from event import Event
-from login import Login
+
+from sshdetserver.src.event import Event
+
+from sshdetserver.login import Login
 
 event_threshold = 10
 

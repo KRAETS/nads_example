@@ -3,8 +3,10 @@ import time
 import unittest
 import urllib2
 
+import requests
+
+import attacksim
 import commander
-import sshdetnode
 
 
 class EventTestCase(unittest.TestCase):
@@ -14,14 +16,18 @@ class EventTestCase(unittest.TestCase):
         self.GLOBAL_IP = "localhost"
         time.sleep(10)
 
+
     def test_login_detection(self):
-        print "Starting test"
+
         try:
-            localdata = sshdetnode.analyzeLogin()
-            req = urllib2.Request('http://'+self.GLOBAL_IP+':5000/addlogin')
-            req.add_header('Content-Type', 'application/json')
-            response = urllib2.urlopen(req, json.dumps(localdata.__dict__))
-            assert response.code == 200
+
+            attacksim.main()
+            time.sleep(30)
+            stringthing = 'http://'+self.GLOBAL_IP+':5000/getcurrentepoch'
+            r = requests.get(stringthing)
+
+            assert r.status_code == 200
+
         except Exception as e:
             print "Problem contacting server", e
             exit()

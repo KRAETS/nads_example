@@ -12,28 +12,24 @@ public class NotificationOptions extends Options{
     public NotificationOptions(){}
     
    public List<String> getUsers(){
-        return new ArrayList<String>(this.optionMap.keySet());
+       List<String> out = null;
+       for (Option t: this.getOpt("users").getOptionList()){
+           out.add(t.getOptionMap().get("name"));
+       }
+       return out;
     }
     
     public Map<String, String> getUserInformation(String user){
-        Map<String, String> u = null;
         for (Option t: this.getOpt("users").getOptionList()){
-            u.put(t.getOptionName(),t.getOptionStringIndividual());
-        }
-        return u;
-    }
-    
-    public String getUserName(String user){
-        for (Option t: this.getOpt("users").getOptionList()){
-            if(t.getOptionName().equals(user))
-                return t.getOptionMap().get("name");
+            if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
+                return t.getOptionMap();
         }
         return null;
     }
     
     public String getUserPhoneNumber(String user){
         for (Option t: this.getOpt("users").getOptionList()){
-            if(t.getOptionName().equals(user))
+            if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
                 return t.getOptionMap().get("phonenumber");
         }
         return null;
@@ -41,7 +37,7 @@ public class NotificationOptions extends Options{
     
     public String getUserPhoneProvider(String user){
         for (Option t: this.getOpt("users").getOptionList()){
-            if(t.getOptionName().equals(user))
+            if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
                 return t.getOptionMap().get("phoneprovider");
         }
         return null;
@@ -49,7 +45,7 @@ public class NotificationOptions extends Options{
     
     public String getUserEmail(String user){
         for (Option t: this.getOpt("users").getOptionList()){
-            if(t.getOptionName().equals(user))
+            if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
                 return t.getOptionMap().get("email");
         }
         return null;
@@ -57,7 +53,7 @@ public class NotificationOptions extends Options{
 
     public String getUserAlgorithm(String user){
         for (Option t: this.getOpt("users").getOptionList()){
-            if(t.getOptionName().equals(user))
+            if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
                 return t.getOptionMap().get("notifiablealgorithms");
         }
         return null;

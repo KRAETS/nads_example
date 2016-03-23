@@ -14,7 +14,7 @@ public class NotificationOptions extends Options{
    public List<String> getUsers(){
         return new ArrayList<String>(this.optionMap.keySet());
     }
-    
+
     public Map<String, String> getUserInformation(String user){
         Map<String, String> u = null;
         for (Option t: this.getOpt("users").getOptionList()){
@@ -35,7 +35,7 @@ public class NotificationOptions extends Options{
         for (Option t: this.getOpt("users").getOptionList()){
             if(t.getOptionName().equals(user))
                 return t.getOptionMap().get("phonenumber");
-        }
+      }
         return null;
     }
     

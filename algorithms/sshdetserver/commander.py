@@ -1,10 +1,8 @@
 import getopt
 import sys
-import sshdetnode
-import json
-
 from multiprocessing import Process
 
+import sshdetnode
 import sshdetserver
 
 GLOBAL_PROCESS_LIST = []
@@ -48,7 +46,6 @@ def start_client(server_address, verbose):
     global GLOBAL_PROCESS_LIST
     if verbose:
         print "Client node"
-    server_address = a
     if verbose:
         print "Server address", server_address
         print "Starting up client script..."

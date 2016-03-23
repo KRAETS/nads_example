@@ -13,8 +13,28 @@ public class AlgorithmsOptions extends Options {
     public List<String> getAlgorithmNames(){
         return new ArrayList<String>(this.optionMap.keySet());
     }
-    
+
     public Map<String, String> getAlgorithmParameters(String alg){
         return this.getOpt(alg).getOptionMap();
+    }
+
+    public String getAlgorithmSpecifics(String alg){
+        return this.getOpt(alg).getOptionMap().get("notifiablealgorithms");
+    }
+
+    public String getExampleID(String alg){
+        return this.getOpt(alg).getOptionMap().get("exampleip");
+    }
+
+    public String getAlgorithmModel(String alg){
+        return this.getOpt(alg).getOptionMap().get("model");
+    }
+
+    public String getAlgorithmTrapOID(String alg){
+        return this.getOpt(alg).getOptionMap().get("trap_oid");
+    }
+
+    public String getAlgorithmFolder(String alg){
+        return this.getOpt(alg).getOptionMap().get("folder");
     }
 }

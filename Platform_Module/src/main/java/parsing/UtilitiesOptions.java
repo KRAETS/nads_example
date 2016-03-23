@@ -5,22 +5,12 @@ package parsing;
  */
 public class UtilitiesOptions extends Options{
     public UtilitiesOptions(){}
-    
-    public String getPath(){
-        return null;
-    }
-    
-    public boolean setPath(){
-        return true;
-    }
 
     public String getOriginalPatternFileLocation() {
-        String opfl = this.getOpt("originalpatternfilelocation").getOptionStringIndividual();
-        return opfl;
+        return this.getOpt("originalpatternfilelocation").getOptionStringIndividual();
     }
 
     public String getNewPatternFileLocation() {
-        String npfl = this.getOpt("newpatternfilelocation").getOptionStringIndividual();
-        return npfl;
+        return this.getOpt("newpatternfilelocation").getOptionStringIndividual();
     }
 }

@@ -9,12 +9,14 @@ import java.util.Map;
  * Created by pedro on 3/18/16.
  */
 public class DataRetrievalOptions extends Options {
-    //private Map<String, String> parameters = this.getOpt("").getOptionMap();
-
-    /*public DataRetrievalOptions(){}
+    public DataRetrievalOptions(){}
     
     public Map<String, String> getDataRetrievalParameters(){
-        return parameters;
+        Map<String, String> map = null;
+        for (Map.Entry<String, Option> entry : this.optionMap.entrySet()) {
+            map.put(entry.getKey(), entry.getValue().getOptionStringIndividual());
+        }
+        return map;
     }
     
     public String getLogstashPort(){
@@ -22,14 +24,15 @@ public class DataRetrievalOptions extends Options {
     }
     
     public String getLogstashAddress(){
-        return parameters("logstashaddress");
+        return this.getOpt("logstashaddress").getOptionStringIndividual();
     }
     
     public String getElasticSearchPort(){
-        return parameters("elasticsearchport");
+        return this.getOpt("elasticsearchport").getOptionStringIndividual();
     }
    
     public String getElasticSearchAddress(){
-        return parameters("elasticsearchaddress");
-    }*/
+
+        return this.getOpt("elasticsearchaddress").getOptionStringIndividual();
+    }
 }

@@ -8,34 +8,58 @@ import java.util.Map;
 /**
  * Created by pedro on 3/18/16.
  */
-public class NotificationOptions extends Options {
+public class NotificationOptions extends Options{
     public NotificationOptions(){}
     
-   /* public List<String> getUsers(){
+   public List<String> getUsers(){
         return new ArrayList<String>(this.optionMap.keySet());
     }
     
     public Map<String, String> getUserInformation(String user){
-        return this.getOpt(user).getOptionMap();
+        Map<String, String> u = null;
+        for (Option t: this.getOpt("users").getOptionList()){
+            u.put(t.getOptionName(),t.getOptionStringIndividual());
+        }
+        return u;
     }
     
     public String getUserName(String user){
-        return this.getOpt(user).getOptionMap()("name");
+        for (Option t: this.getOpt("users").getOptionList()){
+            if(t.getOptionName().equals(user))
+                return t.getOptionMap().get("name");
+        }
+        return null;
     }
     
     public String getUserPhoneNumber(String user){
-        return this.getOpt(user).getOptionMap()("phonenumber");
+        for (Option t: this.getOpt("users").getOptionList()){
+            if(t.getOptionName().equals(user))
+                return t.getOptionMap().get("phonenumber");
+        }
+        return null;
     }
     
     public String getUserPhoneProvider(String user){
-        return this.getOpt(user).getOptionMap()("phoneprovider");
+        for (Option t: this.getOpt("users").getOptionList()){
+            if(t.getOptionName().equals(user))
+                return t.getOptionMap().get("phoneprovider");
+        }
+        return null;
     }
     
     public String getUserEmail(String user){
-        return this.getOpt(user).getOptionMap()("email");
+        for (Option t: this.getOpt("users").getOptionList()){
+            if(t.getOptionName().equals(user))
+                return t.getOptionMap().get("email");
+        }
+        return null;
     }
-    
-    public List<String> getUserAlgorithm(String user){
-        return this.getOpt(user).getOptionList()("notifiablealgorithms");
-    }*/
+
+    public String getUserAlgorithm(String user){
+        for (Option t: this.getOpt("users").getOptionList()){
+            if(t.getOptionName().equals(user))
+                return t.getOptionMap().get("notifiablealgorithms");
+        }
+        return null;
+    }
 }

@@ -13,8 +13,9 @@ alg2=[]
 alg3=[]
 size = 1024 
 celphoneComp = {'att':'txt.att.net','att-cingular':'mmode.com','sprint':'messaging.sprintpcs.com','claro':'vtexto.com','tmobile':'tmomail.net','openMobile':'email.openmobilepr.com','verizon':'vtext.com'}
-email = '<email>'
-password = '<pass>'
+emailComp = {'gmail':'smtp.gmail.com','yahoo':'smtp.mail.yahoo.com','hotmail':'smtp.live.com'}
+email = '<insert email>'
+password = '<insert email password>'
 #------------------------------------------------------------ Set-up
 if len(args) > 1:   #------- text set-up
     data = args[1].split(',')
@@ -54,7 +55,14 @@ print alg3
 
 #---------------------------------------------------- smtp set-up
 flag = False
-option = ['smtp.gmail.com', 465]
+start = email.lower().find('@') + 1
+end = email.lower().find('.com')
+emailprovider = email.lower()[start:end]
+option = []
+
+if emailprovider in emailComp:
+    option = [emailComp[emailprovider], 465]
+    
 try:
    smtp =  smtplib.SMTP_SSL(option[0], option[1])
    flag = True
@@ -86,7 +94,7 @@ def sendMessage(info, message):
             smtp.sendmail(email, each, 'Subject: \n' + message)
     else:
         return "algorithm not recognized"
-    return "messega sent"
+    return "message sent"
     
 #-------------------------------------------------- server using flask
 app = Flask(__name__)
@@ -94,8 +102,7 @@ app = Flask(__name__)
 @app.route('/<message>')
 def hello_world(message):
     data = str(message).split('**')
-    sendMessage(data[0], data[1])
-    return "";
+    return sendMessage(data[0], data[1]);
 
 if __name__ == '__main__':
     app.run(port=2000)

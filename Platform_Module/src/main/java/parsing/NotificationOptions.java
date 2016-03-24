@@ -12,7 +12,7 @@ public class NotificationOptions extends Options{
     public NotificationOptions(){}
     
    public List<String> getUsers(){
-       List<String> out = null;
+       List<String> out = new ArrayList<String>();
        for (Option t: this.getOpt("users").getOptionList()){
            out.add(t.getOptionMap().get("name"));
        }

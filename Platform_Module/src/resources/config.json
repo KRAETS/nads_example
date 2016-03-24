@@ -7,21 +7,21 @@
 	"algorithms":
 	[
 		{
-			"testalgorithm":{"ips":"[\"136.145.59.152\"]","exampleip":"value","model":"values","trap_oid": "value","folder":"containingFolder"}
+			"testalgorithm":{"ips":"[\"136.145.59.152\"]","exampleip":"value","model":"values","trap_oid": "value","folder":"/home/dude/Documents/capstone/project/nads/algorithms/loop_detec/test.py"}
 		}
 	],
 	"visual":
 	{
 		"templatefolder":"pathtotemplatedumpingfolder",
-		"kibanaport":"ff",
-		"kibanaaddress":"f43"
+		"kibanaport":"70000",
+		"kibanaaddress":"127.0.0.0"
 	},
 	"dataretrieval":
 	{
-		"logstashport":"",
-		"logstashaddress":"",
-		"elasticsearchport":"",
-		"elasticsearchaddress":""
+		"logstashport":"70001",
+		"logstashaddress":"127.0.0.1",
+		"elasticsearchport":"70002",
+		"elasticsearchaddress":"127.0.0.2"
 	},
 	"notification":
 	{
@@ -30,15 +30,16 @@
 			{
 				"name":"someone",
 				"phonenumber":"7871234567",
-				"phoneprovider":"att|tmobile|sprint|claro",
+				"phoneprovider":"claro",
 				"email":"a@b.com",
-				"notifiablealgorithms":"[\"algo\"]"
+				"notifiablealgorithms":"[\"testalgorithm\"]"
 			}
 		],
 		"encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount"
 	},
 	"utilities":
 	{
-		"formattingparameterspath":"pathtoformattingparametersfile"
+		"newpatternfilelocation":"pathtoformattingparametersfile",
+		"originalpatternfilelocation":"pathtoformattingparametersfile"
 	}
 }

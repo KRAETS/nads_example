@@ -11,9 +11,7 @@ import java.util.Map;
 public class VisualizationOptions extends Options {
     public VisualizationOptions(){}
 
-    public Map<String, Option> getVisualizationParameters(){
-        return this.optionMap;
-    }
+    //public Map<String, Option> getVisualizationParameters(){ return this.optionMap; }
 
     public String getKibanaTemplateFolder(){
         return this.getOpt("templatefolder").getOptionStringIndividual();

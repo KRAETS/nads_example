@@ -12,7 +12,7 @@ public class DataRetrievalOptions extends Options {
     public DataRetrievalOptions(){}
     
     public Map<String, String> getDataRetrievalParameters(){
-        Map<String, String> map = null;
+        Map<String, String> map = new HashMap<String, String>();
         for (Map.Entry<String, Option> entry : this.optionMap.entrySet()) {
             map.put(entry.getKey(), entry.getValue().getOptionStringIndividual());
         }

@@ -22,7 +22,7 @@ public class NotificationOptions extends Options{
        }
        return out;
     }
-    
+
     public Map<String, String> getUserInformation(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -35,7 +35,7 @@ public class NotificationOptions extends Options{
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
                 return t.getOptionMap().get("phonenumber");
-        }
+      }
         return null;
     }
     

@@ -80,6 +80,7 @@ public class Parser {
         }catch (JsonParseException a)
         {
             //Send notification to user of bad config file format in the platform options
+            throw new JsonParseException("");
         }
     }
 
@@ -102,6 +103,7 @@ public class Parser {
         }catch(JsonParseException a)
         {
             //Send notification to user of bad config file format in the algorithms options
+            throw new JsonParseException("");
         }
     }
 
@@ -117,6 +119,7 @@ public class Parser {
         }catch (JsonParseException a)
         {
             //Send notification to user of bad config file format in the utilities options
+            throw new JsonParseException("");
         }
     }
 
@@ -132,6 +135,7 @@ public class Parser {
         }catch (JsonParseException a)
         {
             //Send notification to user of bad config file format in the data retrieval options
+            throw new JsonParseException("");
         }
     }
 
@@ -160,6 +164,7 @@ public class Parser {
         }catch (JsonParseException a)
         {
             //Send notification to user of bad config file format in the notification options
+            throw new JsonParseException("");
         }
     }
 
@@ -175,6 +180,7 @@ public class Parser {
         }catch (JsonParseException a)
         {
             //Send notification to user of bad config file format in the platform options
+            throw new JsonParseException("");
         }
     }
 

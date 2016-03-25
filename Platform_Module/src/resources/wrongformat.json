@@ -1,0 +1,15 @@
+{
+  "main":
+  {
+    "workingdirectory":"something",
+    "logtofile":"nads.log"
+  },
+{
+  "algorithms":
+  [
+    {
+      "testalgorithm":{"ips":"[\"136.145.59.152\"]","exampleip":"value","model":"values","trap_oid": "value","folder":"containingFolder"}
+    }
+  ],
+
+}

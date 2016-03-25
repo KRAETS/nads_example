@@ -11,7 +11,11 @@ import java.util.Map;
 public class NotificationOptions extends Options{
     public NotificationOptions(){}
     
-   public List<String> getUsers(){
+    public String getNotificationPath(){
+        return this.getOpt("notificationfolder").getOptionStringIndividual();
+    }
+
+    public List<String> getNotificationUsers(){
        List<String> out = null;
        for (Option t: this.getOpt("users").getOptionList()){
            out.add(t.getOptionMap().get("name"));

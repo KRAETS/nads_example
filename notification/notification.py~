@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 import smtplib
 import sys
 import signal
@@ -14,8 +15,8 @@ alg3=[]
 size = 1024 
 celphoneComp = {'att':'txt.att.net','att-cingular':'mmode.com','sprint':'messaging.sprintpcs.com','claro':'vtexto.com','tmobile':'tmomail.net','openMobile':'email.openmobilepr.com','verizon':'vtext.com'}
 emailComp = {'gmail':'smtp.gmail.com','yahoo':'smtp.mail.yahoo.com','hotmail':'smtp.live.com'}
-email = 'rookyann@gmail.com'
-password = 'TwItY2008'
+email = '<insert email>'
+password = '<insert email password>'
 #------------------------------------------------------------ Set-up
 if len(args) > 1:   #------- text set-up
     data = args[1].split(',')
@@ -103,6 +104,17 @@ app = Flask(__name__)
 def hello_world(message):
     data = str(message).split('**')
     return sendMessage(data[0], data[1]);
+    
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 
 if __name__ == '__main__':
     app.run(port=2000)

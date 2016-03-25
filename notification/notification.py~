@@ -4,10 +4,10 @@ import smtplib
 import sys
 import signal
 import re
+import ast
 
-#argv(1) numbers//companies//alg, argv(3) emails//alg
 #--------------------------------------------------------- Variables
-args = sys.argv
+args = sys.argv    #argv(1) json string
 numbers=[]
 alg1=[]
 alg2=[]
@@ -19,37 +19,37 @@ email = '<insert email>'
 password = '<insert email password>'
 #------------------------------------------------------------ Set-up
 if len(args) > 1:   #------- text set-up
-    data = args[1].split(',')
-    for info in data:
-        subinfo = info.split('//')
-        num = subinfo[0].replace('-','') 
-        if num.isdigit():
-            nflag = False
-            if subinfo[1].lower() in celphoneComp:
-                numbers = num+'@'+celphoneComp[subinfo[1].lower()]
-                nflag = True
-            if nflag:
-                if subinfo[2] == "1":
-                    alg1.append(numbers)
-                elif subinfo[2] == "2":
-                    alg2.append(numbers)
-                else:
-                    alg3.append(numbers)
+   data = args[1].replace('\"','\'')
+   if ast.literal_ecal(data):   #check string for malicious code
+        data = ast.literal_ecal(data)
+        for info in data:
+            num = info['honenumber'].replace('-','') 
+            if num.isdigit():
+                nflag = False
+                if info['phoneprovider'].lower() in celphoneComp:
+                    numbers = num+'@'+celphoneComp[info['phoneprovider'].lower()]
+                    nflag = True
+                if nflag:
+                    if subinfo[2] == "1":
+                        alg1.append(numbers)
+                    elif subinfo[2] == "2":
+                        alg2.append(numbers)
+                    else:
+                        alg3.append(numbers)
+            if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", info['email']):
+                if '1' in info['notifiablealgorithms']:
+                    alg1.append(info['email'])
+                elif '2' in info['notifiablealgorithms']:
+                    alg2.append(info['email'])
+                elif '3' in info['notifiablealgorithms']:
+                    alg3.append(info['email'])
+    else:
+        print 'WARNING: Malicious/Dangerous code detected as argument"
 else:
     print 'no args'
     sys.exit()
     
-if len(args) > 2:    #------ email set-up
-    data = args[2].split(',')
-    for info in data:
-        subinfo = info.split('//')
-        if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", subinfo[0]):
-            if subinfo[1] == "1":
-                alg1.append(subinfo[0])
-            elif subinfo[1] == "2":
-                alg2.append(subinfo[0])
-            else:
-                alg3.append(subinfo[0])
+    
 print alg1
 print alg2
 print alg3            

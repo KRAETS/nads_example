@@ -36,6 +36,7 @@ public class PlatformManager extends Manager {
             setupLogger(logLocation);
         else
             setupLogger(defaultLogLocation);
+        this.configure();
     }
 
     private void setupLogger(String logLocation) {
@@ -142,6 +143,14 @@ public class PlatformManager extends Manager {
     }
 
     public boolean configure() {
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            @Override
+            public void run()
+            {
+                PlatformManager.this.stop();
+            }
+        });
         return true;
     }
 

@@ -39,6 +39,7 @@
 	},
 	"utilities":
 	{
-		"formattingparameterspath":"pathtoformattingparametersfile"
+		"newpatternfilelocation":"/home/pedro/Desktop/10-syslog-filter.conf",
+		"originalpatternfilelocation":"/etc/logstash/conf.d/10-syslog-filter.conf"
 	}
 }

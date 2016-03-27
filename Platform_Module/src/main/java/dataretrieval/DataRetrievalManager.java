@@ -48,11 +48,12 @@ public class DataRetrievalManager extends Manager {
     }
     @Override
     public boolean stop() {
-        return false;
+        server.stop(0);
+        return true;
     }
     @Override
     public boolean configure() {
-        return false;
+        return true;
     }
 
 

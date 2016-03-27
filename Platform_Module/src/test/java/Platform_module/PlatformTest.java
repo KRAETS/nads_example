@@ -1,10 +1,12 @@
 package Platform_module;
 
 import algorithms.AlgorithmManager;
+import dataretrieval.DataRetrievalManager;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import parsing.Parser;
 import platform.PlatformManager;
+import utilities.UtilitiesManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -137,6 +139,7 @@ public class PlatformTest {
         PlatformManager pm = new PlatformManager(configFile, null);
         assertTrue(pm.configure());
         assertTrue(pm.start());
+        pm.stop();
     }
 
     //Method tests that the algorithm manager was correctly initialized
@@ -167,6 +170,67 @@ public class PlatformTest {
         AlgorithmManager am  = new AlgorithmManager(p.getAlgorithmsOptions(), logMan);
         assertTrue(am.configure());
         assertTrue(am.start());
+    }
+
+    //Method tests that the data retrieval manager was correctly initialized
+    @Test
+    public void dataRetrievalInitializingTest()
+    {
+        Logger logMan = Logger.getLogger("NadsLogger");
+        FileHandler fh;
+        try {
+            // This block configure the logger with handler and formatter
+            fh = new FileHandler("nadsplatformtest.log");
+            logMan.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            // the following statement is used to log any messages
+            logMan.info("Logger started");
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        Parser p = new Parser(configFile);
+        p.extractOptions();
+        DataRetrievalManager drm = new DataRetrievalManager(p.getDataRetrievalOptions(),logMan);
+        assertTrue(drm.configure());
+        assertTrue(drm.start());
+        drm.stop();
+    }
+
+    //Method tests that the utilities manager was correctly initialized
+    @Test
+    public void utilitiesInitializingTest()
+    {
+        Logger logMan = Logger.getLogger("NadsLogger");
+        FileHandler fh;
+        try {
+            // This block configure the logger with handler and formatter
+            fh = new FileHandler("nadsplatformtest.log");
+            logMan.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            // the following statement is used to log any messages
+            logMan.info("Logger started");
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        Parser p = new Parser(configFile);
+        p.extractOptions();
+        UtilitiesManager um = new UtilitiesManager(p.getUtilitiesOptions(),logMan);
+        assertTrue(um.configure());
+        assertTrue(um.start());
     }
 
 

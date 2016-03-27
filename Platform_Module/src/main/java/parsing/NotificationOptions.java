@@ -1,7 +1,5 @@
 package parsing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +9,12 @@ import java.util.Map;
 public class NotificationOptions extends Options{
     public NotificationOptions(){}
     
-   public List<String> getUsers(){
-       List<String> out = new ArrayList<String>();
+    public String getNotificationPath(){
+        return this.getOpt("notificationfolder").getOptionStringIndividual();
+    }
+
+    public List<String> getNotificationUsers(){
+       List<String> out = null;
        for (Option t: this.getOpt("users").getOptionList()){
            out.add(t.getOptionMap().get("name"));
        }

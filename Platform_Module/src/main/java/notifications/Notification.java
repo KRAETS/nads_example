@@ -5,6 +5,8 @@ import parsing.NotificationOptions;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +29,9 @@ public class Notification implements Runnable {
     private String commandString, param;
     private boolean exception = true;
     private Gson gson = new Gson();
-    private List<String> users;
+    private List<String> users = new ArrayList<String>();
     private String userinfo;
-    private Map<String,Map<String,String>> t;
+    private Map<String,Map<String,String>> t = new HashMap<String,Map<String,String>>();
 
     public String getName(){
         return this.name;
@@ -59,7 +61,7 @@ public class Notification implements Runnable {
                 for (String u : users){
                     t.put(u, this.notOpts.getUserInformation(u));
                 }
-                userinfo= gson.toJson(t).toString();
+                userinfo= gson.toJson(t.toString());
 
                 //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
                 ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getNotificationPath(), userinfo);

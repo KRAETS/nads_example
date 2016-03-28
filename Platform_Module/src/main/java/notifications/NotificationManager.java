@@ -2,7 +2,7 @@ package notifications;
 
 import interfaces.Manager;
 import parsing.NotificationOptions;
-
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -10,6 +10,8 @@ import java.util.logging.Logger;
  */
 public class NotificationManager extends Manager {
     private NotificationOptions notOpts;
+    private Notification notification;
+    
     public NotificationManager(NotificationOptions notificationOptions, Logger logger) {
         this.notOpts = notificationOptions;
         this.setLogger(logger);
@@ -17,14 +19,38 @@ public class NotificationManager extends Manager {
     }
 
     public boolean start() {
-        return false;
+        try{
+            notification.start();
+        }
+        catch (Exception e){
+            this.getLogger().log(Level.SEVERE,"Could not start notification: " + e.toString());
+            return false;
+        }
+        return true;
     }
 
     public boolean stop() {
-        return false;
+        try{
+            notification.stop();
+        }
+        catch (Exception e){
+            this.getLogger().log(Level.SEVERE,"Could not stop notification: " + e.toString());
+            return false;
+        }
+        return true;
     }
 
     public boolean configure() {
-        return false;
+        //TODO Read options and start
+        try {
+            notification = new notification(this.getLogger());
+        }
+        catch (Exception e) {
+            this.getLogger().log(Level.SEVERE, "Could not set up notification in manager: " + e.toString());
+            return false;
+        }
+        return true;
     }
 }
+
+

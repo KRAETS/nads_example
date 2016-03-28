@@ -18,12 +18,12 @@ celphoneComp = {'att': 'txt.att.net', 'att-cingular': 'mmode.com', 'sprint': 'me
                 'claro': 'vtexto.com', 'tmobile': 'tmomail.net', 'openMobile': 'email.openmobilepr.com',
                 'verizon': 'vtext.com'}
 emailComp = {'gmail': 'smtp.gmail.com', 'yahoo': 'smtp.mail.yahoo.com', 'hotmail': 'smtp.live.com'}
-email = '<email>'
-password = '<email password>'
+email = 'rookyann@gmail.com'
+password = 'oijfliwggfwtjqtt'
 
 # ------------------------------------------------------------ Set-up
 print 'set up'
-if len(args) > 0:  # ------- text and email set-up
+if len(args) > 1:  # ------- text and email set-up
     # data = args[1].replace('\"','\'')
     data = dict()
     if len(args) > 1:
@@ -37,7 +37,10 @@ if len(args) > 0:  # ------- text and email set-up
             if num.isdigit():
                 nflag = False
                 if data.get(key)['phoneprovider'].lower() in celphoneComp:
-                    numbers = num + '@' + celphoneComp[data.get(key)['phoneprovider'].lower()]
+                    if data.get(key)['phoneprovider'].lower() == 'tmobile':
+                        numbers = '+1' + num + '@' + celphoneComp[data.get(key)['phoneprovider'].lower()]
+                    else:
+                        numbers = num + '@' + celphoneComp[data.get(key)['phoneprovider'].lower()]
                     nflag = True
                 if nflag:
                     if '1' in data.get(key)['notifiablealgorithms']:
@@ -51,9 +54,9 @@ if len(args) > 0:  # ------- text and email set-up
             if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
                 if '1' in data.get(key)['notifiablealgorithms']:
                     alg1.append(data.get(key)['email'])
-                elif '2' in data.get(key)['notifiablealgorithms']:
+                if '2' in data.get(key)['notifiablealgorithms']:
                     alg2.append(data.get(key)['email'])
-                elif '3' in data.get(key)['notifiablealgorithms']:
+                if '3' in data.get(key)['notifiablealgorithms']:
                     alg3.append(data.get(key)['email'])
 else:
     print 'no args'
@@ -109,7 +112,7 @@ def sendMessage(info, message):
 # -------------------------------------------------- server using flask
 app = Flask(__name__)
 
-@app.route('/<message>')
+@app.route('/<message>', methods=['GET'])
 def hello_world(message):
     mes = str(message).split('**')
     return sendMessage(mes[0], mes[1])

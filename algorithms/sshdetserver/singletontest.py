@@ -13,6 +13,10 @@ class EventTestCase(unittest.TestCase):
         commander.start_server(True)
         self.GLOBAL_IP = "localhost"
         time.sleep(10)
+        try:
+            os.remove("singletonresults.txt")
+        except Exception as e:
+            print "File not found"
 
 
     def test_login_detection(self):

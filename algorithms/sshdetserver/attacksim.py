@@ -76,7 +76,7 @@ def main(DISTRIBUTED):
                 continue
         if (successcount+failcount) % 10 == 0:
             print "Stopping for event processing"
-            time.sleep(1)
+            time.sleep(0)
 
     print "Success:", successcount, "Fail:", failcount
 if __name__ == '__main__':

@@ -45,7 +45,8 @@ class Classifier:
                 pair = (key, hostmap[key])
 
         def remove_bruteforcer(item):
-            if item.get_client() is pair[0]:
+            clnt = item.get_client()
+            if item.get_client() == pair[0]:
                 return False
             else:
                 return True
@@ -204,8 +205,11 @@ class Classifier:
         return top
 
     def process(self, epoch):
+        print "Processing epoch", epoch
         self.current_epoch = epoch
+
         result = self.check_singleton(epoch)
+        print "Result",result
         if result is not None:
             # process singleton
             notify_both("Singleton")

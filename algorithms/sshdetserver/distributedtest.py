@@ -1,4 +1,5 @@
 import json
+import os
 import time
 import unittest
 import urllib2
@@ -13,12 +14,15 @@ class EventTestCase(unittest.TestCase):
         commander.start_server(True)
         self.GLOBAL_IP = "localhost"
         time.sleep(10)
+        try:
+            os.remove("distributedresults.txt")
+        except Exception as e:
+            print "File not found"
 
 
     def test_login_detection(self):
 
         try:
-
             attacksim.main(True)
             time.sleep(30)
             f = open("distributedresults.txt","r")

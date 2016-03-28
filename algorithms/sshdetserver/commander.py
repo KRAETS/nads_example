@@ -42,7 +42,7 @@ def main():
     for process in GLOBAL_PROCESS_LIST:
         process.join()
 
-def start_client(server_address, verbose):
+def start_client(server_address,monitoringserveraddress,monitoringfile, verbose):
     global GLOBAL_PROCESS_LIST
     if verbose:
         print "Client node"
@@ -51,7 +51,7 @@ def start_client(server_address, verbose):
         print "Starting up client script..."
 
     # Start up the client script separately
-    p = Process(target=sshdetnode.main, args=(server_address,))
+    p = Process(target=sshdetnode.main, args=(server_address,monitoringserveraddress,monitoringfile))
     p.start()
     GLOBAL_PROCESS_LIST.append(p)
     return

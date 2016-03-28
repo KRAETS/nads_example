@@ -152,7 +152,7 @@ class Classifier:
         #Join Remotehost->localhost
         for vertex in nodeset1.union(nodeset2):
             graph.add_vertex(vertex)
-
+        print graph
         print "Vertices", graph.vs["name"]
         for event in epoch.get_history_events():
             for login in event.get_logins():
@@ -208,7 +208,7 @@ class Classifier:
         result = self.check_singleton(epoch)
         if result is not None:
             # process singleton
-            notify_both("hola"+str(result))
+            notify_both("Singleton")
 
         else:
             print "Filtering out legitimate activity"
@@ -216,6 +216,6 @@ class Classifier:
             print "Done", newepoch
             print "Analyzing coordination glue"
             hitpair = self.analyze_coordination_glue(newepoch)
-            notify_both("Target under attack:"+str(hitpair))
+            notify_both("Distributed")
             print hitpair
 

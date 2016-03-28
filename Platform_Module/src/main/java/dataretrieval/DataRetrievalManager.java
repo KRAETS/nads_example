@@ -6,18 +6,16 @@ import com.sun.net.httpserver.HttpServer;
 import interfaces.Manager;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import parsing.DataRetrievalOptions;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.util.LinkedList;
-import java.util.List;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -35,7 +33,7 @@ public class DataRetrievalManager extends Manager {
     public boolean start() {
 
         try {
-            server = HttpServer.create(new InetSocketAddress(8000), 0);
+            server = HttpServer.create(new InetSocketAddress(8002), 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,22 +46,41 @@ public class DataRetrievalManager extends Manager {
     }
     @Override
     public boolean stop() {
-        return false;
+        try {
+            server.stop(0);
+        }
+        catch (Exception e){
+            this.getLogger().log(Level.SEVERE,"Problem shutting down server:"+e.toString());
+            return false;
+        }
+        return true;
     }
     @Override
     public boolean configure() {
-        return false;
+        return true;
     }
 
 
 
     private static class SendData implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            File outputfile = new File("Results");
+            File outputfile = new File("Results.log");
             synchronized (outputfile){
+                //Initialize the file printer
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(outputfile, true)));
-                out.append("Hi");
-                out.append(t.getRequestBody().toString());
+                //Append the body
+                BufferedReader input = new BufferedReader(new InputStreamReader(t.getRequestBody()));
+                String bodyargument = "";
+                while (true){
+                    String current = input.readLine();
+                    if(current == null){
+                        break;
+                    }
+                    bodyargument += current;
+                }
+                out.append("Anomaly detected: {"+bodyargument+"}\n");
+                out.flush();
+                out.close();
             }
             String response = "Success";
             t.sendResponseHeaders(200, response.length());
@@ -78,14 +95,22 @@ public class DataRetrievalManager extends Manager {
                 //Forward the request to the appropriate location
 
                 HttpClient httpclient = HttpClients.createDefault();
-                HttpPost httppost = new HttpPost("http://www.a-domain.com/foo/");
+                BufferedReader input = new BufferedReader(new InputStreamReader(t.getRequestBody()));
+                String bodyargument = "";
+                while (true){
+                    String current = input.readLine();
+                    if(current == null){
+                        break;
+                    }
+                    bodyargument += current;
+                }
 
-                // Request parameters and other properties.
-                List<NameValuePair> params = new LinkedList<NameValuePair>();
-                params.add(new BasicNameValuePair("kql", t.getRequestBody().toString()));
-                httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+                bodyargument = "http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8");
+//                bodyargument = new String(bodyargument.getBytes("UTF-8"), "ISO-8859-1");
+                URI address = new URI(bodyargument);
+                HttpGet httppost = new HttpGet(address);
 
-                //Execute and get the response.
+                                //Execute and get the response.
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
@@ -94,7 +119,16 @@ public class DataRetrievalManager extends Manager {
                     InputStream instream = entity.getContent();
                     try {
                         // do something useful
-                        String forwardedresponse = instream.toString();
+                        input = new BufferedReader(new InputStreamReader(instream));
+
+                        String forwardedresponse = "";
+                        while (true){
+                            String current = input.readLine();
+                            if(current == null){
+                                break;
+                            }
+                            forwardedresponse += current;
+                        }
                         t.sendResponseHeaders(200, forwardedresponse.length());
                         OutputStream os = t.getResponseBody();
                         os.write(forwardedresponse.getBytes());

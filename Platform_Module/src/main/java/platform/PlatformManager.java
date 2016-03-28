@@ -36,6 +36,7 @@ public class PlatformManager extends Manager {
             setupLogger(logLocation);
         else
             setupLogger(defaultLogLocation);
+        this.configure();
     }
 
     private void setupLogger(String logLocation) {

@@ -4,8 +4,10 @@ import interfaces.Manager;
 import org.apache.commons.io.FileUtils;
 import parsing.UtilitiesOptions;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,9 +73,34 @@ public class UtilitiesManager extends Manager {
             restoreBackup();
             return false;
         }
+        //Test the configuration file
+        try{
+
+            String expected = "Configuration OK";
+            Process p = Runtime.getRuntime().exec("service logstash configtest");
+            p.waitFor();
+            String result = "";
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while (true){
+                String current = input.readLine();
+                if(current == null){
+                    break;
+                }
+                result += current;
+            }
+            if(!result.contains(expected)){
+                throw new java.text.ParseException("Did not pass configtest check",0);
+            }
+        }
+        catch (Exception e){
+            this.getLogger().log(Level.SEVERE,"Could not pass configuration test... Resetting log format");;
+            restoreBackup();
+            return false;
+        }
+        
         //Restart the service
         try{
-            Runtime.getRuntime().exec("sudo service logstash restart");
+            Runtime.getRuntime().exec("service logstash restart");
         }
         catch(Exception e){
             this.getLogger().log(Level.SEVERE,"Problem restarting the logstash service"+e.toString());
@@ -83,12 +110,23 @@ public class UtilitiesManager extends Manager {
 
         //Test the service
         try{
-            Process p = Runtime.getRuntime().exec("sudo service logstash status");
+            Process p = Runtime.getRuntime().exec("service logstash status");
             p.waitFor();
-            String result = p.getOutputStream().toString();
-            if(result.contains("Exited")||result.contains("Error")){
-                return false;
+            String result = "";
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while (true){
+                String current = input.readLine();
+                if(current == null){
+                    break;
+                }
+                result += current;
             }
+
+            input.close();
+//            if(result.contains("Exited")||result.contains("Error")){
+//                restoreBackup();
+//                return false;
+//            }
             return true;
         }
         catch(Exception e){

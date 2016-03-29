@@ -220,6 +220,7 @@ class Classifier:
             print "Done", newepoch
             print "Analyzing coordination glue"
             hitpair = self.analyze_coordination_glue(newepoch)
+            print "Is distributed!!!"
             notify_both("Distributed")
             print hitpair
 

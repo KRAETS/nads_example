@@ -4,7 +4,7 @@ import urllib2
 filename = "attack.txt"
 GLOBAL_IP = "localhost"
 distributed = False
-number_of_attack_users = 3
+number_of_attack_users = 9
 legit_user_fail = 7 #Every 15 attempts a legit user fails by wrong password
 
 def main(DISTRIBUTED):

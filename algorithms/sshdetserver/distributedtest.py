@@ -24,7 +24,7 @@ class EventTestCase(unittest.TestCase):
 
         try:
             attacksim.main(True)
-            time.sleep(30)
+            time.sleep(10)
             f = open("distributedresults.txt","r")
             assert "yes" in f.readlines()
 

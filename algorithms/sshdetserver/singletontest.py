@@ -2,7 +2,7 @@ import json
 import time
 import unittest
 import urllib2
-
+import os
 import attacksim
 import commander
 
@@ -23,7 +23,7 @@ class EventTestCase(unittest.TestCase):
 
         try:
             attacksim.main(None)
-            time.sleep(20)
+            time.sleep(10)
             f = open("singletonresults.txt","r")
             assert "yes" in f.readlines()
 

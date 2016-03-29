@@ -107,6 +107,26 @@ public class PlatformTest {
         assertEquals(m, p.getAlgorithmsOptions().getAlgorithmParameters("testalgorithm"));
     }
 
+    @Test
+    public void utilitiesOptionsParsingTest()
+    {
+        String configFile = "src/resources/config.json";
+        Parser p = new Parser(configFile);
+        p.extractOptions();
+        Map<String,String> m = new HashMap<String, String>();
+        m.put("newpatternfilelocation","/home/pedro/Desktop/10-syslog-filter.conf");
+        m.put("originalpatternfilelocation","/etc/logstash/conf.d/10-syslog-filter.conf");
+//        assertEquals(l, p.getNotificationOptions().getUsers());
+        assertEquals(m.get("newpatternfilelocation"), p.getUtilitiesOptions().getNewPatternFileLocation());
+        assertEquals(m.get("originalpatternfilelocation"), p.getUtilitiesOptions().getOriginalPatternFileLocation());
+    }
+    @Test
+    public void verifyIncompleteConfiguration()
+    {
+        String configFile = "src/resources/config.json";
+        Parser p = new Parser(configFile);
+        p.extractOptions();
+    }
     //Method tests that the parser detects a nonexistent json file
     @Test
     public void nonexistantJsonParsingTest()
@@ -264,7 +284,7 @@ public class PlatformTest {
         assertTrue(um.configure());
         assertTrue(um.start());
     }
-    //TODO UTILITIES
+
     //TODO REQUIRED
 
 }

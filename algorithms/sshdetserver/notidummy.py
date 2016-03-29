@@ -1,9 +1,9 @@
 def notify_both(message):
-    if message == "Distributed":
+    if message == "Singleton":
         f = open("singletonresults.txt","w+")
         f.write("yes")
         f.close()
-    elif message == "Singleton":
+    elif message == "Distributed":
         f = open("distributedresults.txt", "w+")
         f.write("yes")
         f.close()

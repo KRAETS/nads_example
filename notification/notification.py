@@ -34,7 +34,7 @@ if len(args) > 1:  # ------- text and email set-up
             num = data.get(key)['phonenumber'].replace(' ', '')
             num = data.get(key)['phonenumber'].replace('(', '')
             num = data.get(key)['phonenumber'].replace(')', '')
-            if num.isdigit():
+            if num.isdigit() and len(num) == 10:
                 nflag = False
                 if data.get(key)['phoneprovider'].lower() in celphoneComp:
                     if data.get(key)['phoneprovider'].lower() == 'tmobile':
@@ -49,6 +49,9 @@ if len(args) > 1:  # ------- text and email set-up
                         alg2.append(numbers)
                     elif '3' in data.get(key)['notifiablealgorithms']:
                         alg3.append(numbers)
+            else:
+                print 'WARNING: ' + data.get(key)[
+                    'name'] + ' phone number is incorrect and was not added to the notification list'
 
         if 'email' in data.get(key):  # email set-up
             if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
@@ -58,6 +61,8 @@ if len(args) > 1:  # ------- text and email set-up
                     alg2.append(data.get(key)['email'])
                 if '3' in data.get(key)['notifiablealgorithms']:
                     alg3.append(data.get(key)['email'])
+            else:
+                print data.get(key)['email'] + 'is not a valid email email format'
 else:
     print 'no args'
     sys.exit()
@@ -93,6 +98,7 @@ if flag:
         except smtplib.SMTPAuthenticationError:
             print 'incorrect login credentials'
 
+
 # --------------------------------------------------- Send message
 def sendMessage(info, message):
     print "message-----------------"
@@ -109,13 +115,16 @@ def sendMessage(info, message):
         return 'algorithm not recognized'
     return 'message sent'
 
+
 # -------------------------------------------------- server using flask
 app = Flask(__name__)
+
 
 @app.route('/<message>', methods=['GET'])
 def hello_world(message):
     mes = str(message).split('**')
     return sendMessage(mes[0], mes[1])
+
 
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
@@ -123,18 +132,22 @@ def shutdown_server():
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
 
+
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
     shutdown_server()
     return 'Server shutting down...'
 
+
 if __name__ == '__main__':
     app.run(port=2000)
+
 
 # --------------------------------------------- termination signal
 def signal_term_handler():
     print "Notification Module Successfully Killed"
     sys.exit(0)
+
 
 signal.signal(signal.SIGTERM, signal_term_handler)
 signal.signal(signal.SIGINT, signal_term_handler)

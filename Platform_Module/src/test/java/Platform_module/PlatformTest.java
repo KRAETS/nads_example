@@ -120,12 +120,17 @@ public class PlatformTest {
         assertEquals(m.get("newpatternfilelocation"), p.getUtilitiesOptions().getNewPatternFileLocation());
         assertEquals(m.get("originalpatternfilelocation"), p.getUtilitiesOptions().getOriginalPatternFileLocation());
     }
+    //Method that tests whether an essential field was left out or not in configurations
     @Test
     public void verifyIncompleteConfiguration()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/missingessentialfieldconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
+        //missing folder
+        String name = p.getAlgorithmsOptions().getAlgorithmNames().get(0);
+        assertNull(p.getAlgorithmsOptions().getAlgorithmFolder(name));
+
     }
     //Method tests that the parser detects a nonexistent json file
     @Test
@@ -284,6 +289,31 @@ public class PlatformTest {
         NotificationManager um = new NotificationManager(p.getNotificationOptions(),logMan);
         assertTrue(um.configure());
         assertTrue(um.start());
+    }
+
+    @Test
+    public void serviceStartTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+        p.waitFor();
+        int ret = p.exitValue();
+        assertEquals(0,ret);
+    }
+
+    @Test
+    public void serviceStopTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        p.waitFor();
+        int ret = p.exitValue();
+        assertEquals(0,ret);
+    }
+
+    @Test
+    public void serviceCrashTest() throws IOException, InterruptedException {
+        //TODO
+        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        p.waitFor();
+        int ret = p.exitValue();
+        assertEquals(0,ret);
     }
 
     //TODO REQUIRED

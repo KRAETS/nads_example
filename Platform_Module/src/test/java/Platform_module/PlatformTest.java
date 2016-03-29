@@ -2,8 +2,8 @@ package Platform_module;
 
 import algorithms.AlgorithmManager;
 import dataretrieval.DataRetrievalManager;
+import notifications.NotificationManager;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import parsing.Parser;
 import platform.PlatformManager;
 import utilities.UtilitiesManager;
@@ -17,6 +17,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static org.junit.Assert.*;
+
 /**
  * Created by dude on 3/22/16.
  */
@@ -26,7 +28,7 @@ public class PlatformTest {
     @Test
     public void platformOptionsParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         assertEquals("something", p.getPlatformOptions().getWorkingDirectory());
@@ -37,7 +39,7 @@ public class PlatformTest {
     @Test
     public void dataRetrievalOptionsParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         Map<String,String> m = new HashMap<String, String>();
@@ -57,7 +59,7 @@ public class PlatformTest {
     @Test
     public void visualizationOptionsParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         assertEquals("127.0.0.0", p.getVisualizationOptions().getKibanaAddress());
@@ -69,7 +71,7 @@ public class PlatformTest {
     @Test
     public void notificationOptionsParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         List<String> l = new ArrayList<String>();
@@ -92,11 +94,11 @@ public class PlatformTest {
     @Test
     public void algorithmsOptionsParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         Map<String,String> m = new HashMap<String, String>();
-        m.put("folder","/home/dude/Documents/capstone/project/nads/algorithms/loop_detec/test.py");
+        m.put("folder","../algorithms/loop_detec/test.py");
         m.put("model","values");
         m.put("ips","[\"136.145.59.152\"]");
         m.put("exampleip","value");
@@ -109,7 +111,7 @@ public class PlatformTest {
     @Test
     public void nonexistantJsonParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/conerrfig.json";
+        String configFile = "src/resources/conerrfig.json";
         Parser p = new Parser(configFile);
         assertFalse(p.extractOptions());
     }
@@ -118,7 +120,7 @@ public class PlatformTest {
     @Test
     public void incorrectSyntaxJsonParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/wrongformat.json";
+        String configFile = "src/resources/wrongformat.json";
         Parser p = new Parser(configFile);
         assertFalse(p.extractOptions());
     }
@@ -126,7 +128,7 @@ public class PlatformTest {
     @Test
     public void incorrectFieldsJsonParsingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/correctsyntaxwrongfields.json";
+        String configFile = "src/resources/correctsyntaxwrongfields.json";
         Parser p = new Parser(configFile);
         assertFalse(p.extractOptions());
     }
@@ -135,7 +137,7 @@ public class PlatformTest {
     @Test
     public void platformInitializingTest()
     {
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         PlatformManager pm = new PlatformManager(configFile, null);
         assertTrue(pm.configure());
         assertTrue(pm.start());
@@ -164,7 +166,7 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         AlgorithmManager am  = new AlgorithmManager(p.getAlgorithmsOptions(), logMan);
@@ -194,7 +196,7 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         DataRetrievalManager drm = new DataRetrievalManager(p.getDataRetrievalOptions(),logMan);
@@ -225,7 +227,7 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "/home/dude/Documents/capstone/project/nads/Platform_Module/src/resources/config.json";
+        String configFile = "src/resources/config.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         UtilitiesManager um = new UtilitiesManager(p.getUtilitiesOptions(),logMan);
@@ -233,5 +235,36 @@ public class PlatformTest {
         assertTrue(um.start());
     }
 
+    //Method tests that the notification manager was correctly initialized
+    @Test
+    public void notificationInitializingTest()
+    {
+        Logger logMan = Logger.getLogger("NadsLogger");
+        FileHandler fh;
+        try {
+            // This block configure the logger with handler and formatter
+            fh = new FileHandler("nadsplatformtest.log");
+            logMan.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+            // the following statement is used to log any messages
+            logMan.info("Logger started");
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+        String configFile = "src/resources/config.json";
+        Parser p = new Parser(configFile);
+        p.extractOptions();
+        NotificationManager um = new NotificationManager(p.getNotificationOptions(),logMan);
+        assertTrue(um.configure());
+        assertTrue(um.start());
+    }
+    //TODO UTILITIES
+    //TODO REQUIRED
 
 }

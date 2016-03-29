@@ -1,7 +1,9 @@
 package parsing;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 /**
  * Created by pedro on 3/18/16.
@@ -14,7 +16,7 @@ public class NotificationOptions extends Options{
     }
 
     public List<String> getNotificationUsers(){
-       List<String> out = null;
+       List<String> out = new ArrayList<>();
        for (Option t: this.getOpt("users").getOptionList()){
            out.add(t.getOptionMap().get("name"));
        }

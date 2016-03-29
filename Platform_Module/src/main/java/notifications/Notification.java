@@ -26,7 +26,6 @@ public class Notification implements Runnable {
     private long hour = 1000*1000*60;
     private NotificationOptions notOpts;
     private Process notificationProcess;
-    private String commandString, param;
     private boolean exception = true;
     private Gson gson = new Gson();
     private List<String> users = new ArrayList<String>();
@@ -63,7 +62,6 @@ public class Notification implements Runnable {
                 }
                 userinfo= gson.toJson(t.toString());
 
-                //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
                 ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getNotificationPath(), userinfo);
                 notificationProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(notificationProcess.getInputStream()));
@@ -99,11 +97,12 @@ public class Notification implements Runnable {
         }
     }
 
-    public void start() {
+    public boolean start() {
         if (this.managerThread == null)
             this.managerThread = new Thread(this, this.name);
 
         this.managerThread.start();
+        return true;
     }
 
     public void stop() {
@@ -114,11 +113,9 @@ public class Notification implements Runnable {
         notificationProcess.destroy();
     }
 
-    public void sleep(){
-        //TODO Implement
-    }
+    public void sleep(){ }
 
-    public boolean setLogger(Logger logger){
+    protected boolean setLogger(Logger logger){
         try{
             if(logger==null)
                 throw new NullPointerException("Null logger");

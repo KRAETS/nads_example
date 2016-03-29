@@ -43,13 +43,13 @@ public class NotificationManager extends Manager {
 
     public boolean configure() {
         //TODO Read options and start
-//        try {
-//            notification = new notification(this.getLogger());
-//        }
-//        catch (Exception e) {
-//            this.getLogger().log(Level.SEVERE, "Could not set up notification in manager: " + e.toString());
-//            return false;
-//        }
+        try {
+            notification = new Notification(notOpts, this.getLogger());
+        }
+        catch (Exception e) {
+            this.getLogger().log(Level.SEVERE, "Could not set up notification in manager: " + e.toString());
+            return false;
+        }
         return true;
     }
 }

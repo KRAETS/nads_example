@@ -24,7 +24,6 @@ password = 'oijfliwggfwtjqtt'
 # ------------------------------------------------------------ Set-up
 print 'set up'
 if len(args) > 1:  # ------- text and email set-up
-    # data = args[1].replace('\"','\'')
     data = dict()
     if len(args) > 1:
         data = json.loads(args[1])
@@ -34,6 +33,7 @@ if len(args) > 1:  # ------- text and email set-up
             num = data.get(key)['phonenumber'].replace(' ', '')
             num = data.get(key)['phonenumber'].replace('(', '')
             num = data.get(key)['phonenumber'].replace(')', '')
+            num = data.get(key)['phonenumber'].replace('+', '')
             if num.isdigit() and len(num) == 10:
                 nflag = False
                 if data.get(key)['phoneprovider'].lower() in celphoneComp:
@@ -62,7 +62,7 @@ if len(args) > 1:  # ------- text and email set-up
                 if '3' in data.get(key)['notifiablealgorithms']:
                     alg3.append(data.get(key)['email'])
             else:
-                print data.get(key)['email'] + 'is not a valid email email format'
+                print data.get(key)['email'] + 'is not a valid email format'
 else:
     print 'no args'
     sys.exit()
@@ -148,6 +148,6 @@ def signal_term_handler():
     print "Notification Module Successfully Killed"
     sys.exit(0)
 
-
 signal.signal(signal.SIGTERM, signal_term_handler)
 signal.signal(signal.SIGINT, signal_term_handler)
+

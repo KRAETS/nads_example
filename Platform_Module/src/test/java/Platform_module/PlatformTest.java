@@ -134,6 +134,7 @@ public class PlatformTest {
         String configFile = "src/resources/conerrfig.json";
         Parser p = new Parser(configFile);
         assertFalse(p.extractOptions());
+
     }
 
     //Method tests that the parser detects a incorrect json file

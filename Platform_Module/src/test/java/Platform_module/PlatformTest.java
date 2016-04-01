@@ -327,7 +327,7 @@ public class PlatformTest {
 //								Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
 //
 //								StringBuilder result = new StringBuilde
-        String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\"";
+        String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
         URL url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 

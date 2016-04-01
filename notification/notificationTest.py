@@ -1,9 +1,9 @@
 from multiprocessing import Process
 import sys
 import getopt
+import time
 
 # --------------------------------------------------------- variables
-global GLOBAL_PROCESS_LIST = []
 verbose = False
 
 # ----------------------------------------------------- test set up
@@ -32,6 +32,8 @@ def initialSetUp():
 # --------------------------------------------------- config set up
 def configSetUp():
 
+    time.sleep(5)
+    killTest()
     return True
 
 # ------------------------------------- correct and incomplete email
@@ -40,6 +42,9 @@ def emailTest():
         print 'correct and erroneous email test'
     p = Process(target=sshdetnode.main, args=(server_address,monitoringserveraddress,monitoringfile))
     p.start()
+    GLOBAL_PROCESS_LIST.append(p)
+    time.sleep(5)
+    killTest()
     return True
 
 # -------------------------------------- correct and erroneous text
@@ -48,6 +53,9 @@ def textTest():
         print 'correct and erroneous email test'
     p = Process(target=sshdetnode.main, args=(server_address,monitoringserveraddress,monitoringfile))
     p.start()
+    GLOBAL_PROCESS_LIST.append(p)
+    time.sleep(5)
+    killTest()
     return True
 
 # ------------------------------------------------------------ kill
@@ -55,11 +63,13 @@ def killTest():
     if verbose:
         print 'kill test'
     for process in GLOBAL_PROCESS_LIST:
+        process.terminate()
         process.join()
     return True
         
 # ------------------------------------------------------------ main
 if __name__ == '__main__':
+    global GLOBAL_PROCESS_LIST
     if False in initialSetUp():
         print 'ERROR: Could not get arguments for initial set up'
         sys.exit(0)

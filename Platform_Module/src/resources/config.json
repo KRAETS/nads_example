@@ -35,8 +35,10 @@
 				"notifiablealgorithms":"[\"testalgorithm\"]"
 			}
 		],
-		"encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount",
-		"notificationfolder": "path"
+		"notificationfilelocation": "path",
+		"notificationemail": "email",
+		"notificationemailpassword":"password",
+		"encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount"
 	},
 	"utilities":
 	{

@@ -1,17 +1,22 @@
 class Login:
-    'Class that models a login attempt'
-    def __init__(self, status, client, host, user):
+    '''Class that models a login attempt'''
+
+    def __init__(self, status, client, host, user, protocol=None):
         self.status = status
         self.client = client
         self.host = host
         self.user = user
+        self.protocol = protocol
 
     def __repr__(self):
-        return "Login:"+str(self.status)+" "+self.client+\
+        return "Login:"+str(self.status)+" "+self.client + \
                " "+self.host+" "+self.user
 
     def get_status(self):
         return self.status
+
+    def get_protocol(self):
+        return self.protocol
 
     def get_client(self):
         return self.client
@@ -33,6 +38,9 @@ class Login:
 
     def set_user(self, user):
         self.user = user
+
+    def set_protocol(self,prot):
+        self.protocol = prot
 
     @staticmethod
     def parse_from_json(json):

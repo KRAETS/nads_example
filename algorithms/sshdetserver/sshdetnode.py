@@ -11,13 +11,42 @@ from login import Login
 GLOBAL_IP = None
 MONITORING_FOLDER = "/var/log"
 FILE_TO_MONITOR = "mylog"
+KQL_SERVER = "localhost:9200/"
+LAST_CHECK = None
 def analyzeLogin():
-    data = Login(False,"192.168.0.123","ece","cruzpol")
-    f = open("results.txt","w")
-    f.write("yes")
-    f.close()
-    return data
+    global LAST_CHECK
+    #Query the data
+    querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where \ ALL*status \="Failed" or \ ALL*status \="Accepted"'
+    query_url = 'http://localhost:9200/_kql?kql='
+    completequery = query_url + querystring
 
+    req = urllib2.Request(completequery)
+    try:
+        response = urllib2.urlopen(req)
+    except Exception as e:
+        print "Could not open kql server"
+        return None
+
+    #Sort by time
+
+    #Compare last check with first result
+
+    #if firstresult is lessthan or equal to last check then return none
+    firstresult = "this"
+    data = None
+    if firstresult <= LAST_CHECK:
+        return None
+    else:
+        data = Login(False,"192.168.0.123","ece","cruzpol")
+        f = open("results.txt","w")
+        f.write("yes")
+        f.close()
+
+    LAST_CHECK = time.time()
+    if data is not None:
+        return data
+    else:
+        return None
 
 class MyHandler(FileSystemEventHandler):
 
@@ -32,10 +61,13 @@ class MyHandler(FileSystemEventHandler):
 
             try:
                 localdata = analyzeLogin()
-                req = urllib2.Request('http://'+GLOBAL_IP+':5000/addlogin')
-                req.add_header('Content-Type', 'application/json')
-                response = urllib2.urlopen(req, json.dumps(localdata.__dict__))
-                print response
+                if localdata is None:
+                    print "Old result"
+                else:
+                    req = urllib2.Request('http://'+GLOBAL_IP+'/addlogin')
+                    req.add_header('Content-Type', 'application/json')
+                    response = urllib2.urlopen(req, json.dumps(localdata.__dict__))
+                    print response
             except Exception as e:
                 print "Problem contacting server", e
 

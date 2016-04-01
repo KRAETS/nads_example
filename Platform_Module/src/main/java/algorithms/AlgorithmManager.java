@@ -55,8 +55,6 @@ public class AlgorithmManager extends Manager {
     }
 
     public boolean configure() {
-
-        //TODO Read options and start
         try {
             for (String s : this.algOpts.getAlgorithmNames()) {
                 Algorithm a = new Algorithm(algOpts, this.getLogger());

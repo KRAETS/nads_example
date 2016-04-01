@@ -8,7 +8,12 @@ import parsing.Parser;
 import platform.PlatformManager;
 import utilities.UtilitiesManager;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -316,6 +321,29 @@ public class PlatformTest {
         assertEquals(0,ret);
     }
 
-    //TODO REQUIRED
+    @Test
+    public void selectFromWhereKQLTest() throws IOException, InterruptedException {
+        StringBuilder output2 = new StringBuilder();
+//								Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
+//
+//								StringBuilder result = new StringBuilde
+        String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
+        URL url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setRequestMethod("GET");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String line;
+        while ((line = rd.readLine()) != null) {
+            output2.append(line);
+        }
+        rd.close();
+
+
+
+        assertEquals(200,conn.getResponseCode());
+
+    }
+
 
 }

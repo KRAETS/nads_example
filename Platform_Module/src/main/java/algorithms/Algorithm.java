@@ -1,5 +1,6 @@
 package algorithms;
 
+import com.google.gson.Gson;
 import parsing.AlgorithmsOptions;
 
 import java.io.BufferedReader;

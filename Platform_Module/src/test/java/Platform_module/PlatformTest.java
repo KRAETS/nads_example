@@ -18,6 +18,13 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -331,7 +338,8 @@ public class PlatformTest {
 //								Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
 //
 //								StringBuilder result = new StringBuilde
-        String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ ";
+
+        String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
         URL url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -342,7 +350,6 @@ public class PlatformTest {
             output2.append(line);
         }
         rd.close();
-
 
         assertEquals(200,conn.getResponseCode());
     }
@@ -388,6 +395,7 @@ public class PlatformTest {
 
 
     }
+
 
 
 

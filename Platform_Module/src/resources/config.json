@@ -1,13 +1,25 @@
 {
 	"main":
 	{
-		"workingdirectory":"something",
 		"logtofile":"nads.log"
 	},
 	"algorithms":
 	[
 		{
-			"testalgorithm":{"ips":"[\"136.145.59.152\"]","exampleip":"value","model":"values","trap_oid": "value","folder":"/home/dude/Documents/capstone/project/nads/algorithms/loop_detec/test.py"}
+			"testalgorithm":{"ips":"[\"136.145.59.152\"]","exampleip":"value","model":"values","trap_oid": "value","folder":"../algorithms/loop_detec/test.py"}
+		},
+		{
+			"sshdetectionserver":{
+				"folder":"../algorithms/sshdetserver/commander.py",
+				"server":true
+			}
+		},
+		{
+			"sshdetectionclient":{
+				"folder":"../algorithms/sshdetserver/commander.py",
+				"serveraddress":"localhost:5000",
+				"client":true
+			}
 		}
 	],
 	"visual":
@@ -35,6 +47,9 @@
 				"notifiablealgorithms":"[\"testalgorithm\"]"
 			}
 		],
+		"notificationfilelocation": "path",
+		"notificationemail": "email",
+		"notificationemailpassword":"password",
 		"encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount"
 	},
 	"utilities":

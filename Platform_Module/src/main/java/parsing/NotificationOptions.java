@@ -1,20 +1,30 @@
 package parsing;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 /**
  * Created by pedro on 3/18/16.
  */
 public class NotificationOptions extends Options{
     public NotificationOptions(){}
-    
-    public String getNotificationPath(){
-        return this.getOpt("notificationfolder").getOptionStringIndividual();
+
+    public String getEmail(){
+        return this.getOpt("notificationemail").getOptionStringIndividual();
+    }
+
+    public String getEmailPassword(){
+        return this.getOpt("notificationemailpassword").getOptionStringIndividual();
+    }
+
+    public String getPath(){
+        return this.getOpt("notificationfilelocation").getOptionStringIndividual();
     }
 
     public List<String> getNotificationUsers(){
-       List<String> out = null;
+       List<String> out = new ArrayList<>();
        for (Option t: this.getOpt("users").getOptionList()){
            out.add(t.getOptionMap().get("name"));
        }

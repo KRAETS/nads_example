@@ -1,87 +1,116 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request
 import smtplib
 import sys
 import signal
 import re
+import json
 import ast
 
-#--------------------------------------------------------- Variables
-args = sys.argv    #argv(1) json string
-numbers=[]
-alg1=[]
-alg2=[]
-alg3=[]
-size = 1024 
-celphoneComp = {'att':'txt.att.net','att-cingular':'mmode.com','sprint':'messaging.sprintpcs.com','claro':'vtexto.com','tmobile':'tmomail.net','openMobile':'email.openmobilepr.com','verizon':'vtext.com'}
-emailComp = {'gmail':'smtp.gmail.com','yahoo':'smtp.mail.yahoo.com','hotmail':'smtp.live.com'}
-email = '<insert email>'
-password = '<insert email password>'
-#------------------------------------------------------------ Set-up
-if len(args) > 1:   #------- text set-up
-   data = args[1].replace('\"','\'')
-   if ast.literal_ecal(data):   #check string for malicious code
-        data = ast.literal_ecal(data)
-        for info in data:
-            num = info['phonenumber'].replace('-','') 
-            if num.isdigit():
+# --------------------------------------------------------- Variables
+print 'running'
+args = sys.argv  # argv(1) json string
+numbers = []
+alg1 = []
+alg2 = []
+alg3 = []
+size = 1024
+cellphoneComp = {'att': 'txt.att.net', 'att-cingular': 'mmode.com', 'sprint': 'messaging.sprintpcs.com',
+                'claro': 'vtexto.com', 'tmobile': 'tmomail.net', 'openMobile': 'email.openmobilepr.com',
+                'verizon': 'vtext.com'}
+emailComp = {'gmail': 'smtp.gmail.com', 'yahoo': 'smtp.mail.yahoo.com', 'hotmail': 'smtp.live.com'}
+emaildata = True
+
+# ------------------------------------------------------------ Set-up
+print 'set up'
+if len(args) > 1:  # ------- text and email set-up
+    data = dict()
+    if len(args) > 1:
+        data = json.loads(args[1])
+    if len(args) > 2:
+        email = data.get(key)
+        print 'email'
+        if len(args) > 3:
+            password = data.get(key)
+            print 'password'
+        else:
+            emaildata = False
+    else:
+        emaildata = False
+
+    for key in data:
+        if 'phonenumber' in data.get(key):  # text set-up
+            num = data.get(key)['phonenumber'].replace('-', '')
+            num = data.get(key)['phonenumber'].replace(' ', '')
+            num = data.get(key)['phonenumber'].replace('(', '')
+            num = data.get(key)['phonenumber'].replace(')', '')
+            num = data.get(key)['phonenumber'].replace('+', '')
+            if num.isdigit() and len(num) == 10:
                 nflag = False
-                if info['phoneprovider'].lower() in celphoneComp:
-                    numbers = num+'@'+celphoneComp[info['phoneprovider'].lower()]
+                if data.get(key)['phoneprovider'].lower() in celphoneComp:
+                    if data.get(key)['phoneprovider'].lower() == 'tmobile':
+                        numbers = '+1' + num + '@' + celphoneComp[data.get(key)['phoneprovider'].lower()]
+                    else:
+                        numbers = num + '@' + celphoneComp[data.get(key)['phoneprovider'].lower()]
                     nflag = True
                 if nflag:
-                    if subinfo[2] == "1":
+                    if '1' in data.get(key)['notifiablealgorithms']:
                         alg1.append(numbers)
-                    elif subinfo[2] == "2":
+                    elif '2' in data.get(key)['notifiablealgorithms']:
                         alg2.append(numbers)
-                    else:
+                    elif '3' in data.get(key)['notifiablealgorithms']:
                         alg3.append(numbers)
-            if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", info['email']):
-                if '1' in info['notifiablealgorithms']:
-                    alg1.append(info['email'])
-                elif '2' in info['notifiablealgorithms']:
-                    alg2.append(info['email'])
-                elif '3' in info['notifiablealgorithms']:
-                    alg3.append(info['email'])
-    else:
-        print 'WARNING: Malicious/Dangerous code detected as argument"
+            else:
+                print 'WARNING: ' + data.get(key)[
+                    'name'] + ' phone number is incorrect and was not added to the notification list'
+
+        if 'email' in data.get(key):  # email set-up
+            if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
+                if '1' in data.get(key)['notifiablealgorithms']:
+                    alg1.append(data.get(key)['email'])
+                if '2' in data.get(key)['notifiablealgorithms']:
+                    alg2.append(data.get(key)['email'])
+                if '3' in data.get(key)['notifiablealgorithms']:
+                    alg3.append(data.get(key)['email'])
+            else:
+                print data.get(key)['email'] + 'is not a valid email format'
 else:
     print 'no args'
     sys.exit()
-    
-    
+
 print alg1
 print alg2
-print alg3            
+print alg3
 
-#---------------------------------------------------- smtp set-up
-flag = False
-start = email.lower().find('@') + 1
-end = email.lower().find('.com')
-emailprovider = email.lower()[start:end]
-option = []
+# ---------------------------------------------------- smtp set-up
+if emaildata:
+    flag = False
+    start = email.lower().find('@') + 1
+    end = email.lower().find('.com')
+    emailprovider = email[start:end].lower()
+    option = []
 
-if emailprovider in emailComp:
-    option = [emailComp[emailprovider], 465]
-    
-try:
-   smtp =  smtplib.SMTP_SSL(option[0], option[1])
-   flag = True
-except smtplib.SMTPServerDisconnected:
-    print 'Error: SMTPServerDisconnected'
-except smtplib.SMTPResponseException:
-    print 'Error: SMTPResponseException'
-except smtplib.SMTPConnectError:
-    print 'Error: SMTPConnectError'
+    if emailprovider in emailComp:
+        option = [emailComp[emailprovider], 465]
 
-if flag:
-    if str(smtp.ehlo()[0]) == '250':
-        try:
-            smtp.login(email, password)
-        except smtplib.SMTPAuthenticationError:
-            print 'incorrect login credentials'
+    try:
+        smtp = smtplib.SMTP_SSL(option[0], option[1])
+        flag = True
+    except smtplib.SMTPServerDisconnected:
+        print 'Error: SMTPServerDisconnected'
+    except smtplib.SMTPResponseException:
+        print 'Error: SMTPResponseException'
 
-#--------------------------------------------------- Send message
+    if flag:
+        if str(smtp.ehlo()[0]) == '250':
+            try:
+                smtp.login(email, password)
+            except smtplib.SMTPAuthenticationError:
+                print 'incorrect login credentials'
+else:
+    print "ERROR: Unable to set up the notification system. Email information is incomplete"
+    signal_term_handler()
+
+# --------------------------------------------------- Send message
 def sendMessage(info, message):
     print "message-----------------"
     if info == "1":
@@ -94,38 +123,43 @@ def sendMessage(info, message):
         for each in alg3:
             smtp.sendmail(email, each, 'Subject: \n' + message)
     else:
-        return "algorithm not recognized"
-    return "message sent"
-    
-#-------------------------------------------------- server using flask
+        return 'algorithm not recognized'
+    return 'message sent'
+
+
+# -------------------------------------------------- server using flask
 app = Flask(__name__)
 
-@app.route('/<message>')
+
+@app.route('/<message>', methods=['GET'])
 def hello_world(message):
-    data = str(message).split('**')
-    return sendMessage(data[0], data[1]);
-    
+    mes = str(message).split('**')
+    return sendMessage(mes[0], mes[1])
+
+
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
 
+
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
     shutdown_server()
     return 'Server shutting down...'
 
+
 if __name__ == '__main__':
     app.run(port=2000)
 
-#--------------------------------------------- termination signal
-def signal_term_handler(signal, frame):
+
+# --------------------------------------------- termination signal
+def signal_term_handler():
     print "Notification Module Successfully Killed"
+    shutdown_server()
     sys.exit(0)
 
 signal.signal(signal.SIGTERM, signal_term_handler)
 signal.signal(signal.SIGINT, signal_term_handler)
-
-
 

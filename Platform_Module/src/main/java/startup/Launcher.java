@@ -1,11 +1,25 @@
 package startup;
 
+import platform.PlatformManager;
+
 public class Launcher
 {
     public static void main( String[] args )
     {
         //TODO Use this as the new main
-        System.out.println( "Hello World!" );
+        System.out.println( "Initializing nads..." );
+        PlatformManager platman = new PlatformManager(args[0],args[1]);
+        System.out.println("Adding shutdown hooks...");
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            @Override
+            public void run()
+            {
+                platman.stop();
+            }
+        });
+        System.out.println("Starting the system...");
+        platman.start();
     }
 
     /**
@@ -18,6 +32,7 @@ public class Launcher
      * Method that stops the platform service
      */
     public static void stop(){
+
     }
 
     /**

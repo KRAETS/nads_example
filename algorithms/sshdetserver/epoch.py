@@ -22,3 +22,6 @@ class Epoch:
 
     def get_history_events(self):
         return self.previous_history
+
+    def __repr__(self):
+        return "Epoch:" + str(self.consecutive_out_of_control) + "\n" + str(self.previous_history)

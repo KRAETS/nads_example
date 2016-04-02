@@ -5,6 +5,8 @@ import parsing.NotificationOptions;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,12 +26,11 @@ public class Notification implements Runnable {
     private long hour = 1000*1000*60;
     private NotificationOptions notOpts;
     private Process notificationProcess;
-    private String commandString, param;
     private boolean exception = true;
     private Gson gson = new Gson();
-    private List<String> users;
+    private List<String> users = new ArrayList<String>();
     private String userinfo;
-    private Map<String,Map<String,String>> t;
+    private Map<String,Map<String,String>> t = new HashMap<String,Map<String,String>>();
 
     public String getName(){
         return this.name;
@@ -59,10 +60,9 @@ public class Notification implements Runnable {
                 for (String u : users){
                     t.put(u, this.notOpts.getUserInformation(u));
                 }
-                userinfo= gson.toJson(t).toString();
+                userinfo= gson.toJson(t.toString());
 
-                //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
-                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getNotificationPath(), userinfo);
+                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath(), userinfo, this.notOpts.getEmail(), this.notOpts.getEmailPassword());
                 notificationProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(notificationProcess.getInputStream()));
                 exception = true;
@@ -97,11 +97,12 @@ public class Notification implements Runnable {
         }
     }
 
-    public void start() {
+    public boolean start() {
         if (this.managerThread == null)
             this.managerThread = new Thread(this, this.name);
 
         this.managerThread.start();
+        return true;
     }
 
     public void stop() {
@@ -112,11 +113,9 @@ public class Notification implements Runnable {
         notificationProcess.destroy();
     }
 
-    public void sleep(){
-        //TODO Implement
-    }
+    public void sleep(){ }
 
-    public boolean setLogger(Logger logger){
+    protected boolean setLogger(Logger logger){
         try{
             if(logger==null)
                 throw new NullPointerException("Null logger");

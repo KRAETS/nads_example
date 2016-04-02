@@ -3,11 +3,14 @@ import urllib2
 
 filename = "attack.txt"
 GLOBAL_IP = "localhost"
-distributed = True
-number_of_attack_users = 3
+distributed = False
+number_of_attack_users = 9
 legit_user_fail = 7 #Every 15 attempts a legit user fails by wrong password
 
-def main():
+def main(DISTRIBUTED):
+    if DISTRIBUTED is not None:
+        global distributed
+        distributed = DISTRIBUTED
     print "Starting attack"
     attack_file = open(filename, 'r')
     failcount = 0
@@ -73,8 +76,8 @@ def main():
                 continue
         if (successcount+failcount) % 10 == 0:
             print "Stopping for event processing"
-            time.sleep(1)
+            time.sleep(0)
 
     print "Success:", successcount, "Fail:", failcount
 if __name__ == '__main__':
-    main()
+    main(True)

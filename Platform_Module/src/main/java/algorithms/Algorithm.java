@@ -1,5 +1,6 @@
 package algorithms;
 
+import com.google.gson.Gson;
 import parsing.AlgorithmsOptions;
 
 import java.io.BufferedReader;
@@ -36,7 +37,8 @@ public class Algorithm implements Runnable {
             {
                 //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
                 param = this.algOpts.getAlgorithmParameters(this.getName()).toString();
-                ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmParameters(this.getName()).get("folder"), "dude", "wut");
+                commandString = "python "+(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName()));
+                ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmFolder(this.getName()),(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName())));
                 algorithmProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;
@@ -49,9 +51,14 @@ public class Algorithm implements Runnable {
                     }
                     try {
                         algorithmProcess.exitValue();
-                        System.out.println(algorithmProcess.exitValue());
-                        System.out.println(in.readLine());
-                        System.out.println(in.readLine());
+                        System.out.println("ExitVal:"+algorithmProcess.exitValue());
+                        while(true) {
+                            String line = in.readLine();
+                            if(line == null)
+                                break;
+                            else
+                                System.out.println(line);
+                        }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
                     }

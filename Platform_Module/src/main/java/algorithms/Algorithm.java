@@ -90,9 +90,16 @@ public class Algorithm implements Runnable {
         }
         this.managerThread.start();
     }
-    public void stop()
+    public boolean stop()
     {
-        this.managerThread.interrupt();
+        try
+        {
+            this.managerThread.interrupt();
+            return true;
+        }catch (Exception e)
+        {
+            return false;
+        }
     }
     public void interrupt(){
         algorithmProcess.destroy();

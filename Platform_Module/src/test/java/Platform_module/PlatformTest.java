@@ -3,17 +3,28 @@ package Platform_module;
 import algorithms.AlgorithmManager;
 import dataretrieval.DataRetrievalManager;
 import notifications.NotificationManager;
+import org.apache.http.message.BasicNameValuePair;
 import org.junit.Test;
+import parsing.DataRetrievalOptions;
 import parsing.Parser;
 import platform.PlatformManager;
 import utilities.UtilitiesManager;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -327,6 +338,7 @@ public class PlatformTest {
 //								Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
 //
 //								StringBuilder result = new StringBuilde
+
         String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
         URL url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -339,11 +351,152 @@ public class PlatformTest {
         }
         rd.close();
 
-
-
         assertEquals(200,conn.getResponseCode());
+    }
+
+    @Test
+    public void sendDataTest() throws IOException
+    {
+        String path = "/home/pedro/Documents/git/nads/Platform_Module/src/resources/config.json";
+        String path2 = "/home/pedro/Documents/git/nads/Platform_Module/Results.log";
+        Parser hi = new Parser(path);
+        hi.extractOptions();
+        DataRetrievalOptions dude = hi.getDataRetrievalOptions();
+        DataRetrievalManager mng = new DataRetrievalManager(dude, Logger.getLogger("NadsLogger"));
+        mng.start();
+        Caller c = new Caller("dude", "senddata");
+        c.start();
+        while (c.isAlive()) {}
+        mng.stop();
+        List<String> lines = Files.readAllLines(Paths.get(path2), Charset.forName("UTF-8"));
+        String test = lines.get(lines.size()-1);
+        assertEquals("Anomaly detected: {hyuouho}",test);
 
     }
 
+    @Test
+    public void getDataTest() throws IOException
+    {
+        String path = "/home/pedro/Documents/git/nads/Platform_Module/src/resources/config.json";
+        Parser hi = new Parser(path);
+        hi.extractOptions();
+        DataRetrievalOptions dude = hi.getDataRetrievalOptions();
+        DataRetrievalManager mng = new DataRetrievalManager(dude, Logger.getLogger("NadsLogger"));
+        mng.start();
+        Caller c = new Caller("dude", "getdata");
+        c.start();
+        while (c.isAlive()) {}
+        boolean results = c.getResultResponse().contains("filebeat");
+        int resultCode = c.getResultCode();
+        mng.stop();
+
+        assertTrue(results);
+        assertEquals(200,resultCode);
+
+
+    }
+
+
+
+
+}
+
+class Caller implements Runnable
+{
+    private String threadName = "";
+    private Thread t;
+    private String requestType= "";
+    private String resultResponse = "";
+    private int resultCode = 0;
+
+    public String getResultResponse()
+    {
+        return this.resultResponse;
+    }
+    public int getResultCode()
+    {
+        return this.resultCode;
+    }
+
+    Caller( String name, String rN)
+    {
+        this.threadName = name;
+        this.requestType = rN;
+    }
+    public void run() {
+        System.out.println("Running " +  threadName );
+        try {
+            if(requestType.equals("senddata"))
+            {
+                URL url = new URL("http://localhost:8002/senddata");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.connect();
+                StringBuilder result = new StringBuilder();
+                result.append(URLEncoder.encode("hyuouho", "UTF-8"));
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(result.toString());
+                writer.flush();
+                writer.close();
+                os.close();
+
+                InputStream response = conn.getInputStream();
+                System.out.println(conn.getResponseCode());
+            }
+            else
+            {
+                URL url = new URL("http://localhost:8002/getdata");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.connect();
+                StringBuilder result = new StringBuilder();
+                result.append("SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ ");
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                writer.write(result.toString());
+                writer.flush();
+                writer.close();
+                os.close();
+                InputStream response = conn.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                this.resultResponse = rd.readLine();
+                this.resultCode = conn.getResponseCode();
+
+            }
+
+        }
+        catch (IOException e)
+        {
+            System.out.println("Thread " +  threadName + " ioexception.");
+        }
+        System.out.println("Thread " +  threadName + " exiting.");
+    }
+
+    public void start()
+    {
+        System.out.println("Starting " +  threadName );
+        if (t == null)
+        {
+            t = new Thread (this, threadName);
+            t.start ();
+        }
+    }
+
+    public void stop()
+    {
+        this.t.interrupt();
+    }
+
+    public boolean isAlive() { return this.t.isAlive();}
 
 }

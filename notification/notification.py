@@ -27,10 +27,10 @@ if len(args) > 1:  # ------- text and email set-up
     if len(args) > 1:
         data = json.loads(args[1])
     if len(args) > 2:
-        email = data.get(key)
+        email = args[2]
         print 'email'
         if len(args) > 3:
-            password = data.get(key)
+            password = args[3]
             print 'password'
         else:
             emaildata = False

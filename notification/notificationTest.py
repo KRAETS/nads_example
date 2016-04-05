@@ -1,9 +1,11 @@
-import subprocess, os
+import os
+import subprocess
 import sys
-import getopt
 import time
 
 # --------------------------------------------------------- variables
+from werkzeug import http
+
 emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@yahoo.com\",\"notifiablealgorithms\":\"12\"},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
 textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":\"12\"},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":\"3\"}}"
 configparams = "{}"
@@ -63,7 +65,7 @@ def configSetUp():
         h1 = http.client.HTTPConnection('localhost', 2000, timeout=10)
     except http.client.HTTPException:
         print 'http exception'
-    except http/client.NotConnected:
+    except http.client.NotConnected:
         print 'http not connected'
     except http.client.InvalidURL:
         print 'http invalid URL'
@@ -96,7 +98,7 @@ def emailTest():
         h2 = http.client.HTTPConnection('localhost', 2000, timeout=10)
     except http.client.HTTPException:
         print 'http exception'
-    except http/client.NotConnected:
+    except http.client.NotConnected:
         print 'http not connected'
     except http.client.InvalidURL:
         print 'http invalid URL'
@@ -129,7 +131,7 @@ def textTest():
         h3 = http.client.HTTPConnection('localhost', 2000, timeout=10)
     except http.client.HTTPException:
         print 'http exception'
-    except http/client.NotConnected:
+    except http.client.NotConnected:
         print 'http not connected'
     except http.client.InvalidURL:
         print 'http invalid URL'

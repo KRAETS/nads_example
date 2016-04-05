@@ -10,9 +10,17 @@ import java.util.List;
  */
 public class NotificationOptions extends Options{
     public NotificationOptions(){}
-    
-    public String getNotificationPath(){
-        return this.getOpt("notificationfolder").getOptionStringIndividual();
+
+    public String getEmail(){
+        return this.getOpt("notificationemail").getOptionStringIndividual();
+    }
+
+    public String getEmailPassword(){
+        return this.getOpt("notificationemailpassword").getOptionStringIndividual();
+    }
+
+    public String getPath(){
+        return this.getOpt("notificationfilelocation").getOptionStringIndividual();
     }
 
     public List<String> getNotificationUsers(){

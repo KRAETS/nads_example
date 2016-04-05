@@ -1,7 +1,11 @@
 import json
 import os
 import time
+import urllib
 import urllib2
+from datetime import datetime
+
+from operator import attrgetter
 
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
@@ -14,39 +18,66 @@ FILE_TO_MONITOR = "mylog"
 KQL_SERVER = "localhost:9200/"
 LAST_CHECK = None
 def analyzeLogin():
+    time.sleep(10)
     global LAST_CHECK
     #Query the data
-    querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where \ ALL*status \="Failed" or \ ALL*status \="Accepted"'
+    querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \="Failed" or \ ALL*status \="Accepted" ) and \ ALL*datetime \ like "*Apr *"'
     query_url = 'http://localhost:9200/_kql?kql='
-    completequery = query_url + querystring
+    completequery = query_url + urllib.quote(querystring, safe='')
 
     req = urllib2.Request(completequery)
+    results = None
     try:
         response = urllib2.urlopen(req)
+        printthings = response.read()
+        results = json.loads(printthings)
+        print results
+
+
     except Exception as e:
         print "Could not open kql server"
         return None
 
     #Sort by time
+    reslist = results["hits"]["hits"]
+    print 'y'
+    usefulentries = []
+    for item in reslist:
+        entry = item["_source"]
+        try:
+            s = entry["Date"]
+            usefulentries.append(entry)
+        except Exception as e:
+            print "Useless"
+        print entry
+    for entry in usefulentries:
+        d = entry["Date"]
+        entry["Date"] = datetime.strptime(entry["Date"], '%b %d %H:%M:%S')
 
+        print entry["Date"]
+    usefulentries.sort(key=lambda x: x["Date"], reverse=True)
     #Compare last check with first result
-
-    #if firstresult is lessthan or equal to last check then return none
-    firstresult = "this"
+    if LAST_CHECK is None:
+        LAST_CHECK = usefulentries[len(usefulentries)-1]
     data = None
-    if firstresult <= LAST_CHECK:
+    if LAST_CHECK == usefulentries[0]:
+        # if firstresult is lessthan or equal to last check then return none
         return None
     else:
-        data = Login(False,"192.168.0.123","ece","cruzpol")
-        f = open("results.txt","w")
+        data = Login(False, "", "", "")
+        if usefulentries[0]["Status"][0] == "Failed":
+            data.set_status(False)
+        else:
+            data.set_status(True)
+        data.set_client(usefulentries[0]["ClientIp"][0])
+        data.set_host("127.0.0.1")
+        data.set_protocol("SSH")
+        data.set_user(usefulentries[0]["UserName"][0])
+        f = open("results.txt", "w")
         f.write("yes")
         f.close()
-
-    LAST_CHECK = time.time()
-    if data is not None:
+        LAST_CHECK = usefulentries[0]
         return data
-    else:
-        return None
 
 class MyHandler(FileSystemEventHandler):
 
@@ -97,5 +128,5 @@ def main(ip,monitoringfolder,monitoringfile):
         observer.stop()
 
 if __name__ == '__main__':
-    main("localhost", "dummy","dummylog")
+    main("localhost", "/var/log","auth.log")
 

@@ -62,7 +62,7 @@ public class Notification implements Runnable {
                 }
                 userinfo= gson.toJson(t.toString());
 
-                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getNotificationPath(), userinfo);
+                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath(), userinfo, this.notOpts.getEmail(), this.notOpts.getEmailPassword());
                 notificationProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(notificationProcess.getInputStream()));
                 exception = true;

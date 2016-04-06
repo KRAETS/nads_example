@@ -1,16 +1,19 @@
 package notifications;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import parsing.NotificationOptions;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Map;
 
 /**
  * Created by marie on 3/23/16.
@@ -60,13 +63,21 @@ public class Notification implements Runnable {
                 for (String u : users){
                     t.put(u, this.notOpts.getUserInformation(u));
                 }
-                userinfo= gson.toJson(t.toString());
+                userinfo= gson.toJson(t);
 
-                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath(), userinfo, this.notOpts.getEmail(), this.notOpts.getEmailPassword());
+                //Add the valid algorithms
+                JsonObject jsonElement = new JsonObject();
+                JsonArray validList = new JsonArray();
+                for(String s : notOpts.getValidAlgorithms()){
+                    validList.add(s);
+                }
+                jsonElement.add("list",validList);
+                String js = gson.toJson(jsonElement);
+                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath() ,userinfo, gson.toJson(jsonElement), this.notOpts.getEmail(), this.notOpts.getEmailPassword());
                 notificationProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(notificationProcess.getInputStream()));
                 exception = true;
-
+                this.getLogger().log(Level.INFO,"Starting notification process... If no further output then it is successful");
                 while (exception) {
                     if (((System.nanoTime()/hour)/(1000*60)) - ((recentRestartTime/hour)/(1000*60)) >= 1) {
                         restartCount =0;
@@ -74,11 +85,18 @@ public class Notification implements Runnable {
                     }
                     try {
                         notificationProcess.exitValue();
-                        System.out.println(notificationProcess.exitValue());
-                        System.out.println(in.readLine());
-                        System.out.println(in.readLine());
+                        System.out.println("ExitVal:"+notificationProcess.exitValue());
+                        while(true) {
+                            String line = in.readLine();
+                            if(line == null)
+                                break;
+                            else
+                                System.out.println(line);
+                        }
                         exception = false;
-                    } catch (IllegalThreadStateException a) { }
+                    } catch (IllegalThreadStateException a) {
+
+                    }
                 }
                 if (restartCount < 5) {
                     if (restartCount == 0)

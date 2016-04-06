@@ -1,7 +1,6 @@
 package parsing;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,10 +46,10 @@ public class Parser {
                 //Calls function to parse te options for each module
                 this.utilitiesOptionsParsers(newMap);
                 this.mainOptionsParsers(newMap);
-                this.notificationOptionsParsers(newMap);
                 this.visualOptionsParsers(newMap);
                 this.dataRetrievalOptionsParsers(newMap);
                 this.algorithmsOptionsParsers(newMap);
+                this.notificationOptionsParsers(newMap);
             }catch (JsonParseException a)
             {
                 //Send notification to user of bad config file format

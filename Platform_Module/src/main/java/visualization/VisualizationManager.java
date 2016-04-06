@@ -17,15 +17,15 @@ public class VisualizationManager extends Manager {
     }
     @Override
     public boolean start() {
-        return false;
+        return true;
     }
     @Override
     public boolean stop() {
-        return false;
+        return true;
     }
     @Override
     public boolean configure() {
-        return false;
+        return true;
     }
 
     private boolean isKibanaAvailable(){

@@ -1,5 +1,5 @@
 import urllib2
-NOTIFICATION_SYSTEM_ADDRESS = "localhost:2000"
+NOTIFICATION_SYSTEM_ADDRESS = "localhost:8000"
 def notify_both(message):
     if message == "Singleton":
         f = open("singletonresults.txt","w+")

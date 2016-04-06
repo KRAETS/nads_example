@@ -4,7 +4,7 @@ import editdistance
 from igraph import *
 
 from dummy_data_retrieval import *
-from notidummy import notify_both
+from notifications import notify_both
 
 pair = ("", -1)
 

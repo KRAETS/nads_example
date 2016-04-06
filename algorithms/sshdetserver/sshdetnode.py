@@ -1,12 +1,10 @@
 import json
 import os
+import socket
 import time
 import urllib
 import urllib2
-import socket
 from datetime import datetime, date
-
-from operator import attrgetter
 
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer

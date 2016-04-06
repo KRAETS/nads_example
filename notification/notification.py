@@ -18,6 +18,7 @@ cellphoneComp = {'att': 'txt.att.net', 'att-cingular': 'mmode.com', 'sprint': 'm
                 'claro': 'vtexto.com', 'tmobile': 'tmomail.net', 'openMobile': 'email.openmobilepr.com',
                 'verizon': 'vtext.com'}
 emailComp = {'gmail': 'smtp.gmail.com', 'yahoo': 'smtp.mail.yahoo.com', 'hotmail': 'smtp.live.com'}
+validAlgs = ['sshattackmonit', 'testalgorithm', 'loopmonit']
 emaildata = True
 email = None
 password = None
@@ -61,24 +62,26 @@ def setup():
                         nflag = True
                     if nflag:
                         #TODO make this a for instead of hardcoding
-                        if '1' in data.get(key)['notifiablealgorithms']:
-                            alg1.append(numbers)
-                        elif '2' in data.get(key)['notifiablealgorithms']:
-                            alg2.append(numbers)
-                        elif '3' in data.get(key)['notifiablealgorithms']:
-                            alg3.append(numbers)
+                        for a in data.get(key)['notifiablealgorithms']:
+                            if a is validAlgs[0]:
+                                alg1.append(numbers)
+                            elif a is validAlgs[1]:
+                                alg2.append(numbers)
+                            elif a is validAlgs[2]:
+                                alg3.append(numbers)
                 else:
                     print 'WARNING: ' + data.get(key)[
                         'name'] + ' phone number is incorrect and was not added to the notification list'
 
             if 'email' in data.get(key):  # email set-up
                 if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
-                    if '1' in data.get(key)['notifiablealgorithms']:
-                        alg1.append(data.get(key)['email'])
-                    if '2' in data.get(key)['notifiablealgorithms']:
-                        alg2.append(data.get(key)['email'])
-                    if '3' in data.get(key)['notifiablealgorithms']:
-                        alg3.append(data.get(key)['email'])
+                    for a in data.get(key)['notifiablealgorithms']:
+                        if a is validAlgs[0]:
+                            alg1.append(data.get(key)['email'])
+                        elif a is validAlgs[1]:
+                            alg2.append(data.get(key)['email'])
+                        elif a is validAlgs[2]:
+                            alg3.append(data.get(key)['email'])
                 else:
                     print data.get(key)['email'] + 'is not a valid email format'
     else:
@@ -134,13 +137,13 @@ def smtp_setup():
 # --------------------------------------------------- Send message
 def sendMessage(info, message):
     print "message-----------------"
-    if info == "1":
+    if info is validAlgs[0]:
         for each in alg1:
             smtp.sendmail(email, each, 'Subject: \n' + message)
-    elif info == "2":
+    elif info is validAlgs[1]:
         for each in alg2:
             smtp.sendmail(email, each, 'Subject: \n' + message)
-    elif info == "3":
+    elif info is validAlgs[2]:
         for each in alg3:
             smtp.sendmail(email, each, 'Subject: \n' + message)
     else:

@@ -11,13 +11,11 @@ password = "rookyann@yahoo.com"
 email = "password"
 scriptdir = os.getcwd() + "/notification.py"
 VERBOSE = False
-GLOBAL_PROCESS_LIST = []
-class EventTestCase(unittest.TestCase):
 
+class EventTestCase(unittest.TestCase):
+    # ---------------------------------------------------- initializer
     def setUp(self):
         print "Setting up test"
-
-
 
     # --------------------------------------------------- config set up
     def test_configuration_setup(self):
@@ -28,7 +26,6 @@ class EventTestCase(unittest.TestCase):
         if VERBOSE:
             print 'creating notification process'
         p = subprocess.Popen(['python', scriptdir, configparams, password, email])
-        GLOBAL_PROCESS_LIST.append(p)
 
         if VERBOSE:
             print 'sending message'
@@ -37,12 +34,6 @@ class EventTestCase(unittest.TestCase):
             h1 = httplib.HTTPConnection('localhost', 2000, timeout=10)
         except httplib.HTTPException:
             print 'http exception'
-        # except httplib.NotConnected:
-        #     print 'http not connected'
-        # except httplib..InvalidURL:
-        #     print 'http invalid URL'
-        # except httplib.client.UnknownProtocol:
-        #     print 'http unknown protocol'
         else:
             assert 'ERROR: unhandled error'
 
@@ -61,7 +52,6 @@ class EventTestCase(unittest.TestCase):
         if VERBOSE:
             print 'creating notification process'
         p = subprocess.Popen(['python', scriptdir, emailparams, password, email])
-        GLOBAL_PROCESS_LIST.append(p)
 
         if VERBOSE:
             print 'sending message'
@@ -94,7 +84,6 @@ class EventTestCase(unittest.TestCase):
         if VERBOSE:
             print 'creating notification process'
         p = subprocess.Popen(['python', scriptdir, textparams, password, email])
-        GLOBAL_PROCESS_LIST.append(p)
 
         if VERBOSE:
             print 'sending message'
@@ -103,12 +92,6 @@ class EventTestCase(unittest.TestCase):
             h3 = httplib.HTTPConnection('localhost', 2002, timeout=10)
         except httplib.HTTPException:
             print 'http exception'
-        # except http.client.NotConnected:
-        #     print 'http not connected'
-        # except http.client.InvalidURL:
-        #     print 'http invalid URL'
-        # except http.client.UnknownProtocol:
-        #     print 'http unknown protocol'
         else:
             assert 'ERROR: unhandled error'
 
@@ -118,6 +101,7 @@ class EventTestCase(unittest.TestCase):
         p.terminate()
         return True
 
+    # ------------------------------------------------------ Tear Down
     def tearDown(self):
         print "Finishing test"
 

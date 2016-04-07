@@ -27,15 +27,16 @@
 		"users":
 		[
 			{
-				"name":"someone",
-				"phonenumber":"7871234567",
-				"phoneprovider":"claro",
-				"email":"a@b.com",
-				"notifiablealgorithms":"[\"testalgorithm\"]"
+				"name":"Pedro",
+				"phonenumber":"7873604991",
+				"phoneprovider":"att",
+				"email":"pedrocolon93@gmail.com",
+				"notifiablealgorithms":"[\"testalgorithm\",\"sshdetectionserver\"]"
 			}
 		],
-		"notificationemail": "email",
-		"notificationemailpassword":"password"
+		"notificationemail": "d3ath696@gmail.com",
+		"notificationemailpassword":"jhkynisdwmmkecja",
+		"notificationfilelocation":"../notification/notification.py"
 	},
 	"utilities":
 	{

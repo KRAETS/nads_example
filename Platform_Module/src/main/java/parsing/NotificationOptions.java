@@ -3,7 +3,6 @@ package parsing;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.List;
 
 /**
  * Created by pedro on 3/18/16.
@@ -63,11 +62,17 @@ public class NotificationOptions extends Options{
         return null;
     }
 
-    public String getUserAlgorithm(String user){
-        for (Option t: this.getOpt("users").getOptionList()){
-            if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
-                return t.getOptionMap().get("notifiablealgorithms");
-        }
-        return null;
+//    public List<String> getUserAlgorithms(String user){
+////        return null;
+//        for (Option t: this.getOpt("users").getOptionList()){
+//            if((t.getOptionMap().get("name")).equalsIgnoreCase(user)){
+//                return t.getOptionMap().get("notifiablealgorithms");
+//            }
+//        }
+//        return null;
+//    }
+
+    public List<String> getValidAlgorithms(){
+        return this.getOpt("validalgorithmslist").getOptionStringList();
     }
 }

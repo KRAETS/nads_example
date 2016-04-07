@@ -3,6 +3,6 @@
     "phonenumber": "7873604991",
     "phoneprovider":"att",
     "email":"pedrocolon93@gmail.com",
-    "notifiablealgorithms":["1","2"]
+    "notifiablealgorithms":["testalgorithm"]
   }
 }

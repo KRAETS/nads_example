@@ -19,6 +19,11 @@ import java.util.logging.SimpleFormatter;
  */
 public class PlatformManager extends Manager {
     private String configFile;
+
+    public Parser getParser() {
+        return parser;
+    }
+
     private Parser parser;
     private DataRetrievalManager dataRetMan;
     private AlgorithmManager algMan;
@@ -123,6 +128,10 @@ public class PlatformManager extends Manager {
     }
 
     private void initNotificationManager(NotificationOptions notificationOptions) {
+        Option algorithmNames = new Option("validalgorithmslist", Option.OptionType.STRINGLIST);
+        algorithmNames.setOptionStringList(this.getParser().getAlgorithmsOptions().getAlgorithmNames());
+        notificationOptions.addOption("validalgorithmslist",algorithmNames);
+
         this.notMan = new NotificationManager(notificationOptions,this.getLogger());
         this.notMan.start();
     }

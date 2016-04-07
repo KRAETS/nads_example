@@ -1,6 +1,6 @@
-import logging
 import threading
 
+import logging
 from flask import Flask
 from flask import request
 
@@ -185,7 +185,7 @@ def main():
     reset()
     reset_current_event()
     GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K)
-    app.run()
+    app.run(port=8001)
 
 
 def shutdown_server():

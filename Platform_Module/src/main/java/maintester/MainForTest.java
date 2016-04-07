@@ -24,6 +24,9 @@ public class MainForTest {
         Parser hi = new Parser("../Platform_Module/src/resources/config.json");
         hi.extractOptions();
         AlgorithmsOptions dude = hi.getAlgorithmsOptions();
+        DataRetrievalManager dm = new DataRetrievalManager(hi.getDataRetrievalOptions(),Logger.getLogger("NadsLogger") );
+        dm.configure();
+        dm.start();
         AlgorithmManager mng = new AlgorithmManager(dude, Logger.getLogger("NadsLogger"));
         mng.start();
     }

@@ -95,6 +95,11 @@ public class Notification implements Runnable {
                         }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
+                    try {
+                        Thread.sleep(5000*60);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
 
                     }
                 }

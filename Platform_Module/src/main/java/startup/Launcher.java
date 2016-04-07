@@ -15,6 +15,7 @@ public class Launcher
             @Override
             public void run()
             {
+                System.out.println("Shutdown signal received... Proceeding to shutdown gracefully");
                 platman.stop();
             }
         });

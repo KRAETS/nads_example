@@ -6,7 +6,6 @@ import parsing.AlgorithmsOptions;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -39,6 +38,7 @@ public class Algorithm implements Runnable {
                 param = this.algOpts.getAlgorithmParameters(this.getName()).toString();
                 commandString = "python "+(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName()));
                 ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmFolder(this.getName()),(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName())));
+                pb.inheritIO();
                 algorithmProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;
@@ -61,6 +61,7 @@ public class Algorithm implements Runnable {
                         }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
+//                        this.getLogger().log(Level.SEVERE,a.toString());
                     }
                 }
                 if (restartCount < 5)
@@ -75,7 +76,7 @@ public class Algorithm implements Runnable {
                 else
                 {
                     loop = false;
-                    this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " algorithm in thread");
+//                    this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " algorithm in thread");
                 }
             } catch (IOException e)
             {

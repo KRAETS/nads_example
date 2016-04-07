@@ -5,6 +5,8 @@ import dataretrieval.DataRetrievalManager;
 import notifications.NotificationManager;
 import org.junit.Test;
 import parsing.DataRetrievalOptions;
+import parsing.NotificationOptions;
+import parsing.Option;
 import parsing.Parser;
 import platform.PlatformManager;
 import utilities.UtilitiesManager;
@@ -35,7 +37,7 @@ public class PlatformTest {
     @Test
     public void platformOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         assertEquals("something", p.getPlatformOptions().getWorkingDirectory());
@@ -46,7 +48,7 @@ public class PlatformTest {
     @Test
     public void dataRetrievalOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         Map<String,String> m = new HashMap<String, String>();
@@ -66,7 +68,7 @@ public class PlatformTest {
     @Test
     public void visualizationOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         assertEquals("127.0.0.0", p.getVisualizationOptions().getKibanaAddress());
@@ -78,7 +80,7 @@ public class PlatformTest {
     @Test
     public void notificationOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         List<String> l = new ArrayList<String>();
@@ -101,7 +103,7 @@ public class PlatformTest {
     @Test
     public void algorithmsOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         Map<String,String> m = new HashMap<String, String>();
@@ -117,7 +119,7 @@ public class PlatformTest {
     @Test
     public void utilitiesOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         Map<String,String> m = new HashMap<String, String>();
@@ -199,7 +201,7 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         AlgorithmManager am  = new AlgorithmManager(p.getAlgorithmsOptions(), logMan);
@@ -229,7 +231,7 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         DataRetrievalManager drm = new DataRetrievalManager(p.getDataRetrievalOptions(),logMan);
@@ -260,7 +262,7 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         UtilitiesManager um = new UtilitiesManager(p.getUtilitiesOptions(),logMan);
@@ -290,10 +292,14 @@ public class PlatformTest {
             e.printStackTrace();
             System.exit(2);
         }
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/testconfig.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
-        NotificationManager um = new NotificationManager(p.getNotificationOptions(),logMan);
+        NotificationOptions notificationOptions = p.getNotificationOptions();
+        Option algorithmNames = new Option("validalgorithmslist", Option.OptionType.STRINGLIST);
+        algorithmNames.setOptionStringList(p.getAlgorithmsOptions().getAlgorithmNames());
+        notificationOptions.addOption("validalgorithmslist",algorithmNames);
+        NotificationManager um = new NotificationManager(notificationOptions,logMan);
         assertTrue(um.configure());
         assertTrue(um.start());
     }
@@ -348,8 +354,8 @@ public class PlatformTest {
     @Test
     public void sendDataTest() throws IOException
     {
-        String path = "/home/pedro/Documents/git/nads/Platform_Module/src/resources/config.json";
-        String path2 = "/home/pedro/Documents/git/nads/Platform_Module/Results.log";
+        String path = "../Platform_Module/src/resources/testconfig.json";
+        String path2 = "../Platform_Module/Results.log";
         Parser hi = new Parser(path);
         hi.extractOptions();
         DataRetrievalOptions dude = hi.getDataRetrievalOptions();
@@ -368,7 +374,7 @@ public class PlatformTest {
     @Test
     public void getDataTest() throws IOException
     {
-        String path = "/home/pedro/Documents/git/nads/Platform_Module/src/resources/config.json";
+        String path = "/home/pedro/Documents/git/nads/Platform_Module/src/resources/testconfig.json";
         Parser hi = new Parser(path);
         hi.extractOptions();
         DataRetrievalOptions dude = hi.getDataRetrievalOptions();

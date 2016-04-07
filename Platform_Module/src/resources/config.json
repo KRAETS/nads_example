@@ -17,7 +17,7 @@
 			"sshdetectionserver":{
 				"server":"true",
 				"client":"true",
-				"serveraddress":"localhost:8001",
+				"serveraddress":"localhost:8003",
 				"verbose":"true",
 				"folder":"../algorithms/sshdetserver/commander.py"
 			}

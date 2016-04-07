@@ -1,6 +1,7 @@
 import json
 import sys
 import signal
+import time
 from multiprocessing import Process
 
 import sshdetnode
@@ -41,7 +42,11 @@ def main():
 
         try:
             if parameter_map["server"] is True or parameter_map["server"] == "true":
+                print "Starting the server"
                 start_server(verbose)
+                print "Waitning for initialization"
+                time.sleep(10)
+                print "Continuing"
         except Exception as e:
             print e
 

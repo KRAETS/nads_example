@@ -1,5 +1,7 @@
 import json
 import sys
+import signal
+import time
 from multiprocessing import Process
 
 import sshdetnode
@@ -12,6 +14,11 @@ def usage():
     print "Hi this is the most useful help ever"
     return
 
+def signal_term_handler(a,b):
+    print "Notification Module Successfully Killed"
+    for process in GLOBAL_PROCESS_LIST:
+        process.terminate()
+    sys.exit(0)
 
 def main():
     try:
@@ -34,6 +41,16 @@ def main():
             print "No verbose option provided"
 
         try:
+            if parameter_map["server"] is True or parameter_map["server"] == "true":
+                print "Starting the server"
+                start_server(verbose)
+                print "Waitning for initialization"
+                time.sleep(10)
+                print "Continuing"
+        except Exception as e:
+            print e
+
+        try:
             if parameter_map["client"] is True or parameter_map["client"] == "true":
                 print "Checking for server address..."
                 print "Address is",parameter_map["serveraddress"]
@@ -42,11 +59,6 @@ def main():
         except Exception as e:
             print "Could not start client",e
 
-        try:
-            if parameter_map["server"] is True or parameter_map["server"] == "true":
-                start_server(verbose)
-        except Exception as e:
-            print e
 
         for process in GLOBAL_PROCESS_LIST:
             process.join()
@@ -109,4 +121,7 @@ def start_server(verbose):
     GLOBAL_PROCESS_LIST.append(p)
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGTERM, signal_term_handler)
+    signal.signal(signal.SIGINT, signal_term_handler)
+
     main()

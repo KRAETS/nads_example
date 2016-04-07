@@ -112,13 +112,10 @@ def setup():
         print "There was a problem with the setup", e
 
 # --------------------------------------------- termination signal
-def signal_term_handler():
+def signal_term_handler(a,b):
     print "Notification Module Successfully Killed"
     shutdown_server()
     sys.exit(0)
-
-signal.signal(signal.SIGTERM, signal_term_handler)
-signal.signal(signal.SIGINT, signal_term_handler)
 
 # ---------------------------------------------------- smtp set-up
 smtp = None
@@ -197,6 +194,10 @@ def shutdown():
 
 
 if __name__ == '__main__':
+    print "Setting up the signal handler"
+    signal.signal(signal.SIGTERM, signal_term_handler)
+    signal.signal(signal.SIGINT, signal_term_handler)
+
     print "Initial setup"
     setup()
     print "Initial setup done, Smtp setup"

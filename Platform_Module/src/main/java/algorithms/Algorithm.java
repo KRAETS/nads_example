@@ -39,6 +39,7 @@ public class Algorithm implements Runnable {
                 param = this.algOpts.getAlgorithmParameters(this.getName()).toString();
                 commandString = "python "+(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName()));
                 ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmFolder(this.getName()),(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName())));
+                pb.inheritIO();
                 algorithmProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;

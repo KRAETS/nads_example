@@ -54,7 +54,7 @@ def analyzeLogin():
     querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \="Failed" or \ ALL*status \="Accepted" )'
     query_url = 'http://localhost:9200/_kql?kql='
     completequery = query_url + urllib.quote(querystring, safe='')
-
+    print "Making query",completequery
     req = urllib2.Request(completequery)
     results = None
     try:
@@ -133,6 +133,7 @@ def analyzeLogin():
 
         #Send to the analysis server
         try:
+            print "Contacting"+'http://' + GLOBAL_IP + '/addlogin'
             req = urllib2.Request('http://' + GLOBAL_IP + '/addlogin')
             req.add_header('Content-Type', 'application/json')
             response = urllib2.urlopen(req, json.dumps(data.__dict__))

@@ -6,11 +6,12 @@ import os.path
 
 # ------------------------------------------------------------------ variables
 ips = sys.argv[1]
-ipaddresses = json.loads(ips)
+ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
+args = json.loads(ips)
+ipaddresses = args["ips"]
 # ipaddresses = ["136.145.59.152"]
 testlog = os.getcwd() + "/testLog.json"
 logdir = os.getcwd() + "/oidLog.json"
-
 sleeptime = 6 * 5
 oldfile = False
 inData = dict()
@@ -49,7 +50,7 @@ while True:
 
             if outData.has_key(i):
                 try:
-                    hi = snmp_walk(outData[i], hostname=i, community="cappy-test", version=2, timeout=1)
+                    hi = snmp_walk(outData[i], hostname=i, community="bigece1", version=2, timeout=1)
                 except EasySNMPConnectionError:
                     if (unavail_time[i]- time.time() < 0) or ( unavail_time[i]- time.time() >= 21600):
                         #send notification to user that switch is down
@@ -91,7 +92,7 @@ while True:
         if not(oldfile) or noexists:
             print "getting all info"
             try:
-                hi = snmp_walk('iso', hostname=i, community="cappy-test", version=2, timeout=1)
+                hi = snmp_walk('iso', hostname=i, community="bigece1", version=2, timeout=1)
             except EasySNMPConnectionError:
                 print "Error connecting to switch"
                 testdict[testcyc] = {i: "Error connecting to switch"}

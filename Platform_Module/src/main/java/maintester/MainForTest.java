@@ -1,6 +1,8 @@
 package maintester;
 
+import algorithms.AlgorithmManager;
 import dataretrieval.DataRetrievalManager;
+import parsing.AlgorithmsOptions;
 import parsing.DataRetrievalOptions;
 import parsing.Parser;
 
@@ -19,10 +21,10 @@ public class MainForTest {
 //        AlgorithmsOptions dude = new AlgorithmsOptions();
 //        Algorithm hi = new Algorithm(dude);
 //        hi.start();
-        Parser hi = new Parser("/home/pedro/Documents/git/nads/Platform_Module/src/resources/config.json");
+        Parser hi = new Parser("../Platform_Module/src/resources/config.json");
         hi.extractOptions();
-        DataRetrievalOptions dude = hi.getDataRetrievalOptions();
-        DataRetrievalManager mng = new DataRetrievalManager(dude, Logger.getLogger("NadsLogger"));
+        AlgorithmsOptions dude = hi.getAlgorithmsOptions();
+        AlgorithmManager mng = new AlgorithmManager(dude, Logger.getLogger("NadsLogger"));
         mng.start();
     }
 }

@@ -6,6 +6,7 @@ import parsing.AlgorithmsOptions;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -61,7 +62,12 @@ public class Algorithm implements Runnable {
                         }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
-//                        this.getLogger().log(Level.SEVERE,a.toString());
+                        try {
+                            // thread to sleep for 1000 milliseconds
+                            Thread.sleep(5000*60);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
                     }
                 }
                 if (restartCount < 5)
@@ -76,7 +82,7 @@ public class Algorithm implements Runnable {
                 else
                 {
                     loop = false;
-//                    this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " algorithm in thread");
+                    this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " algorithm in thread");
                 }
             } catch (IOException e)
             {
@@ -98,9 +104,16 @@ public class Algorithm implements Runnable {
         }
         this.managerThread.start();
     }
-    public void stop()
+    public boolean stop()
     {
-        this.managerThread.interrupt();
+        try
+        {
+            this.managerThread.interrupt();
+            return true;
+        }catch (Exception e)
+        {
+            return false;
+        }
     }
     public void interrupt(){
         algorithmProcess.destroy();

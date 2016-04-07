@@ -10,7 +10,7 @@ public class Launcher
         System.out.println( "Initializing nads..." );
         PlatformManager platman = new PlatformManager(args[0],args[1]);
         System.out.println("Adding shutdown hooks...");
-        Runtime.getRuntime().addShutdownHook(new Thread()
+        /*Runtime.getRuntime().addShutdownHook(new Thread()
         {
             @Override
             public void run()
@@ -18,7 +18,7 @@ public class Launcher
                 System.out.println("Shutdown signal received... Proceeding to shutdown gracefully");
                 platman.stop();
             }
-        });
+        });*/
         System.out.println("Starting the system...");
         platman.start();
     }

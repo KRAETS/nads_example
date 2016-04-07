@@ -6,12 +6,12 @@ import os.path
 
 # ------------------------------------------------------------------ variables
 ips = sys.argv[1]
+ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
 args = json.loads(ips)
 ipaddresses = args["ips"]
 # ipaddresses = ["136.145.59.152"]
 testlog = os.getcwd() + "/testLog.json"
 logdir = os.getcwd() + "/oidLog.json"
-
 sleeptime = 6 * 5
 oldfile = False
 inData = dict()

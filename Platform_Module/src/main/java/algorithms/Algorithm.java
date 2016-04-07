@@ -61,6 +61,12 @@ public class Algorithm implements Runnable {
                         }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
+                        try {
+                            // thread to sleep for 1000 milliseconds
+                            Thread.sleep(5000*60);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
                     }
                 }
                 if (restartCount < 5)

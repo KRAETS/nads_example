@@ -45,6 +45,7 @@ public class DataRetrievalManager extends Manager {
         return true;
     }
     @Override
+    public boolean stop() {
         try {
             server.stop(0);
         }

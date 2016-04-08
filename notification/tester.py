@@ -1,8 +1,8 @@
-import httplib
 import os
 import subprocess
 import time
 import unittest
+import requests
 
 emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@yahoo.com\",\"notifiablealgorithms\":\"12\"},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
 textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":\"12\"},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":\"3\"}}"
@@ -31,7 +31,8 @@ class EventTestCase(unittest.TestCase):
             print 'sending message'
         time.sleep(3)
         try:
-            h1 = httplib.HTTPConnection('localhost', 2000, timeout=10)
+            senddata = 'sshdetectionserver**test_configuration_setup'
+            r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
         except httplib.HTTPException:
             print 'http exception'
         else:
@@ -57,15 +58,14 @@ class EventTestCase(unittest.TestCase):
             print 'sending message'
         time.sleep(3)
         try:
-            h2 = httplib.HTTPConnection('localhost', 2001, timeout=10)
-        except httplib.HTTPException:
+            senddata = 'sshdetectionserver**test_email_notification'
+            r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
+        except requests.ConnectionError:
             print 'http exception'
-        except http.client.NotConnected:
+        except requests.HTTPError:
             print 'http not connected'
-        except http.client.InvalidURL:
+        except requests.ConnectTimeout:
             print 'http invalid URL'
-        except http.client.UnknownProtocol:
-            print 'http unknown protocol'
         else:
             assert 'ERROR: unhandled error'
 
@@ -89,7 +89,8 @@ class EventTestCase(unittest.TestCase):
             print 'sending message'
         time.sleep(3)
         try:
-            h3 = httplib.HTTPConnection('localhost', 2002, timeout=10)
+            senddata = 'sshdetectionserver**test_text_notification'
+            r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
         except httplib.HTTPException:
             print 'http exception'
         else:

@@ -18,9 +18,9 @@ cellphoneComp = {'att': 'txt.att.net', 'att-cingular': 'mmode.com', 'sprint': 'm
                 'claro': 'vtexto.com', 'tmobile': 'tmomail.net', 'openMobile': 'email.openmobilepr.com',
                 'verizon': 'vtext.com'}
 emailComp = {'gmail': 'smtp.gmail.com', 'yahoo': 'smtp.mail.yahoo.com', 'hotmail': 'smtp.live.com'}
-emaildata = True
-email = None
-password = None
+emaildatacheck = True
+email = ''
+password = ''
 algs = dict()
 validalgs = True
 
@@ -28,39 +28,37 @@ validalgs = True
 def setup():
     try:
         print "Starting setup"
-        global email, password, emaildata, validalgs, algs
+        global email, password, emaildatacheck, validalgs, algs
 
         print 'set up'
         if len(args) > 1:  # ------- text and email set-up
             data = dict()
-            if len(args) > 1:
+            if len(args) > 1:       # user information
                 print "Loading argument", args[1]
                 data = json.loads(args[1])
-                # f = open("demo")
-                # data = json.load(f)
 
-            if len(args) > 2:
+            if len(args) > 2:       # valid args list information
                 print "Loading alg list"
-                jlist = json.loads(args[2])
-                print jlist
+                argslist = json.loads(args[2])
+                print argslist
 
-                for a in jlist["list"]:
+                for a in argslist["list"]:
                     algs[a] = []
                 print algs
             else:
                 validalgs = False
                 print 'no valid algorithms were received'
 
-            if len(args) > 3:
+            if len(args) > 3:       # email and password information
                 email = args[3]
                 print 'email'
                 if len(args) > 4:
                     password = args[4]
                     print 'password'
                 else:
-                    emaildata = False
+                    emaildatacheck = False
             else:
-                emaildata = False
+                emaildatacheck = False
 
             print "Interpreting phone numbers"
             print "Using ", data
@@ -121,8 +119,8 @@ def signal_term_handler(a,b):
 smtp = None
 def smtp_setup():
     print "Smtp setup starting"
-    global smtp
-    if emaildata:
+    global smtp, emaildatacheck, email
+    if emaildatacheck:
         print "Evaluating smtp email"
         flag = False
         start = email.lower().find('@')+1
@@ -140,7 +138,7 @@ def smtp_setup():
             smtp = smtplib.SMTP_SSL(option[0], option[1])
             flag = True
         except Exception as e:
-            print "COuld not establish ssl connection", str(e)
+            print "Could not establish ssl connection", str(e)
 
         print "Ssl established", flag
         if flag:
@@ -200,6 +198,7 @@ if __name__ == '__main__':
 
     print "Initial setup"
     setup()
+
     print "Initial setup done, Smtp setup"
     smtp_setup()
 

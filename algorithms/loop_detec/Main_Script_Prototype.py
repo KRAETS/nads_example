@@ -9,6 +9,7 @@ import datetime
 
 # ------------------------------------------------------------------ variables
 ips = sys.argv[1]
+print ips
 ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
 args = json.loads(ips)
 ipaddresses = args["ips"]
@@ -45,6 +46,7 @@ else:
 #------------------------------------------------------------------ detection
 while True:
     for i in ipaddresses:
+        print i
         if oldfile:
             with open(logdir, "r+") as logfile:
                 outData = json.loads(logfile.read())
@@ -85,10 +87,10 @@ while True:
                             inData[i] = oid_no_port
                             print port
                             testdict[testcyc] = {i: port + " in file"}
-                            date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
-                            payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
-                            r = requests.post("http://localhost:8002/senddata", data=payload)
-                            print r.status_code
+                            # date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
+                            # payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
+                            # r = requests.post("http://localhost:8002/senddata", data=payload)
+                            # print r.status_code
                             #print dude
 
             else:
@@ -133,10 +135,10 @@ while True:
                         if str(value) == "2":
                             testdict[testcyc] = {i: port + " not in file"}
                             print port
-                            date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
-                            payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
-                            r = requests.post("http://localhost:8002/senddata", data=payload)
-                            print r.status_code
+                            # date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
+                            # payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
+                            # r = requests.post("http://localhost:8002/senddata", data=payload)
+                            # print r.status_code
                             #print dude
 
 

@@ -13,7 +13,7 @@ class OutcomesTest(unittest.TestCase):
             json.dump(inData, logfile)
         with open(testlog, "w") as testfile:
             json.dump(testdict, testfile)
-        para = "[\"136.145.59.152\"]"
+        para = "{\"ips\":[\"136.145.59.152\"]}"
         testdir = os.getcwd() + "/Main_Script_Prototype.py"
         p = subprocess.Popen(['python', testdir, para])
         time.sleep(120)
@@ -33,7 +33,7 @@ class OutcomesTest(unittest.TestCase):
             json.dump(inData, logfile)
         with open(testlog, "w") as testfile:
             json.dump(testdict, testfile)
-        para = "[\"196.145.59.152\"]"
+        para = "{\"ips\":[\"196.145.59.152\"]}"
         testdir = os.getcwd() + "/Main_Script_Prototype.py"
         p = subprocess.Popen(['python', testdir, para])
         time.sleep(40)

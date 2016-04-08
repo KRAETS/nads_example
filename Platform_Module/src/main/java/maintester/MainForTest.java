@@ -28,6 +28,6 @@ public class MainForTest {
         dm.configure();
         dm.start();
         AlgorithmManager mng = new AlgorithmManager(dude, Logger.getLogger("NadsLogger"));
-        mng.start();
+        //mng.start();
     }
 }

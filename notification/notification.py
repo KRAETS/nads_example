@@ -42,7 +42,7 @@ def setup():
                 argslist = json.loads(args[2])
                 print argslist
 
-                for a in argslist["list"]:
+                for a in argslist["List"]:
                     algs[a] = []
                 print algs
             else:

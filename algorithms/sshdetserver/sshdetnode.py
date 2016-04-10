@@ -18,7 +18,7 @@ if os.name != "nt":
     def get_interface_ip(ifname):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s',
-                                ifname[:15]))[20:24])
+                                 ifname[:15]))[20:24])
 
 def get_lan_ip():
     ip = socket.gethostbyname(socket.gethostname())

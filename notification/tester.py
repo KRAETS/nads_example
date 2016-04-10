@@ -8,7 +8,7 @@ emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\"
 textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":\"12\"},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":\"3\"}}"
 configparams = "{}"
 validalgs = "{List:[\"sshdetectionserver\"]}"
-password = "rookyann@yahoo.com"
+password = "email"
 email = "password"
 scriptdir = os.getcwd() + "/notification.py"
 VERBOSE = False
@@ -36,7 +36,7 @@ class EventTestCase(unittest.TestCase):
         try:
             senddata = 'sshdetectionserver**test_configuration_setup'
             r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
-        except httplib.HTTPException:
+        except requests.httplib.HTTPException:
             print 'http exception'
         else:
             assert 'ERROR: unhandled error'
@@ -94,7 +94,7 @@ class EventTestCase(unittest.TestCase):
         try:
             senddata = 'sshdetectionserver**test_text_notification'
             r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
-        except httplib.HTTPException:
+        except requests.httplib.HTTPException:
             print 'http exception'
         else:
             assert 'ERROR: unhandled error'

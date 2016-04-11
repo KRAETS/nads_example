@@ -1,7 +1,8 @@
 import copy
-
+import dummy_data_retrieval as dr
 import editdistance
 from igraph import *
+import time
 
 from dummy_data_retrieval import *
 from notifications import notify_both
@@ -98,6 +99,10 @@ class Classifier:
         epochclone = copy.deepcopy(epoch)
         # Get past successful logins
         past_success_logins = search("ip", "query")
+
+        if len(past_success_logins) == 0:
+            return epoch
+
         # Filter out failures according to past logins
         def successful_previous_login_filter(test_login):
             for login in past_success_logins:
@@ -213,7 +218,7 @@ class Classifier:
         if result is not None:
             # process singleton
             notify_both("Singleton")
-
+            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"),"SINGLETON","SINGLETON_IP:"+str(result[0]))
         else:
             print "Filtering out legitimate activity"
             newepoch = self.analyze_past_history(epoch)
@@ -223,4 +228,6 @@ class Classifier:
             print "Is distributed!!!"
             notify_both("Distributed")
             print hitpair
+            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"),"DISTRIBUTED","INFO:"+str(hitpair))
+
 

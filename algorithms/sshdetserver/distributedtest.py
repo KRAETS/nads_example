@@ -33,7 +33,7 @@ class EventTestCase(unittest.TestCase):
             exit()
 
     def tearDown(self):
-        req = urllib2.Request('http://'+self.GLOBAL_IP+':5000/shutdown')
+        req = urllib2.Request('http://'+self.GLOBAL_IP+':8003/shutdown')
         req.add_header('Content-Type', 'application/json')
         response = urllib2.urlopen(req, json.dumps("shutdown"))
 

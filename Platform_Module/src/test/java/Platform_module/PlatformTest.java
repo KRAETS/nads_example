@@ -78,7 +78,7 @@ public class PlatformTest {
     @Test
     public void notificationOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/configfortest.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         List<String> l = new ArrayList<String>();
@@ -90,7 +90,7 @@ public class PlatformTest {
         m.put("phoneprovider","claro");
         m.put("email","a@b.com");
 //        assertEquals(l, p.getNotificationOptions().getUsers());
-//        assertEquals("[\"testalgorithm\"]", p.getNotificationOptions().getUserAlgorithm("someone"));
+//        assertEquals("[\"testalgorithm\"]", p.getNotificationOptions().getUserAlgorithms("someone"));
         assertEquals("a@b.com", p.getNotificationOptions().getUserEmail("someone"));
         assertEquals("7871234567", p.getNotificationOptions().getUserPhoneNumber("someone"));
         assertEquals("claro", p.getNotificationOptions().getUserPhoneProvider("someone"));
@@ -101,7 +101,7 @@ public class PlatformTest {
     @Test
     public void algorithmsOptionsParsingTest()
     {
-        String configFile = "src/resources/config.json";
+        String configFile = "src/resources/configfortest.json";
         Parser p = new Parser(configFile);
         p.extractOptions();
         Map<String,String> m = new HashMap<String, String>();
@@ -299,17 +299,54 @@ public class PlatformTest {
     }
 
     @Test
-    public void serviceStartTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+    public void serviceInstallTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/installDaemon.sh");
         p.waitFor();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        while(true) {
+            String line = in.readLine();
+            if(line == null)
+                break;
+            else
+                System.out.println(line);
+        }
         int ret = p.exitValue();
         assertEquals(0,ret);
     }
 
     @Test
-    public void serviceStopTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+    public void serviceStartTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
         p.waitFor();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        while(true) {
+            String line = in.readLine();
+            if(line == null)
+                break;
+            else
+                System.out.println(line);
+        }
+        int ret = p.exitValue();
+        assertEquals(0,ret);
+    }
+
+
+
+    @Test
+    public void serviceStopTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        p.waitFor();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        while(true) {
+            String line = in.readLine();
+            if(line == null)
+                break;
+            else
+                System.out.println(line);
+        }
         int ret = p.exitValue();
         assertEquals(0,ret);
     }
@@ -317,7 +354,7 @@ public class PlatformTest {
     @Test
     public void serviceCrashTest() throws IOException, InterruptedException {
         //TODO
-        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
         p.waitFor();
         int ret = p.exitValue();
         assertEquals(0,ret);

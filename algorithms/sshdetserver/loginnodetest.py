@@ -15,7 +15,12 @@ class EventTestCase(unittest.TestCase):
         file.write("Failed, 201.201.201.201 ,Juan, 192.168.0.123 ")
         file.close()
         res = open("results.txt")
-        assert "yes" in res.readlines()
+        found = False
+        for line in res.readlines():
+            if "yes" in line:
+                found = True
+                break
+        assert found == True
 
 
     def tearDown(self):

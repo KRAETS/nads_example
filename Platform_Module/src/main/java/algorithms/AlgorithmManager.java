@@ -15,11 +15,11 @@ public class AlgorithmManager extends Manager {
     private List<Algorithm> algorithmsList;
     private AlgorithmsOptions algOpts;
 
-
+    //Method that starts a specific algorithm
     public boolean start(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
-                alg.run();
+                alg.start();
                 this.getLogger().log(Level.INFO,"Starting:"+alg.getName());
                 return true;
             }
@@ -43,6 +43,7 @@ public class AlgorithmManager extends Manager {
         return true;
     }
 
+    //stops all the algorithm
     public boolean stop() {
         try{
             this.stopAll();
@@ -53,7 +54,7 @@ public class AlgorithmManager extends Manager {
         }
         return true;
     }
-
+    //configures the manager by creating all the algorithms in the config file and passing their parameters
     public boolean configure() {
         try {
             for (String s : this.algOpts.getAlgorithmNames()) {
@@ -68,7 +69,7 @@ public class AlgorithmManager extends Manager {
         }
         return true;
     }
-
+    //Starts a specific algorithm
     public boolean start(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
             this.getLogger().log(Level.SEVERE, "Out of range");
@@ -77,6 +78,7 @@ public class AlgorithmManager extends Manager {
         algorithmsList.get(algorithmNumber).start();
         return true;
     }
+    //stops a specific algorithm
     public boolean stop(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
@@ -86,7 +88,7 @@ public class AlgorithmManager extends Manager {
         }
         return false;
     }
-
+    //stops a specific algorithm
     public boolean stop(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
             return false;
@@ -94,11 +96,15 @@ public class AlgorithmManager extends Manager {
         algorithmsList.get(algorithmNumber).stop();
         return true;
     }
+
+    //Starts all algorithms
     public void startAll(){
         for(Algorithm alg:algorithmsList){
             alg.start();
         }
     }
+
+    //stops all algorithms
     public void stopAll(){
         for(Algorithm alg:algorithmsList){
             alg.stop();

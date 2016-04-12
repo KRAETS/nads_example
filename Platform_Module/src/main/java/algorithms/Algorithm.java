@@ -25,32 +25,42 @@ public class Algorithm implements Runnable {
     private Process algorithmProcess;
     private String commandString, param;
     private boolean exception = true;
+
+
+    //Setters and getter from thread name
     public String getName(){
         return this.name;
     }
     public void setName(String n) {this.name = n;}
+
+    //Code what will be run on the thread. In charge of making sure the algorithms are always running.
     public void run()
     {
         while (loop)
         {
             try
             {
+
                 //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
                 param = this.algOpts.getAlgorithmParameters(this.getName()).toString();
                 commandString = "python "+(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName()));
+                //Creates new python process with a json of the parameters and starts it
                 ProcessBuilder pb = new ProcessBuilder("python",this.algOpts.getAlgorithmFolder(this.getName()),(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName())));
                 pb.inheritIO();
                 algorithmProcess = pb.start();
+                //Creates a reader of the output of the process for when theres an error
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;
                 while (exception)
                 {
+                    //checks if last failure was more than 6 hours ago to reset count.
                     if (((System.nanoTime()/hour)/(1000*60)) - ((recentRestartTime/hour)/(1000*60)) >= 1)
                     {
                         restartCount =0;
                         recentRestartTime = System.nanoTime();
                     }
                     try {
+                        //Checks if the python process ended. If it does prints out the exit code and error message is any and breaks from the checking loop
                         algorithmProcess.exitValue();
                         System.out.println("ExitVal:"+algorithmProcess.exitValue());
                         while(true) {
@@ -63,13 +73,14 @@ public class Algorithm implements Runnable {
                         exception = false;
                     } catch (IllegalThreadStateException a) {
                         try {
-                            // thread to sleep for 1000 milliseconds
+                            // Puts the thread to sleep for 5 minutes to lessen processor usage
                             Thread.sleep(5000*60);
                         } catch (Exception e) {
                             System.out.println(e);
                         }
                     }
                 }
+                //When the python process ends updates counter of program fails and array with failure times
                 if (restartCount < 5)
                 {
                     if (restartCount == 0)
@@ -79,6 +90,8 @@ public class Algorithm implements Runnable {
                     restartCount++;
                     recentRestartTime = System.nanoTime();
                 }
+                //If program has failed more than 5 times shut it down till furthere action is taken
+
                 else
                 {
                     loop = false;
@@ -96,6 +109,8 @@ public class Algorithm implements Runnable {
         this.algOpts = algorithmOptions;
         this.setLogger(logger);
     }
+
+    //Starts the thread and creates a new one if none exists
     public void start()
     {
         if (this.managerThread == null)
@@ -104,6 +119,8 @@ public class Algorithm implements Runnable {
         }
         this.managerThread.start();
     }
+
+    //Kills the current thread
     public boolean stop()
     {
         try
@@ -121,6 +138,8 @@ public class Algorithm implements Runnable {
     public void sleep(){
         //TODO Implement
     }
+
+    //Setter and getters for the logger
     public boolean setLogger(Logger logger){
         try{
             if(logger==null)

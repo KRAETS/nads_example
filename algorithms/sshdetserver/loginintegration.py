@@ -2,11 +2,11 @@ import json
 import time
 import unittest
 import urllib2
+import login
+import paramiko as paramiko
 
-import requests
-
-import attacksim
 import commander
+import sshdetnode
 
 
 class EventTestCase(unittest.TestCase):
@@ -16,18 +16,19 @@ class EventTestCase(unittest.TestCase):
         self.GLOBAL_IP = "localhost"
         time.sleep(10)
 
-
     def test_login_detection(self):
-
+        print "Starting test"
         try:
+            localdata = login.Login("Failed","127.0.0.1","god","juan")
 
-            attacksim.main(False)
-            time.sleep(5)
-            stringthing = 'http://'+self.GLOBAL_IP+':8003/getcurrentepoch'
-            r = requests.get(stringthing)
+            ssh = paramiko.SSHClient()
+            ssh.connect("localhost", username="pedro", password="wrong")
+            ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("exit")
 
-            assert r.status_code == 200
-
+            req = urllib2.Request('http://'+self.GLOBAL_IP+':8003/addlogin')
+            req.add_header('Content-Type', 'application/json')
+            response = urllib2.urlopen(req, json.dumps(localdata.__dict__))
+            assert response.code == 200
         except Exception as e:
             print "Problem contacting server", e
             exit()

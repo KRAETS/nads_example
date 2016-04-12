@@ -305,17 +305,54 @@ public class PlatformTest {
     }
 
     @Test
-    public void serviceStartTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+    public void serviceInstallTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/installDaemon.sh");
         p.waitFor();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        while(true) {
+            String line = in.readLine();
+            if(line == null)
+                break;
+            else
+                System.out.println(line);
+        }
         int ret = p.exitValue();
         assertEquals(0,ret);
     }
 
     @Test
-    public void serviceStopTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+    public void serviceStartTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
         p.waitFor();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        while(true) {
+            String line = in.readLine();
+            if(line == null)
+                break;
+            else
+                System.out.println(line);
+        }
+        int ret = p.exitValue();
+        assertEquals(0,ret);
+    }
+
+
+
+    @Test
+    public void serviceStopTest() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        p.waitFor();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+        while(true) {
+            String line = in.readLine();
+            if(line == null)
+                break;
+            else
+                System.out.println(line);
+        }
         int ret = p.exitValue();
         assertEquals(0,ret);
     }
@@ -323,7 +360,7 @@ public class PlatformTest {
     @Test
     public void serviceCrashTest() throws IOException, InterruptedException {
         //TODO
-        Process p = Runtime.getRuntime().exec("/Users/pedro/Documents/git/nads/Platform_Module/src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
         p.waitFor();
         int ret = p.exitValue();
         assertEquals(0,ret);

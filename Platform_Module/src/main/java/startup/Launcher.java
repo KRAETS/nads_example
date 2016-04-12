@@ -8,9 +8,9 @@ public class Launcher
     {
         //TODO Use this as the new main
         System.out.println( "Initializing nads..." );
-        PlatformManager platman = new PlatformManager(args[0],args[1]);
+        final PlatformManager platman = new PlatformManager(args[0],args[1]);
         System.out.println("Adding shutdown hooks...");
-        /*Runtime.getRuntime().addShutdownHook(new Thread()
+        Runtime.getRuntime().addShutdownHook(new Thread()
         {
             @Override
             public void run()
@@ -18,28 +18,8 @@ public class Launcher
                 System.out.println("Shutdown signal received... Proceeding to shutdown gracefully");
                 platman.stop();
             }
-        });*/
+        });
         System.out.println("Starting the system...");
         platman.start();
-    }
-
-    /**
-     * Method that starts the platform as a service
-     */
-    public static void start(){
-    }
-
-    /**
-     * Method that stops the platform service
-     */
-    public static void stop(){
-
-    }
-
-    /**
-     * Method that installs the service into the system for later starting/stopping
-     */
-    public static void install(){
-
     }
 }

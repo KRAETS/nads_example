@@ -1,0 +1,44 @@
+{
+	"main":
+	{
+		"logtofile":"nads.log",
+		"workingdirectory":"something"
+	},
+	"algorithms":
+	[
+	],
+	"visual":
+	{
+		"templatefolder":"pathtotemplatedumpingfolder",
+		"kibanaport":"70000",
+		"kibanaaddress":"127.0.0.0"
+	},
+	"dataretrieval":
+	{
+		"logstashport":"70001",
+		"logstashaddress":"127.0.0.1",
+		"elasticsearchport":"70002",
+		"elasticsearchaddress":"127.0.0.2"
+	},
+	"notification":
+	{
+		"users":
+		[
+			{
+				"name":"Pedro",
+				"phonenumber":"7873604991",
+				"phoneprovider":"att",
+				"email":"pedrocolon93@gmail.com",
+				"notifiablealgorithms":"[\"testalgorithm\",\"sshdetectionserver\"]"
+			}
+		],
+		"notificationemail": "d3ath696@gmail.com",
+		"notificationemailpassword":"jhkynisdwmmkecja",
+		"notificationfilelocation":"../notification/notification.py"
+	},
+	"utilities":
+	{
+		"newpatternfilelocation":"/home/pedro/Desktop/10-syslog-filter.conf",
+		"originalpatternfilelocation":"/etc/logstash/conf.d/10-syslog-filter.conf"
+	}
+}

@@ -2,7 +2,7 @@ import time
 import urllib2
 
 filename = "attack.txt"
-GLOBAL_IP = "localhost"
+GLOBAL_IP = "localhost:8003"
 distributed = False
 number_of_attack_users = 9
 legit_user_fail = 7 #Every 15 attempts a legit user fails by wrong password
@@ -55,7 +55,7 @@ def main(DISTRIBUTED):
                     currcount += 1
 
 
-                req = urllib2.Request('http://'+GLOBAL_IP+':5000/addlogin')
+                req = urllib2.Request('http://'+GLOBAL_IP+'/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json)
 
@@ -68,7 +68,7 @@ def main(DISTRIBUTED):
                   \"host\":\"somehost\",\
                   \"user\":\"thetrueuser\"\
                 }"
-                req = urllib2.Request('http://'+GLOBAL_IP+':5000/addlogin')
+                req = urllib2.Request('http://'+GLOBAL_IP+'/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json)
                 pass

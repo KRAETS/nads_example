@@ -4,11 +4,11 @@ import time
 import unittest
 import requests
 
-emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@yahoo.com\",\"notifiablealgorithms\":\"12\"},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
-textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":\"12\"},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":\"3\"}}"
+emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@yahoo.com\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
+textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
 configparams = "{}"
-validalgs = "{List:[\"sshdetectionserver\"]}"
-password = "rookyann@yahoo.com"
+validalgs = "{\"List\":[\"sshdetectionserver\"]}"
+password = "email"
 email = "password"
 scriptdir = os.getcwd() + "/notification.py"
 VERBOSE = False
@@ -36,8 +36,12 @@ class EventTestCase(unittest.TestCase):
         try:
             senddata = 'sshdetectionserver**test_configuration_setup'
             r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
-        except httplib.HTTPException:
+        except requests.ConnectionError:
             print 'http exception'
+        except requests.HTTPError:
+            print 'http not connected'
+        except requests.ConnectTimeout:
+            print 'http invalid URL'
         else:
             assert 'ERROR: unhandled error'
 
@@ -94,8 +98,12 @@ class EventTestCase(unittest.TestCase):
         try:
             senddata = 'sshdetectionserver**test_text_notification'
             r = requests.get("http://localhost:8000/", data=senddata, timeout=8)
-        except httplib.HTTPException:
+        except requests.ConnectionError:
             print 'http exception'
+        except requests.HTTPError:
+            print 'http not connected'
+        except requests.ConnectTimeout:
+            print 'http invalid URL'
         else:
             assert 'ERROR: unhandled error'
 

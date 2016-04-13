@@ -28,23 +28,28 @@ public class Algorithm implements Runnable {
 
 
     /**
-     * Get name string.
+     * Get string name of the algorithm.
      *
      * @return the string
      */
-//Setters and getter from thread name
     public String getName(){
         return this.name;
     }
 
     /**
-     * Sets name.
+     * Sets of the algorithmname.
      *
-     * @param n the n
+     * @param newName the new name
      */
-    public void setName(String n) {this.name = n;}
+    public void setName(String newName) {
+        this.name = newName;
+    }
 
-    //Code what will be run on the thread. In charge of making sure the algorithms are always running.
+
+    /**
+     *  Code what will be run on the thread. In charge of making sure the algorithms are always running.
+
+     */
     public void run()
     {
         while (loop)
@@ -73,13 +78,16 @@ public class Algorithm implements Runnable {
                     try {
                         //Checks if the python process ended. If it does prints out the exit code and error message is any and breaks from the checking loop
                         algorithmProcess.exitValue();
-                        System.out.println("ExitVal:"+algorithmProcess.exitValue());
+//                        System.out.println("ExitVal:"+algorithmProcess.exitValue());
+                        this.getLogger().log(Level.INFO,"ExitVal:"+algorithmProcess.exitValue());
                         while(true) {
                             String line = in.readLine();
                             if(line == null)
                                 break;
                             else
-                                System.out.println(line);
+//                                System.out.println(line);
+                                this.getLogger().log(Level.INFO,line);
+
                         }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
@@ -87,7 +95,8 @@ public class Algorithm implements Runnable {
                             // Puts the thread to sleep for 5 minutes to lessen processor usage
                             Thread.sleep(5000*60);
                         } catch (Exception e) {
-                            System.out.println(e);
+//                            System.out.println(e);
+                            this.getLogger().log(Level.SEVERE,e.toString());
                         }
                     }
                 }
@@ -110,6 +119,7 @@ public class Algorithm implements Runnable {
                 }
             } catch (IOException e)
             {
+                this.getLogger().log(Level.SEVERE,e.toString());
                 e.printStackTrace();
             }
         }
@@ -128,9 +138,8 @@ public class Algorithm implements Runnable {
     }
 
     /**
-     * Start.
+     * Starts the thread and creates a new one if none exists
      */
-//Starts the thread and creates a new one if none exists
     public void start()
     {
         if (this.managerThread == null)
@@ -141,15 +150,15 @@ public class Algorithm implements Runnable {
     }
 
     /**
-     * Stop boolean.
+     * Kills the current thread.
      *
      * @return the boolean
      */
-//Kills the current thread
     public boolean stop()
     {
         try
         {
+            //Sends an interrupt signal to the thread so it stops
             this.managerThread.interrupt();
             return true;
         }catch (Exception e)
@@ -159,9 +168,10 @@ public class Algorithm implements Runnable {
     }
 
     /**
-     * Interrupt.
+     * Interrupt the current thread
      */
     public void interrupt(){
+        //TODO maybe switch with stop()
         algorithmProcess.destroy();
     }
 
@@ -173,12 +183,11 @@ public class Algorithm implements Runnable {
     }
 
     /**
-     * Set logger boolean.
+     * Set the logger.
      *
      * @param logger the logger
      * @return the boolean
      */
-//Setter and getters for the logger
     public boolean setLogger(Logger logger){
         try{
             if(logger==null)

@@ -36,9 +36,8 @@ public class Notification implements Runnable {
     private Map<String,Map<String,String>> t = new HashMap<String,Map<String,String>>();
 
     /**
-     * Get name string.
-     *
-     * @return the string
+     * Get class name.
+     * @return name, a string with the class name.
      */
     public String getName(){
         return this.name;
@@ -46,9 +45,8 @@ public class Notification implements Runnable {
 
     /**
      * Instantiates a new Notification.
-     *
      * @param notificationOptions the notification options
-     * @param logger              the logger
+     * @param logger              the logger of the class
      */
     public Notification(NotificationOptions notificationOptions, Logger logger) {
         this.notOpts = notificationOptions;
@@ -71,17 +69,17 @@ public class Notification implements Runnable {
         while (loop) {
             try {
                 users = this.notOpts.getNotificationUsers();
-                for (String u : users){
+                for (String u : users)
                     t.put(u, this.notOpts.getUserInformation(u));
-                }
+
                 userinfo= gson.toJson(t);
 
                 //Add the valid algorithms
                 JsonObject jsonElement = new JsonObject();
                 JsonArray validList = new JsonArray();
-                for(String s : notOpts.getValidAlgorithms()){
+                for(String s : notOpts.getValidAlgorithms())
                     validList.add(s);
-                }
+
                 jsonElement.add("list",validList);
                 String js = gson.toJson(jsonElement);
                 ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath() ,userinfo, gson.toJson(jsonElement), this.notOpts.getEmail(), this.notOpts.getEmailPassword());
@@ -132,9 +130,8 @@ public class Notification implements Runnable {
     }
 
     /**
-     * Start boolean.
-     *
-     * @return the boolean
+     * Starts thread.
+     * @return boolean, if the thread was successfully started.
      */
     public boolean start() {
         if (this.managerThread == null)
@@ -145,27 +142,21 @@ public class Notification implements Runnable {
     }
 
     /**
-     * Stop.
+     * Stop thread.
      */
     public void stop() {
         this.managerThread.interrupt();
     }
 
     /**
-     * Interrupt.
+     * Interrupt/destroy thread.
      */
     public void interrupt(){
         notificationProcess.destroy();
     }
 
     /**
-     * Sleep.
-     */
-    public void sleep(){ }
-
-    /**
-     * Set logger boolean.
-     *
+     * Set logger fot the notification manager.
      * @param logger the logger
      * @return the boolean
      */
@@ -184,9 +175,8 @@ public class Notification implements Runnable {
     }
 
     /**
-     * Get logger logger.
-     *
-     * @return the logger
+     * Get logger from the notification manager.
+     * @return logger, gets the class logger.
      */
     public Logger getLogger(){
         return this.notMan;

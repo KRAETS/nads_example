@@ -50,7 +50,7 @@ def setup():
 
             if len(args) > 3:  # email and password information
                 email = args[3]
-                print 'Loading mail'
+                print 'Loading email'
                 if len(args) > 4:
                     password = args[4]
                     print 'Loading email password'
@@ -105,12 +105,12 @@ def setup():
     except Exception as e:
         print "There was a problem with the setup", e
 
-    print "Finished initial setup"
+    print "Initial setup Completed"
 
 # --------------------------------------------- termination signal
 def signal_term_handler(a, b):
-    print "Notification Module Successfully Killed"
     shutdown_server()
+    print "Notification Module Successfully Killed"
     sys.exit(0)
 
 # ---------------------------------------------------- smtp set-up
@@ -154,16 +154,16 @@ def smtp_setup():
 # --------------------------------------------------- Send message
 def sendMessage(info, message):
     global validalgs, algs
-    print "message-----------------"
+    print "Send Message -----------------"
     if validalgs:
         if info in algs.keys():
             for each in algs[info]:
                 smtp.sendmail(email, each, 'Subject: \n' + message)
         else:
-            return 'algorithm not recognized'
+            return 'Algorithm not recognized'
     else:
-        print 'no valid arguments were received'
-    return 'message sent'
+        return 'No valid arguments were received in message'
+    return 'Message sent'
 
 # -------------------------------------------------- server using flask
 app = Flask(__name__)

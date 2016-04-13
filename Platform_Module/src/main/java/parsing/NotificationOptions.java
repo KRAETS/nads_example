@@ -37,7 +37,7 @@ public class NotificationOptions extends Options{
         }
         return null;
     }
-    
+
     public String getUserPhoneNumber(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -45,7 +45,7 @@ public class NotificationOptions extends Options{
       }
         return null;
     }
-    
+
     public String getUserPhoneProvider(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -53,7 +53,7 @@ public class NotificationOptions extends Options{
         }
         return null;
     }
-    
+
     public String getUserEmail(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))

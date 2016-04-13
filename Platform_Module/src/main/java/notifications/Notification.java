@@ -35,10 +35,21 @@ public class Notification implements Runnable {
     private String userinfo;
     private Map<String,Map<String,String>> t = new HashMap<String,Map<String,String>>();
 
+    /**
+     * Get name string.
+     *
+     * @return the string
+     */
     public String getName(){
         return this.name;
     }
 
+    /**
+     * Instantiates a new Notification.
+     *
+     * @param notificationOptions the notification options
+     * @param logger              the logger
+     */
     public Notification(NotificationOptions notificationOptions, Logger logger) {
         this.notOpts = notificationOptions;
         this.setLogger(logger);
@@ -120,6 +131,11 @@ public class Notification implements Runnable {
         }
     }
 
+    /**
+     * Start boolean.
+     *
+     * @return the boolean
+     */
     public boolean start() {
         if (this.managerThread == null)
             this.managerThread = new Thread(this, this.name);
@@ -128,16 +144,31 @@ public class Notification implements Runnable {
         return true;
     }
 
+    /**
+     * Stop.
+     */
     public void stop() {
         this.managerThread.interrupt();
     }
 
+    /**
+     * Interrupt.
+     */
     public void interrupt(){
         notificationProcess.destroy();
     }
 
+    /**
+     * Sleep.
+     */
     public void sleep(){ }
 
+    /**
+     * Set logger boolean.
+     *
+     * @param logger the logger
+     * @return the boolean
+     */
     protected boolean setLogger(Logger logger){
         try{
             if(logger==null)
@@ -152,6 +183,11 @@ public class Notification implements Runnable {
         }
     }
 
+    /**
+     * Get logger logger.
+     *
+     * @return the logger
+     */
     public Logger getLogger(){
         return this.notMan;
     }

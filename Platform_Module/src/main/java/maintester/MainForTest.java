@@ -3,7 +3,6 @@ package maintester;
 import algorithms.AlgorithmManager;
 import dataretrieval.DataRetrievalManager;
 import parsing.AlgorithmsOptions;
-import parsing.DataRetrievalOptions;
 import parsing.Parser;
 
 import java.util.logging.Logger;
@@ -13,6 +12,11 @@ import java.util.logging.Logger;
  */
 public class MainForTest {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main( String[] args )
     {
 //        PlatformManager pm = new PlatformManager("/home/dude/Downloads/config.json",null);

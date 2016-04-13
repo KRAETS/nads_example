@@ -24,11 +24,19 @@ import java.util.logging.Logger;
 public class DataRetrievalManager extends Manager {
     private DataRetrievalOptions datRetOpts;
     private HttpServer server = null;
+
+    /**
+     * Instantiates a new Data retrieval manager.
+     *
+     * @param dataRetrievalOptions the data retrieval options
+     * @param logger               the logger
+     */
     public DataRetrievalManager(DataRetrievalOptions dataRetrievalOptions, Logger logger) {
         this.datRetOpts = dataRetrievalOptions;
         this.setLogger(logger);
         this.configure();
     }
+
     @Override
     public boolean start() {
 
@@ -44,6 +52,7 @@ public class DataRetrievalManager extends Manager {
         server.start();
         return true;
     }
+
     @Override
     public boolean stop() {
         try {
@@ -59,7 +68,6 @@ public class DataRetrievalManager extends Manager {
     public boolean configure() {
         return true;
     }
-
 
 
     private static class SendData implements HttpHandler {

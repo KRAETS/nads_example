@@ -12,7 +12,13 @@ import java.util.logging.Logger;
 public class NotificationManager extends Manager {
     private NotificationOptions notOpts;
     private Notification notification;
-    
+
+    /**
+     * Instantiates a new Notification manager.
+     *
+     * @param notificationOptions the notification options
+     * @param logger              the logger
+     */
     public NotificationManager(NotificationOptions notificationOptions, Logger logger) {
         this.notOpts = notificationOptions;
         this.setLogger(logger);

@@ -20,6 +20,11 @@ import java.util.logging.SimpleFormatter;
 public class PlatformManager extends Manager {
     private String configFile;
 
+    /**
+     * Gets parser.
+     *
+     * @return the parser
+     */
     public Parser getParser() {
         return parser;
     }
@@ -31,9 +36,22 @@ public class PlatformManager extends Manager {
     private VisualizationManager visMan;
     private UtilitiesManager utilMan;
     private String defaultLogLocation = "nadsplatform.log";
+
+    /**
+     * Instantiates a new Platform manager.
+     *
+     * @param options the options
+     */
     public PlatformManager(String[] options){
 
     }
+
+    /**
+     * Instantiates a new Platform manager.
+     *
+     * @param configFile  the config file
+     * @param logLocation the log location
+     */
     public PlatformManager(String configFile, String logLocation) {
         this.configFile = configFile;
         parser = new Parser(this.configFile);

@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Parser.
+ */
 public class Parser {
     private Gson gson = new Gson();
     private String configFile = "/home/dude/Downloads/config.json";
@@ -29,6 +32,11 @@ public class Parser {
     private NotificationOptions notificationsOptions = new NotificationOptions();
     private UtilitiesOptions utilitiesOptions = new UtilitiesOptions();
 
+    /**
+     * Extract options boolean.
+     *
+     * @return the boolean
+     */
     public boolean extractOptions()
     {
         //Set character encoding for when the config file is read
@@ -185,6 +193,14 @@ public class Parser {
     }
 
 
+    /**
+     * Read file string.
+     *
+     * @param path     the path
+     * @param encoding the encoding
+     * @return the string
+     * @throws IOException the io exception
+     */
     static String readFile(String path, Charset encoding)
             throws IOException
     {
@@ -192,31 +208,66 @@ public class Parser {
         return new String(encoded, encoding);
     }
 
+    /**
+     * Gets platform options.
+     *
+     * @return the platform options
+     */
     public PlatformOptions getPlatformOptions() {
         return mainOptions;
     }
 
+    /**
+     * Gets notification options.
+     *
+     * @return the notification options
+     */
     public NotificationOptions getNotificationOptions() {
         return notificationsOptions;
     }
 
+    /**
+     * Gets utilities options.
+     *
+     * @return the utilities options
+     */
     public UtilitiesOptions getUtilitiesOptions() {
         return utilitiesOptions;
     }
 
+    /**
+     * Gets data retrieval options.
+     *
+     * @return the data retrieval options
+     */
     public DataRetrievalOptions getDataRetrievalOptions() {
         return dataRetrievalOptions;
     }
 
+    /**
+     * Gets visualization options.
+     *
+     * @return the visualization options
+     */
     public VisualizationOptions getVisualizationOptions() {
         return visualOptions;
     }
 
+    /**
+     * Gets algorithms options.
+     *
+     * @return the algorithms options
+     */
     public AlgorithmsOptions getAlgorithmsOptions() {
         return algorithmsOptions;
     }
 
 
+    /**
+     * Instantiates a new Parser.
+     *
+     * @param configFile the config file
+     */
     public Parser(String configFile)
     {
         this.configFile = configFile;

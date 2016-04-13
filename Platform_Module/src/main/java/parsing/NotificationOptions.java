@@ -8,20 +8,43 @@ import java.util.Map;
  * Created by pedro on 3/18/16.
  */
 public class NotificationOptions extends Options{
+    /**
+     * Instantiates a new Notification options.
+     */
     public NotificationOptions(){}
 
+    /**
+     * Get email string.
+     *
+     * @return the string
+     */
     public String getEmail(){
         return this.getOpt("notificationemail").getOptionStringIndividual();
     }
 
+    /**
+     * Get email password string.
+     *
+     * @return the string
+     */
     public String getEmailPassword(){
         return this.getOpt("notificationemailpassword").getOptionStringIndividual();
     }
 
+    /**
+     * Get path string.
+     *
+     * @return the string
+     */
     public String getPath(){
         return this.getOpt("notificationfilelocation").getOptionStringIndividual();
     }
 
+    /**
+     * Get notification users list.
+     *
+     * @return the list
+     */
     public List<String> getNotificationUsers(){
        List<String> out = new ArrayList<>();
        for (Option t: this.getOpt("users").getOptionList()){
@@ -30,6 +53,12 @@ public class NotificationOptions extends Options{
        return out;
     }
 
+    /**
+     * Get user information map.
+     *
+     * @param user the user
+     * @return the map
+     */
     public Map<String, String> getUserInformation(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -37,7 +66,13 @@ public class NotificationOptions extends Options{
         }
         return null;
     }
-    
+
+    /**
+     * Get user phone number string.
+     *
+     * @param user the user
+     * @return the string
+     */
     public String getUserPhoneNumber(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -45,7 +80,13 @@ public class NotificationOptions extends Options{
       }
         return null;
     }
-    
+
+    /**
+     * Get user phone provider string.
+     *
+     * @param user the user
+     * @return the string
+     */
     public String getUserPhoneProvider(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -53,7 +94,13 @@ public class NotificationOptions extends Options{
         }
         return null;
     }
-    
+
+    /**
+     * Get user email string.
+     *
+     * @param user the user
+     * @return the string
+     */
     public String getUserEmail(String user){
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user))
@@ -72,6 +119,11 @@ public class NotificationOptions extends Options{
 //        return null;
 //    }
 
+    /**
+     * Get valid algorithms list.
+     *
+     * @return the list
+     */
     public List<String> getValidAlgorithms(){
         return this.getOpt("validalgorithmslist").getOptionStringList();
     }

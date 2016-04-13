@@ -8,16 +8,37 @@ import java.util.Map;
  */
 public class Options {
 
+    /**
+     * The Option map.
+     */
     protected Map<String, Option> optionMap = new HashMap<String, Option>();
 
+    /**
+     * Gets opt.
+     *
+     * @param key the key
+     * @return the opt
+     */
     public Option getOpt(String key) {
         return this.optionMap.get(key);
     }
 
+    /**
+     * Add option.
+     *
+     * @param key the key
+     * @param opt the opt
+     */
     public void addOption (String key, Option opt) {
         this.optionMap.put(key,opt);
     }
 
+    /**
+     * Remove option boolean.
+     *
+     * @param key the key
+     * @return the boolean
+     */
     public boolean removeOption(String key)
     {
         try {
@@ -28,6 +49,10 @@ public class Options {
         }
         return true;
     }
+
+    /**
+     * Instantiates a new Options.
+     */
     public Options (){}
 }
 

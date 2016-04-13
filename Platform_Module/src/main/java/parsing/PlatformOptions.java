@@ -1,16 +1,19 @@
 package parsing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by pedro on 3/18/16.
  */
 public class PlatformOptions extends Options {
+    /**
+     * Instantiates a new Platform options.
+     */
     public PlatformOptions(){}
-    
+
+    /**
+     * Gets log location.
+     *
+     * @return the log location
+     */
     public String getLogLocation() {
         try{
             return this.getOpt("logtofile").getOptionStringIndividual();
@@ -21,6 +24,11 @@ public class PlatformOptions extends Options {
         }
     }
 
+    /**
+     * Gets working directory.
+     *
+     * @return the working directory
+     */
     public String getWorkingDirectory()
     {
         try

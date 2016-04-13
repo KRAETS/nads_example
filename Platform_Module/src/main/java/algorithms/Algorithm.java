@@ -27,10 +27,21 @@ public class Algorithm implements Runnable {
     private boolean exception = true;
 
 
-    //Setters and getter from thread name
+    /**
+     * Get name string.
+     *
+     * @return the string
+     */
+//Setters and getter from thread name
     public String getName(){
         return this.name;
     }
+
+    /**
+     * Sets name.
+     *
+     * @param n the n
+     */
     public void setName(String n) {this.name = n;}
 
     //Code what will be run on the thread. In charge of making sure the algorithms are always running.
@@ -104,13 +115,22 @@ public class Algorithm implements Runnable {
         }
     }
 
+    /**
+     * Instantiates a new Algorithm.
+     *
+     * @param algorithmOptions the algorithm options
+     * @param logger           the logger
+     */
     public Algorithm(AlgorithmsOptions algorithmOptions, Logger logger)
     {
         this.algOpts = algorithmOptions;
         this.setLogger(logger);
     }
 
-    //Starts the thread and creates a new one if none exists
+    /**
+     * Start.
+     */
+//Starts the thread and creates a new one if none exists
     public void start()
     {
         if (this.managerThread == null)
@@ -120,7 +140,12 @@ public class Algorithm implements Runnable {
         this.managerThread.start();
     }
 
-    //Kills the current thread
+    /**
+     * Stop boolean.
+     *
+     * @return the boolean
+     */
+//Kills the current thread
     public boolean stop()
     {
         try
@@ -132,14 +157,28 @@ public class Algorithm implements Runnable {
             return false;
         }
     }
+
+    /**
+     * Interrupt.
+     */
     public void interrupt(){
         algorithmProcess.destroy();
     }
+
+    /**
+     * Sleep.
+     */
     public void sleep(){
         //TODO Implement
     }
 
-    //Setter and getters for the logger
+    /**
+     * Set logger boolean.
+     *
+     * @param logger the logger
+     * @return the boolean
+     */
+//Setter and getters for the logger
     public boolean setLogger(Logger logger){
         try{
             if(logger==null)
@@ -154,6 +193,11 @@ public class Algorithm implements Runnable {
         }
     }
 
+    /**
+     * Get logger logger.
+     *
+     * @return the logger
+     */
     public Logger getLogger(){
         return this.logMan;
     }

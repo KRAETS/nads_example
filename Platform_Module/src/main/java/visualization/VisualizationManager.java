@@ -10,6 +10,13 @@ import java.util.logging.Logger;
  */
 public class VisualizationManager extends Manager {
     private VisualizationOptions visOpts;
+
+    /**
+     * Instantiates a new Visualization manager.
+     *
+     * @param visualizationOptions the visualization options
+     * @param logger               the logger
+     */
     public VisualizationManager(VisualizationOptions visualizationOptions, Logger logger) {
         this.visOpts = visualizationOptions;
         this.setLogger(logger);

@@ -10,25 +10,30 @@ public abstract class Manager {
 
     /**
      * Method that starts a manager
+     *
      * @return Status of startup operation
      */
-
     public abstract boolean start();
 
     /**
      * Method that sends a stop signal to a manager
+     *
      * @return Status for stop operation
      */
     public abstract boolean stop();
 
     /**
      * Method that initializes a manager given a set of options
+     *
      * @return Status for configuration
      */
     public abstract boolean configure();
 
     /**
      * Method that sets a logger for the class.  Checks if the logger is null
+     *
+     * @param logger the logger
+     * @return the boolean
      */
     public boolean setLogger(Logger logger){
         try{
@@ -44,6 +49,11 @@ public abstract class Manager {
         }
     }
 
+    /**
+     * Get logger logger.
+     *
+     * @return the logger
+     */
     public Logger getLogger(){
         return this.logMan;
     }

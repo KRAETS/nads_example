@@ -15,7 +15,14 @@ public class AlgorithmManager extends Manager {
     private List<Algorithm> algorithmsList;
     private AlgorithmsOptions algOpts;
 
-    //Method that starts a specific algorithm
+
+    /**
+     * Start boolean.
+     *
+     * @param algorithmName the algorithm name
+     * @return boolean boolean
+     */
+//Method that starts a specific algorithm
     public boolean start(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
@@ -69,7 +76,14 @@ public class AlgorithmManager extends Manager {
         }
         return true;
     }
-    //Starts a specific algorithm
+
+    /**
+     * Start boolean.
+     *
+     * @param algorithmNumber the algorithm number
+     * @return the boolean
+     */
+//Starts a specific algorithm
     public boolean start(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
             this.getLogger().log(Level.SEVERE, "Out of range");
@@ -78,7 +92,14 @@ public class AlgorithmManager extends Manager {
         algorithmsList.get(algorithmNumber).start();
         return true;
     }
-    //stops a specific algorithm
+
+    /**
+     * Stop boolean.
+     *
+     * @param algorithmName the algorithm name
+     * @return the boolean
+     */
+//stops a specific algorithm
     public boolean stop(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
@@ -88,7 +109,14 @@ public class AlgorithmManager extends Manager {
         }
         return false;
     }
-    //stops a specific algorithm
+
+    /**
+     * Stop boolean.
+     *
+     * @param algorithmNumber the algorithm number
+     * @return the boolean
+     */
+//stops a specific algorithm
     public boolean stop(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
             return false;
@@ -97,19 +125,32 @@ public class AlgorithmManager extends Manager {
         return true;
     }
 
-    //Starts all algorithms
+    /**
+     * Start all.
+     */
+//Starts all algorithms
     public void startAll(){
         for(Algorithm alg:algorithmsList){
             alg.start();
         }
     }
 
-    //stops all algorithms
+    /**
+     * Stop all.
+     */
+//stops all algorithms
     public void stopAll(){
         for(Algorithm alg:algorithmsList){
             alg.stop();
         }
     }
+
+    /**
+     * Instantiates a new Algorithm manager.
+     *
+     * @param algOpts the alg opts
+     * @param logger  the logger
+     */
     public AlgorithmManager(AlgorithmsOptions algOpts, Logger logger){
         this.algorithmsList = new LinkedList<Algorithm>();
         this.algOpts = algOpts;

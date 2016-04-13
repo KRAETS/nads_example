@@ -16,6 +16,13 @@ import java.util.logging.Logger;
  */
 public class UtilitiesManager extends Manager {
     private UtilitiesOptions utilOpts;
+
+    /**
+     * Instantiates a new Utilities manager.
+     *
+     * @param utilitiesOptions the utilities options
+     * @param logger           the logger
+     */
     public UtilitiesManager(UtilitiesOptions utilitiesOptions, Logger logger) {
         this.utilOpts = utilitiesOptions;
         this.setLogger(logger);
@@ -51,6 +58,11 @@ public class UtilitiesManager extends Manager {
         return true;
     }
 
+    /**
+     * Add configuration boolean.
+     *
+     * @return the boolean
+     */
     public boolean addConfiguration(){
         if(!this.configure()){
             this.getLogger().log(Level.SEVERE,"Missing parameters for configuration swap.");

@@ -12,7 +12,7 @@ public class PlatformOptions extends Options {
     /**
      * Gets log location.
      *
-     * @return the log location
+     * @return the string with the log location
      */
     public String getLogLocation() {
         try{
@@ -27,7 +27,7 @@ public class PlatformOptions extends Options {
     /**
      * Gets working directory.
      *
-     * @return the working directory
+     * @return the string with the working directory
      */
     public String getWorkingDirectory()
     {

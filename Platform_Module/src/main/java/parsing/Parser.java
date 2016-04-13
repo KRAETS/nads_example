@@ -33,9 +33,9 @@ public class Parser {
     private UtilitiesOptions utilitiesOptions = new UtilitiesOptions();
 
     /**
-     * Extract options boolean.
+     * Extract options from the configuration file to the various module option classes.
      *
-     * @return the boolean
+     * @return the boolean contianing the status of the configuration extraction.
      */
     public boolean extractOptions()
     {
@@ -73,6 +73,12 @@ public class Parser {
 
     }
 
+    /**
+     * Populates the mainOptions with the values in the configuration file
+     *
+     * @param options the main options map contained in the configuration file
+     */
+
     private void mainOptionsParsers(Map<String, Object> options)
     {
         try
@@ -91,6 +97,12 @@ public class Parser {
             throw new JsonParseException("");
         }
     }
+
+    /**
+     * Populates the algorithmsOptions with the values in the configuration file
+     *
+     * @param options the algorithms options map contained in the configuration file
+     */
 
     private void algorithmsOptionsParsers(Map<String, Object> options)
     {
@@ -115,6 +127,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Populates the utilitiesOptions with the values in the configuration file
+     *
+     * @param options the utilities options map contained in the configuration file
+     */
+
     private void utilitiesOptionsParsers(Map<String, Object> options)
     {
         try {
@@ -131,6 +149,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Populates the utilitiesOptions with the values in the configuration file
+     *
+     * @param options the utilities options map contained in the configuration file
+     */
+
     private void dataRetrievalOptionsParsers(Map<String, Object> options)
     {
         try {
@@ -146,6 +170,12 @@ public class Parser {
             throw new JsonParseException("");
         }
     }
+
+    /**
+     * Populates the notifiationOptions with the values in the configuration file
+     *
+     * @param options the notification options map contained in the configuration file
+     */
 
     private void notificationOptionsParsers(Map<String, Object> options)
     {
@@ -175,6 +205,12 @@ public class Parser {
             throw new JsonParseException("");
         }
     }
+
+    /**
+     * Populates the visualOptions with the values in the configuration file
+     *
+     * @param options the visual options map contained in the configuraion file
+     */
 
     private void visualOptionsParsers(Map<String, Object> options)
     {

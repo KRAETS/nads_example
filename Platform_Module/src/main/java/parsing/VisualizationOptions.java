@@ -14,7 +14,7 @@ public class VisualizationOptions extends Options {
     /**
      * Get kibana template folder string.
      *
-     * @return the string
+     * @return the string with the location for the kibana template folder
      */
     public String getKibanaTemplateFolder(){
         return this.getOpt("templatefolder").getOptionStringIndividual();
@@ -24,7 +24,7 @@ public class VisualizationOptions extends Options {
     /**
      * Get kibana port string.
      *
-     * @return the string
+     * @return the string with the kibana port number
      */
     public String getKibanaPort(){
         return this.getOpt("kibanaport").getOptionStringIndividual();
@@ -33,7 +33,7 @@ public class VisualizationOptions extends Options {
     /**
      * Get kibana address string.
      *
-     * @return the string
+     * @return the string with the kibana ip address
      */
     public String getKibanaAddress(){
         return this.getOpt("kibanaaddress").getOptionStringIndividual();

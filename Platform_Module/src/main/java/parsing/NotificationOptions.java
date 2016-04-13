@@ -16,7 +16,7 @@ public class NotificationOptions extends Options{
     /**
      * Get email string.
      *
-     * @return the string
+     * @return the string with the email
      */
     public String getEmail(){
         return this.getOpt("notificationemail").getOptionStringIndividual();
@@ -25,7 +25,7 @@ public class NotificationOptions extends Options{
     /**
      * Get email password string.
      *
-     * @return the string
+     * @return the string with the email password
      */
     public String getEmailPassword(){
         return this.getOpt("notificationemailpassword").getOptionStringIndividual();
@@ -34,7 +34,7 @@ public class NotificationOptions extends Options{
     /**
      * Get path string.
      *
-     * @return the string
+     * @return the string with the path to the notification module script
      */
     public String getPath(){
         return this.getOpt("notificationfilelocation").getOptionStringIndividual();
@@ -43,7 +43,7 @@ public class NotificationOptions extends Options{
     /**
      * Get notification users list.
      *
-     * @return the list
+     * @return the list with the users to be notified
      */
     public List<String> getNotificationUsers(){
        List<String> out = new ArrayList<>();
@@ -56,8 +56,8 @@ public class NotificationOptions extends Options{
     /**
      * Get user information map.
      *
-     * @param user the user
-     * @return the map
+     * @param user string containing user whose information is going to be search
+     * @return the map containing the user information
      */
     public Map<String, String> getUserInformation(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -70,8 +70,8 @@ public class NotificationOptions extends Options{
     /**
      * Get user phone number string.
      *
-     * @param user the user
-     * @return the string
+     * @param user the user whose phone number is to be searched
+     * @return the string with the users phone number
      */
     public String getUserPhoneNumber(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -84,8 +84,8 @@ public class NotificationOptions extends Options{
     /**
      * Get user phone provider string.
      *
-     * @param user the user
-     * @return the string
+     * @param user the user whose cellphone provider is going to be searched
+     * @return the string with the users cell phone provider
      */
     public String getUserPhoneProvider(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -98,8 +98,8 @@ public class NotificationOptions extends Options{
     /**
      * Get user email string.
      *
-     * @param user the user
-     * @return the string
+     * @param user the user whose email is to be searched
+     * @return the string with the users email
      */
     public String getUserEmail(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -122,7 +122,7 @@ public class NotificationOptions extends Options{
     /**
      * Get valid algorithms list.
      *
-     * @return the list
+     * @return the list withthe valid algorithms
      */
     public List<String> getValidAlgorithms(){
         return this.getOpt("validalgorithmslist").getOptionStringList();

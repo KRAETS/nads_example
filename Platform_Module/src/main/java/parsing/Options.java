@@ -16,8 +16,8 @@ public class Options {
     /**
      * Gets opt.
      *
-     * @param key the key
-     * @return the opt
+     * @param key the key for the option wanted
+     * @return the opt matching the key
      */
     public Option getOpt(String key) {
         return this.optionMap.get(key);
@@ -27,7 +27,7 @@ public class Options {
      * Add option.
      *
      * @param key the key
-     * @param opt the opt
+     * @param opt the option
      */
     public void addOption (String key, Option opt) {
         this.optionMap.put(key,opt);
@@ -36,8 +36,8 @@ public class Options {
     /**
      * Remove option boolean.
      *
-     * @param key the key
-     * @return the boolean
+     * @param key the key of the option to be deleted
+     * @return the boolean stating the status of the deletion. True for success, false for failure
      */
     public boolean removeOption(String key)
     {

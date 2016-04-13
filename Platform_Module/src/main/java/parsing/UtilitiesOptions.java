@@ -12,7 +12,7 @@ public class UtilitiesOptions extends Options{
     /**
      * Gets original pattern file location.
      *
-     * @return the original pattern file location
+     * @return the string with the original pattern file location
      */
     public String getOriginalPatternFileLocation() {
         return this.getOpt("originalpatternfilelocation").getOptionStringIndividual();
@@ -21,7 +21,7 @@ public class UtilitiesOptions extends Options{
     /**
      * Gets new pattern file location.
      *
-     * @return the new pattern file location
+     * @return the string with the new pattern file location
      */
     public String getNewPatternFileLocation() {
         return this.getOpt("newpatternfilelocation").getOptionStringIndividual();

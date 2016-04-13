@@ -38,7 +38,7 @@ public class Option {
     /**
      * Set option string list.
      *
-     * @param optionStringList the option string list
+     * @param optionStringList the option string list to be set
      */
     public void setOptionStringList(List<String> optionStringList){
         this.optionStringList = optionStringList;
@@ -54,9 +54,9 @@ public class Option {
     }
 
     /**
-     * Set option list.
+     * Set List of options.
      *
-     * @param optionList the option list
+     * @param optionList the list of options to be set
      */
     public void setOptionList(List<Option> optionList){
         this.optionList = optionList;
@@ -65,7 +65,7 @@ public class Option {
     /**
      * Set option name.
      *
-     * @param optionName the option name
+     * @param optionName the option name to be set
      */
     public void setOptionName(String optionName){
         this.optionName = optionName;
@@ -74,7 +74,7 @@ public class Option {
     /**
      * Set option map.
      *
-     * @param map the map
+     * @param map the String, String map of option to be set
      */
     public void setOptionMap (Map<String,String> map){
         this.optionMap = map;
@@ -83,7 +83,7 @@ public class Option {
     /**
      * Set option type.
      *
-     * @param type the type
+     * @param type the type of option contained. Must be one from the enum class
      */
     public void setOptionType (OptionType type){
         this.optionType = type;
@@ -92,8 +92,8 @@ public class Option {
     /**
      * Add to option list boolean.
      *
-     * @param o the o
-     * @return the boolean
+     * @param o the option  to be added to List<Option>
+     * @return the boolean of the status for the add operation
      */
     public boolean addToOptionList (Option o){
         return this.optionList.add(o);
@@ -102,8 +102,8 @@ public class Option {
     /**
      * Add to option string list boolean.
      *
-     * @param s the s
-     * @return the boolean
+     * @param s the string to be added to the List<String>
+     * @return the boolean of the status for the add operation
      */
     public boolean addToOptionStringList (String s){
         return this.optionStringList.add(s);
@@ -112,7 +112,7 @@ public class Option {
     /**
      * Get option string list list.
      *
-     * @return the list
+     * @return the list<String> of options
      */
     public List<String> getOptionStringList(){
         return this.optionStringList;
@@ -121,7 +121,7 @@ public class Option {
     /**
      * Get option string individual string.
      *
-     * @return the string
+     * @return the string with an option
      */
     public String getOptionStringIndividual(){
         return this.optionStringIndividual;
@@ -130,7 +130,7 @@ public class Option {
     /**
      * Get option name string.
      *
-     * @return the string
+     * @return the string with the name of the current option
      */
     public String getOptionName(){
         return this.optionName;
@@ -139,7 +139,7 @@ public class Option {
     /**
      * Get option map map.
      *
-     * @return the map
+     * @return the map with all the options
      */
     public Map<String,String > getOptionMap(){
         return this.optionMap;
@@ -157,7 +157,7 @@ public class Option {
     /**
      * Get option list list.
      *
-     * @return the list
+     * @return the list with the options
      */
     public List<Option> getOptionList(){
         return this.optionList;
@@ -180,7 +180,7 @@ public class Option {
      * Instantiates a new Option.
      *
      * @param name the name
-     * @param type the type
+     * @param type the option type
      */
     public Option(String name,OptionType type){
         this.optionName = name;
@@ -191,8 +191,8 @@ public class Option {
      * Instantiates a new Option.
      *
      * @param name the name
-     * @param lo   the lo
-     * @param type the type
+     * @param lo   the list of options
+     * @param type the option type
      */
     public Option(String name, List<Option> lo, OptionType type){
         this.optionName = name;

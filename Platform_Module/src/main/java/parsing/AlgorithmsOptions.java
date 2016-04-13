@@ -16,7 +16,7 @@ public class AlgorithmsOptions extends Options {
     /**
      * Get algorithm names list.
      *
-     * @return the list
+     * @return List<String> containing algorithm names
      */
     public List<String> getAlgorithmNames(){
         return new ArrayList<String>(this.optionMap.keySet());
@@ -25,58 +25,19 @@ public class AlgorithmsOptions extends Options {
     /**
      * Get algorithm parameters map.
      *
-     * @param alg the alg
-     * @return the map
+     * @param String alg The algorithm name you want to look for
+     * @return Map<String, String> containing all params for an algorithms
      */
     public Map<String, String> getAlgorithmParameters(String alg){
         return this.getOpt(alg).getOptionMap();
     }
 
-    /**
-     * Get algorithm specifics string.
-     *
-     * @param alg the alg
-     * @return the string
-     */
-    public String getAlgorithmSpecifics(String alg){
-        return this.getOpt(alg).getOptionMap().get("notifiablealgorithms");
-    }
 
     /**
-     * Get example id string.
+     * Get the folder cotaining the algorithm.
      *
-     * @param alg the alg
-     * @return the string
-     */
-    public String getExampleID(String alg){
-        return this.getOpt(alg).getOptionMap().get("exampleip");
-    }
-
-    /**
-     * Get algorithm model string.
-     *
-     * @param alg the alg
-     * @return the string
-     */
-    public String getAlgorithmModel(String alg){
-        return this.getOpt(alg).getOptionMap().get("model");
-    }
-
-    /**
-     * Get algorithm trap oid string.
-     *
-     * @param alg the alg
-     * @return the string
-     */
-    public String getAlgorithmTrapOID(String alg){
-        return this.getOpt(alg).getOptionMap().get("trap_oid");
-    }
-
-    /**
-     * Get algorithm folder string.
-     *
-     * @param alg the alg
-     * @return the string
+     * @param alg the algorithm name to be searched
+     * @return String with the algorithm location
      */
     public String getAlgorithmFolder(String alg){
         return this.getOpt(alg).getOptionMap().get("folder");

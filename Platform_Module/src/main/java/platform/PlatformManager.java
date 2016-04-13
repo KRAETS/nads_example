@@ -62,6 +62,10 @@ public class PlatformManager extends Manager {
         this.configure();
     }
 
+    /**
+     * Method to configure logging to a file
+     * @param logLocation log file location
+     */
     private void setupLogger(String logLocation) {
         setLogger(Logger.getLogger("NadsLogger"));
         FileHandler fh;
@@ -83,15 +87,9 @@ public class PlatformManager extends Manager {
         }
     }
 
-
+    @Override
     public boolean start() {
         boolean operationSuccessful = false;
-        //Try to validate the options in the configuration file and look for common problems
-//        operationSuccessful = parser.validateOptions();
-//        if(!operationSuccessful) {
-//            logMan.log(Level.SEVERE,"Could not validate options. Exiting...");
-//            System.exit(3);
-//        }
         //Try to extract the options after validating them
         operationSuccessful = parser.extractOptions();
         if(!operationSuccessful){
@@ -111,13 +109,17 @@ public class PlatformManager extends Manager {
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Failed to initialize modules:"+e.toString());
-            this.getLogger().log(Level.SEVERE,e.getStackTrace().toString());
+            this.getLogger().log(Level.SEVERE,e.toString());
             System.exit(5);
         }
 
         return true;
     }
 
+    /**
+     * Method to handle the initialization of the platform manager.  Sets up the logging logic.
+     * @param platformOptions custom options for the manager
+     */
     private void initPlatformManager(PlatformOptions platformOptions) {
         if(platformOptions.getLogLocation()!=null){
             this.getLogger().log(Level.INFO,"Changing the log location to:"+platformOptions.getLogLocation());
@@ -125,16 +127,26 @@ public class PlatformManager extends Manager {
         }
     }
 
+    /**
+     * Method to handle the initialization of the algorithms manager. Starts the manager
+     * @param algorithmsOptions custom options for the manager
+     */
     private void initAlgorithmsManager(AlgorithmsOptions algorithmsOptions) {
         this.algMan = new AlgorithmManager(algorithmsOptions,this.getLogger());
         this.algMan.start();
     }
-
+    /**
+     * Method to handle the initialization of the visualization manager. Starts the manager
+     * @param visualizationOptions custom options for the manager
+     */
     private void initVisualizationManager(VisualizationOptions visualizationOptions) {
         this.visMan = new VisualizationManager(visualizationOptions,this.getLogger());
         this.visMan.start();
     }
-
+    /**
+     * Method to handle the initialization of the data retrieval manager. Starts the manager
+     * @param dataRetrievalOptions custom options for the manager
+     */
     private void initDataRetrievalManager(DataRetrievalOptions dataRetrievalOptions) {
         this.dataRetMan = new DataRetrievalManager(dataRetrievalOptions,this.getLogger());
         this.dataRetMan.start();

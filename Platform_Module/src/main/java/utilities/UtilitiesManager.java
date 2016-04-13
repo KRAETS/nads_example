@@ -59,9 +59,8 @@ public class UtilitiesManager extends Manager {
     }
 
     /**
-     * Add configuration boolean.
-     *
-     * @return the boolean
+     * Add configuration file to the currently running logstash.
+     * @return boolean return status of adding the configuration.  False if not root when executing
      */
     public boolean addConfiguration(){
         if(!this.configure()){
@@ -135,20 +134,20 @@ public class UtilitiesManager extends Manager {
             }
 
             input.close();
-//            if(result.contains("Exited")||result.contains("Error")){
-//                restoreBackup();
-//                return false;
-//            }
             return true;
         }
         catch(Exception e){
             this.getLogger().log(Level.SEVERE,"Problem restarting the logstash service"+e.toString());
+            //if not restore backup and restart the service
             restoreBackup();
             return false;
         }
-        //if not restore backup and restart the service
     }
 
+    /**
+     * Method to restore the original logstash configuration back if replacement was not possible
+     * prints an exception if not root!
+     */
     private void restoreBackup() {
         try {
             FileUtils.copyFile(new File(utilOpts.getOriginalPatternFileLocation()+".bak"), new File(utilOpts.getOriginalPatternFileLocation()));

@@ -14,8 +14,7 @@ public class DataRetrievalOptions extends Options {
 
     /**
      * Get data retrieval parameters map.
-     *
-     * @return the map
+     * @return map, all options for the module
      */
     public Map<String, String> getDataRetrievalParameters(){
         Map<String, String> map = new HashMap<String, String>();
@@ -27,8 +26,7 @@ public class DataRetrievalOptions extends Options {
 
     /**
      * Get logstash port string.
-     *
-     * @return the string
+     * @return string, logstash port number to use
      */
     public String getLogstashPort(){
         return this.getOpt("logstashport").getOptionStringIndividual();
@@ -36,8 +34,7 @@ public class DataRetrievalOptions extends Options {
 
     /**
      * Get logstash address string.
-     *
-     * @return the string
+     * @return string, logstach url
      */
     public String getLogstashAddress(){
         return this.getOpt("logstashaddress").getOptionStringIndividual();
@@ -45,8 +42,7 @@ public class DataRetrievalOptions extends Options {
 
     /**
      * Get elastic search port string.
-     *
-     * @return the string
+     * @return string, elastic search port number to use
      */
     public String getElasticSearchPort(){
         return this.getOpt("elasticsearchport").getOptionStringIndividual();
@@ -54,8 +50,7 @@ public class DataRetrievalOptions extends Options {
 
     /**
      * Get elastic search address string.
-     *
-     * @return the string
+     * @return string, elastic search url
      */
     public String getElasticSearchAddress(){
 

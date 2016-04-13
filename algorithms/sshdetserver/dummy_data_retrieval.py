@@ -1,15 +1,17 @@
-import urllib2
 import json
+import urllib2
 
 DATA_STORE_ADDRESS = "localhost:8002"
 
 def search(address, query):
+    """Perform a serach in the specified address, with the specified query"""
     pair1 = ("mrlegit","thetrueuser")
     dummylist = []
     dummylist.append(pair1)
     return dummylist
 
 def store_result(type, date, info, additional_info):
+    """Sends a result for storage in the data ret manager"""
     res = {}
     res["type"] = type
     res["date"] = date

@@ -1,9 +1,10 @@
 import copy
-import dummy_data_retrieval as dr
-import editdistance
-from igraph import *
 import time
 
+import editdistance
+from igraph import *
+
+import dummy_data_retrieval as dr
 from dummy_data_retrieval import *
 from notifications import notify_both
 
@@ -13,19 +14,26 @@ pair = ("", -1)
 
 
 def detection_function(sn, sn_1, h):
+    """Perform detection if accumulation is greater than previous and bigger than threshold H"""
     result = sn > sn_1 and sn > h
     return result
 
 
 class Classifier:
-
+    """Class that performs epoch attack type classification"""
     def __init__(self, mu, h, k):
+        """Sets the default parameters
+        mu mean of failed attempts
+        h accumulation threshold
+        k parameter to lower normal mean to <0 and make it discrete
+        """
         self.mu = mu
         self.k = k
         self.h = h
         self.current_epoch = None
 
     def check_singleton(self, epoch):
+        """Analyzes an epoch to determine if it is a singleton attack.  Returns pair if singleton"""
         global pair
 
         # Verify if we have singleton
@@ -52,7 +60,7 @@ class Classifier:
             else:
                 return True
 
-        # Remove the host from all the events
+        # Remove the bruteforcing host from all the events
         for event in copy_of_ooc_events:
             event.logins = filter(remove_bruteforcer, event.get_logins())
 
@@ -72,12 +80,12 @@ class Classifier:
             print "Calculated ZN", zn
             # SAVE OLD SN
             GLOBAL_SN_1 = GLOBAL_SN
-            print "Global sn 1",GLOBAL_SN_1
+            print "Global sn 1", GLOBAL_SN_1
             # Calculate new sn
             GLOBAL_SN += zn
             print "Global sn", GLOBAL_SN
             # Perform detection
-            GLOBAL_DN = detection_function(GLOBAL_SN,GLOBAL_SN_1,self.h)
+            GLOBAL_DN = detection_function(GLOBAL_SN, GLOBAL_SN_1, self.h)
             print "Global dn", GLOBAL_DN
             # Set Event in control or not.  Has to be negated to reflect
             # in control = no detection and out of control = detection
@@ -89,13 +97,15 @@ class Classifier:
             if not event.get_control():
                 singleton = True
                 break
-
+        # Return the pair containing the host and the # of attempts
         singleton = not singleton
         if singleton:
             return pair
         return None
 
-    def analyze_past_history(self, epoch):
+    @staticmethod
+    def analyze_past_history(epoch):
+        """Analyzes an epoch to remove legitimate users, or legitimate users who put a wrong password/login"""
         epochclone = copy.deepcopy(epoch)
         # Get past successful logins
         past_success_logins = search("ip", "query")
@@ -113,49 +123,52 @@ class Classifier:
 
         for event in epochclone.get_history_events():
             # Filter out the legit users
-            event.logins = filter(successful_previous_login_filter,event.get_logins())
+            event.logins = filter(successful_previous_login_filter, event.get_logins())
 
+        # Filtering function for mistaken login
         def mistyped_successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                print "Edit distance",  editdistance.eval(login[1],test_login.get_user())
-                print "Opposite", editdistance.eval(test_login.get_user(),login[1])
-                print test_login.get_user(),login[1]
+                print "Edit distance", editdistance.eval(login[1], test_login.get_user())
+                print "Opposite", editdistance.eval(test_login.get_user(), login[1])
+                print test_login.get_user(), login[1]
                 print test_login.get_client() == login[0]
-                print editdistance.eval(login[1],test_login.get_user()) == 1
-                print editdistance.eval(login[1],test_login.get_user()) is 1
+                print editdistance.eval(login[1], test_login.get_user()) == 1
+                print editdistance.eval(login[1], test_login.get_user()) is 1
                 print "For"
-                if test_login.get_client() == login[0] and editdistance.eval(login[1],test_login.get_user()) == 1:
+                if test_login.get_client() == login[0] and editdistance.eval(login[1], test_login.get_user()) == 1:
                     print "Mistype detected", test_login.get_client()
                     return False
             return True
 
         for event in epochclone.get_history_events():
             # Filter out the legit users
-            event.logins = filter(mistyped_successful_previous_login_filter,event.get_logins())
+            event.logins = filter(mistyped_successful_previous_login_filter, event.get_logins())
 
         return epochclone
 
-    def analyze_coordination_glue(self,epoch):
+    @staticmethod
+    def analyze_coordination_glue(epoch):
+        """Analyzes an epoch to extract the coordination element.  This can be the target server/user.  Here we do server"""
         graph = Graph()
-        #Nodeset 1
+        # Nodeset 1
         nodeset1 = set()
         for event in epoch.get_history_events():
             for login in event.get_logins():
-                #add the remote host nodeset
+                # add the remote host nodeset
                 if not login.get_status():
                     # graph.add_vertex(login.get_client())
                     nodeset1.add(login.get_client())
 
         nodeset2 = set()
-        #Nodeset 2
+        # Nodeset 2
         for event in epoch.get_history_events():
             for login in event.get_logins():
-                #add the host nodeset
+                # add the host nodeset
                 if not login.get_status():
                     # graph.add_vertex(login.get_host())
                     nodeset2.add(login.get_host())
 
-        #Join Remotehost->localhost
+        # Join Remotehost->localhost
         for vertex in nodeset1.union(nodeset2):
             graph.add_vertex(vertex)
         print graph
@@ -165,7 +178,7 @@ class Classifier:
                 if not login.get_status():
                     remotehost = login.get_client()
                     localhost = login.get_host()
-                    edge = (remotehost, localhost)
+                    # edge = (remotehost, localhost)
                     source = 1
                     destination = 1
                     for vertex in graph.vs["name"]:
@@ -176,25 +189,24 @@ class Classifier:
                         if vertex == localhost:
                             break
                         destination += 1
-                    graph.add_edge(source-1,destination-1)
-
+                    graph.add_edge(source - 1, destination - 1)
 
                     # graph.add_edge(remotehost, localhost)
                     # graph.add_edges(edge)
 
         clusters = graph.clusters()
 
-        visual_style = {}
-        visual_style["vertex_size"] = 20
-        # visual_style["vertex_color"] = [color_dict[gender] for gender in g.vs["gender"]]
-        visual_style["vertex_label"] = graph.vs["name"]
-        # visual_style["edge_width"] = [1 + 2 * int(is_formal) for is_formal in g.es["is_formal"]]
-        visual_style["layout"] = layout
-        visual_style["bbox"] = (300, 300)
-        visual_style["margin"] = 20
-        # plot(clusters, **visual_style)
+        # visual_style = {}
+        # visual_style["vertex_size"] = 20
+        # # visual_style["vertex_color"] = [color_dict[gender] for gender in g.vs["gender"]]
+        # visual_style["vertex_label"] = graph.vs["name"]
+        # # visual_style["edge_width"] = [1 + 2 * int(is_formal) for is_formal in g.es["is_formal"]]
+        # visual_style["layout"] = layout
+        # visual_style["bbox"] = (300, 300)
+        # visual_style["margin"] = 20
+        # # plot(clusters, **visual_style)
 
-        #Get the top target(centers of clusters)
+        # Get the top target(centers of clusters with largest edge count)
         top = ("", 0)
         for cluster in clusters:
             print cluster
@@ -210,16 +222,18 @@ class Classifier:
         return top
 
     def process(self, epoch):
+        """Takes an epoch to determine if singleton/distributed"""
         print "Processing epoch", epoch
         self.current_epoch = epoch
-
+        # First check singleton
         result = self.check_singleton(epoch)
         print "Result",result
         if result is not None:
             # process singleton
             notify_both("Singleton")
-            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"),"SINGLETON","SINGLETON_IP:"+str(result[0]))
+            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
+            # Then check distributed
             print "Filtering out legitimate activity"
             newepoch = self.analyze_past_history(epoch)
             print "Done", newepoch
@@ -228,6 +242,4 @@ class Classifier:
             print "Is distributed!!!"
             notify_both("Distributed")
             print hitpair
-            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"),"DISTRIBUTED","INFO:"+str(hitpair))
-
-
+            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"), "DISTRIBUTED", "INFO:" + str(hitpair))

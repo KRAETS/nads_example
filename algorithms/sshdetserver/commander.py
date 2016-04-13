@@ -1,6 +1,6 @@
 import json
-import sys
 import signal
+import sys
 import time
 from multiprocessing import Process
 
@@ -11,20 +11,26 @@ GLOBAL_PROCESS_LIST = []
 
 
 def usage():
+    """Legacy function to print out command line usage"""
     print "Hi this is the most useful help ever"
     return
 
-def signal_term_handler(a,b):
+
+def signal_term_handler(a, b):
+    """Function to handle sigterm and shutdown proceses"""
     print "Notification Module Successfully Killed"
     for process in GLOBAL_PROCESS_LIST:
         process.terminate()
     sys.exit(0)
 
+
 def main():
+    """Starts a server, client or both depending on json parameters"""
     try:
         print "The commander is starting!!!"
         print sys.argv
         print sys.argv[1]
+        # Get json
         workingstring = sys.argv[1]
         # workingstring = str(workingstring).replace('\\','')
         # jvar = '{"server":true,"folder":"../algorithms/sshdetserver/commander.py"}'
@@ -33,13 +39,14 @@ def main():
         parameter_map = json.loads(workingstring)
         print "Passed the parsing!!"
         print "Parameters:", parameter_map
+        # See if verbose option is enabled
         verbose = False
         try:
             if parameter_map["verbose"] is True or parameter_map["verbose"] == "true":
                 verbose = True
         except Exception as e:
             print "No verbose option provided"
-
+        # Check if server option enabled and start a server
         try:
             if parameter_map["server"] is True or parameter_map["server"] == "true":
                 print "Starting the server"
@@ -49,24 +56,27 @@ def main():
                 print "Continuing"
         except Exception as e:
             print e
-
+        # Check if client option is enabled and start a monitoring client
         try:
             if parameter_map["client"] is True or parameter_map["client"] == "true":
                 print "Checking for server address..."
-                print "Address is",parameter_map["serveraddress"]
+                print "Address is", parameter_map["serveraddress"]
                 server_address = parameter_map["serveraddress"]
-                start_client(verbose,server_address,"/var/log/","auth.log")
+                start_client(verbose, server_address, "/var/log/", "auth.log")
         except Exception as e:
-            print "Could not start client",e
-
+            print "Could not start client", e
+        # Wait for the processes to exit
 
         for process in GLOBAL_PROCESS_LIST:
             process.join()
-
         return
+
     except Exception as e:
         print "Could not start the commander!!", e
         return 1
+
+    # '''For legacy purposes'''
+
     # exit(0)
     #
     # try:
@@ -99,6 +109,7 @@ def main():
 
 
 def start_client(verbose, server_address, monitoringfolder, monitoringfile):
+    """Function to start a client process and monitor within a folder, a specific file"""
     global GLOBAL_PROCESS_LIST
     if verbose:
         print "Client node"
@@ -112,7 +123,9 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile):
     GLOBAL_PROCESS_LIST.append(p)
     return
 
+
 def start_server(verbose):
+    """Function to start a server process"""
     global GLOBAL_PROCESS_LIST
     if verbose:
         print "Server node"
@@ -121,7 +134,8 @@ def start_server(verbose):
     GLOBAL_PROCESS_LIST.append(p)
 
 if __name__ == '__main__':
+    # Set the sigterm / sigint handlers
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
-
+    # Start the main
     main()

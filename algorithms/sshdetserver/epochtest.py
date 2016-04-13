@@ -12,13 +12,14 @@ import commander
 class EventTestCase(unittest.TestCase):
 
     def setUp(self):
+        """Initializes the server for testing"""
         commander.start_server(True)
         self.GLOBAL_IP = "localhost"
         time.sleep(10)
 
 
     def test_login_detection(self):
-
+        """Tests a singleton attack to retrieve the epoch"""
         try:
 
             attacksim.main(False)

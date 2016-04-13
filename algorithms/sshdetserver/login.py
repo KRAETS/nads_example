@@ -1,5 +1,5 @@
 class Login:
-    '''Class that models a login attempt'''
+    """Class that models a login attempt"""
 
     def __init__(self, status, client, host, user, protocol=None):
         self.status = status
@@ -9,8 +9,8 @@ class Login:
         self.protocol = protocol
 
     def __repr__(self):
-        return "Login:"+str(self.status)+" "+self.client + \
-               " "+self.host+" "+self.user
+        return "Login:" + str(self.status) + " " + self.client + \
+               " " + self.host + " " + self.user
 
     def get_status(self):
         return self.status
@@ -44,6 +44,7 @@ class Login:
 
     @staticmethod
     def parse_from_json(json):
+        """Parses a login from a json string"""
         status = json["status"]
         client = json["client"]
         host = json["host"]

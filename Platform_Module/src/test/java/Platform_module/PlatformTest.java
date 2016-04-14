@@ -360,10 +360,8 @@ public class PlatformTest {
     @Test
     public void serviceCrashTest() throws IOException, InterruptedException {
         //TODO
-        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
-        p.waitFor();
-        int ret = p.exitValue();
-        assertEquals(0,ret);
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+
     }
 
     @Test
@@ -374,7 +372,7 @@ public class PlatformTest {
 //								StringBuilder result = new StringBuilde
 
         String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
-        URL url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
+        URL url = new URL("http://localhost:9200/_kql?limit=10000&kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
         conn.setRequestMethod("GET");

@@ -105,7 +105,7 @@ public class DataRetrievalManager extends Manager {
                     bodyargument += current;
                 }
 
-                bodyargument = "http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8");
+                bodyargument = "http://localhost:9200/_kql?limit=10000&kql="+ URLEncoder.encode( bodyargument, "UTF-8");
 //                bodyargument = new String(bodyargument.getBytes("UTF-8"), "ISO-8859-1");
                 URI address = new URI(bodyargument);
                 HttpGet httppost = new HttpGet(address);

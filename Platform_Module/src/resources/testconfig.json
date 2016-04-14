@@ -32,7 +32,7 @@
             "phonenumber":"7871234567",
             "phoneprovider":"claro",
             "email":"a@b.com",
-            "notifiablealgorithms":"[\"testalgorithm\",\"sshdetectionserver\"]"
+            "notifiablealgorithms":"[\"testalgorithm\"]"
           }
         ],
       "encryptedsmtpaccountpath":"pathtoencryptedsmtpaccount",

@@ -446,7 +446,11 @@ public class PlatformTest {
     public void serviceCrashTest() {
         //TODO
 
-        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+        try {
+            Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

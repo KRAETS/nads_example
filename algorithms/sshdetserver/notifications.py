@@ -4,8 +4,8 @@ import time
 NOTIFICATION_SYSTEM_ADDRESS = "localhost:8000"
 def notify_both(message):
     if message == "Singleton":
-        f = open("singletonresults.txt","w+")
-        f.write("yes")
+        f = open("singletonresults.txt","a+")
+        f.write("yes\n"+str(message)+"\n")
         f.close()
         #Notify of the event
         try:
@@ -17,8 +17,8 @@ def notify_both(message):
 
 
     elif message == "Distributed":
-        f = open("distributedresults.txt", "w+")
-        f.write("yes")
+        f = open("distributedresults.txt", "a+")
+        f.write("yes\n"+str(message)+"\n")
         f.close()
         try:
             request = NOTIFICATION_SYSTEM_ADDRESS + "/" + str(1) + "**" + "Distributed Attack Detected:"

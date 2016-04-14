@@ -1,14 +1,16 @@
 import unittest
-
+import urllib2
+import json
+import commander
 
 class EventTestCase(unittest.TestCase):
 
     def setUp(self):
-        # commander.start_client("localhost","dummy","dummylog",True)
+        commander.start_client(True,"localhost","dummy","dummylog")
         self.GLOBAL_IP = "localhost"
         # time.sleep(10)
 
-    def test_login_detection(self):
+    def test_login_detection_node(self):
         print "Starting test"
         print "Opening file to write"
         file = open("dummy/dummylog",'w+')
@@ -24,6 +26,7 @@ class EventTestCase(unittest.TestCase):
 
 
     def tearDown(self):
+        commander.stop()
         pass
 
 

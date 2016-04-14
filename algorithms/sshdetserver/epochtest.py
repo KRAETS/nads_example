@@ -9,7 +9,7 @@ import attacksim
 import commander
 
 
-class EventTestCase(unittest.TestCase):
+class EpochTest(unittest.TestCase):
 
     def setUp(self):
         commander.start_server(True)
@@ -17,7 +17,7 @@ class EventTestCase(unittest.TestCase):
         time.sleep(10)
 
 
-    def test_login_detection(self):
+    def test_epoch_generation(self):
 
         try:
 

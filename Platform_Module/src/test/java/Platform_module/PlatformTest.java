@@ -207,6 +207,7 @@ public class PlatformTest {
         AlgorithmManager am  = new AlgorithmManager(p.getAlgorithmsOptions(), logMan);
         assertTrue(am.configure());
         assertTrue(am.start());
+        assertTrue(am.stop());
     }
 
     //Method tests that the data retrieval manager was correctly initialized

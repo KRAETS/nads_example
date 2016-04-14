@@ -90,88 +90,96 @@ def shutdown():
 
 @app.route('/addlogin', methods=['POST'])
 def add_login():
+    print "Got a login!"
     #Lock the thread for a second
+    print "Acquiring lock"
     lock = threading.Lock()
+
     with lock:
+        try:
+            print "Lock acquired"
 
-        # Increase total logins by one
-        global GLOBAL_CURRENT_EVENT, GLOBAL_LOGINS, GLOBAL_SN, \
-            GLOBAL_SN_1, GLOBAL_DN, GLOBAL_PREVIOUS_DN, GLOBAL_OUT_OF_CONTROL_AMOUNT
+            # Increase total logins by one
+            global GLOBAL_CURRENT_EVENT, GLOBAL_LOGINS, GLOBAL_SN, \
+                GLOBAL_SN_1, GLOBAL_DN, GLOBAL_PREVIOUS_DN, GLOBAL_OUT_OF_CONTROL_AMOUNT
 
-        # logging.debug(GLOBAL_SN,
-        #               GLOBAL_SN_1, GLOBAL_DN, GLOBAL_PREVIOUS_DN,
-        #               GLOBAL_OUT_OF_CONTROL_AMOUNT)
-        GLOBAL_LOGINS += 1
+            # logging.debug(GLOBAL_SN,
+            #               GLOBAL_SN_1, GLOBAL_DN, GLOBAL_PREVIOUS_DN,
+            #               GLOBAL_OUT_OF_CONTROL_AMOUNT)
+            GLOBAL_LOGINS += 1
 
-        # Extract the login from the call data
-        login = Login.parse_from_json(request.json)
-        print "Login Received",login
+            # Extract the login from the call data
+            login = Login.parse_from_json(request.json)
+            print "Login Received", login
 
-        # add the login to the current event
-        GLOBAL_CURRENT_EVENT.add_login(login)
+            # add the login to the current event
+            GLOBAL_CURRENT_EVENT.add_login(login)
 
-        # See if the current event is full or not
-        if GLOBAL_CURRENT_EVENT.is_threshold_reached():
-            #TODO PRINT EVENT IN LOG
-            logging.debug(str(GLOBAL_CURRENT_EVENT))
-            #Add current event to list of events
-            GLOBAL_EVENT_LIST.append(GLOBAL_CURRENT_EVENT)
+            # See if the current event is full or not
+            if GLOBAL_CURRENT_EVENT.is_threshold_reached():
+                #TODO PRINT EVENT IN LOG
+                logging.debug(str(GLOBAL_CURRENT_EVENT))
+                #Add current event to list of events
+                GLOBAL_EVENT_LIST.append(GLOBAL_CURRENT_EVENT)
 
-            # Calculate gfi
-            gfi = GLOBAL_CURRENT_EVENT.calculate_gfi()
-            print "Calculated GFI", gfi
-            # Calculate zn
-            zn = GLOBAL_CURRENT_EVENT.calculate_zn(TUNING_MU, TUNING_K)
-            print "Calculated ZN", zn
-            # SAVE OLD SN
-            GLOBAL_SN_1 = GLOBAL_SN
-            print "Global sn 1",GLOBAL_SN_1
-            # Calculate new sn
-            GLOBAL_SN += zn
-            print "Global sn", GLOBAL_SN
-            # Save Previous detection
-            GLOBAL_PREVIOUS_DN = GLOBAL_DN
-            print "Global previous dn", GLOBAL_PREVIOUS_DN
-            # Perform detection
-            GLOBAL_DN = detection_function()
-            print "Global dn", GLOBAL_DN
-            # Set Event in control or not.  Has to be negated to reflect
-            # in control = no detection and out of control = detection
-            GLOBAL_CURRENT_EVENT.set_control(not GLOBAL_DN)
+                # Calculate gfi
+                gfi = GLOBAL_CURRENT_EVENT.calculate_gfi()
+                print "Calculated GFI", gfi
+                # Calculate zn
+                zn = GLOBAL_CURRENT_EVENT.calculate_zn(TUNING_MU, TUNING_K)
+                print "Calculated ZN", zn
+                # SAVE OLD SN
+                GLOBAL_SN_1 = GLOBAL_SN
+                print "Global sn 1",GLOBAL_SN_1
+                # Calculate new sn
+                GLOBAL_SN += zn
+                print "Global sn", GLOBAL_SN
+                # Save Previous detection
+                GLOBAL_PREVIOUS_DN = GLOBAL_DN
+                print "Global previous dn", GLOBAL_PREVIOUS_DN
+                # Perform detection
+                GLOBAL_DN = detection_function()
+                print "Global dn", GLOBAL_DN
+                # Set Event in control or not.  Has to be negated to reflect
+                # in control = no detection and out of control = detection
+                GLOBAL_CURRENT_EVENT.set_control(not GLOBAL_DN)
 
-            if GLOBAL_DN is True:
-                print "Global DN is true"
-                GLOBAL_OUT_OF_CONTROL_AMOUNT += 1
-                if GLOBAL_PREVIOUS_DN is False:
-                    print "Attack initiated"
-                    # Package Epoch
-                    epoch = package_epoch()
-                    # Process it
-                    GLOBAL_CLASSIFIER.process(epoch)
-                    #Reset event
-                    reset_current_event()
-                else:
-                    print "Attack in progress"
-                    reset_current_event()
-                    if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
+                if GLOBAL_DN is True:
+                    # print "Global DN is true"
+                    GLOBAL_OUT_OF_CONTROL_AMOUNT += 1
+                    if GLOBAL_PREVIOUS_DN is False:
+                        print "Attack initiated"
+                        # Package Epoch
                         epoch = package_epoch()
+                        # Process it
                         GLOBAL_CLASSIFIER.process(epoch)
+                        #Reset event
+                        reset_current_event()
+                    else:
+                        print "Attack in progress"
+                        reset_current_event()
+                        if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
+                            epoch = package_epoch()
+                            GLOBAL_CLASSIFIER.process(epoch)
 
-            else:
-                print "Global dn is false"
-                if GLOBAL_PREVIOUS_DN is True:
-                    print"Reverting to control"
-                    # Reset counts
-                    reset()
-                    # Package epoch
-                    epoch = package_epoch()
-                    # Process Epoch
-                    GLOBAL_CLASSIFIER.process(epoch)
-                    #Reset event
-                    reset_current_event()
                 else:
-                    print "Already in control"
-                    reset_current_event()
+                    # print "Global dn is false"
+                    if GLOBAL_PREVIOUS_DN is True:
+                        print"Reverting to control"
+                        # Reset counts
+                        reset()
+                        # Package epoch
+                        epoch = package_epoch()
+                        # Process Epoch
+                        GLOBAL_CLASSIFIER.process(epoch)
+                        #Reset event
+                        reset_current_event()
+                    else:
+                        print "Already in control"
+                        reset_current_event()
+        except Exception as e:
+            print "Problem analyzing", e
+    print "Done analyzing, returning ok"
     return "OK"
 
 

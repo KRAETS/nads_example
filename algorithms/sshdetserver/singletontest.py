@@ -7,7 +7,7 @@ import attacksim
 import commander
 
 
-class EventTestCase(unittest.TestCase):
+class SingletonTest(unittest.TestCase):
 
     def setUp(self):
         commander.start_server(True)
@@ -19,13 +19,18 @@ class EventTestCase(unittest.TestCase):
             print "File not found"
 
 
-    def test_login_detection(self):
+    def test_singleton_detection(self):
 
         try:
             attacksim.main(None)
             time.sleep(10)
             f = open("singletonresults.txt","r")
-            assert "yes" in f.readlines()
+            found = False
+            for line in f.readlines():
+                if "yes" in line:
+                    found = True
+                    break
+            assert found == True
 
         except Exception as e:
             print "Problem contacting server", e

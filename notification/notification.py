@@ -98,11 +98,7 @@ def setup():
 
 # --------------------------------------------- termination signal
 def signal_term_handler(a, b):
-<<<<<<< HEAD
-    """Receives """
-    print "Notification Module Successfully Killed"
-=======
->>>>>>> 36118245e2defe8d64e0d47edfb9e3266dee87c0
+    """Receives terminate signal and process it."""
     shutdown_server()
     print "Notification Module Successfully Killed"
     sys.exit(0)

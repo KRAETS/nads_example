@@ -4,8 +4,8 @@ import time
 import unittest
 import requests
 
-emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@yahoo.com\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
-textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
+emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@yahoo.com\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@kjsgdh.com\",\"notifiablealgorithms\":\"sshdetectionserver\"}}"
+textparams = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"attt\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"sprint\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
 configparams = "{}"
 validalgs = "{\"List\":[\"sshdetectionserver\"]}"
 password = "email"
@@ -72,7 +72,7 @@ class EventTestCase(unittest.TestCase):
 
         time.sleep(10)
         if VERBOSE:
-            print 'killing process'
+            print 'Killing process'
         p.terminate()
         return True
 

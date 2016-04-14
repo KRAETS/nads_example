@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by pedro on 3/17/16.
+ * Created by marie on 3/17/16.
  */
 public class NotificationManager extends Manager {
     private NotificationOptions notOpts;
@@ -15,9 +15,8 @@ public class NotificationManager extends Manager {
 
     /**
      * Instantiates a new Notification manager.
-     *
      * @param notificationOptions the notification options
-     * @param logger              the logger
+     * @param logger              the logger of the class
      */
     public NotificationManager(NotificationOptions notificationOptions, Logger logger) {
         this.notOpts = notificationOptions;
@@ -25,6 +24,10 @@ public class NotificationManager extends Manager {
         this.configure();
     }
 
+    /**
+     * Starts the notification script.
+     * @return boolean, indicates if notification was successfully started.
+     */
     public boolean start() {
         try{
             notification.start();
@@ -36,6 +39,10 @@ public class NotificationManager extends Manager {
         return true;
     }
 
+    /**
+     * Stops the notification script.
+     * @return boolean, indicates if notification was successfully stopped.
+     */
     public boolean stop() {
         try{
             notification.stop();
@@ -47,6 +54,10 @@ public class NotificationManager extends Manager {
         return true;
     }
 
+    /**
+     * Configures the notification script.
+     * @return boolean, indicates if notification was successfully configured.
+     */
     public boolean configure() {
         //TODO Read options and start
         try {

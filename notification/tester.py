@@ -13,13 +13,7 @@ email = "password"
 scriptdir = os.getcwd() + "/notification.py"
 VERBOSE = False
 
-
-
 class EventTestCase(unittest.TestCase):
-    # ---------------------------------------------------- initializer
-    def setUp(self):
-        print "Setting up test"
-
     # --------------------------------------------------- config set up
     def test_configuration_setup(self):
         global GLOBAL_PROCESS_LIST
@@ -116,6 +110,3 @@ class EventTestCase(unittest.TestCase):
     # ------------------------------------------------------ Tear Down
     def tearDown(self):
         print "Finishing test"
-
-
-

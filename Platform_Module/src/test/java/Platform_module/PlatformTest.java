@@ -12,9 +12,7 @@ import platform.PlatformManager;
 import utilities.UtilitiesManager;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,11 +27,13 @@ import java.util.logging.SimpleFormatter;
 import static org.junit.Assert.*;
 
 /**
- * Created by dude on 3/22/16.
+ * Created by antoine on 3/22/16.
  */
 public class PlatformTest {
 
-    //Method tests that the platform options were correctly parsed
+    /**
+     * Tests that the platform options were correctly parsed
+     */
     @Test
     public void platformOptionsParsingTest()
     {
@@ -44,7 +44,9 @@ public class PlatformTest {
         assertEquals("nads.log", p.getPlatformOptions().getLogLocation());
     }
 
-    //Method tests that the data retrieval options were correctly parsed
+    /**
+     * Tests that the data retrieval options were correctly parsed
+     */
     @Test
     public void dataRetrievalOptionsParsingTest()
     {
@@ -64,7 +66,9 @@ public class PlatformTest {
 
     }
 
-    //Method tests that the visualization options were correctly parsed
+    /**
+     * Tests that the visualization options were correctly parsed
+     */
     @Test
     public void visualizationOptionsParsingTest()
     {
@@ -76,7 +80,9 @@ public class PlatformTest {
         assertEquals("pathtotemplatedumpingfolder", p.getVisualizationOptions().getKibanaTemplateFolder());
     }
 
-    //Method tests that the notification options were correctly parsed
+    /**
+     * Tests that the notification options were correctly parsed
+     */
     @Test
     public void notificationOptionsParsingTest()
     {
@@ -99,7 +105,9 @@ public class PlatformTest {
         assertEquals(m, p.getNotificationOptions().getUserInformation("someone"));
     }
 
-    //Method tests that the algorithm options were correctly parsed
+    /**
+     * Tests that the algorithm options were correctly parsed
+     */
     @Test
     public void algorithmsOptionsParsingTest()
     {
@@ -116,6 +124,9 @@ public class PlatformTest {
         assertEquals(m, p.getAlgorithmsOptions().getAlgorithmParameters("testalgorithm"));
     }
 
+    /**
+     * Tests that the utility options were correctly parsed.
+     */
     @Test
     public void utilitiesOptionsParsingTest()
     {
@@ -129,7 +140,10 @@ public class PlatformTest {
         assertEquals(m.get("newpatternfilelocation"), p.getUtilitiesOptions().getNewPatternFileLocation());
         assertEquals(m.get("originalpatternfilelocation"), p.getUtilitiesOptions().getOriginalPatternFileLocation());
     }
-    //Method that tests whether an essential field was left out or not in configurations
+
+    /**
+     * Tests whether an essential field was left out or not in configurations
+     */
     @Test
     public void verifyIncompleteConfiguration()
     {
@@ -141,7 +155,10 @@ public class PlatformTest {
         assertNull(p.getAlgorithmsOptions().getAlgorithmFolder(name));
 
     }
-    //Method tests that the parser detects a nonexistent json file
+
+    /**
+     * Tests that the parser detects a nonexistent json file
+     */
     @Test
     public void nonexistantJsonParsingTest()
     {
@@ -151,7 +168,9 @@ public class PlatformTest {
 
     }
 
-    //Method tests that the parser detects a incorrect json file
+    /**
+     * Tests that the parser detects a incorrect json file
+     */
     @Test
     public void incorrectSyntaxJsonParsingTest()
     {
@@ -159,7 +178,10 @@ public class PlatformTest {
         Parser p = new Parser(configFile);
         assertFalse(p.extractOptions());
     }
-    //Method tests that the parser detects a syntactically correct json file but with the wrong fields
+
+    /**
+     * Tests that the parser detects a syntactically correct json file but with the wrong fields
+     */
     @Test
     public void incorrectFieldsJsonParsingTest()
     {
@@ -168,7 +190,9 @@ public class PlatformTest {
         assertFalse(p.extractOptions());
     }
 
-    //Method tests that the platform manager was correctly initialized
+    /**
+     * Tests that the platform manager was correctly initialized
+     */
     @Test
     public void platformInitializingTest()
     {
@@ -179,7 +203,9 @@ public class PlatformTest {
         pm.stop();
     }
 
-    //Method tests that the algorithm manager was correctly initialized
+    /**
+     * Tests that the algorithm manager was correctly initialized
+     */
     @Test
     public void algorithmInitializingTest()
     {
@@ -210,7 +236,9 @@ public class PlatformTest {
         assertTrue(am.stop());
     }
 
-    //Method tests that the data retrieval manager was correctly initialized
+    /**
+     * Tests that the data retrieval manager was correctly initialized
+     */
     @Test
     public void dataRetrievalInitializingTest()
     {
@@ -241,7 +269,9 @@ public class PlatformTest {
         drm.stop();
     }
 
-    //Method tests that the utilities manager was correctly initialized
+    /**
+     * Tests that the utilities manager was correctly initialized
+     */
     @Test
     public void utilitiesInitializingTest()
     {
@@ -271,7 +301,9 @@ public class PlatformTest {
         assertTrue(um.start());
     }
 
-    //Method tests that the notification manager was correctly initialized
+    /**
+     * Tests that the notification manager was correctly initialized
+     */
     @Test
     public void notificationInitializingTest()
     {
@@ -305,14 +337,31 @@ public class PlatformTest {
         assertTrue(um.start());
     }
 
+    /**
+     * Tests that the service was correctly installed
+     */
     @Test
-    public void serviceInstallTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/installDaemon.sh");
-        p.waitFor();
+    public void serviceInstallTest() {
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/installDaemon.sh");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
         while(true) {
-            String line = in.readLine();
+            String line = null;
+            try {
+                line = in.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if(line == null)
                 break;
             else
@@ -322,14 +371,31 @@ public class PlatformTest {
         assertEquals(0,ret);
     }
 
+    /**
+     * Tests that the service start was correctly started
+     */
     @Test
-    public void serviceStartTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
-        p.waitFor();
+    public void serviceStartTest(){
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
         while(true) {
-            String line = in.readLine();
+            String line = null;
+            try {
+                line = in.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if(line == null)
                 break;
             else
@@ -339,16 +405,31 @@ public class PlatformTest {
         assertEquals(0,ret);
     }
 
-
-
+    /**
+     * Tests that the service was correctly stoped
+     */
     @Test
-    public void serviceStopTest() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
-        p.waitFor();
+    public void serviceStopTest() {
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
         while(true) {
-            String line = in.readLine();
+            String line = null;
+            try {
+                line = in.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if(line == null)
                 break;
             else
@@ -358,40 +439,87 @@ public class PlatformTest {
         assertEquals(0,ret);
     }
 
+    /**
+     * Tests that the service was correctly crashed
+     */
     @Test
-    public void serviceCrashTest() throws IOException, InterruptedException {
+    public void serviceCrashTest() {
         //TODO
-        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
-        p.waitFor();
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         int ret = p.exitValue();
         assertEquals(0,ret);
     }
 
+    /**
+     * Tests that the a select From/Where statement was executed successfully
+     */
     @Test
-    public void selectFromWhereKQLTest() throws IOException, InterruptedException {
+    public void selectFromWhereKQLTest() {
         StringBuilder output2 = new StringBuilder();
-//								Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
-//
-//								StringBuilder result = new StringBuilde
 
         String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
-        URL url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-        conn.setRequestMethod("GET");
-        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String line;
-        while ((line = rd.readLine()) != null) {
-            output2.append(line);
+        URL url = null;
+        try {
+            url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
-        rd.close();
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        assertEquals(200,conn.getResponseCode());
+        try {
+            conn.setRequestMethod("GET");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
+        BufferedReader rd = null;
+        try {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String line;
+        try {
+            while ((line = rd.readLine()) != null) {
+                output2.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            rd.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            assertEquals(200,conn.getResponseCode());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Tests that the a send data statement was executed successfully
+     */
     @Test
-    public void sendDataTest() throws IOException
-    {
+    public void sendDataTest() {
         String path = "../Platform_Module/src/resources/testconfig.json";
         String path2 = "../Platform_Module/Results.log";
         Parser hi = new Parser(path);
@@ -403,15 +531,22 @@ public class PlatformTest {
         c.start();
         while (c.isAlive()) {}
         mng.stop();
-        List<String> lines = Files.readAllLines(Paths.get(path2), Charset.forName("UTF-8"));
+        List<String> lines = null;
+        try {
+            lines = Files.readAllLines(Paths.get(path2), Charset.forName("UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String test = lines.get(lines.size()-1);
         assertEquals("Anomaly detected: {hyuouho}",test);
 
     }
 
+    /**
+     * Tests that the a get data statement was executed successfully
+     */
     @Test
-    public void getDataTest() throws IOException
-    {
+    public void getDataTest() {
         String path = "/home/pedro/Documents/git/nads/Platform_Module/src/resources/testconfig.json";
         Parser hi = new Parser(path);
         hi.extractOptions();
@@ -427,15 +562,13 @@ public class PlatformTest {
 
         assertTrue(results);
         assertEquals(200,resultCode);
-
-
     }
-
-
-
-
 }
 
+
+/**
+ * Executes all test
+ */
 class Caller implements Runnable
 {
     private String threadName = "";
@@ -444,10 +577,19 @@ class Caller implements Runnable
     private String resultResponse = "";
     private int resultCode = 0;
 
+    /**
+     * Gets the test result.
+     * @return string, test result state response
+     */
     public String getResultResponse()
     {
         return this.resultResponse;
     }
+
+    /**
+     * Gets the test result code.
+     * @return int, test result state code
+     */
     public int getResultCode()
     {
         return this.resultCode;
@@ -458,6 +600,19 @@ class Caller implements Runnable
         this.threadName = name;
         this.requestType = rN;
     }
+
+    /**
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
+     * <code>run</code> method to be called in that separately executing
+     * thread.
+     * <p>
+     * The general contract of the method <code>run</code> is that it may
+     * take any action whatsoever.
+     *
+     * @see Thread#run()
+     */
+    @Override
     public void run() {
         System.out.println("Running " +  threadName );
         try {
@@ -517,6 +672,9 @@ class Caller implements Runnable
         System.out.println("Thread " +  threadName + " exiting.");
     }
 
+    /**
+     * Starts test thread.
+     */
     public void start()
     {
         System.out.println("Starting " +  threadName );
@@ -527,11 +685,18 @@ class Caller implements Runnable
         }
     }
 
+    /**
+     * Stops test thread.
+     */
     public void stop()
     {
         this.t.interrupt();
     }
 
+    /**
+     * Verifies if test thread is alive.
+     * @return boolean, true if exists, false otherwise
+     */
     public boolean isAlive() { return this.t.isAlive();}
 
 }

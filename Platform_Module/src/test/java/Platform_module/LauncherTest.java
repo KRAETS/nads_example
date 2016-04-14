@@ -13,7 +13,6 @@ public class LauncherTest
 {
     /**
      * Create the test case
-     *
      * @param testName name of the test case
      */
     public LauncherTest(String testName )

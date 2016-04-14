@@ -1,34 +1,49 @@
 import time
 import urllib2
 
+# File containing the attack information
 filename = "attack.txt"
+# Ip of the server to attack
 GLOBAL_IP = "localhost:8003"
 distributed = False
+
+# Total number of users when distributed
 number_of_attack_users = 9
-legit_user_fail = 7 #Every 15 attempts a legit user fails by wrong password
+# Every 7 attempts a legit user fails by wrong password
+legit_user_fail = 7
+time_between_attacks = 0
+
 
 def main(DISTRIBUTED):
+    """Main function.  Executes an attack by simulating network connections
+    DISTRIBUTED - True executes a distributed attack, false a singleton
+    """
     if DISTRIBUTED is not None:
         global distributed
         distributed = DISTRIBUTED
     print "Starting attack"
+    # Open the file containing a list with the type of attacks and frequencies
     attack_file = open(filename, 'r')
+
     failcount = 0
     successcount = 0
     currcount = 0
 
     for line in attack_file.readlines():
+        # Ignore comment
         if "#" in line:
             continue
+        # Execute a failed attempt if F  or Successful attempt if S
         else:
             if "F" in line or "f" in line:
                 # produce failed attempt
                 failcount += 1
-                #Sign of a failed attempt
+                # Sign of a failed attempt
                 json = None
+                # Legitimate user fails
                 if currcount % legit_user_fail is 0:
                     if currcount % 2 is 0:
-                        #Mistaken password attempt
+                        # Mistaken password attempt
                         json = "{ \
                           \"status\": false,\
                           \"client\":\"mrlegit\",\
@@ -36,13 +51,14 @@ def main(DISTRIBUTED):
                           \"user\":\"thetrueuser\"\
                         }"
                     else:
-                        #Mistaken user account fail
+                        # Mistaken user account fail
                         json = "{ \
                           \"status\": false,\
                           \"client\":\"mrlegit\",\
                           \"host\":\"somehost\",\
                           \"user\":\"thetrueuser1\"\
                         }"
+                # Normal attack entry
                 else:
                     json = "{ \
                       \"status\": false,\
@@ -50,15 +66,16 @@ def main(DISTRIBUTED):
                       \"host\":\"somehost\",\
                       \"user\":\"theuser\"\
                     }"
-                #Simulate a distributed attack with 0-2 users
+                # Simulate a distributed attack by increasing the current count to create bogus 1-N users
                 if distributed:
                     currcount += 1
 
-
+                # Send request
                 req = urllib2.Request('http://'+GLOBAL_IP+'/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json)
 
+            # Successful request simulation
             elif "S" in line or "s" in line:
                 # produce successful attempt
                 successcount += 1
@@ -74,10 +91,13 @@ def main(DISTRIBUTED):
                 pass
             else:
                 continue
-        if (successcount+failcount) % 10 == 0:
+        # Print some statistics
+        if (successcount + failcount) % 10 == 0:
             print "Stopping for event processing"
-            time.sleep(0)
+            time.sleep(time_between_attacks)
 
     print "Success:", successcount, "Fail:", failcount
+
+# Call the main method
 if __name__ == '__main__':
     main(True)

@@ -8,10 +8,6 @@ from flask import Flask, request
 # --------------------------------------------------------- Variables
 print 'Notification Script started'
 args = sys.argv  # argv(1) json string
-numbers = []
-alg1 = []
-alg2 = []
-alg3 = []
 size = 1024
 cellphoneComp = {'att': 'txt.att.net', 'att-cingular': 'mmode.com', 'sprint': 'messaging.sprintpcs.com',
                  'claro': 'vtexto.com', 'tmobile': 'tmomail.net', 'openMobile': 'email.openmobilepr.com',
@@ -26,31 +22,30 @@ validalgs = True
 
 # ------------------------------------------------------------ Set-up
 def setup():
+    """Extracts smtp login information and users to notify information."""
     try:
         print "Starting setup"
         global email, password, emaildatacheck, validalgs, algs
 
-        # print 'set up'
         if len(args) > 1:  # ------- text and email set-up
             data = dict()
             if len(args) > 1:  # user information
-                print "Loading argument", args[1]
+                print "\tLoading argument", args[1]
                 data = json.loads(args[1])
 
             if len(args) > 2:  # valid args list information
-                print "Loading algorithms list", args[2]
+                print "\tLoading algorithms list", args[2]
                 argslist = json.loads(args[2])
 
                 for a in argslist["List"]:
                     algs[a] = []
-                #print algs
             else:
                 validalgs = False
-                print 'No valid algorithms were received'
+                print 'WARNING: No valid algorithms were received'
 
             if len(args) > 3:  # email and password information
                 email = args[3]
-                print 'Loading mail'
+                print 'Loading email'
                 if len(args) > 4:
                     password = args[4]
                     print 'Loading email password'
@@ -61,36 +56,30 @@ def setup():
 
             print "Interpreting users  information"
             for key in data:
-                # print "Data", data
                 if 'phonenumber' in data.get(key):  # text set-up
-                    # print "Filtering number"
-                    # print "Key",key
-                    # print "Data get key", data.get(key)
-
                     num = data.get(key)['phonenumber'].replace('-', '')
                     num = data.get(key)['phonenumber'].replace(' ', '')
                     num = data.get(key)['phonenumber'].replace('(', '')
                     num = data.get(key)['phonenumber'].replace(')', '')
                     num = data.get(key)['phonenumber'].replace('+', '')
-                    # print "Filtering done"
+
                     if num.isdigit() and len(num) == 10:
                         nflag = False
+                        number = []
                         if data.get(key)['phoneprovider'].lower() in cellphoneComp:
                             if data.get(key)['phoneprovider'].lower() == 'tmobile':
-                                numbers = '+1' + num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
+                                number = '+1' + num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             else:
-                                numbers = num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
+                                number = num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             nflag = True
                         if nflag:
-                            # TODO make this a for instead of hardcoding
                             for a in data.get(key)['notifiablealgorithms']:
                                 if a in algs.keys():
-                                    algs[a].append(numbers)
-
+                                    algs[a].append(number)
                     else:
                         print 'WARNING: \"' + data.get(key)[
                             'phonenumber'] + '\" phone number is incorrect and was not added to the notification list'
-                # print "Interpreting emails"
+
                 if 'email' in data.get(key):  # email set-up
                     if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
                         for a in data.get(key)['notifiablealgorithms']:
@@ -105,16 +94,22 @@ def setup():
     except Exception as e:
         print "There was a problem with the setup", e
 
-    print "Finished initial setup"
+    print "Initial setup Completed"
 
 # --------------------------------------------- termination signal
 def signal_term_handler(a, b):
+<<<<<<< HEAD
+    """Receives """
     print "Notification Module Successfully Killed"
+=======
+>>>>>>> 36118245e2defe8d64e0d47edfb9e3266dee87c0
     shutdown_server()
+    print "Notification Module Successfully Killed"
     sys.exit(0)
 
 # ---------------------------------------------------- smtp set-up
 def smtp_setup():
+    """Sets up smtp configuration and login"""
     print "Smtp setup starting"
     global smtp, emaildatacheck, email
     if emaildatacheck:
@@ -142,8 +137,7 @@ def smtp_setup():
             print "Trying smtp Login"
             if str(smtp.ehlo()[0]) == '250':
                 try:
-                    res = smtp.login(email, password)
-                    # print "Login result: ", res
+                    smtp.login(email, password)
                 except Exception as e:
                     print 'Problem while attempting login ', str(e)
     else:
@@ -153,37 +147,41 @@ def smtp_setup():
 
 # --------------------------------------------------- Send message
 def sendMessage(info, message):
+    """Sends notification to users"""
     global validalgs, algs
-    print "message-----------------"
+    print "Send Message -----------------"
     if validalgs:
         if info in algs.keys():
             for each in algs[info]:
                 smtp.sendmail(email, each, 'Subject: \n' + message)
         else:
-            return 'algorithm not recognized'
+            return 'Algorithm not recognized'
     else:
-        print 'no valid arguments were received'
-    return 'message sent'
+        return 'No valid arguments were received in message'
+    return 'Message sent'
 
 # -------------------------------------------------- server using flask
 app = Flask(__name__)
 
 @app.route('/<message>', methods=['GET'])
-def hello_world(message):
+def message_receiver(message):
+    """Receives notification to send to the user"""
     mes = str(message).split('**')
     return sendMessage(mes[0], mes[1])
 
 def shutdown_server():
+    """Shuts down flask"""
+    return 'Server shutting down...'
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
-    print 'Server successfully killed'
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
+    """Receives notification to shut down flask"""
     shutdown_server()
-    return 'Server shutting down...'
+    print 'Server successfully killed'
 
 if __name__ == '__main__':
     print "Setting up signal handlers"
@@ -191,7 +189,6 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_term_handler)
 
     setup()
-
     smtp_setup()
 
     try:

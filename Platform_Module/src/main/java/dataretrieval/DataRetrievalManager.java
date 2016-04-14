@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 public class DataRetrievalManager extends Manager {
     private DataRetrievalOptions datRetOpts;
     private HttpServer server = null;
+    private int serverSocket = 8002;
 
     /**
      * Instantiates a new Data retrieval manager.
@@ -39,10 +40,11 @@ public class DataRetrievalManager extends Manager {
 
     @Override
     public boolean start() {
-
+        //Creates an http server in which to listen in for data requests
         try {
-            server = HttpServer.create(new InetSocketAddress(8002), 0);
+            server = HttpServer.create(new InetSocketAddress(serverSocket), 0);
         } catch (IOException e) {
+            this.getLogger().log(Level.SEVERE,"Could not start data retrieval server:"+e.toString());
             e.printStackTrace();
         }
         //Set up the receiving point for getting a request for data
@@ -66,19 +68,30 @@ public class DataRetrievalManager extends Manager {
     }
     @Override
     public boolean configure() {
+        //Currently no configuration is needed
         return true;
     }
 
-
+    /**
+     * Class that handles the http request for sending data
+     */
     private static class SendData implements HttpHandler {
+        /**
+         * The method that handles the request
+         * @param t
+         * @throws IOException
+         */
         public void handle(HttpExchange t) throws IOException {
+            //Open a file to write the data that was sent to us
             File outputfile = new File("Results.log");
+            //Make it synchronized so that there are no write errors
             synchronized (outputfile){
                 //Initialize the file printer
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(outputfile, true)));
                 //Append the body
                 BufferedReader input = new BufferedReader(new InputStreamReader(t.getRequestBody()));
                 String bodyargument = "";
+                //Write the whole body to the file
                 while (true){
                     String current = input.readLine();
                     if(current == null){
@@ -90,19 +103,30 @@ public class DataRetrievalManager extends Manager {
                 out.flush();
                 out.close();
             }
+            //If reached here then we have written the result
             String response = "Success";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
+            //Send the output
             os.write(response.getBytes());
             os.close();
         }
     }
+
+    /**
+     * Class that handles a request for getting data
+     */
     private static class GetData implements HttpHandler {
+        /**
+         * Method that handles the actual exchange
+         * @param t
+         * @throws IOException
+         */
         public void handle(HttpExchange t) throws IOException {
             try {
                 //Forward the request to the appropriate location
-
                 HttpClient httpclient = HttpClients.createDefault();
+                //Read the request
                 BufferedReader input = new BufferedReader(new InputStreamReader(t.getRequestBody()));
                 String bodyargument = "";
                 while (true){
@@ -112,20 +136,21 @@ public class DataRetrievalManager extends Manager {
                     }
                     bodyargument += current;
                 }
+                String kqlServerAddress = "http://localhost:9200/_kql?kql=";
 
-                bodyargument = "http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8");
-//                bodyargument = new String(bodyargument.getBytes("UTF-8"), "ISO-8859-1");
+                bodyargument = kqlServerAddress + URLEncoder.encode( bodyargument, "UTF-8");
                 URI address = new URI(bodyargument);
                 HttpGet httppost = new HttpGet(address);
 
-                                //Execute and get the response.
+                //Execute and get the response.
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
 
                 if (entity != null) {
 
                     InputStream instream = entity.getContent();
-                    try {
+                    try
+                    {
                         // do something useful
                         input = new BufferedReader(new InputStreamReader(instream));
 
@@ -141,7 +166,11 @@ public class DataRetrievalManager extends Manager {
                         OutputStream os = t.getResponseBody();
                         os.write(forwardedresponse.getBytes());
                         os.close();
-                    } finally {
+                    }
+                    catch (Exception e){
+                        System.out.println("Problem handling the request");
+                    }
+                    finally {
                         instream.close();
                     }
                 } else {
@@ -154,6 +183,7 @@ public class DataRetrievalManager extends Manager {
                 }
             }
             catch (Exception e){
+                //Handle any response errors
                 String forwardedresponse = e.toString();
                 t.sendResponseHeaders(500, forwardedresponse.length());
                 OutputStream os = t.getResponseBody();

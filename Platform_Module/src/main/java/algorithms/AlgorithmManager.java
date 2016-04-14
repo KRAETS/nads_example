@@ -17,12 +17,11 @@ public class AlgorithmManager extends Manager {
 
 
     /**
-     * Start boolean.
+     * Start a specific algorithm by name.
      *
      * @param algorithmName the algorithm name
-     * @return boolean boolean
+     * @return boolean return status
      */
-//Method that starts a specific algorithm
     public boolean start(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
@@ -50,7 +49,10 @@ public class AlgorithmManager extends Manager {
         return true;
     }
 
-    //stops all the algorithm
+    /**
+     * stops all the algorithms
+     * @return boolean stop status
+     */
     public boolean stop() {
         try{
             this.stopAll();
@@ -61,7 +63,12 @@ public class AlgorithmManager extends Manager {
         }
         return true;
     }
-    //configures the manager by creating all the algorithms in the config file and passing their parameters
+
+
+    /**
+     * configures the manager by creating all the algorithms in the config file and passing their parameters
+     * @return boolean configuration status
+     */
     public boolean configure() {
         try {
             for (String s : this.algOpts.getAlgorithmNames()) {
@@ -78,12 +85,12 @@ public class AlgorithmManager extends Manager {
     }
 
     /**
-     * Start boolean.
+     * Starts a specific algorithm according to the order it is in the list
      *
      * @param algorithmNumber the algorithm number
-     * @return the boolean
+     * @return boolean status of the starting
      */
-//Starts a specific algorithm
+
     public boolean start(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
             this.getLogger().log(Level.SEVERE, "Out of range");
@@ -94,12 +101,12 @@ public class AlgorithmManager extends Manager {
     }
 
     /**
-     * Stop boolean.
+     * Stops a specific algorithm by name
      *
      * @param algorithmName the algorithm name
-     * @return the boolean
+     * @return boolean status of stop
      */
-//stops a specific algorithm
+
     public boolean stop(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
@@ -111,12 +118,12 @@ public class AlgorithmManager extends Manager {
     }
 
     /**
-     * Stop boolean.
+     * Stops a specific algorithm by the number in which it is specified in the configuration file
      *
      * @param algorithmNumber the algorithm number
      * @return the boolean
      */
-//stops a specific algorithm
+
     public boolean stop(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
             return false;
@@ -126,9 +133,9 @@ public class AlgorithmManager extends Manager {
     }
 
     /**
-     * Start all.
+     * Start all algorithms.
      */
-//Starts all algorithms
+
     public void startAll(){
         for(Algorithm alg:algorithmsList){
             alg.start();
@@ -136,9 +143,8 @@ public class AlgorithmManager extends Manager {
     }
 
     /**
-     * Stop all.
+     * Stop all algorithms.
      */
-//stops all algorithms
     public void stopAll(){
         for(Algorithm alg:algorithmsList){
             alg.stop();
@@ -148,11 +154,11 @@ public class AlgorithmManager extends Manager {
     /**
      * Instantiates a new Algorithm manager.
      *
-     * @param algOpts the alg opts
+     * @param algOpts the algorithm manager opts
      * @param logger  the logger
      */
     public AlgorithmManager(AlgorithmsOptions algOpts, Logger logger){
-        this.algorithmsList = new LinkedList<Algorithm>();
+        this.algorithmsList = new LinkedList<>();
         this.algOpts = algOpts;
         this.setLogger(logger);
         this.configure();

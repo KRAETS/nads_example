@@ -15,8 +15,7 @@ public class NotificationOptions extends Options{
 
     /**
      * Get email string.
-     *
-     * @return the string with the email
+     * @return string, the email to send the notifications.
      */
     public String getEmail(){
         return this.getOpt("notificationemail").getOptionStringIndividual();
@@ -24,8 +23,7 @@ public class NotificationOptions extends Options{
 
     /**
      * Get email password string.
-     *
-     * @return the string with the email password
+     * @return string, the password from the email to send the notifications.
      */
     public String getEmailPassword(){
         return this.getOpt("notificationemailpassword").getOptionStringIndividual();
@@ -33,8 +31,7 @@ public class NotificationOptions extends Options{
 
     /**
      * Get path string.
-     *
-     * @return the string with the path to the notification module script
+     * @return string, the path to the notification script.
      */
     public String getPath(){
         return this.getOpt("notificationfilelocation").getOptionStringIndividual();
@@ -42,8 +39,7 @@ public class NotificationOptions extends Options{
 
     /**
      * Get notification users list.
-     *
-     * @return the list with the users to be notified
+     * @return list<string>, the names of the users to notify.
      */
     public List<String> getNotificationUsers(){
        List<String> out = new ArrayList<>();
@@ -109,21 +105,25 @@ public class NotificationOptions extends Options{
         return null;
     }
 
-//    public List<String> getUserAlgorithms(String user){
-////        return null;
-//        for (Option t: this.getOpt("users").getOptionList()){
-//            if((t.getOptionMap().get("name")).equalsIgnoreCase(user)){
-//                return t.getOptionMap().get("notifiablealgorithms");
-//            }
-//        }
+    /**
+     * Get user algorithms string
+     * @param user user to get the notifiable algorithms from
+     * @return string, user algorithms to notify
+     */
+    public String getUserAlgorithms(String user){
 //        return null;
-//    }
+        for (Option t: this.getOpt("users").getOptionList()){
+            if((t.getOptionMap().get("name")).equalsIgnoreCase(user)){
+                return t.getOptionMap().get("notifiablealgorithms");
+            }
+        }
+        return null;
+    }
 
     /**
      * Get valid algorithms list.
-     *
-     * @return the list withthe valid algorithms
-     */
+     * @return list<string>, valid algorithms to notify users
+s     */
     public List<String> getValidAlgorithms(){
         return this.getOpt("validalgorithmslist").getOptionStringList();
     }

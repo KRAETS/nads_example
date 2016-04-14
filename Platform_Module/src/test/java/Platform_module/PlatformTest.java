@@ -44,6 +44,7 @@ public class PlatformTest {
         assertEquals("nads.log", p.getPlatformOptions().getLogLocation());
     }
 
+    
     /**
      * Tests that the data retrieval options were correctly parsed
      */

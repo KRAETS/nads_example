@@ -65,7 +65,9 @@ def setup():
 
                     if num.isdigit() and len(num) == 10:
                         nflag = False
+
                         number = []
+
                         if data.get(key)['phoneprovider'].lower() in cellphoneComp:
                             if data.get(key)['phoneprovider'].lower() == 'tmobile':
                                 number = '+1' + num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
@@ -90,21 +92,22 @@ def setup():
                             'email'] + '\" is not a valid email format and was not added to the notification list'
         else:
             print 'Error: No arguments were found and Notification Script couldn\'t start'
-            sys.exit(-1)
+            sys.exit(1)
     except Exception as e:
-        print "There was a problem with the setup", e
+        print "ERROR: There was a problem with the setup", e
+        sys.exit(1)
 
     print "Initial setup Completed"
 
 # --------------------------------------------- termination signal
 def signal_term_handler(a, b):
-<<<<<<< HEAD
-    """Receives """
-    print "Notification Module Successfully Killed"
-=======
->>>>>>> 36118245e2defe8d64e0d47edfb9e3266dee87c0
-    shutdown_server()
-    print "Notification Module Successfully Killed"
+
+    try:
+        shutdown_server()
+        print "Notification Module Successfully Killed"
+
+    except Exception as e:
+        print "Could not shut down", e
     sys.exit(0)
 
 # ---------------------------------------------------- smtp set-up
@@ -124,25 +127,29 @@ def smtp_setup():
             if emailprovider in emailComp[key]:
                 option = [emailComp[key], 465]
                 break
-        print "Trying ssl"
-
         try:
             smtp = smtplib.SMTP_SSL(option[0], option[1])
             flag = True
         except Exception as e:
-            print "Could not establish ssl connection", str(e)
+            print "ERROR: Could not establish ssl connection", str(e)
+            sys.exit(1)
 
         print "Ssl established: ", flag
         if flag:
             print "Trying smtp Login"
             if str(smtp.ehlo()[0]) == '250':
                 try:
-                    smtp.login(email, password)
+
+
+                    res = smtp.login(email, password)
+                    print "Login result: ", res
+
                 except Exception as e:
                     print 'Problem while attempting login ', str(e)
+                    sys.exit(1)
     else:
         print "ERROR: Unable to set up the notification system. Email information is incomplete"
-        signal_term_handler()
+        sys.exit(1)
     print "Finished smtp setup"
 
 # --------------------------------------------------- Send message
@@ -153,12 +160,17 @@ def sendMessage(info, message):
     if validalgs:
         if info in algs.keys():
             for each in algs[info]:
-                smtp.sendmail(email, each, 'Subject: \n' + message)
+                try:
+                    smtp.sendmail(email, each, 'Subject: \n' + message)
+                    print "Email sent"
+                except Exception as e:
+                    print "Problem sending email", e
         else:
-            return 'Algorithm not recognized'
+            print 'Algorithm not recognized'
     else:
-        return 'No valid arguments were received in message'
-    return 'Message sent'
+        print 'No valid arguments were received in message'
+    print 'Message sent'
+    return "OK"
 
 # -------------------------------------------------- server using flask
 app = Flask(__name__)

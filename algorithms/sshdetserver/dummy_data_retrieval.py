@@ -24,6 +24,6 @@ def store_result(type, date, info, additional_info):
         req.add_data(json.dumps(res))
         response = urllib2.urlopen(req)
     except Exception as e:
-        print e
+        print "Could not store result", e
 
 

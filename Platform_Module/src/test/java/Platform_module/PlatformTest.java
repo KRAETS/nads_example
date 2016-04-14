@@ -445,19 +445,9 @@ public class PlatformTest {
     @Test
     public void serviceCrashTest() {
         //TODO
-        Process p = null;
-        try {
-            p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/stopDaemon.sh");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            p.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        int ret = p.exitValue();
-        assertEquals(0,ret);
+
+        Process p = Runtime.getRuntime().exec("src/resources/yajsw-beta-12.05/bin/startDaemon.sh");
+
     }
 
     /**
@@ -468,9 +458,10 @@ public class PlatformTest {
         StringBuilder output2 = new StringBuilder();
 
         String bodyargument = "SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ where \\ ALL*status \\=\"Failed\" or \\ ALL*status \\=\"Accepted\"";
+
         URL url = null;
         try {
-            url = new URL("http://localhost:9200/_kql?kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
+           url = new URL("http://localhost:9200/_kql?limit=10000&kql="+ URLEncoder.encode( bodyargument, "UTF-8"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -482,6 +473,7 @@ public class PlatformTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         try {
             conn.setRequestMethod("GET");

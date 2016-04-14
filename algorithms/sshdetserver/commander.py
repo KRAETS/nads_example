@@ -19,9 +19,17 @@ def usage():
 def signal_term_handler(a, b):
     """Function to handle sigterm and shutdown proceses"""
     print "Notification Module Successfully Killed"
+    global GLOBAL_PROCESS_LIST
     for process in GLOBAL_PROCESS_LIST:
         process.terminate()
     sys.exit(0)
+
+
+def stop():
+    print "Notification Module Successfully Killed"
+    global GLOBAL_PROCESS_LIST
+    for process in GLOBAL_PROCESS_LIST:
+        process.terminate()
 
 
 def main():

@@ -9,7 +9,7 @@ import attacksim
 import commander
 
 
-class EventTestCase(unittest.TestCase):
+class EpochTest(unittest.TestCase):
 
     def setUp(self):
         """Initializes the server for testing"""
@@ -18,8 +18,10 @@ class EventTestCase(unittest.TestCase):
         time.sleep(10)
 
 
+
     def test_login_detection(self):
         """Tests a singleton attack to retrieve the epoch"""
+
         try:
 
             attacksim.main(False)

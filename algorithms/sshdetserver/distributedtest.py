@@ -8,7 +8,7 @@ import attacksim
 import commander
 
 
-class EventTestCase(unittest.TestCase):
+class DistributedTest(unittest.TestCase):
 
     def setUp(self):
         """Set up the test by starting the server"""
@@ -20,17 +20,24 @@ class EventTestCase(unittest.TestCase):
         except Exception as e:
             print "File not found"
 
+
     def test_login_detection(self):
         """Start the attack with the simulator"""
+
         try:
             attacksim.main(True)
             time.sleep(10)
             f = open("distributedresults.txt","r")
-            assert "yes" in f.readlines()
+            found = False
+            for line in f.readlines():
+                if "yes" in line:
+                    found = True
+                    break
+            assert found == True
 
         except Exception as e:
             print "Problem contacting server", e
-            exit()
+            exit(0)
 
     def tearDown(self):
         """Close the server"""

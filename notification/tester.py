@@ -12,9 +12,7 @@ scriptdir = os.getcwd() + "/notification.py"
 VERBOSE = True
 p=None
 
-
 class EventTestCase(unittest.TestCase):
-
     # ---------------------------------------------------- initializer
     def setUp(self):
         global p
@@ -26,7 +24,7 @@ class EventTestCase(unittest.TestCase):
             print 'starting server'
         time.sleep(15)
 
-    # --------------------------------------------------- config set up
+    # --------------------------------------------------- email test
     def test_email_setup(self):
         global GLOBAL_PROCESS_LIST, p
         if VERBOSE:

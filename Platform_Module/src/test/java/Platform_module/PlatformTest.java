@@ -44,6 +44,7 @@ public class PlatformTest {
         assertEquals("nads.log", p.getPlatformOptions().getLogLocation());
     }
 
+    
     /**
      * Tests that the data retrieval options were correctly parsed
      */
@@ -165,7 +166,6 @@ public class PlatformTest {
         String configFile = "src/resources/conerrfig.json";
         Parser p = new Parser(configFile);
         assertFalse(p.extractOptions());
-
     }
 
     /**

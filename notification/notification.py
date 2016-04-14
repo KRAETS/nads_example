@@ -8,10 +8,6 @@ from flask import Flask, request
 # --------------------------------------------------------- Variables
 print 'Notification Script started'
 args = sys.argv  # argv(1) json string
-numbers = []
-alg1 = []
-alg2 = []
-alg3 = []
 size = 1024
 cellphoneComp = {'att': 'txt.att.net', 'att-cingular': 'mmode.com', 'sprint': 'messaging.sprintpcs.com',
                  'claro': 'vtexto.com', 'tmobile': 'tmomail.net', 'openMobile': 'email.openmobilepr.com',
@@ -30,7 +26,6 @@ def setup():
         print "Starting setup"
         global email, password, emaildatacheck, validalgs, algs
 
-        # print 'set up'
         if len(args) > 1:  # ------- text and email set-up
             data = dict()
             if len(args) > 1:  # user information
@@ -43,7 +38,6 @@ def setup():
 
                 for a in argslist["List"]:
                     algs[a] = []
-                #print algs
             else:
                 validalgs = False
                 print 'No valid algorithms were received'
@@ -61,20 +55,16 @@ def setup():
 
             print "Interpreting users  information"
             for key in data:
-                # print "Data", data
                 if 'phonenumber' in data.get(key):  # text set-up
-                    # print "Filtering number"
-                    # print "Key",key
-                    # print "Data get key", data.get(key)
-
                     num = data.get(key)['phonenumber'].replace('-', '')
                     num = data.get(key)['phonenumber'].replace(' ', '')
                     num = data.get(key)['phonenumber'].replace('(', '')
                     num = data.get(key)['phonenumber'].replace(')', '')
                     num = data.get(key)['phonenumber'].replace('+', '')
-                    # print "Filtering done"
+
                     if num.isdigit() and len(num) == 10:
                         nflag = False
+                        numbers = []
                         if data.get(key)['phoneprovider'].lower() in cellphoneComp:
                             if data.get(key)['phoneprovider'].lower() == 'tmobile':
                                 numbers = '+1' + num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
@@ -82,7 +72,6 @@ def setup():
                                 numbers = num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             nflag = True
                         if nflag:
-                            # TODO make this a for instead of hardcoding
                             for a in data.get(key)['notifiablealgorithms']:
                                 if a in algs.keys():
                                     algs[a].append(numbers)
@@ -101,16 +90,21 @@ def setup():
                             'email'] + '\" is not a valid email format and was not added to the notification list'
         else:
             print 'Error: No arguments were found and Notification Script couldn\'t start'
-            sys.exit(-1)
+            sys.exit(1)
     except Exception as e:
-        print "There was a problem with the setup", e
+        print "ERROR: There was a problem with the setup", e
+        sys.exit(1)
 
     print "Initial setup Completed"
 
 # --------------------------------------------- termination signal
 def signal_term_handler(a, b):
-    shutdown_server()
-    print "Notification Module Successfully Killed"
+    try:
+        shutdown_server()
+        print "Notification Module Successfully Killed"
+
+    except Exception as e:
+        print "Could not shut down", e
     sys.exit(0)
 
 # ---------------------------------------------------- smtp set-up
@@ -129,13 +123,12 @@ def smtp_setup():
             if emailprovider in emailComp[key]:
                 option = [emailComp[key], 465]
                 break
-        print "Trying ssl"
-
         try:
             smtp = smtplib.SMTP_SSL(option[0], option[1])
             flag = True
         except Exception as e:
-            print "Could not establish ssl connection", str(e)
+            print "ERROR: Could not establish ssl connection", str(e)
+            sys.exit(1)
 
         print "Ssl established: ", flag
         if flag:
@@ -143,12 +136,13 @@ def smtp_setup():
             if str(smtp.ehlo()[0]) == '250':
                 try:
                     res = smtp.login(email, password)
-                    # print "Login result: ", res
+                    print "Login result: ", res
                 except Exception as e:
                     print 'Problem while attempting login ', str(e)
+                    sys.exit(1)
     else:
         print "ERROR: Unable to set up the notification system. Email information is incomplete"
-        signal_term_handler()
+        sys.exit(1)
     print "Finished smtp setup"
 
 # --------------------------------------------------- Send message
@@ -158,12 +152,17 @@ def sendMessage(info, message):
     if validalgs:
         if info in algs.keys():
             for each in algs[info]:
-                smtp.sendmail(email, each, 'Subject: \n' + message)
+                try:
+                    smtp.sendmail(email, each, 'Subject: \n' + message)
+                    print "Email sent"
+                except Exception as e:
+                    print "Problem sending email", e
         else:
-            return 'Algorithm not recognized'
+            print 'Algorithm not recognized'
     else:
-        return 'No valid arguments were received in message'
-    return 'Message sent'
+        print 'No valid arguments were received in message'
+    print 'Message sent'
+    return "OK"
 
 # -------------------------------------------------- server using flask
 app = Flask(__name__)

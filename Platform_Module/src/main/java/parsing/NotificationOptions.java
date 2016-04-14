@@ -51,8 +51,9 @@ public class NotificationOptions extends Options{
 
     /**
      * Get user information map.
-     * @param user user to get map from
-     * @return map, map with all user information
+     *
+     * @param user string containing user whose information is going to be search
+     * @return the map containing the user information
      */
     public Map<String, String> getUserInformation(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -64,8 +65,9 @@ public class NotificationOptions extends Options{
 
     /**
      * Get user phone number string.
-     * @param user user to get the phone number from
-     * @return string, user phone number
+     *
+     * @param user the user whose phone number is to be searched
+     * @return the string with the users phone number
      */
     public String getUserPhoneNumber(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -77,8 +79,9 @@ public class NotificationOptions extends Options{
 
     /**
      * Get user phone provider string.
-     * @param user user to get the phone provider from
-     * @return string, user phone provider
+     *
+     * @param user the user whose cellphone provider is going to be searched
+     * @return the string with the users cell phone provider
      */
     public String getUserPhoneProvider(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -90,8 +93,9 @@ public class NotificationOptions extends Options{
 
     /**
      * Get user email string.
-     * @param user user to get the email from.
-     * @return string, user email
+     *
+     * @param user the user whose email is to be searched
+     * @return the string with the users email
      */
     public String getUserEmail(String user){
         for (Option t: this.getOpt("users").getOptionList()){
@@ -119,7 +123,7 @@ public class NotificationOptions extends Options{
     /**
      * Get valid algorithms list.
      * @return list<string>, valid algorithms to notify users
-     */
+s     */
     public List<String> getValidAlgorithms(){
         return this.getOpt("validalgorithmslist").getOptionStringList();
     }

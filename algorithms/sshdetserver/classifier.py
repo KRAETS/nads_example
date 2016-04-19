@@ -5,7 +5,6 @@ import editdistance
 from igraph import *
 
 import dummy_data_retrieval as dr
-from dummy_data_retrieval import *
 from notifications import notify_both
 
 pair = ("", -1)
@@ -108,7 +107,9 @@ class Classifier:
         """Analyzes an epoch to remove legitimate users, or legitimate users who put a wrong password/login"""
         epochclone = copy.deepcopy(epoch)
         # Get past successful logins
-        past_success_logins = search("ip", "query")
+        query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" )'
+
+        past_success_logins = dr.search(None, query)
 
         if len(past_success_logins) == 0:
             return epoch
@@ -116,7 +117,7 @@ class Classifier:
         # Filter out failures according to past logins
         def successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                if str(test_login.get_client()) == str(login[0]) and test_login.get_user() == login[1]:
+                if str(test_login.get_client()) == str(login["ClientIp"]) and test_login.get_user() == login["UserName"]:
                     print "Previous success detected", test_login.get_client(), test_login.get_user()
                     return False
             return True
@@ -128,14 +129,14 @@ class Classifier:
         # Filtering function for mistaken login
         def mistyped_successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                print "Edit distance", editdistance.eval(login[1], test_login.get_user())
-                print "Opposite", editdistance.eval(test_login.get_user(), login[1])
-                print test_login.get_user(), login[1]
-                print test_login.get_client() == login[0]
-                print editdistance.eval(login[1], test_login.get_user()) == 1
-                print editdistance.eval(login[1], test_login.get_user()) is 1
-                print "For"
-                if test_login.get_client() == login[0] and editdistance.eval(login[1], test_login.get_user()) == 1:
+                # print "Edit distance", editdistance.eval(login["UserName"], test_login.get_user())
+                # print "Opposite", editdistance.eval(test_login.get_user(), login["UserName"])
+                # print test_login.get_user(), login["UserName"]
+                # print test_login.get_client() == login["ClientIp"]
+                # print editdistance.eval(login["UserName"], test_login.get_user()) == 1
+                # print editdistance.eval(login["UserName"], test_login.get_user()) is 1
+                # print "For"
+                if test_login.get_client() == login["ClientIp"] and editdistance.eval(login["UserName"], test_login.get_user()) == 1:
                     print "Mistype detected", test_login.get_client()
                     return False
             return True
@@ -166,7 +167,7 @@ class Classifier:
                 # add the host nodeset
                 if not login.get_status():
                     # graph.add_vertex(login.get_host())
-                    nodeset2.add(login.get_host())
+                    nodeset2.add(login.get_host()+"-host")
 
         # Join Remotehost->localhost
         for vertex in nodeset1.union(nodeset2):
@@ -177,7 +178,7 @@ class Classifier:
             for login in event.get_logins():
                 if not login.get_status():
                     remotehost = login.get_client()
-                    localhost = login.get_host()
+                    localhost = login.get_host()+"-host"
                     # edge = (remotehost, localhost)
                     source = 1
                     destination = 1
@@ -195,31 +196,28 @@ class Classifier:
                     # graph.add_edges(edge)
 
         clusters = graph.clusters()
-
-        # visual_style = {}
-        # visual_style["vertex_size"] = 20
-        # # visual_style["vertex_color"] = [color_dict[gender] for gender in g.vs["gender"]]
-        # visual_style["vertex_label"] = graph.vs["name"]
-        # # visual_style["edge_width"] = [1 + 2 * int(is_formal) for is_formal in g.es["is_formal"]]
-        # visual_style["layout"] = layout
-        # visual_style["bbox"] = (300, 300)
-        # visual_style["margin"] = 20
-        # # plot(clusters, **visual_style)
-
-        # Get the top target(centers of clusters with largest edge count)
-        top = ("", 0)
+        # Get the targets(centers of clusters with largest edge count)
+        # ("servername",["attackerlist"])
+        hostname = ""
+        attackers = []
+        reslist = []
         for cluster in clusters:
             print cluster
             for vertex in cluster:
                 degree = graph.degree(vertex)
-                if degree > top[1]:
-                    top = (graph.vs["name"][vertex], degree)
+                if "-host" in graph.vs["name"][vertex]:
+                    hostname = graph.vs["name"][vertex]
+                else:
+                    attackers.append(graph.vs["name"][vertex])
+            pair = (hostname,attackers)
+            reslist.append(pair)
+            hostname = ""
+            attackers = []
 
-        print top
+        # print top
 
-        print clusters
-
-        return top
+        # print clusters
+        return reslist
 
     def process(self, epoch):
         """Takes an epoch to determine if singleton/distributed"""

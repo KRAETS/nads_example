@@ -96,23 +96,27 @@ public class PlatformManager extends Manager {
             this.getLogger().log(Level.SEVERE,"Could not extract options. Exiting...");
             System.exit(4);
         }
-
         //Start initialization strategy
         try {
+            this.getLogger().log(Level.INFO,"Parsing platform options and reinitializing");
             initPlatformManager(parser.getPlatformOptions());
+            this.getLogger().log(Level.INFO,"Parsing Notification options and initializing notification module");
             initNotificationManager(parser.getNotificationOptions());
+            this.getLogger().log(Level.INFO,"Parsing Utilities options and initializing utilities module");
             initUtilitiesManager(parser.getUtilitiesOptions());
+            this.getLogger().log(Level.INFO,"Parsing Data retrieval options and initializing data retrieval module");
             initDataRetrievalManager(parser.getDataRetrievalOptions());
+            this.getLogger().log(Level.INFO,"Parsing Visualization options and initializing visualization module");
             initVisualizationManager(parser.getVisualizationOptions());
+            this.getLogger().log(Level.INFO,"Parsing Algorithm options and initializing algorithms module");
             initAlgorithmsManager(parser.getAlgorithmsOptions());
-            this.getLogger().log(Level.INFO,"Worked");
+            this.getLogger().log(Level.INFO,"System started...");
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Failed to initialize modules:"+e.toString());
             this.getLogger().log(Level.SEVERE,e.toString());
             System.exit(5);
         }
-
         return true;
     }
 
@@ -124,6 +128,7 @@ public class PlatformManager extends Manager {
         if(platformOptions.getLogLocation()!=null){
             this.getLogger().log(Level.INFO,"Changing the log location to:"+platformOptions.getLogLocation());
             setupLogger(platformOptions.getLogLocation());
+            this.getLogger().log(Level.INFO,"Done");
         }
     }
 
@@ -158,21 +163,28 @@ public class PlatformManager extends Manager {
     }
 
     private void initNotificationManager(NotificationOptions notificationOptions) {
+        this.getLogger().log(Level.INFO,"Initializing Notification manager");
         Option algorithmNames = new Option("validalgorithmslist", Option.OptionType.STRINGLIST);
         algorithmNames.setOptionStringList(this.getParser().getAlgorithmsOptions().getAlgorithmNames());
         notificationOptions.addOption("validalgorithmslist",algorithmNames);
-
         this.notMan = new NotificationManager(notificationOptions,this.getLogger());
         this.notMan.start();
+        this.getLogger().log(Level.INFO,"Done");
     }
 
     public boolean stop() {
         try {
+            this.getLogger().log(Level.INFO,"Stopping algorithms");
             algMan.stop();
+            this.getLogger().log(Level.INFO,"Stopping data retrieval system");
             dataRetMan.stop();
+            this.getLogger().log(Level.INFO,"Stopping notification system");
             notMan.stop();
+            this.getLogger().log(Level.INFO,"Stopping visualization");
             visMan.stop();
+            this.getLogger().log(Level.INFO,"Stopping utilities");
             utilMan.stop();
+            this.getLogger().log(Level.INFO,"Stopped everything");
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Problem shutting down:"+e.toString());

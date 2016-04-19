@@ -30,6 +30,7 @@ public class NotificationManager extends Manager {
      */
     public boolean start() {
         try{
+            this.getLogger().log(Level.INFO,"Starting notification system");
             notification.start();
         }
         catch (Exception e){
@@ -59,9 +60,10 @@ public class NotificationManager extends Manager {
      * @return boolean, indicates if notification was successfully configured.
      */
     public boolean configure() {
-        //TODO Read options and start
         try {
+            this.getLogger().log(Level.INFO,"Initializing notification system");
             notification = new Notification(notOpts, this.getLogger());
+            this.getLogger().log(Level.INFO,"Done");
         }
         catch (Exception e) {
             this.getLogger().log(Level.SEVERE, "Could not set up notification in manager: " + e.toString());

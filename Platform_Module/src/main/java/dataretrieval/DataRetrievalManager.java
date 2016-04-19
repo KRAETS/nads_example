@@ -41,6 +41,7 @@ public class DataRetrievalManager extends Manager {
     @Override
     public boolean start() {
         //Creates an http server in which to listen in for data requests
+        this.getLogger().log(Level.INFO,"Initializing data retrieval server on localhost:"+serverSocket);
         try {
             server = HttpServer.create(new InetSocketAddress(serverSocket), 0);
         } catch (IOException e) {
@@ -48,8 +49,10 @@ public class DataRetrievalManager extends Manager {
             e.printStackTrace();
         }
         //Set up the receiving point for getting a request for data
+        this.getLogger().log(Level.INFO,"Creating contexts...");
         server.createContext("/getdata", new GetData());
         server.createContext("/senddata", new SendData());
+        this.getLogger().log(Level.INFO,"Starting data retrieval server");
         server.setExecutor(null); // creates a default executor
         server.start();
         return true;
@@ -58,7 +61,9 @@ public class DataRetrievalManager extends Manager {
     @Override
     public boolean stop() {
         try {
+            this.getLogger().log(Level.INFO,"Stopping data retrieval server...");
             server.stop(0);
+            this.getLogger().log(Level.INFO,"Done");
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Problem shutting down server:"+e.toString());

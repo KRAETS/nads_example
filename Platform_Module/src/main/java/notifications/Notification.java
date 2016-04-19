@@ -80,9 +80,10 @@ public class Notification implements Runnable {
                 for(String s : notOpts.getValidAlgorithms())
                     validList.add(s);
 
-                jsonElement.add("list",validList);
+                jsonElement.add("List",validList);
                 String js = gson.toJson(jsonElement);
                 ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath() ,userinfo, gson.toJson(jsonElement), this.notOpts.getEmail(), this.notOpts.getEmailPassword());
+                pb.inheritIO();
                 notificationProcess = pb.start();
                 BufferedReader in = new BufferedReader(new InputStreamReader(notificationProcess.getInputStream()));
                 exception = true;
@@ -123,7 +124,10 @@ public class Notification implements Runnable {
                     loop = false;
                     this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " in thread");
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
+                loop = false;
+                this.getLogger().log(Level.SEVERE,"Problem with notification");
                 e.printStackTrace();
             }
         }
@@ -136,7 +140,6 @@ public class Notification implements Runnable {
     public boolean start() {
         if (this.managerThread == null)
             this.managerThread = new Thread(this, this.name);
-
         this.managerThread.start();
         return true;
     }

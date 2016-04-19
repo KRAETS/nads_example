@@ -1,14 +1,38 @@
 import json
 import urllib2
+import requests
 
-DATA_STORE_ADDRESS = "localhost:8002"
-
+DATA_STORE_ADDRESS = "http://localhost:9200/_kql?limit=10000&kql="
+DATA_RET_SERVER_ADDRESS = "localhost:8002"
 def search(address, query):
     """Perform a serach in the specified address, with the specified query"""
-    pair1 = ("mrlegit","thetrueuser")
-    dummylist = []
-    dummylist.append(pair1)
-    return dummylist
+    completequery = None
+    if address is not None:
+        completequery = address + urllib2.quote(query, safe='')
+    else:
+        completequery = DATA_STORE_ADDRESS + urllib2.quote(query, safe='')
+    print "Making query", completequery
+    # req = urllib2.Request(completequery)
+    results = None
+    print "Requesting", completequery
+
+    try:
+        response = requests.get(completequery)
+
+        printthings = response.text
+
+        # printthings = response.read()
+        results = json.loads(printthings)
+        # print results
+    except Exception as e:
+        print "Could not open kql server", e
+        exit(0)
+    print "Got results"
+    dummylist = results["hits"]["hits"]
+    reallist = []
+    for item in dummylist:
+        reallist.append(item["_source"])
+    return reallist
 
 def store_result(type, date, info, additional_info):
     """Sends a result for storage in the data ret manager"""
@@ -18,7 +42,8 @@ def store_result(type, date, info, additional_info):
     res["info"] = info
     res["additional_info"] = additional_info
     try:
-        request = "http://" + DATA_STORE_ADDRESS + "/" + "senddata"
+        request = "http://" + DATA_RET_SERVER_ADDRESS + "/" + "senddata"
+        print "Requesting", request
         req = urllib2.Request(request)
         # req.add_header("Content-Type","application/json")
         req.add_data(json.dumps(res))

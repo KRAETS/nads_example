@@ -15,7 +15,7 @@ public class Launcher
         //TODO Use this as the new main
         System.out.println( "Initializing nads..." );
         final PlatformManager platman = new PlatformManager(args[0],args[1]);
-        System.out.println("Adding shutdown hooks...");
+        System.out.println("Done\n Adding shutdown hooks...");
         Runtime.getRuntime().addShutdownHook(
                 new Thread() {
                     @Override
@@ -26,7 +26,8 @@ public class Launcher
                     }
                 }
         );
-        System.out.println("Starting the system...");
+        System.out.println("Done\n Starting the system...");
         platman.start();
+        System.out.println("Done\n Moving to background");
     }
 }

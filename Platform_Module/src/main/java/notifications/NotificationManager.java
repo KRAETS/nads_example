@@ -32,6 +32,7 @@ public class NotificationManager extends Manager {
         try{
             this.getLogger().log(Level.INFO,"Starting notification system");
             notification.start();
+            this.getLogger().log(Level.INFO,"Starting:" + notification.getName());
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Could not start notification: " + e.toString());

@@ -29,7 +29,6 @@ public class Algorithm implements Runnable {
 
     /**
      * Get string name of the algorithm.
-     *
      * @return the string
      */
     public String getName(){
@@ -38,7 +37,6 @@ public class Algorithm implements Runnable {
 
     /**
      * Sets of the algorithmname.
-     *
      * @param newName the new name
      */
     public void setName(String newName) {
@@ -48,15 +46,10 @@ public class Algorithm implements Runnable {
 
     /**
      *  Code what will be run on the thread. In charge of making sure the algorithms are always running.
-
      */
-    public void run()
-    {
-        while (loop)
-        {
-            try
-            {
-
+    public void run() {
+        while (loop) {
+            try {
                 //ProcessBuilder pb = new ProcessBuilder("python", commandString, param);
                 param = this.algOpts.getAlgorithmParameters(this.getName()).toString();
                 commandString = "python "+(new Gson()).toJson(this.algOpts.getAlgorithmParameters(this.getName()));
@@ -67,11 +60,9 @@ public class Algorithm implements Runnable {
                 //Creates a reader of the output of the process for when theres an error
                 BufferedReader in = new BufferedReader(new InputStreamReader(algorithmProcess.getInputStream()));
                 exception = true;
-                while (exception)
-                {
+                while (exception) {
                     //checks if last failure was more than 6 hours ago to reset count.
-                    if (((System.nanoTime()/hour)/(1000*60)) - ((recentRestartTime/hour)/(1000*60)) >= 1)
-                    {
+                    if (((System.nanoTime()/hour)/(1000*60)) - ((recentRestartTime/hour)/(1000*60)) >= 1) {
                         restartCount =0;
                         recentRestartTime = System.nanoTime();
                     }
@@ -101,10 +92,8 @@ public class Algorithm implements Runnable {
                     }
                 }
                 //When the python process ends updates counter of program fails and array with failure times
-                if (restartCount < 5)
-                {
-                    if (restartCount == 0)
-                    {
+                if (restartCount < 5) {
+                    if (restartCount == 0) {
                         startTime = System.nanoTime();
                     }
                     restartCount++;
@@ -140,10 +129,8 @@ public class Algorithm implements Runnable {
     /**
      * Starts the thread and creates a new one if none exists
      */
-    public void start()
-    {
-        if (this.managerThread == null)
-        {
+    public void start() {
+        if (this.managerThread == null) {
             this.managerThread = new Thread(this, this.name);
         }
         this.managerThread.start();

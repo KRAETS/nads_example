@@ -228,7 +228,8 @@ class Classifier:
         print "Result",result
         if result is not None:
             # process singleton
-            notify_both("Singleton")
+            msg = {"type":"Singleton","data":result}
+            notify_both(msg)
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
             # Then check distributed
@@ -238,6 +239,7 @@ class Classifier:
             print "Analyzing coordination glue"
             hitpair = self.analyze_coordination_glue(newepoch)
             print "Is distributed!!!"
-            notify_both("Distributed")
+            msg = {"type":"Distributed","data":hitpair}
+            notify_both(msg)
             print hitpair
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"), "DISTRIBUTED", "INFO:" + str(hitpair))

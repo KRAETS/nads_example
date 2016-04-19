@@ -3,7 +3,8 @@ import subprocess
 import time
 import unittest
 import requests
-textparams = "{\"marie\":{\"phonenumber\":\"7873604991\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
+textparams = "{\"marie\":{\"phonenumber\":\"7872364281\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
+emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"tmobile\",\"email\":\"sully.rodriguez17@gmail.com\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
 validalgs = "{\"List\":[\"sshdetectionserver\"]}"
 password = "jhkynisdwmmkecja"
 email = "d3ath696@gmail.com"

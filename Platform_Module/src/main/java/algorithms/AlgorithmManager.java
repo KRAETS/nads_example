@@ -23,6 +23,7 @@ public class AlgorithmManager extends Manager {
      * @return boolean return status
      */
     public boolean start(String algorithmName){
+        this.getLogger().log(Level.INFO,"Trying to start:"+algorithmName);
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
                 alg.start();
@@ -30,6 +31,7 @@ public class AlgorithmManager extends Manager {
                 return true;
             }
         }
+        this.getLogger().log(Level.INFO,"Algorithm not present");
         return false;
     }
 
@@ -40,7 +42,9 @@ public class AlgorithmManager extends Manager {
      */
     public boolean start() {
         try{
+            this.getLogger().log(Level.INFO,"Starting");
             this.startAll();
+            this.getLogger().log(Level.INFO,"Done");
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Could not start all the algorithms:"+e.toString());
@@ -55,7 +59,10 @@ public class AlgorithmManager extends Manager {
      */
     public boolean stop() {
         try{
+            this.getLogger().log(Level.INFO,"Stopping");
             this.stopAll();
+            this.getLogger().log(Level.INFO,"Done");
+
         }
         catch (Exception e){
             this.getLogger().log(Level.SEVERE,"Could not stop all the algorithms:"+e.toString());
@@ -71,10 +78,13 @@ public class AlgorithmManager extends Manager {
      */
     public boolean configure() {
         try {
-            for (String s : this.algOpts.getAlgorithmNames()) {
+            for (String name : this.algOpts.getAlgorithmNames()) {
+                this.getLogger().log(Level.INFO,"Configuring:"+name);
                 Algorithm a = new Algorithm(algOpts, this.getLogger());
-                a.setName(s);
+                a.setName(name);
                 algorithmsList.add(a);
+                this.getLogger().log(Level.INFO,"Done");
+
             }
         }catch (Exception e)
         {
@@ -93,10 +103,13 @@ public class AlgorithmManager extends Manager {
 
     public boolean start(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
-            this.getLogger().log(Level.SEVERE, "Out of range");
+            this.getLogger().log(Level.SEVERE, "Desired algorithm out of range:"+algorithmNumber);
             return false;
         }
-        algorithmsList.get(algorithmNumber).start();
+        Algorithm alg =  algorithmsList.get(algorithmNumber);
+        this.getLogger().log(Level.INFO,"Starting:"+alg.getName());
+        alg.start();
+        this.getLogger().log(Level.INFO,"Done");
         return true;
     }
 
@@ -110,7 +123,9 @@ public class AlgorithmManager extends Manager {
     public boolean stop(String algorithmName){
         for(Algorithm alg:algorithmsList){
             if(alg.getName().equals(algorithmName)){
+                this.getLogger().log(Level.INFO,"Stopping:"+alg.getName());
                 alg.stop();
+                this.getLogger().log(Level.INFO,"Done");
                 return true;
             }
         }
@@ -126,9 +141,13 @@ public class AlgorithmManager extends Manager {
 
     public boolean stop(int algorithmNumber){
         if(algorithmNumber<0||algorithmNumber>=algorithmsList.size()){
+            this.getLogger().log(Level.INFO,"Desired algorithm out of range:"+algorithmNumber);
             return false;
         }
-        algorithmsList.get(algorithmNumber).stop();
+        Algorithm alg =  algorithmsList.get(algorithmNumber);
+        this.getLogger().log(Level.INFO,"Stopping:"+alg.getName());
+        alg.stop();
+        this.getLogger().log(Level.INFO,"Done");
         return true;
     }
 
@@ -138,7 +157,9 @@ public class AlgorithmManager extends Manager {
 
     public void startAll(){
         for(Algorithm alg:algorithmsList){
+            this.getLogger().log(Level.INFO,"Starting:"+alg.getName());
             alg.start();
+            this.getLogger().log(Level.INFO,"Done");
         }
     }
 
@@ -147,7 +168,9 @@ public class AlgorithmManager extends Manager {
      */
     public void stopAll(){
         for(Algorithm alg:algorithmsList){
+            this.getLogger().log(Level.INFO,"Stopping:"+alg.getName());
             alg.stop();
+            this.getLogger().log(Level.INFO,"Done");
         }
     }
 

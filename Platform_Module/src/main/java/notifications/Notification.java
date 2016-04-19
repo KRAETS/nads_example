@@ -80,7 +80,7 @@ public class Notification implements Runnable {
                 for(String s : notOpts.getValidAlgorithms())
                     validList.add(s);
 
-                jsonElement.add("list",validList);
+                jsonElement.add("List",validList);
                 String js = gson.toJson(jsonElement);
 
                 //Creates new python process with a json of the parameters and starts it
@@ -132,7 +132,10 @@ public class Notification implements Runnable {
                     loop = false;
                     this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " in thread");
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
+                loop = false;
+                this.getLogger().log(Level.SEVERE,"Problem with notification");
                 e.printStackTrace();
             }
         }
@@ -145,7 +148,6 @@ public class Notification implements Runnable {
     public void start() {
         if (this.managerThread == null)
             this.managerThread = new Thread(this, this.name);
-
         this.managerThread.start();
     }
 

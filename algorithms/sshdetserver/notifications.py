@@ -1,7 +1,9 @@
 import urllib2
 import dummy_data_retrieval as dr
 import time
-NOTIFICATION_SYSTEM_ADDRESS = "localhost:8000"
+import json
+NOTIFICATION_SYSTEM_ADDRESS = "http://127.0.0.1:8000"
+ALGORITHM_NAME = "sshdetectionserver"
 def notify_both(message):
     if message == "Singleton":
         f = open("singletonresults.txt","a+")
@@ -9,7 +11,7 @@ def notify_both(message):
         f.close()
         #Notify of the event
         try:
-            request = NOTIFICATION_SYSTEM_ADDRESS + "/" + str(1) + "**" + "Singleton Attack Detected:"
+            request = NOTIFICATION_SYSTEM_ADDRESS + urllib2.quote("/" + ALGORITHM_NAME + "**" + "Singleton Attack Detected"+json.dumps(message),safe='')
             req = urllib2.Request(request)
             response = urllib2.urlopen(req)
         except Exception as e:
@@ -21,7 +23,8 @@ def notify_both(message):
         f.write("yes\n"+str(message)+"\n")
         f.close()
         try:
-            request = NOTIFICATION_SYSTEM_ADDRESS + "/" + str(1) + "**" + "Distributed Attack Detected:"
+            request = NOTIFICATION_SYSTEM_ADDRESS + urllib2.quote("/" + ALGORITHM_NAME + "**" + "Distributed Attack Detected"+json.dumps(message),safe='')
+            print "Notifying", request
             req = urllib2.Request(request)
             response = urllib2.urlopen(req)
         except Exception as e:

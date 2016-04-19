@@ -6,6 +6,7 @@ import threading
 import time
 import urllib
 import urllib2
+import dummy_data_retrieval as dr
 from datetime import datetime, date
 
 from watchdog.events import FileSystemEventHandler
@@ -57,25 +58,25 @@ def analyzeLogin():
         global LAST_CHECK
         #Query the data
         querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Failed*" or \ ALL*status \ like "*Accepted*" )'
-        query_url = 'http://localhost:9200/_kql?limit=10000&kql='
-        completequery = query_url + urllib.quote(querystring, safe='')
-        print "Making query", completequery
-        # req = urllib2.Request(completequery)
-        results = None
-        try:
-            response = requests.get(completequery)
-
-            printthings = response.text
-
-            # printthings = response.read()
-            results = json.loads(printthings)
-            # print results
-        except Exception as e:
-            print "Could not open kql server", e
-            exit(0)
-        print "Got results"
+        # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
+        # completequery = query_url + urllib.quote(querystring, safe='')
+        # print "Making query", completequery
+        # # req = urllib2.Request(completequery)
+        # results = None
+        # try:
+        #     response = requests.get(completequery)
+        #
+        #     printthings = response.text
+        #
+        #     # printthings = response.read()
+        #     results = json.loads(printthings)
+        #     # print results
+        # except Exception as e:
+        #     print "Could not open kql server", e
+        #     exit(0)
+        # print "Got results"
         # Sort by time
-        reslist = results["hits"]["hits"]
+        reslist = dr.search(None,querystring)
         print 'y'
         usefulentries = []
         print "Sorting reslist", reslist

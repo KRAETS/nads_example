@@ -11,8 +11,6 @@ email = "d3ath696@gmail.com"
 scriptdir = os.getcwd() + "/notification.py"
 VERBOSE = False
 
-
-
 class EventTestCase(unittest.TestCase):
     # ---------------------------------------------------- initializer
     def setUp(self):
@@ -25,7 +23,7 @@ class EventTestCase(unittest.TestCase):
             print 'starting server'
         time.sleep(15)
 
-    # ------------------------------------- correct and incomplete email
+    # ------------------------------------- text test
     def test_text_notification(self):
         global GLOBAL_PROCESS_LIST, p
         global VERBOSE

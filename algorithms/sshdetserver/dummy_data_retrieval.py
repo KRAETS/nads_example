@@ -18,7 +18,7 @@ def search(address, query):
     print "Requesting", completequery
 
     try:
-        response = requests.post(DATA_RET_SERVER_ADDRESS+"/getdata",query)
+        response = requests.post("http://"+DATA_RET_SERVER_ADDRESS+"/getdata",query)
 
         printthings = response.text
 

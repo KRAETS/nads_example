@@ -81,7 +81,7 @@ def analyzeLogin():
         usefulentries = []
         print "Sorting reslist", reslist
         for item in reslist:
-            entry = item["_source"]
+            entry = item
             try:
                 s = entry["Date"]
                 usefulentries.append(entry)

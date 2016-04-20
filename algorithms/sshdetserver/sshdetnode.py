@@ -213,11 +213,11 @@ def main(ip,monitoringfolder,monitoringfile):
     observer.start()
     try:
         while True:
-            time.sleep(1)
+            time.sleep(3)
     except KeyboardInterrupt:
         print "Stopping observer"
         observer.stop()
 
 if __name__ == '__main__':
-    main("localhost:5000", "/var/log","auth.log")
+    main("192.168.42.136:8003", "/var/log","auth.log")
 

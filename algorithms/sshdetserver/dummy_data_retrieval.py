@@ -2,8 +2,9 @@ import json
 import urllib2
 import requests
 
-DATA_STORE_ADDRESS = "http://localhost:9200/_kql?limit=10000&kql="
-DATA_RET_SERVER_ADDRESS = "localhost:8002"
+DATA_STORE_ADDRESS = "http://192.168.42.136:9200/_kql?limit=10000&kql="
+
+DATA_RET_SERVER_ADDRESS = "192.168.42.136:8002"
 def search(address, query):
     """Perform a serach in the specified address, with the specified query"""
     completequery = None
@@ -17,7 +18,7 @@ def search(address, query):
     print "Requesting", completequery
 
     try:
-        response = requests.get(completequery)
+        response = requests.post("http://"+DATA_RET_SERVER_ADDRESS+"/getdata",query)
 
         printthings = response.text
 

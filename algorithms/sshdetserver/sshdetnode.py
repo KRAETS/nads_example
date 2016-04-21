@@ -54,10 +54,10 @@ def analyzeLogin():
     print "Analyzing login!!"
 
     try:
-        time.sleep(2)
+        time.sleep(5)
         global LAST_CHECK
         #Query the data
-        querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Failed*" or \ ALL*status \ like "*Accepted*" )'
+        querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" and ( \ ALL*status \ like "*Failed*" or \ ALL*status \ like "*Accepted*" )'
         # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
         # completequery = query_url + urllib.quote(querystring, safe='')
         # print "Making query", completequery
@@ -81,7 +81,7 @@ def analyzeLogin():
         usefulentries = []
         print "Sorting reslist", reslist
         for item in reslist:
-            entry = item["_source"]
+            entry = item
             try:
                 s = entry["Date"]
                 usefulentries.append(entry)
@@ -219,5 +219,5 @@ def main(ip,monitoringfolder,monitoringfile):
         observer.stop()
 
 if __name__ == '__main__':
-    main("localhost:5000", "/var/log","auth.log")
+    main("localhost:8003", "/var/log","auth.log")
 

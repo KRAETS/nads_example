@@ -45,7 +45,7 @@
 				"phonenumber":"7873604991",
 				"phoneprovider":"att",
 				"email":"pedrocolon93@gmail.com",
-				"notifiablealgorithms":"[\"testalgorithm\",\"sshdetectionserver\"]"
+				"notifiablealgorithms":"[\"sshdetectionserver\"]"
 			}
 		],
 		"notificationemail": "d3ath696@gmail.com",

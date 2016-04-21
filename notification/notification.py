@@ -75,7 +75,11 @@ def setup():
                                 number = num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             nflag = True
                         if nflag:
-                            for a in data.get(key)['notifiablealgorithms']:
+                            print "Preparing to check algs"
+                            listtocheck = []
+                            listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                            print listtocheck
+                            for a in listtocheck:
                                 if a in algs.keys():
                                     algs[a].append(number)
                     else:
@@ -84,7 +88,12 @@ def setup():
 
                 if 'email' in data.get(key):  # email set-up
                     if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
-                        for a in data.get(key)['notifiablealgorithms']:
+                        print "Preparing to check algs"
+                        listtocheck = []
+                        listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                        print listtocheck
+                        for a in listtocheck:
+                            print "Checking", a
                             if a in algs.keys():
                                 algs[a].append(data.get(key)['email'])
                     else:

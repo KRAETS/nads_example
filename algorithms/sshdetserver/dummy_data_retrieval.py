@@ -29,10 +29,16 @@ def search(address, query):
         print "Could not open kql server", e
         exit(0)
     print "Got results"
-    dummylist = results["hits"]["hits"]
+    dummylist = []
     reallist = []
-    for item in dummylist:
-        reallist.append(item["_source"])
+    if results is not None:
+        try:
+            dummylist = results["hits"]["hits"]
+        except Exception as e:
+            dummylist = results["hits"]
+        reallist = []
+        for item in dummylist:
+            reallist.append(item["_source"])
     return reallist
 
 def store_result(type, date, info, additional_info):

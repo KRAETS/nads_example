@@ -80,39 +80,47 @@ public class Notification implements Runnable {
                 for(String s : notOpts.getValidAlgorithms())
                     validList.add(s);
 
-                jsonElement.add("list",validList);
+                jsonElement.add("List",validList);
                 String js = gson.toJson(jsonElement);
+
+                //Creates new python process with a json of the parameters and starts it
                 ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath() ,userinfo, gson.toJson(jsonElement), this.notOpts.getEmail(), this.notOpts.getEmailPassword());
+                pb.inheritIO();
                 notificationProcess = pb.start();
+
+                //Creates a reader of the output of the process for when theres an error
                 BufferedReader in = new BufferedReader(new InputStreamReader(notificationProcess.getInputStream()));
                 exception = true;
                 this.getLogger().log(Level.INFO,"Starting notification process... If no further output then it is successful");
                 while (exception) {
+                    //checks if last failure was more than 6 hours ago to reset count.
                     if (((System.nanoTime()/hour)/(1000*60)) - ((recentRestartTime/hour)/(1000*60)) >= 1) {
                         restartCount =0;
                         recentRestartTime = System.nanoTime();
                     }
                     try {
+                        //Checks if the python process ended. If it does prints out the exit code and error message is any and breaks from the checking loop
                         notificationProcess.exitValue();
-                        System.out.println("ExitVal:"+notificationProcess.exitValue());
+                        this.getLogger().log(Level.INFO, "ExitVal:" + notificationProcess.exitValue());
                         while(true) {
                             String line = in.readLine();
                             if(line == null)
                                 break;
                             else
-                                System.out.println(line);
+                                this.getLogger().log(Level.INFO,line);
                         }
                         exception = false;
                     } catch (IllegalThreadStateException a) {
-                    try {
-                        Thread.sleep(5000*60);
+                        try {
+                            // Puts the thread to sleep for 5 minutes to lessen processor usage
+                            Thread.sleep(5000 * 60);
                         } catch (Exception e) {
-                            System.out.println(e);
+                            this.getLogger().log(Level.SEVERE, e.toString());
                         }
-
                     }
                 }
                 if (restartCount < 5) {
+                    //When the python process ends updates counter of program fails and array with failure times
                     if (restartCount == 0)
                         startTime = System.nanoTime();
 
@@ -120,32 +128,41 @@ public class Notification implements Runnable {
                     recentRestartTime = System.nanoTime();
                 }
                 else {
+                    //If program has failed more than 5 times shut it down till furthere action is taken
                     loop = false;
                     this.getLogger().log(Level.SEVERE, "Could not restart " + this.getName() + " in thread");
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
+                loop = false;
+                this.getLogger().log(Level.SEVERE,"Problem with notification");
                 e.printStackTrace();
             }
         }
     }
 
+
     /**
      * Starts thread.
      * @return boolean, if the thread was successfully started.
      */
-    public boolean start() {
+    public void start() {
         if (this.managerThread == null)
             this.managerThread = new Thread(this, this.name);
-
         this.managerThread.start();
-        return true;
     }
 
     /**
-     * Stop thread.
+     * Stop/kills current thread.
      */
-    public void stop() {
-        this.managerThread.interrupt();
+    public boolean stop() {
+        try {
+            //Sends an interrupt signal to the thread so it stops
+            this.managerThread.interrupt();
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     }
 
     /**

@@ -38,53 +38,68 @@ def setup():
                 argslist = json.loads(args[2])
 
                 for a in argslist["List"]:
+                    print "Loading", a
                     algs[a] = []
             else:
                 validalgs = False
                 print 'WARNING: No valid algorithms were received'
 
             if len(args) > 3:  # email and password information
-                email = args[3]
                 print 'Loading email'
+                email = args[3]
                 if len(args) > 4:
-                    password = args[4]
                     print 'Loading email password'
+                    password = args[4]
                 else:
+                    print "Could not get password"
                     emaildatacheck = False
             else:
                 emaildatacheck = False
 
             print "Interpreting users  information"
+            print "Data", data
             for key in data:
+                print "Evaluating", key
                 if 'phonenumber' in data.get(key):  # text set-up
                     num = data.get(key)['phonenumber'].replace('-', '')
                     num = data.get(key)['phonenumber'].replace(' ', '')
                     num = data.get(key)['phonenumber'].replace('(', '')
                     num = data.get(key)['phonenumber'].replace(')', '')
                     num = data.get(key)['phonenumber'].replace('+', '')
-
+                    print "Phone num", num
                     if num.isdigit() and len(num) == 10:
                         nflag = False
 
                         number = []
-
+                        print "Preparing to evaluate provider"
                         if data.get(key)['phoneprovider'].lower() in cellphoneComp:
+                            print "Found provider"
                             if data.get(key)['phoneprovider'].lower() == 'tmobile':
                                 number = '+1' + num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             else:
                                 number = num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             nflag = True
+                        print "Flag", nflag
                         if nflag:
-                            for a in data.get(key)['notifiablealgorithms']:
+                            print "Preparing to check algs"
+                            listtocheck = []
+                            listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                            print listtocheck
+                            for a in listtocheck:
+                                print "Checking", a
                                 if a in algs.keys():
+                                    print "Appending dumber"
                                     algs[a].append(number)
+                        print "algs", algs
                     else:
                         print 'WARNING: \"' + data.get(key)[
                             'phonenumber'] + '\" phone number is incorrect and was not added to the notification list'
 
                 if 'email' in data.get(key):  # email set-up
                     if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
-                        for a in data.get(key)['notifiablealgorithms']:
+                        listtocheck = []
+                        listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                        for a in listtocheck:
                             if a in algs.keys():
                                 algs[a].append(data.get(key)['email'])
                     else:
@@ -128,7 +143,9 @@ def smtp_setup():
                 option = [emailComp[key], 465]
                 break
         try:
+            print "Establishing ssl"
             smtp = smtplib.SMTP_SSL(option[0], option[1])
+            print "Success"
             flag = True
         except Exception as e:
             print "ERROR: Could not establish ssl connection", str(e)
@@ -158,9 +175,11 @@ def sendMessage(info, message):
     global validalgs, algs
     print "Send Message -----------------"
     if validalgs:
+        print "Valid algs"
         if info in algs.keys():
             for each in algs[info]:
                 try:
+                    print "Sending to", info, each
                     smtp.sendmail(email, each, 'Subject: \n' + message)
                     print "Email sent"
                 except Exception as e:
@@ -179,6 +198,7 @@ app = Flask(__name__)
 def message_receiver(message):
     """Receives notification to send to the user"""
     mes = str(message).split('**')
+    print "Sending message"
     return sendMessage(mes[0], mes[1])
 
 def shutdown_server():

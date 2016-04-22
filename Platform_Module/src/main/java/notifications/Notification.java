@@ -141,7 +141,7 @@ public class Notification implements Runnable {
         }
     }
 
-    
+
     /**
      * Starts thread.
      * @return boolean, if the thread was successfully started.

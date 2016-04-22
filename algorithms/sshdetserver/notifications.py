@@ -11,7 +11,7 @@ def notify_both(message):
         f.close()
         #Notify of the event
         try:
-            request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote("Singleton Attack Detected")
+            request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote("Singleton Attack Detected",safe='')
             req = urllib2.Request(request)
             response = urllib2.urlopen(req)
             print response
@@ -24,7 +24,7 @@ def notify_both(message):
         f.write("yes\n"+str(message)+"\n")
         f.close()
         try:
-            request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote("Distributed Attack Detected")
+            request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote("Distributed Attack Detected",safe='')
             print "Notifying", request
             req = urllib2.Request(request)
             response = urllib2.urlopen(req)

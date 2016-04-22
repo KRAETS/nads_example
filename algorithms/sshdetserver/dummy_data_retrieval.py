@@ -4,7 +4,7 @@ import requests
 
 DATA_STORE_ADDRESS = "http://192.168.42.136:9200/_kql?limit=10000&kql="
 
-DATA_RET_SERVER_ADDRESS = "192.168.42.136:8002"
+DATA_RET_SERVER_ADDRESS = "10.211.55.3:8002"
 def search(address, query):
     """Perform a serach in the specified address, with the specified query"""
     completequery = None
@@ -12,14 +12,15 @@ def search(address, query):
         completequery = address + urllib2.quote(query, safe='')
     else:
         completequery = DATA_STORE_ADDRESS + urllib2.quote(query, safe='')
-    print "Making query", completequery
+    # print "Making query", completequery
     # req = urllib2.Request(completequery)
     results = None
-    print "Requesting", completequery
+    # print "Requesting", completequery
 
     try:
+        print "Asking for data", "http://"+DATA_RET_SERVER_ADDRESS+"/getdata"
         response = requests.post("http://"+DATA_RET_SERVER_ADDRESS+"/getdata",query)
-
+        print "Response", response
         printthings = response.text
 
         # printthings = response.read()

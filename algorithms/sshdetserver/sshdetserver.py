@@ -193,7 +193,7 @@ def main():
     reset()
     reset_current_event()
     GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K)
-    app.run(port=8003)
+    app.run(host='0.0.0.0',port=8003)
 
 
 def shutdown_server():

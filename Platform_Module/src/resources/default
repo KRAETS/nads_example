@@ -1,0 +1,36 @@
+    server {
+        listen 80;
+
+        server_name example.com;
+
+        auth_basic "Restricted Access";
+        auth_basic_user_file /etc/nginx/htpasswd.users;
+
+        location / {
+            proxy_pass http://localhost:5601;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;        
+        }
+    }
+    server {
+	listen 8001;
+
+	server_name kqlphp.com;
+
+	location ~ \.php$ {
+	    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+	    # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+
+	#   # With php5-cgi alone:
+	#   fastcgi_pass 127.0.0.1:9000;
+	    # With php5-fpm:
+	    fastcgi_pass unix:/var/run/php5-fpm.sock;
+	    fastcgi_param   SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+	    fastcgi_index index.php;
+	    include fastcgi_params;
+	}
+    }
+

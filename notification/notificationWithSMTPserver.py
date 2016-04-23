@@ -39,9 +39,9 @@ def setup():
                 print "\tLoading algorithms list", args[2]
                 argslist = json.loads(args[2])
 
-#                for a in argslist["List"]:
+                for a in argslist["List"]:
 #                    print "Loading", a
-#                    algs[a] = []
+                    algs[a] = []
             else:
                 validalgs = False
                 print 'WARNING: No valid algorithms were received'
@@ -89,7 +89,8 @@ def setup():
                         if nflag:
                             #print "Preparing to check algs"
                             listtocheck = []
-                            listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                            #listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                            listtocheck = data.get(key)['notifiablealgorithms']
                             #print listtocheck
                             for a in listtocheck:
                                 #print "Checking", a
@@ -104,7 +105,8 @@ def setup():
                 if 'email' in data.get(key):  # email set-up
                     if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
                         listtocheck = []
-                        listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                        #listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                        listtocheck = data.get(key)['notifiablealgorithms']
                         for a in listtocheck:
                             if a in algs.keys():
                                 algs[a].append(data.get(key)['email'])

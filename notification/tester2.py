@@ -20,7 +20,7 @@ class EventTestCase(unittest.TestCase):
 
         if VERBOSE:
             print 'starting server'
-        time.sleep(15)
+        time.sleep(3000000)
 
     # ------------------------------------- text test
     def test_text_notification(self):

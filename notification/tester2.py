@@ -3,7 +3,7 @@ import subprocess
 import time
 import unittest
 import requests
-params = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"tmobile\",\"email\":\"marie.nazario1@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"787\",\"phoneprovider\":\"att\",\"email\":\"pedro.colon4@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
+params = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"tmobile\",\"email\":\"marie.nazario1@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"787\",\"phoneprovider\":\"att\",\"email\":\"pedro.colon4@upr.edu\",\"notifiablealgorithms\":[\"\"]}}"
 validalgs = "{\"List\":[\"sshdetectionserver\"]}"
 password = "jhkynisdwmmkecja"
 email = "d3ath696@gmail.com"

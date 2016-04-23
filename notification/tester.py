@@ -19,7 +19,7 @@ class EventTestCase(unittest.TestCase):
         p = subprocess.Popen(['python', scriptdir, params, validalgs, email, serverhost])
         if VERBOSE:
             print 'starting server'
-        time.sleep(15)
+        time.sleep(3000000)
 
     # ------------------------------------- text test
     def test_text_notification(self):

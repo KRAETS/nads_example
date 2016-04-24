@@ -40,7 +40,7 @@ def setup():
                 argslist = json.loads(args[2])
 
                 for a in argslist["List"]:
-                    print "Loading", a
+#                    print "Loading", a
                     algs[a] = []
             else:
                 validalgs = False
@@ -63,41 +63,41 @@ def setup():
                 # emaildatacheck = False
                 serverdatacheck = False
 
-            print "Interpreting users  information"
-            print "Data", data
+            #print "Interpreting users  information"
+            #print "Data", data
             for key in data:
-                print "Evaluating", key
+                #print "Evaluating", key
                 if 'phonenumber' in data.get(key):  # text set-up
                     num = data.get(key)['phonenumber'].replace('-', '')
                     num = data.get(key)['phonenumber'].replace(' ', '')
                     num = data.get(key)['phonenumber'].replace('(', '')
                     num = data.get(key)['phonenumber'].replace(')', '')
                     num = data.get(key)['phonenumber'].replace('+', '')
-                    print "Phone num", num
+                    #print "Phone num", num
                     if num.isdigit() and len(num) == 10:
                         nflag = False
-
                         number = []
-                        print "Preparing to evaluate provider"
+                        #print "Preparing to evaluate provider"
                         if data.get(key)['phoneprovider'].lower() in cellphoneComp:
-                            print "Found provider"
+                            #print "Found provider"
                             if data.get(key)['phoneprovider'].lower() == 'tmobile':
                                 number = '+1' + num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             else:
                                 number = num + '@' + cellphoneComp[data.get(key)['phoneprovider'].lower()]
                             nflag = True
-                        print "Flag", nflag
+                        #print "Flag", nflag
                         if nflag:
-                            print "Preparing to check algs"
+                            #print "Preparing to check algs"
                             listtocheck = []
-                            listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
-                            print listtocheck
+                            #listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                            listtocheck = data.get(key)['notifiablealgorithms']
+                            #print listtocheck
                             for a in listtocheck:
-                                print "Checking", a
+                                #print "Checking", a
                                 if a in algs.keys():
-                                    print "Appending dumber"
+                                    #print "Appending dumber"
                                     algs[a].append(number)
-                        print "algs", algs
+                        #print "algs", algs
                     else:
                         print 'WARNING: \"' + data.get(key)[
                             'phonenumber'] + '\" phone number is incorrect and was not added to the notification list'
@@ -105,7 +105,8 @@ def setup():
                 if 'email' in data.get(key):  # email set-up
                     if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$", data.get(key)['email']):
                         listtocheck = []
-                        listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                        #listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
+                        listtocheck = data.get(key)['notifiablealgorithms']
                         for a in listtocheck:
                             if a in algs.keys():
                                 algs[a].append(data.get(key)['email'])
@@ -179,10 +180,6 @@ def sendMessage(info, message):
     global validalgs, algs
     print "Send Message -----------------"
     if validalgs:
-        SUBJECT = "Test email from Python"
-        TO = "mike@someAddress.org"
-        FROM = "python@mydomain.com"
-        text = "Python rules them all!"
 
         if info in algs.keys():
             for each in algs[info]:

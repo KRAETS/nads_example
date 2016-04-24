@@ -3,8 +3,7 @@ import subprocess
 import time
 import unittest
 import requests
-textparams = "{\"marie\":{\"phonenumber\":\"7872364281\",\"phoneprovider\":\"att\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
-emailparams = "{\"marie\":{\"phonenumber\":\"\",\"phoneprovider\":\"tmobile\",\"email\":\"sully.rodriguez17@gmail.com\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"ytiu\":{\"phonenumber\":\"\",\"phoneprovider\":\"\",\"email\":\"rookyann@gmail.com\",\"notifiablealgorithms\":\"\"}}"
+params = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"tmobile\",\"email\":\"marie.nazario1@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"787\",\"phoneprovider\":\"att\",\"email\":\"pedro.colon4@upr.edu\",\"notifiablealgorithms\":[\"\"]}}"
 validalgs = "{\"List\":[\"sshdetectionserver\"]}"
 password = "jhkynisdwmmkecja"
 email = "d3ath696@gmail.com"
@@ -17,11 +16,11 @@ class EventTestCase(unittest.TestCase):
         global p
         print "Setting up test"
 
-        p = subprocess.Popen(['python', scriptdir, textparams, validalgs, email, password])
+        p = subprocess.Popen(['python', scriptdir, params, validalgs, email, password])
 
         if VERBOSE:
             print 'starting server'
-        time.sleep(15)
+        time.sleep(3000000)
 
     # ------------------------------------- text test
     def test_text_notification(self):

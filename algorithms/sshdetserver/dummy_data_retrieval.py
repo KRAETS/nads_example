@@ -28,7 +28,6 @@ def search(address, query):
         # print results
     except Exception as e:
         print "Could not open kql server", e
-        exit(0)
     print "Got results"
     dummylist = []
     reallist = []
@@ -48,13 +47,13 @@ def store_result(type, date, info, additional_info):
     res["type"] = type
     res["date"] = date
     res["info"] = info
-    res["additional_info"] = additional_info
+    res["additional_info"] = json.dumps(additional_info)
     try:
         request = "http://" + DATA_RET_SERVER_ADDRESS + "/" + "senddata"
         print "Requesting", request
         req = urllib2.Request(request)
         # req.add_header("Content-Type","application/json")
-        req.add_data(json.dumps(res))
+        req.add_data(str(res).replace("\"","").replace("'",""))
         response = urllib2.urlopen(req)
     except Exception as e:
         print "Could not store result", e

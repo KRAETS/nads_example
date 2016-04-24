@@ -1,14 +1,19 @@
 import copy
 import time
-
+import ipblocksys as ip_tools
 import editdistance
 from igraph import *
 
 import dummy_data_retrieval as dr
 from notifications import notify_both
 
-pair = ("", -1)
+pair = ("", -1, [])
 
+supported_protocols = \
+{
+    "SSH":"sshd",
+    "SMTP":"smtpd"
+}
 
 
 
@@ -30,6 +35,20 @@ class Classifier:
         self.k = k
         self.h = h
         self.current_epoch = None
+        self.type = "SSH"
+
+    def set_type(self, newtype):
+        for type in supported_protocols.keys():
+            if type == newtype:
+                self.type = newtype
+                return True
+        return False
+
+    @staticmethod
+    def set_supported_protocols(protocols):
+        global supported_protocols
+        supported_protocols = protocols
+        return
 
     def check_singleton(self, epoch):
         """Analyzes an epoch to determine if it is a singleton attack.  Returns pair if singleton"""
@@ -40,17 +59,21 @@ class Classifier:
         copy_of_ooc_events = copy.deepcopy(epoch.get_history_events())
 
         hostmap = {}
+        hostattackmap = {}
         # Calculate fails per host
         for event in copy_of_ooc_events:
             for login in event.get_logins():
                 if login.get_status() is False:
                     if login.get_client() not in hostmap.keys():
                         hostmap[login.get_client()] = 0
+                        hostattackmap[login.get_client()] = []
                     hostmap[login.get_client()] += 1
+                    hostattackmap[login.get_client()].append(login.get_host())
+
         # Calculate host with most fails
         for key in hostmap.keys():
             if hostmap[key] > pair[1]:
-                pair = (key, hostmap[key])
+                pair = (key, hostmap[key], hostattackmap[key])
 
         def remove_bruteforcer(item):
             clnt = item.get_client()
@@ -102,12 +125,13 @@ class Classifier:
             return pair
         return None
 
-    @staticmethod
-    def analyze_past_history(epoch):
+    def analyze_past_history(self, epoch):
         """Analyzes an epoch to remove legitimate users, or legitimate users who put a wrong password/login"""
         epochclone = copy.deepcopy(epoch)
         # Get past successful logins
-        query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" )'
+        query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from' \
+                ' \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" ) ' \
+                'and \ ALL*protocol*_:host \ like "*'+supported_protocols[self.type]+'*"'
 
         past_success_logins = dr.search(None, query)
 
@@ -227,10 +251,16 @@ class Classifier:
         result = self.check_singleton(epoch)
         print "Result",result
         if result is not None:
+
+            # TODO ALLOW PREVIOUS SUCCESSFUL USERS WITHOUT BLOCKING!
             # process singleton
             msg = {"type":"Singleton","data":result}
+            print  msg
             notify_both(msg)
-            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
+            # Block
+            for ip in result[2]:
+                ip_tools.notifyblock(ip,result[0])
+            dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
             # Then check distributed
             print "Filtering out legitimate activity"
@@ -240,6 +270,11 @@ class Classifier:
             hitpair = self.analyze_coordination_glue(newepoch)
             print "Is distributed!!!"
             msg = {"type":"Distributed","data":hitpair}
+            print msg
+            # Block ips
+            for cluster in hitpair:
+                for ip in cluster[1]:
+                    ip_tools.notifyblock(cluster[0], ip)
             notify_both(msg)
             print hitpair
-            dr.store_result("PROTOCOL_ATTACK", time.strftime("%I:%M:%S"), "DISTRIBUTED", "INFO:" + str(hitpair))
+            dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "DISTRIBUTED", hitpair)

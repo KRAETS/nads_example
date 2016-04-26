@@ -34,13 +34,13 @@
 		[
 			{
 				"name":"Pedro",
-				"phonenumber":"7873604991",
+				"phonenumber":"7876409645",
 				"phoneprovider":"att",
-				"email":"pedrocolon93@gmail.com",
+				"email":"acotto777@gmail.com",
 				"notifiablealgorithms":"[\"loop_detection\"]"
 			}
 		],
-		"notificationemail": "d3ath696@gmail.com",
+		"notificationemail": "acotto777@gmail.com",
 		"serverhost":"smtps.ece.uprm.edu",
 		"notificationfilelocation":"../notification/notificationThroughSMTPserver.py"
 	},

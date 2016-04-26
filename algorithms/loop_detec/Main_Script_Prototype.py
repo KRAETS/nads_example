@@ -107,7 +107,7 @@ while True:
                             payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
                             r = requests.post("http://localhost:8002/senddata", data=payload)
                             print r.status_code
-                            print dude
+
 
             else:
                  #hi = snmp_get(line, hostname=i, community="cappy-test", version=2)
@@ -157,7 +157,7 @@ while True:
                             payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
                             r = requests.post("http://localhost:8002/senddata", data=payload)
                             print r.status_code
-                            print dude
+
 
 
         with open(logdir, "w") as logfile:

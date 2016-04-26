@@ -84,7 +84,7 @@ def setup():
                             #print "Preparing to check algs"
                             listtocheck = []
                             listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
-                            listtocheck = data.get(key)['notifiablealgorithms']
+                            #listtocheck = data.get(key)['notifiablealgorithms']
                             #print listtocheck
                             for a in listtocheck:
                                 #print "Checking", a
@@ -100,7 +100,7 @@ def setup():
                     if re.match(r"^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$(\.[a-zA-Z]+)?", data.get(key)['email']):
                         listtocheck = []
                         listtocheck = json.loads(data.get(key)['notifiablealgorithms'])
-                        listtocheck = data.get(key)['notifiablealgorithms']
+                        #listtocheck = data.get(key)['notifiablealgorithms']
                         for a in listtocheck:
                             if a in algs.keys():
                                 algs[a].append(data.get(key)['email'])

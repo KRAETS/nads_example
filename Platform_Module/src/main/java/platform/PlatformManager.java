@@ -22,7 +22,6 @@ public class PlatformManager extends Manager {
 
     /**
      * Gets parser.
-     *
      * @return the parser
      */
     public Parser getParser() {
@@ -39,16 +38,12 @@ public class PlatformManager extends Manager {
 
     /**
      * Instantiates a new Platform manager.
-     *
      * @param options the options
      */
-    public PlatformManager(String[] options){
-
-    }
+    public PlatformManager(String[] options) { }
 
     /**
      * Instantiates a new Platform manager.
-     *
      * @param configFile  the config file
      * @param logLocation the log location
      */
@@ -87,6 +82,10 @@ public class PlatformManager extends Manager {
         }
     }
 
+    /**
+     * TODO
+     * @return
+     */
     @Override
     public boolean start() {
         boolean operationSuccessful = false;
@@ -162,6 +161,10 @@ public class PlatformManager extends Manager {
         this.utilMan.start();
     }
 
+    /**
+     * TODO
+     * @param notificationOptions
+     */
     private void initNotificationManager(NotificationOptions notificationOptions) {
         this.getLogger().log(Level.INFO,"Initializing Notification manager");
         Option algorithmNames = new Option("validalgorithmslist", Option.OptionType.STRINGLIST);
@@ -172,6 +175,10 @@ public class PlatformManager extends Manager {
         this.getLogger().log(Level.INFO,"Done");
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public boolean stop() {
         try {
             this.getLogger().log(Level.INFO,"Stopping algorithms");
@@ -193,6 +200,10 @@ public class PlatformManager extends Manager {
         return true;
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public boolean configure() {
         return true;
     }

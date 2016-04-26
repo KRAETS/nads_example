@@ -6,7 +6,7 @@ import requests
 
 params = "{\"marie\":{\"phonenumber\":\"7876409645\",\"phoneprovider\":\"att\",\"email\":\"marie.nazario1@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
 validalgs = "{\"List\":[\"sshdetectionserver\"]}"
-email = "d3ath696@gmail.com"
+email = "acotto777@gmail.com"
 serverhost = 'smtps.ece.uprm.edu'
 scriptdir = os.getcwd() + "/notificationThroughSMTPserver.py"
 VERBOSE = False

@@ -155,7 +155,7 @@ public class Notification implements Runnable {
     /**
      * Stop/kills current thread.
      */
-    public boolean stop() {
+    public boolean interrupt() {
         try {
             //Sends an interrupt signal to the thread so it stops
             this.managerThread.interrupt();
@@ -168,8 +168,13 @@ public class Notification implements Runnable {
     /**
      * Interrupt/destroy thread.
      */
-    public void interrupt(){
-        notificationProcess.destroy();
+    public void stop(){
+        try {
+            notificationProcess.destroy();
+        }
+        catch(Exception e){
+            System.out.println("COuld not stop notifications"+e.toString());
+        }
     }
 
     /**

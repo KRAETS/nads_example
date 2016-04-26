@@ -8,6 +8,12 @@ import urllib
 import urllib2
 import dummy_data_retrieval as dr
 from datetime import datetime, date
+from flask import Flask
+from flask import request
+import ipblocksys as ip_tools
+
+app = Flask(__name__)
+observer = None
 
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
@@ -50,9 +56,32 @@ MONITORING_FOLDER = "/var/log"
 FILE_TO_MONITOR = "mylog"
 KQL_SERVER = "localhost:9200/"
 LAST_CHECK = None
+
+@app.route('/blockip',methods=['POST'])
+def blockip():
+    ip = request.data
+    if ip == "127.0.0.1" or ip == "localhost":
+        return "OK"
+    ip_tools.block(str(ip))
+    return 'Ok'
+
+@app.route('/',methods=['GET'])
+def HELLO():
+    print "Hello"
+    return "Hello!!"
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
+
 def analyzeLogin():
     print "Analyzing login!!"
-
     try:
         time.sleep(5)
         global LAST_CHECK
@@ -79,7 +108,7 @@ def analyzeLogin():
         reslist = dr.search(None,querystring)
         print 'y'
         usefulentries = []
-        print "Sorting reslist", reslist
+        print "Sorting reslist"#, reslist
         for item in reslist:
             entry = item
             try:
@@ -93,7 +122,7 @@ def analyzeLogin():
                     pass
                 # print "Useless"
                 # print entry
-        print "Changing time", usefulentries
+        print "Changing time"#, usefulentries
         for entry in usefulentries:
             try:
                 d = entry["Date"]
@@ -108,7 +137,7 @@ def analyzeLogin():
                     print "Problem", e
             # print entry["Date"]
         usefulentries.sort(key=lambda x: x["Date"], reverse=True)
-        print usefulentries
+        #print usefulentries
 
         # Check if we have to configure for the first time
         if LAST_CHECK is None:
@@ -124,7 +153,7 @@ def analyzeLogin():
         for entry in usefulentries:
             if LAST_CHECK["Date"] >= entry["Date"]:
                 continue
-            print "Entry is correct date", entry
+            # print "Entry is correct date", entry
             data = Login(False, "", "", "")
             try:
                 if entry["Status"][0] == "Failed":
@@ -166,7 +195,7 @@ def analyzeLogin():
                 req = urllib2.Request('http://' + GLOBAL_IP + '/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json.dumps(data.__dict__))
-                # print response
+                print response
             except Exception as e:
                 print "Could not contact server", e
         print "Exited"
@@ -201,7 +230,7 @@ class MyHandler(FileSystemEventHandler):
 
 
 def main(ip,monitoringfolder,monitoringfile):
-    global GLOBAL_IP
+    global GLOBAL_IP, observer
     GLOBAL_IP = ip
     print "Starting up:",ip,monitoringfile,monitoringfolder
     global MONITORING_FOLDER, FILE_TO_MONITOR
@@ -211,12 +240,13 @@ def main(ip,monitoringfolder,monitoringfile):
     event_handler = MyHandler()
     observer.schedule(event_handler, MONITORING_FOLDER, recursive=False)
     observer.start()
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print "Stopping observer"
-        observer.stop()
+    app.run(host='0.0.0.0', port=8004)
+    # try:
+    #     while True:
+    #         time.sleep(1)
+    # except KeyboardInterrupt:
+    #     print "Stopping observer"
+    #     observer.stop()
 
 if __name__ == '__main__':
     main("localhost:8003", "/var/log","auth.log")

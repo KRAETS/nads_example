@@ -100,4 +100,4 @@ def main(DISTRIBUTED):
 
 # Call the main method
 if __name__ == '__main__':
-    main(False)
+    main(True)

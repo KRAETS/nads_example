@@ -56,14 +56,14 @@ def main():
             print "No verbose option provided"
         # Check if server option enabled and start a server
         try:
-            if parameter_map["server"] is True or parameter_map["server"] == "true":
+            if parameter_map["server"] == True or parameter_map["server"] == "true":
                 print "Starting the server"
                 start_server(verbose)
-                print "Waitning for initialization"
+                print "Waiting for initialization"
                 time.sleep(10)
                 print "Continuing"
         except Exception as e:
-            print e
+            print "Could not start server", e
         # Check if client option is enabled and start a monitoring client
         try:
             if parameter_map["client"] is True or parameter_map["client"] == "true":
@@ -137,7 +137,7 @@ def start_server(verbose):
     global GLOBAL_PROCESS_LIST
     if verbose:
         print "Server node"
-    p = Process(target=sshdetserver.main, args=())
+    p = Process(target=sshdetserver.main, args=(verbose,))
     p.start()
     GLOBAL_PROCESS_LIST.append(p)
 

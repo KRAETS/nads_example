@@ -141,7 +141,7 @@ public class Algorithm implements Runnable {
      *
      * @return the boolean
      */
-    public boolean stop()
+    public boolean interrupt()
     {
         try
         {
@@ -157,9 +157,14 @@ public class Algorithm implements Runnable {
     /**
      * Interrupt the current thread
      */
-    public void interrupt(){
+    public void stop(){
         //TODO maybe switch with stop()
-        algorithmProcess.destroy();
+        try {
+            algorithmProcess.destroy();
+        }
+        catch (Exception e ){
+            System.out.println("Could not stop algorithm");
+        }
     }
 
     /**

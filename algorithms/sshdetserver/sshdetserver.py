@@ -30,6 +30,7 @@ GLOBAL_OUT_OF_CONTROL_AMOUNT = 0
 GLOBAL_CURRENT_EVENT = None
 GLOBAL_CLASSIFIER = None
 
+#Debug
 
 @app.route('/')
 def hello_world():
@@ -91,7 +92,7 @@ def shutdown():
 @app.route('/addlogin', methods=['POST'])
 def add_login():
     print "Got a login!"
-    #Lock the thread for a second
+    # Lock the thread for processing
     print "Acquiring lock"
     lock = threading.Lock()
 
@@ -110,14 +111,15 @@ def add_login():
 
             # Extract the login from the call data
             login = Login.parse_from_json(request.json)
-            print "Login Received", login
+            print "Login Received", login.get_status(), login.get_client()
+
 
             # add the login to the current event
             GLOBAL_CURRENT_EVENT.add_login(login)
 
             # See if the current event is full or not
             if GLOBAL_CURRENT_EVENT.is_threshold_reached():
-                #TODO PRINT EVENT IN LOG
+                # TODO PRINT EVENT IN LOG
                 logging.debug(str(GLOBAL_CURRENT_EVENT))
                 #Add current event to list of events
                 GLOBAL_EVENT_LIST.append(GLOBAL_CURRENT_EVENT)
@@ -158,7 +160,7 @@ def add_login():
                     else:
                         print "Attack in progress"
                         reset_current_event()
-                        if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
+                        if GLOBAL_OUT_OF_CONTROL_AMOUNT % TUNING_OOC_MEDIUM_THRESHOLD == 0:
                             epoch = package_epoch()
                             GLOBAL_CLASSIFIER.process(epoch)
 
@@ -182,18 +184,36 @@ def add_login():
     print "Done analyzing, returning ok"
     return "OK"
 
+debug = True
 
-def main():
-    #Set up logging
-    logging.basicConfig(filename='example.log', level=logging.DEBUG)
-    print "Starting det server"
+def main(debug_enabled, tuning_mu=3, tuning_k=1,
+         tuning_h= 2,_tuning_average_ooc_arl=3,
+         tuning_ooc_med_thresh=4, tuning_event_threshold=10):
+    try:
+        global debug, TUNING_MU,TUNING_K,TUNING_H,TUNING_AVERAGE_OOC_ARL,TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD
+        TUNING_MU = tuning_mu
+        TUNING_K = tuning_k
+        TUNING_H =tuning_h
+        TUNING_AVERAGE_OOC_ARL =_tuning_average_ooc_arl
+        TUNING_OOC_MEDIUM_THRESHOLD =  tuning_ooc_med_thresh
+        TUNING_EVENT_THRESHOLD = tuning_event_threshold
+        debug = debug_enabled
+        print "Using parameters", debug, TUNING_MU,TUNING_K,TUNING_H,TUNING_AVERAGE_OOC_ARL,TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD
 
-    # Set up initial event
-    global GLOBAL_CLASSIFIER
-    reset()
-    reset_current_event()
-    GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K)
-    app.run(host='0.0.0.0',port=8003)
+        #Set up logging
+        if debug:
+            logging.basicConfig(filename='example.log', level=logging.DEBUG)
+            print "Starting det server"
+
+        # Set up initial event
+        global GLOBAL_CLASSIFIER
+        reset()
+        reset_current_event()
+        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K)
+        app.run(host='0.0.0.0',port=8003)
+    except Exception as e:
+        print "Could not start server!!", e
+        exit(1)
 
 
 def shutdown_server():
@@ -204,4 +224,4 @@ def shutdown_server():
 
 '''Main function'''
 if __name__ == '__main__':
-    main()
+    main(True)

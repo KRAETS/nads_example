@@ -2,7 +2,10 @@ package maintester;
 
 import algorithms.AlgorithmManager;
 import dataretrieval.DataRetrievalManager;
+import notifications.NotificationManager;
 import parsing.AlgorithmsOptions;
+import parsing.NotificationOptions;
+import parsing.Option;
 import parsing.Parser;
 
 import java.util.logging.Logger;
@@ -31,7 +34,14 @@ public class MainForTest {
         DataRetrievalManager dm = new DataRetrievalManager(hi.getDataRetrievalOptions(),Logger.getLogger("NadsLogger") );
         dm.configure();
         dm.start();
+        NotificationOptions notificationOptions = hi.getNotificationOptions();
+        Option algorithmNames = new Option("validalgorithmslist", Option.OptionType.STRINGLIST);
+        algorithmNames.setOptionStringList(hi.getAlgorithmsOptions().getAlgorithmNames());
+        notificationOptions.addOption("validalgorithmslist",algorithmNames);
+        NotificationManager nm = new NotificationManager(notificationOptions,Logger.getLogger("NadsLogger"));
+        nm.configure();
+        nm.start();
         AlgorithmManager mng = new AlgorithmManager(dude, Logger.getLogger("NadsLogger"));
-        //mng.start();
+        mng.start();
     }
 }

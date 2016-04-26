@@ -5,6 +5,7 @@ import time, json, sys
 import os.path
 import requests
 import datetime
+import urllib2
 
 
 # ------------------------------------------------------------------ variables
@@ -24,6 +25,19 @@ start_time = time.time()
 unavail_time = dict((x, 0) for x in ipaddresses)
 testdict = dict()
 testcyc = 0
+NOTIFICATION_SYSTEM_ADDRESS = "http://127.0.0.1:8000/"
+ALGORITHM_NAME = "loop_detection"
+
+
+def notify(message):
+    #Notify of the event
+    try:
+        request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote("Loop_Dectection" + message,safe='')
+        req = urllib2.Request(request)
+        response = urllib2.urlopen(req)
+        print response
+    except Exception as e:
+        print "Could not send message:",e
 
 #------------------------------------------------------- siganal termination
 def signal_term_handler(signal, frame):
@@ -86,12 +100,14 @@ while True:
                             oid_no_port = match.group(2)
                             inData[i] = oid_no_port
                             print port
+                            message_to_be_sent = "Loop Detected at switch with ip " + i + " at port " + port
+                            notify(message_to_be_sent)
                             testdict[testcyc] = {i: port + " in file"}
-                            # date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
-                            # payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
-                            # r = requests.post("http://localhost:8002/senddata", data=payload)
-                            # print r.status_code
-                            #print dude
+                            date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
+                            payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
+                            r = requests.post("http://localhost:8002/senddata", data=payload)
+                            print r.status_code
+
 
             else:
                  #hi = snmp_get(line, hostname=i, community="cappy-test", version=2)
@@ -135,11 +151,13 @@ while True:
                         if str(value) == "2":
                             testdict[testcyc] = {i: port + " not in file"}
                             print port
-                            # date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
-                            # payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
-                            # r = requests.post("http://localhost:8002/senddata", data=payload)
-                            # print r.status_code
-                            #print dude
+                            message_to_be_sent = "Loop Detected at switch with ip " + i + " at port " + port
+                            notify(message_to_be_sent)
+                            date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
+                            payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
+                            r = requests.post("http://localhost:8002/senddata", data=payload)
+                            print r.status_code
+
 
 
         with open(logdir, "w") as logfile:

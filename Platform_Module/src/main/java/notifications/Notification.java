@@ -84,7 +84,7 @@ public class Notification implements Runnable {
                 String js = gson.toJson(jsonElement);
 
                 //Creates new python process with a json of the parameters and starts it
-                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath() ,userinfo, gson.toJson(jsonElement), this.notOpts.getEmail(), this.notOpts.getEmailPassword());
+                ProcessBuilder pb = new ProcessBuilder("python",this.notOpts.getPath() ,userinfo, gson.toJson(jsonElement), this.notOpts.getEmail(), this.notOpts.getServerHost());
                 pb.inheritIO();
                 notificationProcess = pb.start();
 
@@ -140,8 +140,7 @@ public class Notification implements Runnable {
             }
         }
     }
-
-
+    
     /**
      * Starts thread.
      * @return boolean, if the thread was successfully started.

@@ -22,11 +22,11 @@ public class NotificationOptions extends Options{
     }
 
     /**
-     * Get email password string.
-     * @return string, the password from the email to send the notifications.
+     * Get server host string.
+     * @return string, the server host domain from the user to send the notifications.
      */
-    public String getEmailPassword(){
-        return this.getOpt("notificationemailpassword").getOptionStringIndividual();
+    public String getServerHost(){
+        return this.getOpt("serverhost").getOptionStringIndividual();
     }
 
     /**
@@ -111,7 +111,6 @@ public class NotificationOptions extends Options{
      * @return string, user algorithms to notify
      */
     public String getUserAlgorithms(String user){
-//        return null;
         for (Option t: this.getOpt("users").getOptionList()){
             if((t.getOptionMap().get("name")).equalsIgnoreCase(user)){
                 return t.getOptionMap().get("notifiablealgorithms");
@@ -123,7 +122,7 @@ public class NotificationOptions extends Options{
     /**
      * Get valid algorithms list.
      * @return list<string>, valid algorithms to notify users
-s     */
+     */
     public List<String> getValidAlgorithms(){
         return this.getOpt("validalgorithmslist").getOptionStringList();
     }

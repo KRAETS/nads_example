@@ -49,8 +49,8 @@
 			}
 		],
 		"notificationemail": "d3ath696@gmail.com",
-		"notificationemailpassword":"jhkynisdwmmkecja",
-		"notificationfilelocation":"../notification/notification.py"
+		"serverhost":"smtps.ece.uprm.edu",
+		"notificationfilelocation":"../notification/notificationThroughSMTPserver.py"
 	},
 	"utilities":
 	{

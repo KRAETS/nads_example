@@ -17,9 +17,14 @@
 		{
 			"sshdetectionserver":{
 				"server":"true",
+				"client":"true",
 				"serveraddress":"localhost:8003",
 				"verbose":"true",
-				"folder":"../algorithms/sshdetserver/commander.py"
+				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
+				"protocol":"SSH",
+				"monitoringfolder":"/var/log/",
+				"monitoringfile":"auth.log"
 			}
 		}
 	],
@@ -50,11 +55,11 @@
 		],
 		"notificationemail": "d3ath696@gmail.com",
 		"notificationemailpassword":"jhkynisdwmmkecja",
-		"notificationfilelocation":"../notification/notification.py"
+		"notificationfilelocation":"/home/pedro/Documents/git/nads/notification/notification.py"
 	},
 	"utilities":
 	{
-		"newpatternfilelocation":"/home/pedro/Desktop/10-syslog-filter.conf",
+		"newpatternfilelocation":"/home/pedro/Documents/git/nads/Platform_Module/src/resources/10-syslog-filter.conf",
 		"originalpatternfilelocation":"/etc/logstash/conf.d/10-syslog-filter.conf"
 	}
 }

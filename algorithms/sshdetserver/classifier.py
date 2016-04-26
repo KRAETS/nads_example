@@ -25,7 +25,7 @@ def detection_function(sn, sn_1, h):
 
 class Classifier:
     """Class that performs epoch attack type classification"""
-    def __init__(self, mu, h, k):
+    def __init__(self, mu, h, k, supportedprotocols, protocol):
         """Sets the default parameters
         mu mean of failed attempts
         h accumulation threshold
@@ -35,7 +35,8 @@ class Classifier:
         self.k = k
         self.h = h
         self.current_epoch = None
-        self.type = "SSH"
+        self.type = protocol
+        self.set_supported_protocols(supportedprotocols)
 
     def set_type(self, newtype):
         for type in supported_protocols.keys():
@@ -141,7 +142,8 @@ class Classifier:
         # Filter out failures according to past logins
         def successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                if str(test_login.get_client()) == str(login["ClientIp"]) and test_login.get_user() == login["UserName"]:
+                if str(test_login.get_client()) == str(login["ClientIp"]) and \
+                                test_login.get_user() == login["UserName"]:
                     print "Previous success detected", test_login.get_client(), test_login.get_user()
                     return False
             return True
@@ -160,7 +162,8 @@ class Classifier:
                 # print editdistance.eval(login["UserName"], test_login.get_user()) == 1
                 # print editdistance.eval(login["UserName"], test_login.get_user()) is 1
                 # print "For"
-                if test_login.get_client() == login["ClientIp"] and editdistance.eval(login["UserName"], test_login.get_user()) == 1:
+                if test_login.get_client() == login["ClientIp"] and \
+                                editdistance.eval(login["UserName"], test_login.get_user()) == 1:
                     print "Mistype detected", test_login.get_client()
                     return False
             return True
@@ -251,14 +254,13 @@ class Classifier:
         result = self.check_singleton(epoch)
         print "Result",result
         if result is not None:
-
-            # TODO ALLOW PREVIOUS SUCCESSFUL USERS WITHOUT BLOCKING!
             # process singleton
-            msg = {"type":"Singleton","data":result}
+            msg = {"type": "Singleton", "data": result}
             print  msg
             notify_both(msg)
             # Block
-            for ip in result[2]:
+            ipstoblock = list(set(result[2]))
+            for ip in ipstoblock:
                 ip_tools.notifyblock(ip,result[0])
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
@@ -273,7 +275,8 @@ class Classifier:
             print msg
             # Block ips
             for cluster in hitpair:
-                for ip in cluster[1]:
+                ipstoblock = list(set(cluster[1]))
+                for ip in ipstoblock:
                     ip_tools.notifyblock(cluster[0], ip)
             notify_both(msg)
             print hitpair

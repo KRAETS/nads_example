@@ -1,6 +1,8 @@
 import threading
 
 import logging
+
+import signal
 from flask import Flask
 from flask import request
 
@@ -31,6 +33,16 @@ GLOBAL_CURRENT_EVENT = None
 GLOBAL_CLASSIFIER = None
 
 #Debug
+debug = True
+
+
+# Other parameters
+supported_protocols = \
+{
+    "SSH":"sshd",
+    "SMTP":"smtpd"
+}
+protocol = "SSH"
 
 @app.route('/')
 def hello_world():
@@ -81,24 +93,29 @@ def reset_current_event():
 @app.route('/getcurrentepoch', methods=['GET'])
 def get_epoch():
     global GLOBAL_CLASSIFIER
-
     return str(GLOBAL_CLASSIFIER.current_epoch)
+
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
     shutdown_server()
     return 'Server shutting down...'
 
+
 @app.route('/addlogin', methods=['POST'])
 def add_login():
-    print "Got a login!"
+    global debug
+    if debug:
+        print "Got a login!"
     # Lock the thread for processing
-    print "Acquiring lock"
+    if debug:
+        print "Acquiring lock"
     lock = threading.Lock()
 
     with lock:
         try:
-            print "Lock acquired"
+            if debug:
+                print "Lock acquired"
 
             # Increase total logins by one
             global GLOBAL_CURRENT_EVENT, GLOBAL_LOGINS, GLOBAL_SN, \
@@ -111,7 +128,8 @@ def add_login():
 
             # Extract the login from the call data
             login = Login.parse_from_json(request.json)
-            print "Login Received", login.get_status(), login.get_client()
+            if debug:
+                print "Login Received", login.get_status(), login.get_client()
 
 
             # add the login to the current event
@@ -126,22 +144,28 @@ def add_login():
 
                 # Calculate gfi
                 gfi = GLOBAL_CURRENT_EVENT.calculate_gfi()
-                print "Calculated GFI", gfi
+                if debug:
+                    print "Calculated GFI", gfi
                 # Calculate zn
                 zn = GLOBAL_CURRENT_EVENT.calculate_zn(TUNING_MU, TUNING_K)
-                print "Calculated ZN", zn
+                if debug:
+                    print "Calculated ZN", zn
                 # SAVE OLD SN
                 GLOBAL_SN_1 = GLOBAL_SN
-                print "Global sn 1",GLOBAL_SN_1
+                if debug:
+                    print "Global sn 1",GLOBAL_SN_1
                 # Calculate new sn
                 GLOBAL_SN += zn
-                print "Global sn", GLOBAL_SN
+                if debug:
+                    print "Global sn", GLOBAL_SN
                 # Save Previous detection
                 GLOBAL_PREVIOUS_DN = GLOBAL_DN
-                print "Global previous dn", GLOBAL_PREVIOUS_DN
+                if debug:
+                    print "Global previous dn", GLOBAL_PREVIOUS_DN
                 # Perform detection
                 GLOBAL_DN = detection_function()
-                print "Global dn", GLOBAL_DN
+                if debug:
+                    print "Global dn", GLOBAL_DN
                 # Set Event in control or not.  Has to be negated to reflect
                 # in control = no detection and out of control = detection
                 GLOBAL_CURRENT_EVENT.set_control(not GLOBAL_DN)
@@ -150,7 +174,8 @@ def add_login():
                     # print "Global DN is true"
                     GLOBAL_OUT_OF_CONTROL_AMOUNT += 1
                     if GLOBAL_PREVIOUS_DN is False:
-                        print "Attack initiated"
+                        if debug:
+                            print "Attack initiated"
                         # Package Epoch
                         epoch = package_epoch()
                         # Process it
@@ -158,7 +183,8 @@ def add_login():
                         #Reset event
                         reset_current_event()
                     else:
-                        print "Attack in progress"
+                        if debug:
+                            print "Attack in progress"
                         reset_current_event()
                         if GLOBAL_OUT_OF_CONTROL_AMOUNT % TUNING_OOC_MEDIUM_THRESHOLD == 0:
                             epoch = package_epoch()
@@ -167,7 +193,8 @@ def add_login():
                 else:
                     # print "Global dn is false"
                     if GLOBAL_PREVIOUS_DN is True:
-                        print"Reverting to control"
+                        if debug:
+                            print"Reverting to control"
                         # Reset counts
                         reset()
                         # Package epoch
@@ -177,28 +204,57 @@ def add_login():
                         #Reset event
                         reset_current_event()
                     else:
-                        print "Already in control"
+                        if debug:
+                            print "Already in control"
                         reset_current_event()
         except Exception as e:
             print "Problem analyzing", e
-    print "Done analyzing, returning ok"
+    if debug:
+        print "Done analyzing, returning ok"
     return "OK"
 
-debug = True
+
+def signal_term_handler(a, b):
+    """Function to handle sigterm and shutdown proceses"""
+    print "PROTOCOL ATTACK DETECTION SERVER Successfully Killed"
+    try:
+        shutdown_server()
+    except Exception as e:
+        print "Could not shut down gracefully", str(e)
+        exit(1)
+    exit(0)
+
 
 def main(debug_enabled, tuning_mu=3, tuning_k=1,
          tuning_h= 2,_tuning_average_ooc_arl=3,
-         tuning_ooc_med_thresh=4, tuning_event_threshold=10):
+         tuning_ooc_med_thresh=4, tuning_event_threshold=10,
+         supportedprotocols=supported_protocols, targetprotocol=protocol):
+    # Set shutdown hooks
+    signal.signal(signal.SIGTERM, signal_term_handler)
+    signal.signal(signal.SIGINT, signal_term_handler)
+
     try:
-        global debug, TUNING_MU,TUNING_K,TUNING_H,TUNING_AVERAGE_OOC_ARL,TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD
+        # Initialize the parameters for the algorithm
+        global debug, TUNING_MU, TUNING_K, TUNING_H, TUNING_AVERAGE_OOC_ARL, \
+            TUNING_OOC_MEDIUM_THRESHOLD, TUNING_EVENT_THRESHOLD, supported_protocols, protocol, \
+            GLOBAL_CLASSIFIER, supported_protocols, protocol
+        # Give them values
         TUNING_MU = tuning_mu
         TUNING_K = tuning_k
         TUNING_H =tuning_h
         TUNING_AVERAGE_OOC_ARL =_tuning_average_ooc_arl
         TUNING_OOC_MEDIUM_THRESHOLD =  tuning_ooc_med_thresh
         TUNING_EVENT_THRESHOLD = tuning_event_threshold
+        # Enable debug
         debug = debug_enabled
-        print "Using parameters", debug, TUNING_MU,TUNING_K,TUNING_H,TUNING_AVERAGE_OOC_ARL,TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD
+
+        # Protocol type
+        supported_protocols = supportedprotocols
+        protocol = targetprotocol
+
+        if debug:
+            print "Using parameters", debug, TUNING_MU, TUNING_K, TUNING_H, TUNING_AVERAGE_OOC_ARL,\
+                TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD
 
         #Set up logging
         if debug:
@@ -206,10 +262,9 @@ def main(debug_enabled, tuning_mu=3, tuning_k=1,
             print "Starting det server"
 
         # Set up initial event
-        global GLOBAL_CLASSIFIER
         reset()
         reset_current_event()
-        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K)
+        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol)
         app.run(host='0.0.0.0',port=8003)
     except Exception as e:
         print "Could not start server!!", e
@@ -224,4 +279,10 @@ def shutdown_server():
 
 '''Main function'''
 if __name__ == '__main__':
-    main(True)
+    supported_protocols = \
+        {
+            "SSH": "sshd",
+            "SMTP": "smtpd"
+        }
+
+    main(True, supportedprotocols=supported_protocols, targetprotocol="SSH")

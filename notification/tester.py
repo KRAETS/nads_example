@@ -4,11 +4,11 @@ import time
 import unittest
 import requests
 
-params = "{\"marie\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"tmobile\",\"email\":\"marie.nazario1@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
+params = "{\"marie\":{\"phonenumber\":\"7876409645\",\"phoneprovider\":\"att\",\"email\":\"marie.nazario1@upr.edu\",\"notifiablealgorithms\":[\"sshdetectionserver\"]},\"antoine\":{\"phonenumber\":\"7872171762\",\"phoneprovider\":\"\",\"email\":\"\",\"notifiablealgorithms\":[\"sshdetectionserver\"]}}"
 validalgs = "{\"List\":[\"sshdetectionserver\"]}"
 email = "d3ath696@gmail.com"
 serverhost = 'smtps.ece.uprm.edu'
-scriptdir = os.getcwd() + "/notificationWithSMTPserver.py"
+scriptdir = os.getcwd() + "/notificationThroughSMTPserver.py"
 VERBOSE = False
 
 class EventTestCase(unittest.TestCase):
@@ -19,7 +19,7 @@ class EventTestCase(unittest.TestCase):
         p = subprocess.Popen(['python', scriptdir, params, validalgs, email, serverhost])
         if VERBOSE:
             print 'starting server'
-        time.sleep(3000000)
+        time.sleep(15)
 
     # ------------------------------------- text test
     def test_text_notification(self):

@@ -13,6 +13,19 @@
 				"model":"values",
 				"trap_oid": "value",
 				"folder":"../algorithms/loop_detec/Main_Script_Prototype.py"}
+		},
+		{
+			"sshdetectionserver":{
+				"server":"true",
+				"client":"true",
+				"serveraddress":"localhost:8003",
+				"verbose":"true",
+				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
+				"protocol":"SSH",
+				"monitoringfolder":"/var/log/",
+				"monitoringfile":"auth.log"
+			}
 		}
 	],
 	"visual":
@@ -34,10 +47,10 @@
 		[
 			{
 				"name":"Pedro",
-				"phonenumber":"7876409645",
+				"phonenumber":"7873604991",
 				"phoneprovider":"att",
-				"email":"acotto777@gmail.com",
-				"notifiablealgorithms":"[\"loop_detection\"]"
+				"email":"pedrocolon93@gmail.com",
+				"notifiablealgorithms":"[\"sshdetectionserver\"]"
 			}
 		],
 		"notificationemail": "acotto777@gmail.com",
@@ -46,7 +59,7 @@
 	},
 	"utilities":
 	{
-		"newpatternfilelocation":"/home/pedro/Desktop/10-syslog-filter.conf",
+		"newpatternfilelocation":"/home/pedro/Documents/git/nads/Platform_Module/src/resources/10-syslog-filter.conf",
 		"originalpatternfilelocation":"/etc/logstash/conf.d/10-syslog-filter.conf"
 	}
 }

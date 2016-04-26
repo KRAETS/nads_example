@@ -44,9 +44,10 @@ public class DataRetrievalManager extends Manager {
         this.getLogger().log(Level.INFO,"Initializing data retrieval server on localhost:"+serverSocket);
         try {
             server = HttpServer.create(new InetSocketAddress(serverSocket), 0);
-        } catch (IOException e) {
+        } catch (Exception e) {
             this.getLogger().log(Level.SEVERE,"Could not start data retrieval server:"+e.toString());
             e.printStackTrace();
+            return false;
         }
         //Set up the receiving point for getting a request for data
         this.getLogger().log(Level.INFO,"Creating contexts...");

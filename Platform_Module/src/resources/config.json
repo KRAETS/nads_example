@@ -50,6 +50,13 @@
 				"phonenumber":"7873604991",
 				"phoneprovider":"att",
 				"email":"pedrocolon93@gmail.com",
+				"notifiablealgorithms":"[\"sshdetectionserver\",\"loop_detection\"]"
+			},
+			{
+				"name":"Antoine",
+				"phonenumber":"7876409645",
+				"phoneprovider":"att",
+				"email":"acotto777@gmail.com",
 				"notifiablealgorithms":"[\"sshdetectionserver\"]"
 			}
 		],

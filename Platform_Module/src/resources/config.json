@@ -22,7 +22,7 @@
 				"verbose":"true",
 				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
-				"protocol":"SMTP",
+				"protocol":"SSH",
 				"monitoringfolder":"/var/log/",
 				"monitoringfile":"auth.log"
 			}

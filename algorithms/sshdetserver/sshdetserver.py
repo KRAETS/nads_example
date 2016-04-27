@@ -285,4 +285,4 @@ if __name__ == '__main__':
             "SMTP": "smtpd"
         }
 
-    main(True, supportedprotocols=supported_protocols, targetprotocol="SSH")
+    main(True, supportedprotocols=supported_protocols, targetprotocol="SMTP")

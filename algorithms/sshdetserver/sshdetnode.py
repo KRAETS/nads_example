@@ -102,7 +102,7 @@ def analyzeLogin():
                       'from \ ALL/{protocol,portnumber,status,id,ip_address} \ ' \
                       'where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" ' \
                       'and \ ALL*protocol*_:host \ like "*'+supported_protocols[protocol]+'*" ' \
-                      'and  ( \ ALL*status \ like "*Failed*" or \ ALL*status \ like "*Accepted*" )'
+                      'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" )'
         # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
         # completequery = query_url + urllib.quote(querystring, safe='')
         # print "Making query", completequery
@@ -172,12 +172,12 @@ def analyzeLogin():
             # print "Entry is correct date", entry
             data = Login(False, "", "", "")
             try:
-                if entry["Status"][0] == "Failed":
+                if entry["Status"].lower() == "failed":
                     data.set_status(False)
                 else:
                     data.set_status(True)
             except Exception as e:
-                if entry["Status"] == "Failed":
+                if entry["Status"][0].lower() == "failed":
                     data.set_status(False)
                 else:
                     data.set_status(True)
@@ -294,5 +294,5 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
 
 if __name__ == '__main__':
     # Default startup
-    main("localhost:8003", "/var/log", "auth.log", supported_protocols, "SSH")
+    main("localhost:8003", "/var/log", "mail.log", supported_protocols, "SMTP")
 

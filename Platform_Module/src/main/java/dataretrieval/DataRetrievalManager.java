@@ -56,6 +56,7 @@ public class DataRetrievalManager extends Manager {
         this.getLogger().log(Level.INFO,"Starting data retrieval server");
         server.setExecutor(null); // creates a default executor
         server.start();
+	this.getLogger().log(Level.INFO,"dONE STARTING SERVER");
         return true;
     }
 

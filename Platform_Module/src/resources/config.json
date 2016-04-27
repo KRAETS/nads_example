@@ -24,7 +24,7 @@
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
 				"protocol":"SMTP",
 				"monitoringfolder":"/var/log/",
-				"monitoringfile":"mail.log"
+				"monitoringfile":"auth.log"
 			}
 		}
 	],

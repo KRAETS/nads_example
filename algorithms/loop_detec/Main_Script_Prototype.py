@@ -9,12 +9,12 @@ import urllib2
 
 
 # ------------------------------------------------------------------ variables
-ips = sys.argv[1]
-print ips
-ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
-args = json.loads(ips)
-ipaddresses = args["ips"]
-# ipaddresses = ["136.145.59.152"]
+# ips = sys.argv[1]
+# print ips
+# ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
+# args = json.loads(ips)
+# ipaddresses = args["ips"]
+ipaddresses = ["136.145.59.152"]
 testlog = os.getcwd() + "/testLog.json"
 logdir = os.getcwd() + "/oidLog.json"
 sleeptime = 6 * 5
@@ -23,7 +23,8 @@ inData = dict()
 noexists = False
 start_time = time.time()
 unavail_time = dict((x, 0) for x in ipaddresses)
-detect_time = 0
+# detect_time = dict((x, dict((x,0) for x in range(201))) for x in ipaddresses)
+detect_time = {}
 current_detect_time = 0
 testdict = dict()
 testcyc = 0
@@ -96,19 +97,27 @@ while True:
                         snmp_type=line.snmp_type
                         value = line.value
                         if str(value) == "2":
-                            print line
-                            match = re.search(r"((.*.6.1.2.1.17.2.15.1.3).(\d+))", str(oid))
-                            port = match.group(3)
-                            oid_no_port = match.group(2)
-                            inData[i] = oid_no_port
-                            print port
-                            message_to_be_sent = "Loop Detected at switch with ip " + i + " at port " + port
-                            notify(message_to_be_sent)
-                            testdict[testcyc] = {i: port + " in file"}
-                            date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
-                            payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
-                            r = requests.post("http://localhost:8002/senddata", data=payload)
-                            print r.status_code
+                            if not detect_time.has_key(oid):
+                                detect_time[oid] = 0
+                            print time.time() - detect_time[oid]
+                            if (detect_time[oid] == 0) | (time.time() - detect_time[oid] >= 60*10):
+                                print time.time() - detect_time[oid]
+                                print line
+                                match = re.search(r"((.*.6.1.2.1.17.2.15.1.3).(\d+))", str(oid))
+                                port = match.group(3)
+                                oid_no_port = match.group(2)
+                                inData[i] = oid_no_port
+                                print port
+                                message_to_be_sent = "Loop Detected at switch with ip " + i + " at port " + port
+                                notify(message_to_be_sent)
+                                testdict[testcyc] = {i: port + " in file"}
+                                date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
+                                payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
+                                r = requests.post("http://localhost:8002/senddata", data=payload)
+                                print r.status_code
+                                detect_time[oid] = time.time()
+                        elif detect_time.has_key(oid):
+                            detect_time[oid] = 0
 
 
             else:
@@ -151,14 +160,22 @@ while True:
                         oid_no_port = match.group(2)
                         inData[i] = oid_no_port
                         if str(value) == "2":
-                            testdict[testcyc] = {i: port + " not in file"}
-                            print port
-                            message_to_be_sent = "Loop Detected at switch with ip " + i + " at port " + port
-                            notify(message_to_be_sent)
-                            date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
-                            payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
-                            r = requests.post("http://localhost:8002/senddata", data=payload)
-                            print r.status_code
+                            if not detect_time.has_key(oid):
+                                detect_time[oid] = 0
+                            print time.time() - detect_time[oid]
+                            if (detect_time[oid] == 0) | (time.time() - detect_time[oid] >= 60*10):
+                                print time.time() - detect_time[oid]
+                                testdict[testcyc] = {i: port + " not in file"}
+                                print port
+                                message_to_be_sent = "Loop Detected at switch with ip " + i + " at port " + port
+                                notify(message_to_be_sent)
+                                date = '{:%b %d %H:%M:%S}'.format(datetime.datetime.now())
+                                payload = "Anomaly_Name: loop, Date:" + date + ", IP:" + i + ", Port:" + port
+                                r = requests.post("http://localhost:8002/senddata", data=payload)
+                                print r.status_code
+                                detect_time[oid] = time.time()
+                        elif detect_time.has_key(oid):
+                            detect_time[oid] = 0
 
 
 

@@ -12,7 +12,7 @@
 				"exampleip":"value",
 				"model":"values",
 				"trap_oid": "value",
-				"folder":"../algorithms/loop_detec/Main_Script_Prototype.py"}
+				"folder":"/home/nads/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
 		},
 		{
 			"sshdetectionserver":{
@@ -20,7 +20,7 @@
 				"client":"true",
 				"serveraddress":"localhost:8003",
 				"verbose":"true",
-				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
 				"protocol":"SMTP",
 				"monitoringfolder":"/var/log/",
@@ -62,11 +62,11 @@
 		],
 		"notificationemail": "acotto777@gmail.com",
 		"serverhost":"smtps.ece.uprm.edu",
-		"notificationfilelocation":"../notification/notificationThroughSMTPserver.py"
+		"notificationfilelocation":"/home/nads/Documents/git/nads/notification/notificationThroughSMTPserver.py"
 	},
 	"utilities":
 	{
-		"newpatternfilelocation":"/home/pedro/Documents/git/nads/Platform_Module/src/resources/10-syslog-filter.conf",
+		"newpatternfilelocation":"/home/nads/Documents/git/nads/Platform_Module/src/resources/10-syslog-filter.conf",
 		"originalpatternfilelocation":"/etc/logstash/conf.d/10-syslog-filter.conf"
 	}
 }

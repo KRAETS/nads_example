@@ -54,6 +54,7 @@ public class PlatformManager extends Manager {
             setupLogger(logLocation);
         else
             setupLogger(defaultLogLocation);
+        this.getLogger().log(Level.INFO,"Config File:"+configFile);
         this.configure();
     }
 
@@ -93,6 +94,8 @@ public class PlatformManager extends Manager {
         operationSuccessful = parser.extractOptions();
         if(!operationSuccessful){
             this.getLogger().log(Level.SEVERE,"Could not extract options. Exiting...");
+            for(Exception e : parser.errorList)
+                this.getLogger().log(Level.SEVERE,e.toString());
             System.exit(4);
         }
         //Start initialization strategy

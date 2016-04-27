@@ -9,10 +9,7 @@ import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The type Parser.
@@ -31,7 +28,7 @@ public class Parser {
     private VisualizationOptions visualOptions = new VisualizationOptions();
     private NotificationOptions notificationsOptions = new NotificationOptions();
     private UtilitiesOptions utilitiesOptions = new UtilitiesOptions();
-
+    public List<Exception> errorList = new LinkedList<>();
     /**
      * Extract options from the configuration file to the various module option classes.
      *
@@ -61,11 +58,13 @@ public class Parser {
             }catch (JsonParseException a)
             {
                 //Send notification to user of bad config file format
+                errorList.add(a);
                 return false;
             }
         }catch(IOException e)
         {
             //Send notification to user that config file could not be found
+            errorList.add(e);
             return false;
         }
 

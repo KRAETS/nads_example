@@ -257,7 +257,7 @@ def signal_term_handler(a, b):
     exit(0)
 
 
-def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotocol):
+def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotocol, nodeport):
     global GLOBAL_IP, observer, supported_protocols, protocol, MONITORING_FOLDER, FILE_TO_MONITOR
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
@@ -292,7 +292,7 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
     observer.schedule(event_handler, MONITORING_FOLDER, recursive=False)
     observer.start()
     # Start the blocking server
-    app.run(host='0.0.0.0', port=8004)
+    app.run(host='0.0.0.0', port=nodeport)
 
 if __name__ == '__main__':
     # Default startup

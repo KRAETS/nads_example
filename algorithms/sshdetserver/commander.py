@@ -69,7 +69,7 @@ def main():
         try:
             if parameter_map["server"] == True or parameter_map["server"] == "true":
                 logging.debug( "Starting the server")
-                start_server(verbose, supported_protocols, protocol, parameter_map["dataaddress"])
+                start_server(verbose, supported_protocols, protocol, parameter_map["dataaddress"],parameter_map["serverport"])
                 logging.debug( "Waiting for initialization")
                 time.sleep(10)
                 logging.debug( "Continuing")
@@ -83,7 +83,7 @@ def main():
                 server_address = parameter_map["serveraddress"]
                 start_client(verbose, server_address, parameter_map["monitoringfolder"],
                              parameter_map["monitoringfile"], supported_protocols, protocol,
-                             parameter_map["dataaddress"])
+                             parameter_map["dataaddress"], parameter_map["nodeport"])
         except Exception as e:
             logging.debug( "Could not start client"+str(e))
         # Wait for the processes to exit
@@ -129,7 +129,7 @@ def main():
     #     process.join()
 
 
-def start_client(verbose, server_address, monitoringfolder, monitoringfile, supported_protocols, protocol, dataaddress):
+def start_client(verbose, server_address, monitoringfolder, monitoringfile, supported_protocols, protocol, dataaddress, nodeport):
     """Function to start a client process and monitor within a folder, a specific file"""
     global GLOBAL_PROCESS_LIST
     if verbose:
@@ -141,7 +141,7 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile, supp
     # Start up the client script separately
     p = Process(target=sshdetnode.main, args=(server_address, monitoringfolder,
                                               monitoringfile, supported_protocols, protocol,
-                                              dataaddress))
+                                              dataaddress, nodeport))
     p.start()
     if verbose:
         logging.debug( "Client started!")

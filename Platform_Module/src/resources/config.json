@@ -15,6 +15,19 @@
 				"folder":"/home/nads/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
 		},
 		{
+                        "smtpdetectionserver":{
+                                "server":"true",
+                                "client":"true",
+                                "serveraddress":"localhost:8003",
+                                "verbose":"true",
+                                "folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
+                                "supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
+                                "protocol":"SMTP",
+                                "monitoringfolder":"/var/log/",
+                                "monitoringfile":"mail.log"
+                        }
+                },
+		{
 			"sshdetectionserver":{
 				"server":"true",
 				"client":"true",
@@ -22,9 +35,9 @@
 				"verbose":"true",
 				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
-				"protocol":"SMTP",
+				"protocol":"SSH",
 				"monitoringfolder":"/var/log/",
-				"monitoringfile":"mail.log"
+				"monitoringfile":"auth.log"
 			}
 		}
 	],

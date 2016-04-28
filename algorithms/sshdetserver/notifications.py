@@ -4,6 +4,7 @@ import time
 import json
 NOTIFICATION_SYSTEM_ADDRESS = "http://127.0.0.1:8000/"
 ALGORITHM_NAME = "sshdetectionserver"
+TYPE = "SSH"
 def notify_both(message):
     try:
         if message["type"] is not None:

@@ -22,9 +22,9 @@
 				"verbose":"true",
 				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
-				"protocol":"SSH",
+				"protocol":"SMTP",
 				"monitoringfolder":"/var/log/",
-				"monitoringfile":"auth.log"
+				"monitoringfile":"mail.log"
 			}
 		}
 	],
@@ -53,12 +53,12 @@
 				"notifiablealgorithms":"[\"sshdetectionserver\",\"loop_detection\"]"
 			},
 			{
-				"name":"Antoine",
-				"phonenumber":"7876409645",
-				"phoneprovider":"att",
-				"email":"acotto777@gmail.com",
-				"notifiablealgorithms":"[\"sshdetectionserver\"]"
-			}
+                                "name":"Edward",
+                                "phonenumber":"7876164250",
+                                "phoneprovider":"att",
+                                "email":"edward.cuevas2@gmail.com",
+                                "notifiablealgorithms":"[\"sshdetectionserver\",\"loop_detection\"]"
+                        }
 		],
 		"notificationemail": "acotto777@gmail.com",
 		"serverhost":"smtps.ece.uprm.edu",

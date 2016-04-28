@@ -96,7 +96,7 @@ def analyzeLogin():
     global protocol, supported_protocols
     logging.debug( "Analyzing login!!")
     try:
-        time.sleep(5)
+        time.sleep(7)
         global LAST_CHECK
         #Query the data
         querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ ' \

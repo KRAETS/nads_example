@@ -9,12 +9,12 @@ import urllib2
 
 
 # ------------------------------------------------------------------ variables
-# ips = sys.argv[1]
-# print ips
-# ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
-# args = json.loads(ips)
-# ipaddresses = args["ips"]
-ipaddresses = ["136.145.59.152"]
+ips = sys.argv[1]
+print ips
+ips = ((ips.replace("\"[","[")).replace("]\"","]")).replace("\\\"","\"")
+args = json.loads(ips)
+ipaddresses = args["ips"]
+#ipaddresses = ["136.145.59.152"]
 testlog = os.getcwd() + "/testLog.json"
 logdir = os.getcwd() + "/oidLog.json"
 sleeptime = 6 * 5

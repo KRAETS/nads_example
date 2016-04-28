@@ -1,7 +1,7 @@
 import threading
 
 import logging
-
+import notifications
 import signal
 from flask import Flask
 from flask import request
@@ -176,6 +176,7 @@ def add_login():
                     if GLOBAL_PREVIOUS_DN is False:
                         if debug:
                             logging.debug( "Attack initiated")
+                        notifications.notify_both("Attack started")
                         # Package Epoch
                         epoch = package_epoch()
                         # Process it
@@ -185,8 +186,9 @@ def add_login():
                     else:
                         if debug:
                             logging.debug( "Attack in progress")
+                        notifications.notify_both("attack in progress")
                         reset_current_event()
-                        if GLOBAL_OUT_OF_CONTROL_AMOUNT % TUNING_OOC_MEDIUM_THRESHOLD == 0:
+                        if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
                             epoch = package_epoch()
                             GLOBAL_CLASSIFIER.process(epoch)
 
@@ -195,6 +197,7 @@ def add_login():
                     if GLOBAL_PREVIOUS_DN is True:
                         if debug:
                             logging.debug("Reverting to control")
+                        notifications.notify_both("Reverting to control")
                         # Reset counts
                         reset()
                         # Package epoch
@@ -206,6 +209,7 @@ def add_login():
                     else:
                         if debug:
                             logging.debug( "Already in control")
+
                         reset_current_event()
         except Exception as e:
             logging.debug( "Problem analyzing"+str(e))

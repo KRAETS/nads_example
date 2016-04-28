@@ -3,6 +3,7 @@ import requests
 from subprocess import check_call
 LOG_FILENAME = 'example.log'
 import logging
+import iptc
 
 logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
 
@@ -11,7 +12,17 @@ def block(ip_to_block):
     logging.debug( "Blocking"+str(ip_to_block))
     res = None
     try:
-        res = check_call("sudo iptables -A INPUT -s "+str(ip_to_block)+" -j DROP", shell=True)
+        rule = iptc.Rule()
+        rule.protocol = "tcp"
+        match = iptc.Match(rule, "tcp")
+        rule.add_match(match)
+        match = iptc.Match(rule, "source")
+        match.src = ip_to_block
+        rule.add_match(match)
+        rule.target = iptc.Target(rule, "DROP")
+        chain = iptc.Chain(iptc.Table(iptc.Table.FILTER), "INPUT")
+        chain.insert_rule(rule)
+        # res = check_call("sudo iptables -A INPUT -s "+str(ip_to_block)+" -j DROP", shell=True)
     except Exception as e:
         logging.debug( "Could not complete call res:"+str(res)+"exception:"+str(e))
     logging.debug( "Done")

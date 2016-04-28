@@ -172,11 +172,16 @@ def analyzeLogin():
             # print "Entry is correct date", entry
             data = Login(False, "", "", "")
             try:
-                if entry["Status"].lower() == "failed":
+                if entry["Status"][0].lower() == "failed":
                     data.set_status(False)
                 else:
                     data.set_status(True)
             except Exception as e:
+                if entry["Status"] is not None:
+                    if entry["Status"].lower() == "failed":
+                        data.set_status(False)
+                    else:
+                        data.set_status(True)
                 if entry["Status"][0].lower() == "failed":
                     data.set_status(False)
                 else:

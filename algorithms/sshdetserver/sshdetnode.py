@@ -171,22 +171,17 @@ def analyzeLogin():
                 continue
             # logging.debug( "Entry is correct date", entry
             data = Login(False, "", "", "")
+            status = ""
             try:
-                if entry["Status"][0].lower() == "failed":
-                    data.set_status(False)
-                else:
-                    data.set_status(True)
+                status = entry["Status"][0].lower()
             except Exception as e:
-                if entry["Status"] is not None:
-                    if entry["Status"].lower() == "failed":
-                        data.set_status(False)
-                    else:
-                        data.set_status(True)
-                if entry["Status"][0].lower() == "failed":
-                    data.set_status(False)
-                else:
-                    data.set_status(True)
+                status = entry["Status"].lower()
 
+            if status == "failed":
+                data.set_status(False)
+            else:
+                data.set_status(True)
+            logging.debug("Status is:"+str(data.get_status()))
             data.set_host(get_lan_ip())
 
             data.set_protocol("SSH")

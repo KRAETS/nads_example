@@ -294,5 +294,5 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
 
 if __name__ == '__main__':
     # Default startup
-    main("139.145.59.139:8003", "/var/log", "auth.log", supported_protocols, "SSH")
+    main("localhost:8003", "/var/log", "auth.log", supported_protocols, "SSH")
 

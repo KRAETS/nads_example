@@ -11,7 +11,7 @@ def block(ip_to_block):
     logging.debug( "Blocking"+str(ip_to_block))
     res = None
     try:
-        res = check_call(["iptables", "-A", "INPUT", "-s", ip_to_block, "-j","DROP"])
+        res = check_call("sudo iptables -A INPUT -s "+str(ip_to_block)+" -j DROP", shell=True)
     except Exception as e:
         logging.debug( "Could not complete call res:"+str(res)+"exception:"+str(e))
     logging.debug( "Done")

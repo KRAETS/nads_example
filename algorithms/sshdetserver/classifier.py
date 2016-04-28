@@ -251,7 +251,6 @@ class Classifier:
 
     def process(self, epoch):
         """Takes an epoch to determine if singleton/distributed"""
-        logging.debug( "Processing epoch"+str(epoch))
         self.current_epoch = epoch
         # First check singleton
         result = self.check_singleton(epoch)

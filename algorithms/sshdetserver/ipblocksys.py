@@ -16,8 +16,7 @@ def block(ip_to_block):
         rule.protocol = "tcp"
         match = iptc.Match(rule, "tcp")
         rule.add_match(match)
-        match = iptc.Match(rule, "source")
-        match.src = ip_to_block
+        rule.src = ip_to_block
         rule.add_match(match)
         rule.target = iptc.Target(rule, "DROP")
         chain = iptc.Chain(iptc.Table(iptc.Table.FILTER), "INPUT")

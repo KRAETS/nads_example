@@ -69,7 +69,7 @@ def main():
         try:
             if parameter_map["server"] == True or parameter_map["server"] == "true":
                 logging.debug( "Starting the server")
-                start_server(verbose, supported_protocols, protocol)
+                start_server(verbose, supported_protocols, protocol, parameter_map["dataaddress"])
                 logging.debug( "Waiting for initialization")
                 time.sleep(10)
                 logging.debug( "Continuing")
@@ -82,7 +82,8 @@ def main():
                 logging.debug( "Address is"+str(parameter_map["serveraddress"]))
                 server_address = parameter_map["serveraddress"]
                 start_client(verbose, server_address, parameter_map["monitoringfolder"],
-                             parameter_map["monitoringfile"], supported_protocols, protocol)
+                             parameter_map["monitoringfile"], supported_protocols, protocol,
+                             parameter_map["dataaddress"])
         except Exception as e:
             logging.debug( "Could not start client"+str(e))
         # Wait for the processes to exit
@@ -128,7 +129,7 @@ def main():
     #     process.join()
 
 
-def start_client(verbose, server_address, monitoringfolder, monitoringfile, supported_protocols, protocol):
+def start_client(verbose, server_address, monitoringfolder, monitoringfile, supported_protocols, protocol, dataaddress):
     """Function to start a client process and monitor within a folder, a specific file"""
     global GLOBAL_PROCESS_LIST
     if verbose:
@@ -139,7 +140,8 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile, supp
 
     # Start up the client script separately
     p = Process(target=sshdetnode.main, args=(server_address, monitoringfolder,
-                                              monitoringfile, supported_protocols, protocol))
+                                              monitoringfile, supported_protocols, protocol,
+                                              dataaddress))
     p.start()
     if verbose:
         logging.debug( "Client started!")
@@ -148,12 +150,13 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile, supp
     return
 
 
-def start_server(verbose, supported_protocols, protocol):
+def start_server(verbose, supported_protocols, protocol, dataaddress, port):
     """Function to start a server process"""
     global GLOBAL_PROCESS_LIST
     if verbose:
         logging.debug( "Server node starting")
-    p = Process(target=sshdetserver.main, args=(verbose,), kwargs={'supportedprotocols':supported_protocols,'targetprotocol':protocol})
+    p = Process(target=sshdetserver.main, args=(verbose,), kwargs={'supportedprotocols':supported_protocols,'targetprotocol':protocol,
+                                                                   'dataaddress':dataaddress, 'port':port})
     p.start()
     if verbose:
         logging.debug( "Server node started")

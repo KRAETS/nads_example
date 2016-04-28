@@ -228,11 +228,12 @@ def signal_term_handler(a, b):
         exit(1)
     exit(0)
 
+dataaddr = "localhost"
 
 def main(debug_enabled, tuning_mu=3, tuning_k=1,
          tuning_h= 2,_tuning_average_ooc_arl=3,
          tuning_ooc_med_thresh=4, tuning_event_threshold=10,
-         supportedprotocols=supported_protocols, targetprotocol=protocol):
+         supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr, port = 8003):
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
@@ -269,8 +270,8 @@ def main(debug_enabled, tuning_mu=3, tuning_k=1,
         # Set up initial event
         reset()
         reset_current_event()
-        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol)
-        app.run(host='0.0.0.0',port=8003)
+        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol, dataaddress)
+        app.run(host='0.0.0.0',port=port)
     except Exception as e:
         logging.debug( "Could not start server!!"+str(e))
         exit(1)

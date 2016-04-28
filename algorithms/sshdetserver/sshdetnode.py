@@ -14,7 +14,7 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 from login import Login
 LOG_FILENAME = 'example.log'
-
+dataaddr = "localhost:8002"
 if os.name != "nt":
     import fcntl
     import struct
@@ -122,6 +122,7 @@ def analyzeLogin():
         #     exit(0)
         # logging.debug( "Got results"
         # Sort by time
+        dr.DATA_RET_SERVER_ADDRESS = "localhost:8002"
         reslist = dr.search(None,querystring)
         usefulentries = []
         logging.debug( "Sorting reslist")#, reslist
@@ -257,13 +258,13 @@ def signal_term_handler(a, b):
     exit(0)
 
 
-def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotocol, nodeport):
-    global GLOBAL_IP, observer, supported_protocols, protocol, MONITORING_FOLDER, FILE_TO_MONITOR
+def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotocol, dataaddress,nodeport):
+    global GLOBAL_IP, observer, supported_protocols, protocol, MONITORING_FOLDER, FILE_TO_MONITOR, dataaddr
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
     logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
-    
+    dataaddr = dataaddress
     # Set the supported protocols
     if supportedprotocols is not None:
         supported_protocols = supportedprotocols
@@ -278,7 +279,7 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
 
     # Set the ip to send requests to
     GLOBAL_IP = ip
-    logging.debug( "Starting up:"+str(ip)+str( monitoringfile)+str( monitoringfolder))
+    logging.debug("Starting up:"+str(ip)+str(monitoringfile)+str(monitoringfolder))
 
     # Set the folder/file to monitor
     MONITORING_FOLDER = monitoringfolder
@@ -292,7 +293,7 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
     observer.schedule(event_handler, MONITORING_FOLDER, recursive=False)
     observer.start()
     # Start the blocking server
-    app.run(host='0.0.0.0', port=nodeport)
+    app.run(host='0.0.0.0', port=int(float(nodeport)))
 
 if __name__ == '__main__':
     # Default startup

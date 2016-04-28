@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * Created by pedro on 3/17/16.
  */
 public class DataRetrievalManager extends Manager {
-    private DataRetrievalOptions datRetOpts;
+    private static DataRetrievalOptions datRetOpts;
     private HttpServer server = null;
     private int serverSocket = 8002;
 
@@ -33,9 +33,12 @@ public class DataRetrievalManager extends Manager {
      * @param logger               the logger
      */
     public DataRetrievalManager(DataRetrievalOptions dataRetrievalOptions, Logger logger) {
-        this.datRetOpts = dataRetrievalOptions;
+        datRetOpts = dataRetrievalOptions;
         this.setLogger(logger);
         this.configure();
+    }
+    public static DataRetrievalOptions getDatRetOpts(){
+        return datRetOpts;
     }
 
     @Override
@@ -143,7 +146,7 @@ public class DataRetrievalManager extends Manager {
                     }
                     bodyargument += current;
                 }
-                String kqlServerAddress = "http://localhost:9200/_kql?limit=10000&kql=";
+                String kqlServerAddress = "http://"+DataRetrievalManager.getDatRetOpts().getElasticSearchAddress()+":"+ DataRetrievalManager.getDatRetOpts().getElasticSearchPort()+"/_kql?limit=10000&kql=";
 
 
                 bodyargument = kqlServerAddress + URLEncoder.encode( bodyargument, "UTF-8");

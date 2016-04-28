@@ -12,7 +12,7 @@
 				"exampleip":"value",
 				"model":"values",
 				"trap_oid": "value",
-				"folder":"/home/nads/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
+				"folder":"/home/pedro/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
 		},
 		{
                         "smtpdetectionserver":{
@@ -33,11 +33,30 @@
 				"client":"true",
 				"serveraddress":"localhost:8003",
 				"verbose":"true",
-				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
 				"protocol":"SSH",
 				"monitoringfolder":"/var/log/",
-				"monitoringfile":"auth.log"
+				"monitoringfile":"auth.log",
+				"dataaddress":"127.0.0.1:8002",
+				"serverport":8003,
+				"clientport":8004
+			}
+		},
+		{
+			"smtpdetectionserver":{
+				"server":"true",
+				"client":"true",
+				"serveraddress":"localhost:8005",
+				"verbose":"true",
+				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
+				"protocol":"SMTP",
+				"monitoringfolder":"/var/log/",
+				"monitoringfile":"mail.log",
+				"dataaddress":"127.0.0.1:8002",
+				"serverport":8005,
+				"clientport":8006
 			}
 		}
 	],
@@ -49,10 +68,8 @@
 	},
 	"dataretrieval":
 	{
-		"logstashport":"70001",
-		"logstashaddress":"127.0.0.1",
-		"elasticsearchport":"70002",
-		"elasticsearchaddress":"127.0.0.2"
+		"elasticsearchport":"9200",
+		"elasticsearchaddress":"localhost"
 	},
 	"notification":
 	{

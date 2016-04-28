@@ -175,8 +175,8 @@ def add_login():
                     GLOBAL_OUT_OF_CONTROL_AMOUNT += 1
                     if GLOBAL_PREVIOUS_DN is False:
                         if debug:
-                            logging.debug( "Attack initiated")
-                        notifications.notify_both("Attack started")
+                            logging.debug(protocol+" Attack initiated")
+                        notifications.notify_both(protocol+" Attack started")
                         # Package Epoch
                         epoch = package_epoch()
                         # Process it
@@ -185,8 +185,8 @@ def add_login():
                         reset_current_event()
                     else:
                         if debug:
-                            logging.debug( "Attack in progress")
-                        notifications.notify_both("attack in progress")
+                            logging.debug(protocol+" Attack in progress")
+                        notifications.notify_both(protocol+" attack in progress")
                         reset_current_event()
                         if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
                             epoch = package_epoch()
@@ -197,7 +197,7 @@ def add_login():
                     if GLOBAL_PREVIOUS_DN is True:
                         if debug:
                             logging.debug("Reverting to control")
-                        notifications.notify_both("Reverting to control")
+                        notifications.notify_both(protocol+" Attack done.  Reverting to control")
                         # Reset counts
                         reset()
                         # Package epoch
@@ -271,9 +271,9 @@ def main(debug_enabled, tuning_mu=3, tuning_k=1,
         reset()
         reset_current_event()
         GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol, dataaddress)
-        app.run(host='0.0.0.0',port=port)
+        app.run(host='0.0.0.0', port=int(float(port)))
     except Exception as e:
-        logging.debug( "Could not start server!!"+str(e))
+        logging.debug("Could not start server!!"+str(e))
         exit(1)
 
 

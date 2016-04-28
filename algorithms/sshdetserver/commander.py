@@ -83,7 +83,7 @@ def main():
                 server_address = parameter_map["serveraddress"]
                 start_client(verbose, server_address, parameter_map["monitoringfolder"],
                              parameter_map["monitoringfile"], supported_protocols, protocol,
-                             parameter_map["dataaddress"], parameter_map["nodeport"])
+                             parameter_map["dataaddress"], parameter_map["clientport"])
         except Exception as e:
             logging.debug( "Could not start client"+str(e))
         # Wait for the processes to exit

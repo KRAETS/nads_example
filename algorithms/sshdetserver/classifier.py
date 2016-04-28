@@ -282,6 +282,7 @@ class Classifier:
                 ipstoblock = list(set(cluster[1]))
                 for ip in ipstoblock:
                     ip = ip.replace("-host","")
+		    logging.debug( "Processing cluster",ip)
                     ip_tools.notifyblock(cluster[0], ip)
             notify_both(msg)
             logging.debug(str(hitpair))

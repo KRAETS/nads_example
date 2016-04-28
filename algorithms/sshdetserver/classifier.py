@@ -27,7 +27,7 @@ def detection_function(sn, sn_1, h):
 
 class Classifier:
     """Class that performs epoch attack type classification"""
-    def __init__(self, mu, h, k, supportedprotocols, protocol):
+    def __init__(self, mu, h, k, supportedprotocols, protocol, dataaddr):
         """Sets the default parameters
         mu mean of failed attempts
         h accumulation threshold
@@ -40,6 +40,8 @@ class Classifier:
         self.current_epoch = None
         self.type = protocol
         self.set_supported_protocols(supportedprotocols)
+        self.dataaddress = dataaddr
+        dr.DATA_RET_SERVER_ADDRESS = self.dataaddress
 
     def set_type(self, newtype):
         for type in supported_protocols.keys():

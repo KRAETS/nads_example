@@ -2,23 +2,25 @@ import json
 import signal
 import sys
 import time
+import logging
 from multiprocessing import Process
 
 import sshdetnode
 import sshdetserver
 
 GLOBAL_PROCESS_LIST = []
+LOG_FILENAME = 'example.log'
 
 
 def usage():
     """Legacy function to print out command line usage"""
-    print "Hi this is the most useful help ever"
+    logging.debug( "Hi this is the most useful help ever")
     return
 
 
 def signal_term_handler(a, b):
     """Function to handle sigterm and shutdown proceses"""
-    print "Protocol Detection Commander Module Successfully Killed"
+    logging.debug( "Protocol Detection Commander Module Successfully Killed")
     global GLOBAL_PROCESS_LIST
     for process in GLOBAL_PROCESS_LIST:
         process.terminate()
@@ -26,7 +28,7 @@ def signal_term_handler(a, b):
 
 
 def stop():
-    print "Notification Module Successfully Killed"
+    logging.debug( "Notification Module Successfully Killed")
     global GLOBAL_PROCESS_LIST
     for process in GLOBAL_PROCESS_LIST:
         process.terminate()
@@ -35,9 +37,9 @@ def stop():
 def main():
     """Starts a server, client or both depending on json parameters"""
     try:
-        print "The commander is starting!!!"
-        print sys.argv
-        print sys.argv[1]
+        logging.debug( "The commander is starting!!!")
+        logging.debug( sys.argv)
+        logging.debug( sys.argv[1])
         # Get json
         workingstring = sys.argv[1]
         # workingstring = str(workingstring).replace('\\','')
@@ -45,15 +47,15 @@ def main():
         # encoded  = json.dumps(str(sys.argv[1]))
         # jstring = str(sys.argv[1])
         parameter_map = json.loads(workingstring)
-        print "Passed the parsing!!"
-        print "Parameters:", parameter_map
+        logging.debug( "Passed the parsing!!")
+        logging.debug( "Parameters:"+str( parameter_map))
         # See if verbose option is enabled
         verbose = False
         try:
             if parameter_map["verbose"] is True or parameter_map["verbose"] == "true":
                 verbose = True
         except Exception as e:
-            print "No verbose option provided", e
+            logging.debug( "No verbose option provided"+str(e))
         # Check if server option enabled and start a server
         supported_protocols = None
         protocol = None
@@ -61,28 +63,28 @@ def main():
             supported_protocols = json.loads(parameter_map["supported_protocols"])
             protocol = parameter_map["protocol"]
         except Exception as e:
-            print "Not enough parameters given", str(e)
+            logging.debug( "Not enough parameters given"+str(e))
             exit(1)
-        # print supported_protocols, protocol
+        # logging.debug( supported_protocols, protocol
         try:
             if parameter_map["server"] == True or parameter_map["server"] == "true":
-                print "Starting the server"
+                logging.debug( "Starting the server")
                 start_server(verbose, supported_protocols, protocol)
-                print "Waiting for initialization"
+                logging.debug( "Waiting for initialization")
                 time.sleep(10)
-                print "Continuing"
+                logging.debug( "Continuing")
         except Exception as e:
-            print "Could not start server", e
+            logging.debug( "Could not start server"+str(e))
         # Check if client option is enabled and start a monitoring client
         try:
             if parameter_map["client"] is True or parameter_map["client"] == "true":
-                print "Checking for server address..."
-                print "Address is", parameter_map["serveraddress"]
+                logging.debug( "Checking for server address...")
+                logging.debug( "Address is"+str(parameter_map["serveraddress"]))
                 server_address = parameter_map["serveraddress"]
                 start_client(verbose, server_address, parameter_map["monitoringfolder"],
                              parameter_map["monitoringfile"], supported_protocols, protocol)
         except Exception as e:
-            print "Could not start client", e
+            logging.debug( "Could not start client"+str(e))
         # Wait for the processes to exit
 
         for process in GLOBAL_PROCESS_LIST:
@@ -90,7 +92,7 @@ def main():
         return
 
     except Exception as e:
-        print "Could not start the commander!!", e
+        logging.debug( "Could not start the commander!!"+str(e))
         return 1
 
     # '''For legacy purposes'''
@@ -130,17 +132,17 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile, supp
     """Function to start a client process and monitor within a folder, a specific file"""
     global GLOBAL_PROCESS_LIST
     if verbose:
-        print "Client node"
+        logging.debug( "Client node")
     if verbose:
-        print "Server address", server_address
-        print "Starting up client script..."
+        logging.debug( "Server address"+str(server_address))
+        logging.debug( "Starting up client script...")
 
     # Start up the client script separately
     p = Process(target=sshdetnode.main, args=(server_address, monitoringfolder,
                                               monitoringfile, supported_protocols, protocol))
     p.start()
     if verbose:
-        print "Client started!"
+        logging.debug( "Client started!")
 
     GLOBAL_PROCESS_LIST.append(p)
     return
@@ -150,16 +152,17 @@ def start_server(verbose, supported_protocols, protocol):
     """Function to start a server process"""
     global GLOBAL_PROCESS_LIST
     if verbose:
-        print "Server node starting"
+        logging.debug( "Server node starting")
     p = Process(target=sshdetserver.main, args=(verbose,), kwargs={'supportedprotocols':supported_protocols,'targetprotocol':protocol})
     p.start()
     if verbose:
-        print "Serber node started"
+        logging.debug( "Server node started")
     GLOBAL_PROCESS_LIST.append(p)
 
 if __name__ == '__main__':
     # Set the sigterm / sigint handlers
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
+    logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
     # Start the main
     main()

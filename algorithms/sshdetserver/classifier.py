@@ -3,6 +3,8 @@ import time
 import ipblocksys as ip_tools
 import editdistance
 from igraph import *
+import logging
+LOG_FILENAME = 'example.log'
 
 import dummy_data_retrieval as dr
 from notifications import notify_both
@@ -31,6 +33,7 @@ class Classifier:
         h accumulation threshold
         k parameter to lower normal mean to <0 and make it discrete
         """
+        logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
         self.mu = mu
         self.k = k
         self.h = h
@@ -97,19 +100,19 @@ class Classifier:
         for event in copy_of_ooc_events:
             # Calculate gfi
             gfi = event.calculate_gfi()
-            print "Calculated GFI", gfi
+            logging.debug( "Calculated GFI"+str(gfi))
             # Calculate zn
             zn = event.calculate_zn(self.mu, self.k)
-            print "Calculated ZN", zn
+            logging.debug( "Calculated ZN"+str(zn))
             # SAVE OLD SN
             GLOBAL_SN_1 = GLOBAL_SN
-            print "Global sn 1", GLOBAL_SN_1
+            logging.debug( "Global sn 1"+str(GLOBAL_SN_1))
             # Calculate new sn
             GLOBAL_SN += zn
-            print "Global sn", GLOBAL_SN
+            logging.debug( "Global sn"+str(GLOBAL_SN))
             # Perform detection
             GLOBAL_DN = detection_function(GLOBAL_SN, GLOBAL_SN_1, self.h)
-            print "Global dn", GLOBAL_DN
+            logging.debug( "Global dn"+str(GLOBAL_DN))
             # Set Event in control or not.  Has to be negated to reflect
             # in control = no detection and out of control = detection
             event.set_control(not GLOBAL_DN)
@@ -144,7 +147,7 @@ class Classifier:
             for login in past_success_logins:
                 if str(test_login.get_client()) == str(login["ClientIp"]) and \
                                 test_login.get_user() == login["UserName"]:
-                    print "Previous success detected", test_login.get_client(), test_login.get_user()
+                    logging.debug( "Previous success detected"+str(test_login.get_client())+str(test_login.get_user()))
                     return False
             return True
 
@@ -155,16 +158,16 @@ class Classifier:
         # Filtering function for mistaken login
         def mistyped_successful_previous_login_filter(test_login):
             for login in past_success_logins:
-                # print "Edit distance", editdistance.eval(login["UserName"], test_login.get_user())
-                # print "Opposite", editdistance.eval(test_login.get_user(), login["UserName"])
-                # print test_login.get_user(), login["UserName"]
-                # print test_login.get_client() == login["ClientIp"]
-                # print editdistance.eval(login["UserName"], test_login.get_user()) == 1
-                # print editdistance.eval(login["UserName"], test_login.get_user()) is 1
-                # print "For"
+                # logging.debug( "Edit distance", editdistance.eval(login["UserName"], test_login.get_user())
+                # logging.debug( "Opposite", editdistance.eval(test_login.get_user(), login["UserName"])
+                # logging.debug( test_login.get_user(), login["UserName"]
+                # logging.debug( test_login.get_client() == login["ClientIp"]
+                # logging.debug( editdistance.eval(login["UserName"], test_login.get_user()) == 1
+                # logging.debug( editdistance.eval(login["UserName"], test_login.get_user()) is 1
+                # logging.debug( "For"
                 if test_login.get_client() == login["ClientIp"] and \
                                 editdistance.eval(login["UserName"], test_login.get_user()) == 1:
-                    print "Mistype detected", test_login.get_client()
+                    logging.debug( "Mistype detected"+str(test_login.get_client()))
                     return False
             return True
 
@@ -199,8 +202,8 @@ class Classifier:
         # Join Remotehost->localhost
         for vertex in nodeset1.union(nodeset2):
             graph.add_vertex(vertex)
-        print graph
-        print "Vertices", graph.vs["name"]
+        logging.debug(str(graph))
+        # logging.debug( "Vertices", graph.vs["name"]
         for event in epoch.get_history_events():
             for login in event.get_logins():
                 if not login.get_status():
@@ -229,7 +232,7 @@ class Classifier:
         attackers = []
         reslist = []
         for cluster in clusters:
-            print cluster
+            logging.debug(str(cluster))
             for vertex in cluster:
                 degree = graph.degree(vertex)
                 if "-host" in graph.vs["name"][vertex]:
@@ -241,22 +244,22 @@ class Classifier:
             hostname = ""
             attackers = []
 
-        # print top
+        # logging.debug( top
 
-        # print clusters
+        # logging.debug( clusters
         return reslist
 
     def process(self, epoch):
         """Takes an epoch to determine if singleton/distributed"""
-        print "Processing epoch", epoch
+        logging.debug( "Processing epoch"+str(epoch))
         self.current_epoch = epoch
         # First check singleton
         result = self.check_singleton(epoch)
-        print "Result",result
+        logging.debug( "Result"+str(result))
         if result is not None:
             # process singleton
             msg = {"type": "Singleton", "data": result}
-            print  msg
+            logging.debug(str(msg))
             notify_both(msg)
             # Block
             ipstoblock = list(set(result[2]))
@@ -265,19 +268,19 @@ class Classifier:
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
             # Then check distributed
-            print "Filtering out legitimate activity"
+            logging.debug( "Filtering out legitimate activity")
             newepoch = self.analyze_past_history(epoch)
-            print "Done", newepoch
-            print "Analyzing coordination glue"
+            logging.debug( "Done"+str(newepoch))
+            logging.debug( "Analyzing coordination glue")
             hitpair = self.analyze_coordination_glue(newepoch)
-            print "Is distributed!!!"
+            logging.debug( "Is distributed!!!")
             msg = {"type":"Distributed","data":hitpair}
-            print msg
+            logging.debug(str(msg))
             # Block ips
             for cluster in hitpair:
                 ipstoblock = list(set(cluster[1]))
                 for ip in ipstoblock:
                     ip_tools.notifyblock(cluster[0], ip)
             notify_both(msg)
-            print hitpair
+            logging.debug(str(hitpair))
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "DISTRIBUTED", hitpair)

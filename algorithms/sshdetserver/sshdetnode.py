@@ -4,6 +4,7 @@ import socket
 import time
 import urllib2
 import signal
+import logging
 import dummy_data_retrieval as dr
 from datetime import datetime, date
 from flask import Flask
@@ -12,7 +13,7 @@ import ipblocksys as ip_tools
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 from login import Login
-
+LOG_FILENAME = 'example.log'
 
 if os.name != "nt":
     import fcntl
@@ -63,9 +64,9 @@ LAST_CHECK = None
 @app.route('/blockip',methods=['POST'])
 def blockip():
     ip = request.data
-    print "Blocking", ip
+    logging.debug( "Blocking"+str(ip))
     if ip == "127.0.0.1" or ip == "localhost":
-        print "Not blocking localhost"
+        logging.debug( "Not blocking localhost")
         return "OK"
     ip_tools.block(str(ip))
     return 'Ok'
@@ -73,7 +74,7 @@ def blockip():
 
 @app.route('/',methods=['GET'])
 def HELLO():
-    print "Hello"
+    logging.debug( "Hello")
     return "Hello!!"
 
 
@@ -93,7 +94,7 @@ def shutdown():
 
 def analyzeLogin():
     global protocol, supported_protocols
-    print "Analyzing login!!"
+    logging.debug( "Analyzing login!!")
     try:
         time.sleep(5)
         global LAST_CHECK
@@ -105,26 +106,25 @@ def analyzeLogin():
                       'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" )'
         # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
         # completequery = query_url + urllib.quote(querystring, safe='')
-        # print "Making query", completequery
+        # logging.debug( "Making query", completequery
         # # req = urllib2.Request(completequery)
         # results = None
         # try:
         #     response = requests.get(completequery)
         #
-        #     printthings = response.text
+        #     logging.debug(things = response.text
         #
-        #     # printthings = response.read()
-        #     results = json.loads(printthings)
-        #     # print results
+        #     # logging.debug(things = response.read()
+        #     results = json.loads(logging.debug(things)
+        #     # logging.debug( results
         # except Exception as e:
-        #     print "Could not open kql server", e
+        #     logging.debug( "Could not open kql server", e
         #     exit(0)
-        # print "Got results"
+        # logging.debug( "Got results"
         # Sort by time
         reslist = dr.search(None,querystring)
-        print 'y'
         usefulentries = []
-        print "Sorting reslist"#, reslist
+        logging.debug( "Sorting reslist")#, reslist
         for item in reslist:
             entry = item
             try:
@@ -134,11 +134,11 @@ def analyzeLogin():
                 try:
                     s = entry["Date"][0]
                 except Exception as e:
-                    print "Useless"
+                    logging.debug( "Useless")
                     pass
-                # print "Useless"
-                # print entry
-        print "Changing time"#, usefulentries
+                # logging.debug( "Useless"
+                # logging.debug( entry
+        logging.debug( "Changing time")#, usefulentries
         for entry in usefulentries:
             try:
                 d = entry["Date"]
@@ -150,10 +150,10 @@ def analyzeLogin():
                     entry["Date"] = datetime.strptime(entry["Date"][0], '%b %d %H:%M:%S')
                     entry["Date"] = entry["Date"].replace(year=date.today().year)
                 except Exception as e:
-                    print "Problem", e
-            # print entry["Date"]
+                    logging.debug( "Problem"+str(e))
+            # logging.debug( entry["Date"]
         usefulentries.sort(key=lambda x: x["Date"], reverse=True)
-        #print usefulentries
+        #logging.debug( usefulentries
 
         # Check if we have to configure for the first time
         if LAST_CHECK is None:
@@ -165,11 +165,11 @@ def analyzeLogin():
 
         #Analyze each one
         usefulentries.reverse()
-        print "Analyzing each entry.  Last checked was", LAST_CHECK, LAST_CHECK["Date"]
+        logging.debug( "Analyzing each entry.  Last checked was"+ str(LAST_CHECK)+ str(LAST_CHECK["Date"]))
         for entry in usefulentries:
             if LAST_CHECK["Date"] >= entry["Date"]:
                 continue
-            # print "Entry is correct date", entry
+            # logging.debug( "Entry is correct date", entry
             data = Login(False, "", "", "")
             try:
                 if entry["Status"][0].lower() == "failed":
@@ -207,28 +207,28 @@ def analyzeLogin():
                 f.write(str(data)+" yes\n")
                 f.close()
             except Exception as e:
-                print "Could not document instance", e
+                logging.debug( "Could not document instance"+str(e))
             LAST_CHECK = usefulentries[0]
 
             #Send to the analysis server
             try:
-                print "Contacting"+'http://' + GLOBAL_IP + '/addlogin'
+                logging.debug( "Contacting"+'http://' + GLOBAL_IP + '/addlogin')
                 req = urllib2.Request('http://' + GLOBAL_IP + '/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json.dumps(data.__dict__))
-                print response
+                logging.debug(str(response))
             except Exception as e:
-                print "Could not contact server", e
-        print "Exited"
+                logging.debug( "Could not contact server"+str(e))
+        logging.debug( "Exited")
         LAST_CHECK = usefulentries[len(usefulentries)-1]
     except Exception as e:
-        print "There was a problem", e
+        logging.debug( "There was a problem"+str(e))
     return
 
 class MyHandler(FileSystemEventHandler):
 
     def catch_all(self, event, op):
-        # print "Caught something", event
+        # logging.debug( "Caught something", event
         if event.is_directory:
             return
 
@@ -240,7 +240,7 @@ class MyHandler(FileSystemEventHandler):
             try:
                 analyzeLogin()
             except Exception as e:
-                print "Problem contacting server", e
+                logging.debug( "Problem contacting server" +str(e))
 
 
     def on_created(self, event):
@@ -252,11 +252,11 @@ class MyHandler(FileSystemEventHandler):
 
 def signal_term_handler(a, b):
     """Function to handle sigterm and shutdown proceses"""
-    print "PROTOCOL ATTACK DETECTION NODE Successfully Killed"
+    logging.debug( "PROTOCOL ATTACK DETECTION NODE Successfully Killed")
     try:
         shutdown_server()
     except Exception as e:
-        print "Could not shut down gracefully", str(e)
+        logging.debug( "Could not shut down gracefully"+ str(e))
         exit(1)
     exit(0)
 
@@ -266,22 +266,23 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
-
+    logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
+    
     # Set the supported protocols
     if supportedprotocols is not None:
         supported_protocols = supportedprotocols
     else:
-        print "No supported protocols specified"
+        logging.debug( "No supported protocols specified")
         exit(1)
     if targetprotocol is not None:
         protocol = targetprotocol
     else:
-        print "No target protocol specified"
+        logging.debug( "No target protocol specified")
         exit(1)
 
     # Set the ip to send requests to
     GLOBAL_IP = ip
-    print "Starting up:", ip, monitoringfile, monitoringfolder
+    logging.debug( "Starting up:"+str(ip)+str( monitoringfile)+str( monitoringfolder))
 
     # Set the folder/file to monitor
     MONITORING_FOLDER = monitoringfolder

@@ -106,16 +106,16 @@ def shutdown():
 def add_login():
     global debug
     if debug:
-        print "Got a login!"
+        logging.debug( "Got a login!")
     # Lock the thread for processing
     if debug:
-        print "Acquiring lock"
+        logging.debug( "Acquiring lock")
     lock = threading.Lock()
 
     with lock:
         try:
             if debug:
-                print "Lock acquired"
+                logging.debug( "Lock acquired")
 
             # Increase total logins by one
             global GLOBAL_CURRENT_EVENT, GLOBAL_LOGINS, GLOBAL_SN, \
@@ -129,7 +129,7 @@ def add_login():
             # Extract the login from the call data
             login = Login.parse_from_json(request.json)
             if debug:
-                print "Login Received", login.get_status(), login.get_client()
+                logging.debug( "Login Received"+str(login.get_status())+ str(login.get_client()))
 
 
             # add the login to the current event
@@ -137,7 +137,7 @@ def add_login():
 
             # See if the current event is full or not
             if GLOBAL_CURRENT_EVENT.is_threshold_reached():
-                # TODO PRINT EVENT IN LOG
+                # TODO logging.debug( EVENT IN LOG
                 logging.debug(str(GLOBAL_CURRENT_EVENT))
                 #Add current event to list of events
                 GLOBAL_EVENT_LIST.append(GLOBAL_CURRENT_EVENT)
@@ -145,37 +145,37 @@ def add_login():
                 # Calculate gfi
                 gfi = GLOBAL_CURRENT_EVENT.calculate_gfi()
                 if debug:
-                    print "Calculated GFI", gfi
+                    logging.debug( "Calculated GFI"+str(gfi))
                 # Calculate zn
                 zn = GLOBAL_CURRENT_EVENT.calculate_zn(TUNING_MU, TUNING_K)
                 if debug:
-                    print "Calculated ZN", zn
+                    logging.debug( "Calculated ZN"+str(zn))
                 # SAVE OLD SN
                 GLOBAL_SN_1 = GLOBAL_SN
                 if debug:
-                    print "Global sn 1",GLOBAL_SN_1
+                    logging.debug( "Global sn 1"+str(GLOBAL_SN_1))
                 # Calculate new sn
                 GLOBAL_SN += zn
                 if debug:
-                    print "Global sn", GLOBAL_SN
+                    logging.debug( "Global sn"+str(GLOBAL_SN))
                 # Save Previous detection
                 GLOBAL_PREVIOUS_DN = GLOBAL_DN
                 if debug:
-                    print "Global previous dn", GLOBAL_PREVIOUS_DN
+                    logging.debug( "Global previous dn"+str(GLOBAL_PREVIOUS_DN))
                 # Perform detection
                 GLOBAL_DN = detection_function()
                 if debug:
-                    print "Global dn", GLOBAL_DN
+                    logging.debug( "Global dn"+str(GLOBAL_DN))
                 # Set Event in control or not.  Has to be negated to reflect
                 # in control = no detection and out of control = detection
                 GLOBAL_CURRENT_EVENT.set_control(not GLOBAL_DN)
 
                 if GLOBAL_DN is True:
-                    # print "Global DN is true"
+                    # logging.debug( "Global DN is true"
                     GLOBAL_OUT_OF_CONTROL_AMOUNT += 1
                     if GLOBAL_PREVIOUS_DN is False:
                         if debug:
-                            print "Attack initiated"
+                            logging.debug( "Attack initiated")
                         # Package Epoch
                         epoch = package_epoch()
                         # Process it
@@ -184,17 +184,17 @@ def add_login():
                         reset_current_event()
                     else:
                         if debug:
-                            print "Attack in progress"
+                            logging.debug( "Attack in progress")
                         reset_current_event()
                         if GLOBAL_OUT_OF_CONTROL_AMOUNT % TUNING_OOC_MEDIUM_THRESHOLD == 0:
                             epoch = package_epoch()
                             GLOBAL_CLASSIFIER.process(epoch)
 
                 else:
-                    # print "Global dn is false"
+                    # logging.debug( "Global dn is false"
                     if GLOBAL_PREVIOUS_DN is True:
                         if debug:
-                            print"Reverting to control"
+                            logging.debug("Reverting to control")
                         # Reset counts
                         reset()
                         # Package epoch
@@ -205,22 +205,22 @@ def add_login():
                         reset_current_event()
                     else:
                         if debug:
-                            print "Already in control"
+                            logging.debug( "Already in control")
                         reset_current_event()
         except Exception as e:
-            print "Problem analyzing", e
+            logging.debug( "Problem analyzing"+str(e))
     if debug:
-        print "Done analyzing, returning ok"
+        logging.debug( "Done analyzing, returning ok")
     return "OK"
 
 
 def signal_term_handler(a, b):
     """Function to handle sigterm and shutdown proceses"""
-    print "PROTOCOL ATTACK DETECTION SERVER Successfully Killed"
+    logging.debug( "PROTOCOL ATTACK DETECTION SERVER Successfully Killed")
     try:
         shutdown_server()
     except Exception as e:
-        print "Could not shut down gracefully", str(e)
+        logging.debug( "Could not shut down gracefully"+str(e))
         exit(1)
     exit(0)
 
@@ -253,13 +253,14 @@ def main(debug_enabled, tuning_mu=3, tuning_k=1,
         protocol = targetprotocol
 
         if debug:
-            print "Using parameters", debug, TUNING_MU, TUNING_K, TUNING_H, TUNING_AVERAGE_OOC_ARL,\
-                TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD
+            pass
+            # logging.debug( "Using parameters", debug, TUNING_MU, TUNING_K, TUNING_H, TUNING_AVERAGE_OOC_ARL,\
+            #     TUNING_OOC_MEDIUM_THRESHOLD,TUNING_EVENT_THRESHOLD)
 
         #Set up logging
         if debug:
             logging.basicConfig(filename='example.log', level=logging.DEBUG)
-            print "Starting det server"
+            logging.debug( "Starting det server")
 
         # Set up initial event
         reset()
@@ -267,7 +268,7 @@ def main(debug_enabled, tuning_mu=3, tuning_k=1,
         GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol)
         app.run(host='0.0.0.0',port=8003)
     except Exception as e:
-        print "Could not start server!!", e
+        logging.debug( "Could not start server!!"+str(e))
         exit(1)
 
 

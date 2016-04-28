@@ -265,6 +265,7 @@ class Classifier:
             ipstoblock = list(set(result[2]))
             for ip in ipstoblock:
                 ip = ip.replace("-host","")
+                logging.debug("Blocking the ip:"+ip)
                 ip_tools.notifyblock(ip,result[0])
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
@@ -281,8 +282,8 @@ class Classifier:
             for cluster in hitpair:
                 ipstoblock = list(set(cluster[1]))
                 for ip in ipstoblock:
-                    ip = ip.replace("-host","")
-                    ip_tools.notifyblock(cluster[0], ip)
+                    logging.debug("bLOCKING AT HOST"+cluster[0].replace("-host","")+"THE Ip "+ip)
+                    ip_tools.notifyblock(cluster[0].replace("-host",""), ip)
             notify_both(msg)
             logging.debug(str(hitpair))
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "DISTRIBUTED", hitpair)

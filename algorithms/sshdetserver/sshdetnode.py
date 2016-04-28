@@ -207,17 +207,18 @@ def analyzeLogin():
 
             #Send to the analysis server
             try:
-                logging.debug( "Contacting"+'http://' + GLOBAL_IP + '/addlogin')
+                logging.debug("Contacting"+'http://' + GLOBAL_IP + '/addlogin')
+                logging.debug(data)
                 req = urllib2.Request('http://' + GLOBAL_IP + '/addlogin')
                 req.add_header('Content-Type', 'application/json')
                 response = urllib2.urlopen(req, json.dumps(data.__dict__))
-                logging.debug(str(response))
+                # logging.debug(str(response))
             except Exception as e:
                 logging.debug( "Could not contact server"+str(e))
         logging.debug( "Exited")
         LAST_CHECK = usefulentries[len(usefulentries)-1]
     except Exception as e:
-        logging.debug( "There was a problem"+str(e))
+        logging.debug("There was a problem"+str(e))
     return
 
 class MyHandler(FileSystemEventHandler):

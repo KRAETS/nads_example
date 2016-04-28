@@ -256,8 +256,12 @@ class Classifier:
         logging.debug( "Processing epoch"+str(epoch))
         self.current_epoch = epoch
         # First check singleton
-        result = self.check_singleton(epoch)
-        logging.debug( "Result"+str(result))
+        logging.debug("Filtering out legitimate activity")
+        newepoch = self.analyze_past_history(epoch)
+        logging.debug("Done" + str(newepoch))
+
+        result = self.check_singleton(newepoch)
+        logging.debug("Result"+str(result))
         if result is not None:
             # process singleton
             msg = {"type": "Singleton", "data": result}
@@ -272,9 +276,7 @@ class Classifier:
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
             # Then check distributed
-            logging.debug( "Filtering out legitimate activity")
-            newepoch = self.analyze_past_history(epoch)
-            logging.debug( "Done"+str(newepoch))
+
             logging.debug( "Analyzing coordination glue")
             hitpair = self.analyze_coordination_glue(newepoch)
             logging.debug( "Is distributed!!!")

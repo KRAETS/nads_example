@@ -122,7 +122,7 @@ def analyzeLogin():
         #     exit(0)
         # logging.debug( "Got results"
         # Sort by time
-        dr.DATA_RET_SERVER_ADDRESS = "localhost:8002"
+        dr.DATA_RET_SERVER_ADDRESS = dataaddr
         reslist = dr.search(None,querystring)
         usefulentries = []
         logging.debug( "Sorting reslist")#, reslist

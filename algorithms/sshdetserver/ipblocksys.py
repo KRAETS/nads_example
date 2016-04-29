@@ -39,7 +39,7 @@ def unblock(ip_to_unblock):
 
 def notifyblock(host, ip_to_block):
     try:
-        requests.post("http://"+host+":"+str(float(PORT))+"/blockip",ip_to_block)
+        requests.post("http://"+host+":"+str(int(float(PORT)))+"/blockip",ip_to_block)
     except Exception as e:
         logging.debug( "Could not notify host of ip to block"+ str(e))
     return

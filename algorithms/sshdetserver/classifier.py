@@ -5,10 +5,9 @@ import editdistance
 from igraph import *
 import logging
 LOG_FILENAME = 'example.log'
-
+CLIENTPORT = 8004
 import dummy_data_retrieval as dr
-from notifications import notify_both
-
+import notifications
 pair = ("", -1, [])
 
 supported_protocols = \
@@ -27,7 +26,7 @@ def detection_function(sn, sn_1, h):
 
 class Classifier:
     """Class that performs epoch attack type classification"""
-    def __init__(self, mu, h, k, supportedprotocols, protocol, dataaddr):
+    def __init__(self, mu, h, k, supportedprotocols, protocol, dataaddr, blockclientport):
         """Sets the default parameters
         mu mean of failed attempts
         h accumulation threshold
@@ -42,6 +41,7 @@ class Classifier:
         self.set_supported_protocols(supportedprotocols)
         self.dataaddress = dataaddr
         dr.DATA_RET_SERVER_ADDRESS = self.dataaddress
+        ip_tools.PORT = blockclientport
 
     def set_type(self, newtype):
         for type in supported_protocols.keys():
@@ -265,7 +265,7 @@ class Classifier:
             # process singleton
             msg = {"type": "Singleton", "data": result}
             logging.debug(str(msg))
-            notify_both(msg)
+            notifications.notify_both(msg)
             # Block
             ipstoblock = list(set(result[2]))
             for ip in ipstoblock:
@@ -287,6 +287,6 @@ class Classifier:
                 for ip in ipstoblock:
                     logging.debug("bLOCKING AT HOST"+cluster[0].replace("-host","")+"THE Ip "+ip)
                     ip_tools.notifyblock(cluster[0].replace("-host",""), ip)
-            notify_both(msg)
+            notifications.notify_both(msg)
             logging.debug(str(hitpair))
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "DISTRIBUTED", hitpair)

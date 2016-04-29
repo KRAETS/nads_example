@@ -233,7 +233,7 @@ dataaddr = "localhost"
 def main(debug_enabled, tuning_mu=3, tuning_k=1,
          tuning_h= 2,_tuning_average_ooc_arl=3,
          tuning_ooc_med_thresh=4, tuning_event_threshold=10,
-         supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr, port = 8003):
+         supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr, port = 8003, blockclientport = 8004):
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
@@ -265,12 +265,12 @@ def main(debug_enabled, tuning_mu=3, tuning_k=1,
         #Set up logging
         if debug:
             logging.basicConfig(filename='example.log', level=logging.DEBUG)
-            logging.debug( "Starting det server")
+            logging.debug("Starting det server")
 
         # Set up initial event
         reset()
         reset_current_event()
-        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol, dataaddress)
+        GLOBAL_CLASSIFIER = Classifier(TUNING_MU,TUNING_H,TUNING_K, supported_protocols, protocol, dataaddress, blockclientport)
         app.run(host='0.0.0.0', port=int(float(port)))
     except Exception as e:
         logging.debug("Could not start server!!"+str(e))

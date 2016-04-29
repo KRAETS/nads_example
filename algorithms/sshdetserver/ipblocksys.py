@@ -4,7 +4,7 @@ from subprocess import check_call
 LOG_FILENAME = 'example.log'
 import logging
 import iptc
-
+PORT = "8004"
 logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
 
 
@@ -39,7 +39,7 @@ def unblock(ip_to_unblock):
 
 def notifyblock(host, ip_to_block):
     try:
-        requests.post("http://"+host+":8004/blockip",ip_to_block)
+        requests.post("http://"+host+":"+PORT+"/blockip",ip_to_block)
     except Exception as e:
         logging.debug( "Could not notify host of ip to block"+ str(e))
     return

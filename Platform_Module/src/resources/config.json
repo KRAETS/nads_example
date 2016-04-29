@@ -12,28 +12,15 @@
 				"exampleip":"value",
 				"model":"values",
 				"trap_oid": "value",
-				"folder":"/home/pedro/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
+				"folder":"/home/nads/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
 		},
-		{
-                        "smtpdetectionserver":{
-                                "server":"true",
-                                "client":"true",
-                                "serveraddress":"localhost:8003",
-                                "verbose":"true",
-                                "folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
-                                "supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
-                                "protocol":"SMTP",
-                                "monitoringfolder":"/var/log/",
-                                "monitoringfile":"mail.log"
-                        }
-                },
 		{
 			"sshdetectionserver":{
 				"server":"true",
 				"client":"true",
 				"serveraddress":"localhost:8003",
 				"verbose":"true",
-				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
 				"protocol":"SSH",
 				"monitoringfolder":"/var/log/",
@@ -80,15 +67,8 @@
 				"phonenumber":"7873604991",
 				"phoneprovider":"att",
 				"email":"pedrocolon93@gmail.com",
-				"notifiablealgorithms":"[\"sshdetectionserver\",\"loop_detection\"]"
-			},
-			{
-                                "name":"Edward",
-                                "phonenumber":"7876164250",
-                                "phoneprovider":"att",
-                                "email":"edward.cuevas2@gmail.com",
-                                "notifiablealgorithms":"[\"sshdetectionserver\",\"loop_detection\"]"
-                        }
+				"notifiablealgorithms":"[\"sshdetectionserver\",\"smtpdetectionserver\",\"loop_detection\"]"
+			}
 		],
 		"notificationemail": "acotto777@gmail.com",
 		"serverhost":"smtps.ece.uprm.edu",

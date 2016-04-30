@@ -62,7 +62,7 @@ def reset():
     return
 
 
-def package_epoch(deleteepoch=True):
+def package_epoch():
     out_of_control_events = []
     # Get ooc events
     count = 0
@@ -80,8 +80,7 @@ def package_epoch(deleteepoch=True):
             break
         history.append(GLOBAL_EVENT_LIST[len(GLOBAL_EVENT_LIST)-1-i])
     # Create epoch
-    if not deleteepoch:
-        epoch = Epoch(out_of_control_events, history)
+    epoch = Epoch(out_of_control_events, history)
 
     return epoch
 

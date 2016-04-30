@@ -62,7 +62,7 @@ def reset():
     return
 
 
-def package_epoch():
+def package_epoch(deleteepoch=True):
     out_of_control_events = []
     # Get ooc events
     count = 0
@@ -80,7 +80,8 @@ def package_epoch():
             break
         history.append(GLOBAL_EVENT_LIST[len(GLOBAL_EVENT_LIST)-1-i])
     # Create epoch
-    epoch = Epoch(out_of_control_events, history)
+    if not deleteepoch:
+        epoch = Epoch(out_of_control_events, history)
 
     return epoch
 
@@ -188,7 +189,7 @@ def add_login():
                             logging.debug(protocol+" Attack in progress")
                         # notifications.notify_both(protocol+" attack in progress")
                         # if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
-                        epoch = package_epoch()
+                        epoch = package_epoch(false)
                         GLOBAL_CLASSIFIER.process(epoch)
                         reset_current_event()
 

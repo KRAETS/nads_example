@@ -189,7 +189,7 @@ def add_login():
                             logging.debug(protocol+" Attack in progress")
                         # notifications.notify_both(protocol+" attack in progress")
                         # if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
-                        epoch = package_epoch(deleteepoch=False)
+                        epoch = package_epoch()
                         GLOBAL_CLASSIFIER.process(epoch)
                         reset_current_event()
 

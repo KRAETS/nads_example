@@ -12,6 +12,23 @@ def block(ip_to_block):
     logging.debug( "Blocking"+str(ip_to_block))
     res = None
     try:
+        #Check if ip is there
+        table = iptc.Table(iptc.Table.FILTER)
+        for chain in table.chains:
+            print "======================="
+            print "Chain ", chain.name
+            for rule in chain.rules:
+                print "Rule", "proto:", rule.protocol, "src:", rule.src, "dst:", \
+                        rule.dst, "in:", rule.in_interface, "out:", rule.out_interface,
+                if ip_to_block in rule.src:
+                    return 0
+                print "Matches:",
+                for match in rule.matches:
+                    print match.name,
+                print "Target:",
+                print rule.target.name
+        print "======================="
+        #Insert the rule if not
         rule = iptc.Rule()
         rule.protocol = "tcp"
         match = iptc.Match(rule, "tcp")

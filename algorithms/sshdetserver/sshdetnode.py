@@ -59,6 +59,7 @@ GLOBAL_IP = None
 MONITORING_FOLDER = None
 FILE_TO_MONITOR = None
 LAST_CHECK = None
+LAST_DATE = ""
 
 
 @app.route('/blockip',methods=['POST'])
@@ -93,7 +94,7 @@ def shutdown():
     return 'Server shut down...'
 
 def analyzeLogin():
-    global protocol, supported_protocols
+    global protocol, supported_protocols, LAST_DATE
     logging.debug( "Analyzing login!!")
     try:
         time.sleep(7)
@@ -103,7 +104,8 @@ def analyzeLogin():
                       'from \ ALL/{protocol,portnumber,status,id,ip_address} \ ' \
                       'where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" ' \
                       'and \ ALL*protocol*_:host \ like "*'+supported_protocols[protocol]+'*" ' \
-                      'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" )'
+                      'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" ) '#\
+                      # ''+LAST_DATE+' '
         # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
         # completequery = query_url + urllib.quote(querystring, safe='')
         # logging.debug( "Making query", completequery
@@ -218,6 +220,7 @@ def analyzeLogin():
                 logging.debug( "Could not contact server"+str(e))
         logging.debug( "Exited")
         LAST_CHECK = usefulentries[len(usefulentries)-1]
+        LAST_DATE = LAST_CHECK["Date"]
     except Exception as e:
         logging.debug("There was a problem"+str(e))
     return

@@ -186,11 +186,12 @@ def add_login():
                     else:
                         if debug:
                             logging.debug(protocol+" Attack in progress")
-                        notifications.notify_both(protocol+" attack in progress")
+                        # notifications.notify_both(protocol+" attack in progress")
+                        # if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
+                        epoch = package_epoch()
+                        GLOBAL_CLASSIFIER.process(epoch)
                         reset_current_event()
-                        if GLOBAL_OUT_OF_CONTROL_AMOUNT > TUNING_OOC_MEDIUM_THRESHOLD:
-                            epoch = package_epoch()
-                            GLOBAL_CLASSIFIER.process(epoch)
+
 
                 else:
                     # logging.debug( "Global dn is false"
@@ -230,8 +231,8 @@ def signal_term_handler(a, b):
 
 dataaddr = "localhost"
 
-def main(debug_enabled, tuning_mu=3, tuning_k=1,
-         tuning_h= 2,_tuning_average_ooc_arl=3,
+def main(debug_enabled, tuning_mu=5, tuning_k=2,
+         tuning_h= 3,_tuning_average_ooc_arl=3,
          tuning_ooc_med_thresh=4, tuning_event_threshold=10,
          supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr, port = 8003, blockclientport = 8004):
     # Set shutdown hooks

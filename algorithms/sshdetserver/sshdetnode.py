@@ -93,11 +93,14 @@ def shutdown():
     observer.stop()
     return 'Server shut down...'
 
+
 def analyzeLogin():
     global protocol, supported_protocols, LAST_DATE
     logging.debug( "Analyzing login!!")
     try:
-        time.sleep(7)
+        logging.debug("Sleep")
+        time.sleep(4)
+        logging.debug("Sleep done")
         global LAST_CHECK
         #Query the data
         querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ ' \
@@ -124,6 +127,7 @@ def analyzeLogin():
         #     exit(0)
         # logging.debug( "Got results"
         # Sort by time
+        logging.debug("Setting the data ret address")
         dr.DATA_RET_SERVER_ADDRESS = dataaddr
         reslist = dr.search(None,querystring)
         usefulentries = []
@@ -224,6 +228,7 @@ def analyzeLogin():
     except Exception as e:
         logging.debug("There was a problem"+str(e))
     return
+
 
 class MyHandler(FileSystemEventHandler):
 

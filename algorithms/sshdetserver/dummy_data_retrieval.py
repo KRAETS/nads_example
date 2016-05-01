@@ -1,10 +1,16 @@
 import json
 import urllib2
 import requests
+import logging
 
 DATA_STORE_ADDRESS = "http://192.168.42.136:9200/_kql?limit=10000&kql="
 
 DATA_RET_SERVER_ADDRESS = "136.145.59.139:8002"
+
+LOG_FILENAME = 'example.log'
+logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
+
+
 def search(address, query):
     """Perform a serach in the specified address, with the specified query"""
     # req = urllib2.Request(completequery)
@@ -12,18 +18,18 @@ def search(address, query):
     # print "Requesting", completequery
 
     try:
-        print "Asking for data", "http://"+DATA_RET_SERVER_ADDRESS+"/getdata"
-        print query
+        logging.debug(  "Asking for data", "http://"+DATA_RET_SERVER_ADDRESS+"/getdata")
+        logging.debug(  query)
         response = requests.post("http://"+DATA_RET_SERVER_ADDRESS+"/getdata",query)
-        print "Response", response
+        logging.debug(  "Response"+ str(response))
         printthings = response.text
 
         # printthings = response.read()
         results = json.loads(printthings)
         # print results
     except Exception as e:
-        print "Could not open kql server", e
-    print "Got results"
+        logging.debug(  "Could not open kql server"+str(e))
+    logging.debug(  "Got results")
     dummylist = []
     reallist = []
     if results is not None:
@@ -45,12 +51,12 @@ def store_result(type, date, info, additional_info):
     res["additional_info"] = json.dumps(additional_info)
     try:
         request = "http://" + DATA_RET_SERVER_ADDRESS + "/" + "senddata"
-        print "Requesting", request
+        logging.debug(  "Requesting"+str(request))
         req = urllib2.Request(request)
         # req.add_header("Content-Type","application/json")
         req.add_data(str(res).replace("\"","").replace("'",""))
         response = urllib2.urlopen(req)
     except Exception as e:
-        print "Could not store result", e
+        logging.debug(  "Could not store result"+ str(e))
 
 

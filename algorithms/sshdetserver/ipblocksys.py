@@ -9,7 +9,7 @@ logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
 
 
 def block(ip_to_block):
-    logging.debug( "Blocking"+str(ip_to_block))
+    logging.debug("Blocking"+str(ip_to_block))
     res = None
     try:
         #Check if ip is there
@@ -41,11 +41,12 @@ def block(ip_to_block):
         # res = check_call("sudo iptables -A INPUT -s "+str(ip_to_block)+" -j DROP", shell=True)
     except Exception as e:
         logging.debug( "Could not complete call res:"+str(res)+"exception:"+str(e))
-    logging.debug( "Done")
+    logging.debug("Done Blocking")
     return 0
 
+
 def unblock(ip_to_unblock):
-    logging.debug( "Unblocking"+str(ip_to_unblock))
+    logging.debug("Unblocking"+str(ip_to_unblock))
     res = None
     try:
         res = check_call(["iptables", "-D", "INPUT", "-s", ip_to_unblock, "-j", "DROP"])
@@ -53,6 +54,7 @@ def unblock(ip_to_unblock):
         logging.debug( "Could not complete call res:"+str(res)+"exception:"+str(e))
     logging.debug( "Done")
     return 0
+
 
 def notifyblock(host, ip_to_block):
     try:

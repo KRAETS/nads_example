@@ -266,11 +266,14 @@ def signal_term_handler(a, b):
     exit(0)
 
 
-def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotocol, dataaddress,nodeport):
+def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotocol, dataaddress,nodeport, whitelist):
     global GLOBAL_IP, observer, supported_protocols, protocol, MONITORING_FOLDER, FILE_TO_MONITOR, dataaddr
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
+    if whitelist is not None:
+        ip_tools.whitelist = whitelist
+
     logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
     dataaddr = dataaddress
     # Set the supported protocols

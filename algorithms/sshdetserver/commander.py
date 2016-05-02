@@ -68,8 +68,15 @@ def main():
         # logging.debug( supported_protocols, protocol
         try:
             if parameter_map["server"] == True or parameter_map["server"] == "true":
+                customparams = None
+                try:
+                    if parameter_map["parameters"] is not None:
+                        customparams = json.loads(parameter_map["parameters"])
+                except Exception as e:
+                    logging.debug("COuld not get custom parameters"+str(e))
+
                 logging.debug( "Starting the server")
-                start_server(verbose, supported_protocols, protocol, parameter_map["dataaddress"],parameter_map["serverport"],parameter_map["clientport"])
+                start_server(verbose, supported_protocols, protocol, parameter_map["dataaddress"],parameter_map["serverport"],parameter_map["clientport"], customparams)
                 logging.debug( "Waiting for initialization")
                 time.sleep(10)
                 logging.debug( "Continuing")
@@ -81,9 +88,14 @@ def main():
                 logging.debug( "Checking for server address...")
                 logging.debug( "Address is"+str(parameter_map["serveraddress"]))
                 server_address = parameter_map["serveraddress"]
+                whitelist = None
+                try:
+                    whitelist = json.loads(parameter_map["whitelist"])
+                except Exception as e:
+                    logging.debug("No whitelist provided")
                 start_client(verbose, server_address, parameter_map["monitoringfolder"],
                              parameter_map["monitoringfile"], supported_protocols, protocol,
-                             parameter_map["dataaddress"], parameter_map["clientport"])
+                             parameter_map["dataaddress"], parameter_map["clientport"], whitelist)
         except Exception as e:
             logging.debug( "Could not start client"+str(e))
         # Wait for the processes to exit
@@ -129,7 +141,7 @@ def main():
     #     process.join()
 
 
-def start_client(verbose, server_address, monitoringfolder, monitoringfile, supported_protocols, protocol, dataaddress, nodeport):
+def start_client(verbose, server_address, monitoringfolder, monitoringfile, supported_protocols, protocol, dataaddress, nodeport, whitelist):
     """Function to start a client process and monitor within a folder, a specific file"""
     global GLOBAL_PROCESS_LIST
     if verbose:
@@ -141,7 +153,7 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile, supp
     # Start up the client script separately
     p = Process(target=sshdetnode.main, args=(server_address, monitoringfolder,
                                               monitoringfile, supported_protocols, protocol,
-                                              dataaddress, nodeport))
+                                              dataaddress, nodeport, whitelist))
     p.start()
     if verbose:
         logging.debug( "Client started!")
@@ -150,13 +162,21 @@ def start_client(verbose, server_address, monitoringfolder, monitoringfile, supp
     return
 
 
-def start_server(verbose, supported_protocols, protocol, dataaddress, port, bcp):
+def start_server(verbose, supported_protocols, protocol, dataaddress, port, bcp, customparams):
     """Function to start a server process"""
     global GLOBAL_PROCESS_LIST
     if verbose:
         logging.debug( "Server node starting")
-    p = Process(target=sshdetserver.main, args=(verbose,), kwargs={'supportedprotocols':supported_protocols,'targetprotocol':protocol,
-                                                                   'dataaddress':dataaddress, 'port':port, 'blockclientport':bcp})
+    kwargs = {'supportedprotocols':supported_protocols,'targetprotocol':protocol,
+              'dataaddress':dataaddress, 'port':port, 'blockclientport':bcp}
+    if customparams is not None:
+        for param in customparams.keys():
+            try:
+                kwargs[param] = int(float(customparams[param]))
+            except Exception as e:
+                logging.debug("Could not parse custom param"+str(e))
+
+    p = Process(target=sshdetserver.main, args=(verbose,), kwargs=kwargs)
     p.start()
     if verbose:
         logging.debug( "Server node started")

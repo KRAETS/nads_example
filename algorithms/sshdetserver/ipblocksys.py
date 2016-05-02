@@ -6,28 +6,45 @@ import logging
 import iptc
 PORT = "8004"
 logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
-
+whitelist = []
 
 def block(ip_to_block):
+    # Check first for literal ip
+    if ip_to_block in whitelist:
+        return 0
+    # Check then for groups of ips
+    for ip in whitelist:
+        if "*" in ip:
+            # Extract the ip by chopping off the subnet
+            whitelistgroup = ""
+            for character in ip:
+                if character == "*":
+                    break
+                else:
+                    whitelistgroup+=character
+            if whitelistgroup in ip_to_block[:len(whitelistgroup)]:
+                return 0
+
     logging.debug("Blocking"+str(ip_to_block))
-    res = None
     try:
         #Check if ip is there
         table = iptc.Table(iptc.Table.FILTER)
         for chain in table.chains:
-            print "======================="
-            print "Chain ", chain.name
+            logging.debug( "=======================")
+            logging.debug( "Chain "+str(chain.name))
             for rule in chain.rules:
-                print "Rule", "proto:", rule.protocol, "src:", rule.src, "dst:", \
-                        rule.dst, "in:", rule.in_interface, "out:", rule.out_interface,
+                logging.debug("Rule proto:"+str(rule.protocol)+"src:"+str(rule.src)+"dst:"+ \
+                        str(rule.dst)+ "in:"+str(rule.in_interface) +"out:"+str( rule.out_interface))
                 if ip_to_block in rule.src:
                     return 0
-                print "Matches:",
+                logging.debug("Matches:")
+
+
                 for match in rule.matches:
-                    print match.name,
-                print "Target:",
-                print rule.target.name
-        print "======================="
+                    logging.debug(str(match.name))
+                logging.debug("Target:")
+                logging.debug(str(rule.target.name))
+        logging.debug( "=======================")
         #Insert the rule if not
         rule = iptc.Rule()
         rule.protocol = "tcp"
@@ -40,7 +57,7 @@ def block(ip_to_block):
         chain.insert_rule(rule)
         # res = check_call("sudo iptables -A INPUT -s "+str(ip_to_block)+" -j DROP", shell=True)
     except Exception as e:
-        logging.debug( "Could not complete call res:"+str(res)+"exception:"+str(e))
+        logging.debug( "Could not complete block exception:"+str(e))
     logging.debug("Done Blocking")
     return 0
 
@@ -58,7 +75,7 @@ def unblock(ip_to_unblock):
 
 def notifyblock(host, ip_to_block):
     try:
-        requests.post("http://"+host+":"+str(int(float(PORT)))+"/blockip",ip_to_block)
+        requests.post("http://"+str(host)+":"+str(int(float(PORT)))+"/blockip",ip_to_block)
     except Exception as e:
         logging.debug( "Could not notify host of ip to block"+ str(e))
     return

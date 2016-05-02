@@ -232,9 +232,10 @@ def signal_term_handler(a, b):
 dataaddr = "localhost"
 
 def main(debug_enabled, tuning_mu=3, tuning_k=2,
-         tuning_h= 3,_tuning_average_ooc_arl=3,
+         tuning_h= 3,tuning_average_ooc_arl=3,
          tuning_ooc_med_thresh=4, tuning_event_threshold=10,
-         supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr, port = 8003, blockclientport = 8004):
+         supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr,
+         port = 8003, blockclientport = 8004):
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
@@ -248,7 +249,7 @@ def main(debug_enabled, tuning_mu=3, tuning_k=2,
         TUNING_MU = tuning_mu
         TUNING_K = tuning_k
         TUNING_H =tuning_h
-        TUNING_AVERAGE_OOC_ARL =_tuning_average_ooc_arl
+        TUNING_AVERAGE_OOC_ARL =tuning_average_ooc_arl
         TUNING_OOC_MEDIUM_THRESHOLD =  tuning_ooc_med_thresh
         TUNING_EVENT_THRESHOLD = tuning_event_threshold
         # Enable debug

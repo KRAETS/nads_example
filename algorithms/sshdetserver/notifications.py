@@ -34,11 +34,11 @@ def notify_both(message):
                 try:
                     ips = ""
                     for cluster in message["data"]:
-                        ipstoblock = list(set(cluster[1]))
-                        for ip in ipstoblock:
-                            ips+= cluster[0].replace("-host", "") + " "
+                        ips+= cluster[0].replace("-host", "") + " "
+
                     request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote("Distributed Attack Detected at "+ips,safe='')
                     logging.debug( "Notifying"+str( request))
+
                     req = urllib2.Request(request)
                     response = urllib2.urlopen(req)
                     logging.debug(str(response))

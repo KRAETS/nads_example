@@ -179,6 +179,10 @@ def sendMessage(info, message):
         if info in algs.keys():
             for each in algs[info]:
                 try:
+                    smtp_setup()
+                except Exception as e:
+                    print "Could not connect", e
+                try:
                     print "Sending to", info, each
                     smtp.sendmail(email, each, 'Subject: \n' + message)
                     print "Email sent"

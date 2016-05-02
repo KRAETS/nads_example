@@ -154,6 +154,10 @@ def sendMessage(info, message):
             for each in algs[info]:
                 Body = "From: %s" % email
                 try:
+                    smtp_setup()
+                except Exception as e:
+                    print "Could not login to send email", e
+                try:
                     print "Sending to", info, each
                     smtp.sendmail(email, each, 'Subject: %s\n' % info + '\n' + message)
                 except Exception as e:

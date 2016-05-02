@@ -176,7 +176,7 @@ def add_login():
                     if GLOBAL_PREVIOUS_DN is False:
                         if debug:
                             logging.debug(protocol+" Attack initiated")
-                        notifications.notify_both(protocol+" Attack started")
+                        #notifications.notify_both(protocol+" Attack started")
                         # Package Epoch
                         epoch = package_epoch()
                         # Process it

@@ -18,8 +18,6 @@ def search(address, query):
     # print "Requesting", completequery
 
     try:
-        # logging.debug(  "Asking for data", "http://"+DATA_RET_SERVER_ADDRESS+"/getdata")
-        # logging.debug(  query)
         response = requests.post("http://"+DATA_RET_SERVER_ADDRESS+"/getdata",query)
         logging.debug(  "Response"+ str(response))
         printthings = response.text

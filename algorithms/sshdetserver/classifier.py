@@ -263,7 +263,7 @@ class Classifier:
         logging.debug("Result"+str(result))
         if result is not None:
             # process singleton
-            msg = {"type": "Singleton", "data": result}
+            msg = {"type": "Singleton", "data": result,"protocol":str(self.type)}
             logging.debug(str(msg))
             notifications.notify_both(msg)
             # Block
@@ -279,7 +279,7 @@ class Classifier:
             logging.debug( "Analyzing coordination glue")
             hitpair = self.analyze_coordination_glue(newepoch)
             logging.debug( "Is distributed!!!")
-            msg = {"type":"Distributed","data":hitpair}
+            msg = {"type":"Distributed","data":hitpair,"protocol":str(self.type)}
             logging.debug(str(msg))
             # Block ips
             for cluster in hitpair:

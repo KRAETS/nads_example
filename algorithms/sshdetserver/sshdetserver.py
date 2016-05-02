@@ -231,7 +231,7 @@ def signal_term_handler(a, b):
 
 dataaddr = "localhost"
 
-def main(debug_enabled, tuning_mu=5, tuning_k=2,
+def main(debug_enabled, tuning_mu=3, tuning_k=2,
          tuning_h= 3,_tuning_average_ooc_arl=3,
          tuning_ooc_med_thresh=4, tuning_event_threshold=10,
          supportedprotocols=supported_protocols, targetprotocol=protocol, dataaddress=dataaddr, port = 8003, blockclientport = 8004):

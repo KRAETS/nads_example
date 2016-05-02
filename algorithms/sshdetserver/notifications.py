@@ -43,7 +43,7 @@ def notify_both(message):
         try:
             request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote(str(message),
                                                                                           safe='')
-            logging.debug( "Notifying", str(request))
+    #        logging.debug( "Notifying", str(request))
             req = urllib2.Request(request)
             response = urllib2.urlopen(req)
             logging.debug(str(response))

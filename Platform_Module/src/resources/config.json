@@ -1,8 +1,7 @@
 {
 	"main":
 	{
-		"logtofile":"nads.log",
-		"workingdirectory":"something"
+		"logtofile":"nads.log"
 	},
 	"algorithms":
 	[
@@ -12,7 +11,7 @@
 				"exampleip":"value",
 				"model":"values",
 				"trap_oid": "value",
-				"folder":"/home/nads/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
+				"folder":"/home/pedro/Documents/git/nads/algorithms/loop_detec/Main_Script_Prototype.py"}
 		},
 		{
 			"sshdetectionserver":{
@@ -20,14 +19,15 @@
 				"client":"true",
 				"serveraddress":"localhost:8003",
 				"verbose":"true",
-				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
 				"protocol":"SSH",
 				"monitoringfolder":"/var/log/",
 				"monitoringfile":"auth.log",
 				"dataaddress":"127.0.0.1:8002",
 				"serverport":8003,
-				"clientport":8004
+				"clientport":8004,
+				"whitelist":"[\"136.145.*\", \"127.0.0.1\"]"
 			}
 		},
 		{
@@ -36,14 +36,16 @@
 				"client":"true",
 				"serveraddress":"localhost:8005",
 				"verbose":"true",
-				"folder":"/home/nads/Documents/git/nads/algorithms/sshdetserver/commander.py",
+				"folder":"/home/pedro/Documents/git/nads/algorithms/sshdetserver/commander.py",
 				"supported_protocols":"{\"SSH\":\"sshd\",\"SMTP\":\"smtpd\"}",
 				"protocol":"SMTP",
 				"monitoringfolder":"/var/log/",
 				"monitoringfile":"mail.log",
 				"dataaddress":"127.0.0.1:8002",
 				"serverport":8005,
-				"clientport":8006
+				"clientport":8006,
+				"whitelist":"[\"136.145.*\", \"127.0.0.1\"]",
+				"parameters":"{\"tuning_mu\":\"3\", \"tuning_k\":\"2\",\"tuning_h\":\"3\",\"tuning_average_ooc_arl\":\"3\",\"tuning_ooc_med_thresh\":\"4\", \"tuning_event_threshold\":\"10\"}"
 			}
 		}
 	],
@@ -72,11 +74,11 @@
 		],
 		"notificationemail": "acotto777@gmail.com",
 		"serverhost":"smtps.ece.uprm.edu",
-		"notificationfilelocation":"/home/nads/Documents/git/nads/notification/notificationThroughSMTPserver.py"
+		"notificationfilelocation":"/home/pedro/Documents/git/nads/notification/notificationThroughSMTPserver.py"
 	},
 	"utilities":
 	{
-		"newpatternfilelocation":"/home/nads/Documents/git/nads/Platform_Module/src/resources/10-syslog-filter.conf",
+		"newpatternfilelocation":"/home/pedro/Documents/git/nads/Platform_Module/src/resources/10-syslog-filter.conf",
 		"originalpatternfilelocation":"/etc/logstash/conf.d/10-syslog-filter.conf"
 	}
 }

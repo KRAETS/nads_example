@@ -9,7 +9,7 @@ import dummy_data_retrieval as dr
 from datetime import datetime, date
 from flask import Flask
 from flask import request
-import ipblocksys as ip_tools
+# import ipblocksys as ip_tools
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 from login import Login
@@ -69,7 +69,7 @@ def blockip():
     if ip == "127.0.0.1" or ip == "localhost":
         logging.debug( "Not blocking localhost")
         return "OK"
-    ip_tools.block(str(ip))
+    # ip_tools.block(str(ip))
     return 'Ok'
 
 
@@ -103,12 +103,19 @@ def analyzeLogin():
         logging.debug("Sleep done")
         global LAST_CHECK
         #Query the data
-        querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ ' \
-                      'from \ ALL/{protocol,portnumber,status,id,ip_address} \ ' \
-                      'where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" ' \
-                      'and \ ALL*protocol*_:host \ like "*'+supported_protocols[protocol]+'*" ' \
-                      'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" ) '#\
-                      # ''+LAST_DATE+' '
+        # querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ ' \
+        #               'from \ ALL/{protocol,portnumber,status,id,ip_address} \ ' \
+        #               'where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" ' \
+        #               'and \ ALL*protocol*_:host \ like "*'+supported_protocols[protocol]+'*" ' \
+        #               'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" ) '#\
+        querystring = 'SELECT HostName,UserName,ClientDaemon,Status,ClientPort,Date,DaemonName,ClientIp,DaemonPort ' \
+                      'from filebeat-* ' \
+                      'where HostName like "' + socket.gethostname() + '" ' \
+                      'and DaemonName like "*' + \
+                      supported_protocols[protocol] + '*" ' \
+                      'and  ( Status like "*ailed*" or Status like "*Accepted*" ) '  # \
+
+        # ''+LAST_DATE+' '
         # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
         # completequery = query_url + urllib.quote(querystring, safe='')
         # logging.debug( "Making query", completequery
@@ -271,8 +278,8 @@ def main(ip, monitoringfolder, monitoringfile, supportedprotocols, targetprotoco
     # Set shutdown hooks
     signal.signal(signal.SIGTERM, signal_term_handler)
     signal.signal(signal.SIGINT, signal_term_handler)
-    if whitelist is not None:
-        ip_tools.whitelist = whitelist
+    # if whitelist is not None:
+    #     ip_tools.whitelist = whitelist
 
     logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
     dataaddr = dataaddress

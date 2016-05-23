@@ -2,6 +2,7 @@ import json
 import urllib2
 import requests
 import logging
+import datetime
 
 DATA_STORE_ADDRESS = "http://192.168.42.136:9200/_kql?limit=10000&kql="
 
@@ -18,8 +19,11 @@ def search(address, query):
     # print "Requesting", completequery
 
     try:
+        before = datetime.datetime.now()
         response = requests.post("http://"+DATA_RET_SERVER_ADDRESS+"/getdata",query)
+        after = datetime.datetime.now()
         logging.debug(  "Response"+ str(response))
+        logging.debug("Time it took to make call:"+str(after-before)+"For query:"+str(query))
         printthings = response.text
 
         # printthings = response.read()

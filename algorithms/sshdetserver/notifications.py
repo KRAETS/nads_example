@@ -5,7 +5,7 @@ import json
 import logging
 
 NOTIFICATION_SYSTEM_ADDRESS = "http://127.0.0.1:8000/"
-ALGORITHM_NAME = "sshdetectionserver"
+ALGORITHM_NAME = "detectionserver"
 TYPE = "SSH"
 LOG_FILENAME = 'example.log'
 logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
@@ -36,7 +36,8 @@ def notify_both(message):
                     for cluster in message["data"]:
                         ips += cluster[0].replace("-host", "") + " "
 
-                    request = NOTIFICATION_SYSTEM_ADDRESS + ALGORITHM_NAME + "**" + urllib2.quote(message["protocol"]+" Distributed Attack Detected at "+ips,safe='')
+                    request = NOTIFICATION_SYSTEM_ADDRESS + message["protocol"].lower()+ALGORITHM_NAME + "**" + urllib2.quote(message["protocol"]+" Distributed Attack Detected at "+ips,safe='')
+
                     logging.debug( "Notifying"+str( request))
 
                     req = urllib2.Request(request)

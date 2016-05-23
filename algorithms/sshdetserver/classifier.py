@@ -1,6 +1,6 @@
 import copy
 import time
-import ipblocksys as ip_tools
+# import ipblocksys as ip_tools
 import editdistance
 from igraph import *
 import logging
@@ -41,7 +41,7 @@ class Classifier:
         self.set_supported_protocols(supportedprotocols)
         self.dataaddress = dataaddr
         dr.DATA_RET_SERVER_ADDRESS = self.dataaddress
-        ip_tools.PORT = blockclientport
+        # ip_tools.PORT = blockclientport
 
     def set_type(self, newtype):
         for type in supported_protocols.keys():
@@ -135,10 +135,12 @@ class Classifier:
         """Analyzes an epoch to remove legitimate users, or legitimate users who put a wrong password/login"""
         epochclone = copy.deepcopy(epoch)
         # Get past successful logins
-        query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from' \
-                ' \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" ) ' \
-                'and \ ALL*protocol*_:host \ like "*'+supported_protocols[self.type]+'*"'
-
+        # query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from' \
+        #         ' \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" ) ' \
+        #         'and \ ALL*protocol*_:host \ like "*'+supported_protocols[self.type]+'*"'
+        query = 'SELECT UserName,ClientDaemon,Status,ClientPort,Date,DaemonName,ClientIp,DaemonPort from' \
+                ' filebeat-* where ( Status like "*Accepted*" ) ' \
+                'and DaemonName like "*' + supported_protocols[self.type] + '*"'
         past_success_logins = dr.search(None, query)
 
         if len(past_success_logins) == 0:
@@ -271,7 +273,7 @@ class Classifier:
             for ip in ipstoblock:
                 ip = ip.replace("-host","")
                 logging.debug("Blocking the ip:"+ip)
-                ip_tools.notifyblock(ip,result[0])
+                # ip_tools.notifyblock(ip,result[0])
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "SINGLETON", "SINGLETON_IP:" + str(result[0]))
         else:
             # Then check distributed
@@ -286,7 +288,7 @@ class Classifier:
                 ipstoblock = list(set(cluster[1]))
                 for ip in ipstoblock:
                     logging.debug("bLOCKING AT HOST"+cluster[0].replace("-host","")+"THE Ip "+ip)
-                    ip_tools.notifyblock(cluster[0].replace("-host",""), ip)
+                    # ip_tools.notifyblock(cluster[0].replace("-host",""), ip)
             notifications.notify_both(msg)
             logging.debug(str(hitpair))
             dr.store_result("PROTOCOL_ATTACK", time.strftime("%b %d %H:%M:%S"), "DISTRIBUTED", hitpair)

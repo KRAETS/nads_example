@@ -155,6 +155,7 @@ public class DataRetrievalManager extends Manager {
 
 
 
+
 //                bodyargument = new String(bodyargument.getBytes("UTF-8"), "ISO-8859-1");
 
                 URI address = new URI(bodyargument);

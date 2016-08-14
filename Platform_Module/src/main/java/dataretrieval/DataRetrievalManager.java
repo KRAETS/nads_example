@@ -146,8 +146,8 @@ public class DataRetrievalManager extends Manager {
                     }
                     bodyargument += current;
                 }
-//                String kqlServerAddress = "http://"+DataRetrievalManager.getDatRetOpts().getElasticSearchAddress()+":"+ DataRetrievalManager.getDatRetOpts().getElasticSearchPort()+"/_kql?limit=10000&kql=";
-                String kqlServerAddress = "http://"+DataRetrievalManager.getDatRetOpts().getElasticSearchAddress()+":"+ DataRetrievalManager.getDatRetOpts().getElasticSearchPort()+"/_sql?sql=";
+                String kqlServerAddress = "http://"+DataRetrievalManager.getDatRetOpts().getElasticSearchAddress()+":"+ DataRetrievalManager.getDatRetOpts().getElasticSearchPort()+"/_kql?limit=10000&kql=";
+                //String kqlServerAddress = "http://"+DataRetrievalManager.getDatRetOpts().getElasticSearchAddress()+":"+ DataRetrievalManager.getDatRetOpts().getElasticSearchPort()+"/_sql?sql=";
 
 
 //                bodyargument = kqlServerAddress + URLEncoder.encode( bodyargument, "UTF-8");

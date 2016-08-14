@@ -135,12 +135,12 @@ class Classifier:
         """Analyzes an epoch to remove legitimate users, or legitimate users who put a wrong password/login"""
         epochclone = copy.deepcopy(epoch)
         # Get past successful logins
-        query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from' \
-                ' \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" ) ' \
-                'and \ ALL*protocol*_:host \ like "*'+supported_protocols[self.type]+'*"'
-        #query = 'SELECT UserName,ClientDaemon,Status,ClientPort,Date,DaemonName,ClientIp,DaemonPort from' \
-        #        ' filebeat-* where ( Status like "*Accepted*" ) ' \
-        #        'and DaemonName like "*' + supported_protocols[self.type] + '*"'
+        # query = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime} \ from' \
+        #         ' \ ALL/{protocol,portnumber,status,id,ip_address} \ where ( \ ALL*status \ like "*Accepted*" ) ' \
+        #         'and \ ALL*protocol*_:host \ like "*'+supported_protocols[self.type]+'*"'
+        query = 'SELECT UserName,ClientDaemon,Status,ClientPort,Date,DaemonName,ClientIp,DaemonPort from' \
+                ' filebeat-* where ( Status like "*Accepted*" ) ' \
+                'and DaemonName like "*' + supported_protocols[self.type] + '*"'
         past_success_logins = dr.search(None, query)
 
         if len(past_success_logins) == 0:

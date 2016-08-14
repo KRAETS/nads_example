@@ -24,7 +24,6 @@ def search(address, query):
         after = datetime.datetime.now()
         logging.debug(  "Response"+ str(response))
         logging.debug("Time it took to make call:"+str(after-before)+"For query:"+str(query))
-	logging.debug("text"+str(response.text))
         printthings = response.text
 
         # printthings = response.read()

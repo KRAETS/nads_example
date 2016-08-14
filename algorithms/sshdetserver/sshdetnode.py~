@@ -103,17 +103,17 @@ def analyzeLogin():
         logging.debug("Sleep done")
         global LAST_CHECK
         #Query the data
-        querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ ' \
-                       'from \ ALL/{protocol,portnumber,status,id,ip_address} \ ' \
-                       'where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" ' \
-                       'and \ ALL*protocol*_:host \ like "*'+supported_protocols[protocol]+'*" ' \
-                       'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" ) '#\
-        #querystring = 'SELECT HostName,UserName,ClientDaemon,Status,ClientPort,Date,DaemonName,ClientIp,DaemonPort ' \
-        #              'from filebeat-* ' \
-        #              'where HostName like "' + socket.gethostname() + '" ' \
-        #             'and DaemonName like "*' + \
-        #              supported_protocols[protocol] + '*" ' \
-        #              'and  ( Status like "*ailed*" or Status like "*Accepted*" ) '  # \
+        # querystring = 'SELECT \ ALL*{protocol,portnumber,status,id,ip_address,datetime,name} \ ' \
+        #               'from \ ALL/{protocol,portnumber,status,id,ip_address} \ ' \
+        #               'where \ ALL*name*_:servername \ like "'+ socket.gethostname()+'" ' \
+        #               'and \ ALL*protocol*_:host \ like "*'+supported_protocols[protocol]+'*" ' \
+        #               'and  ( \ ALL*status \ like "*ailed*" or \ ALL*status \ like "*Accepted*" ) '#\
+        querystring = 'SELECT HostName,UserName,ClientDaemon,Status,ClientPort,Date,DaemonName,ClientIp,DaemonPort ' \
+                      'from filebeat-* ' \
+                      'where HostName like "' + socket.gethostname() + '" ' \
+                      'and DaemonName like "*' + \
+                      supported_protocols[protocol] + '*" ' \
+                      'and  ( Status like "*ailed*" or Status like "*Accepted*" ) '  # \
 
         # ''+LAST_DATE+' '
         # query_url = 'http://localhost:9200/_kql?limit=10000&kql='
